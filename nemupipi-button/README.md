@@ -5,8 +5,12 @@
 本ページのボタンを押下すると、対応する音声が出ます。音量等お気を付けください。
 
 ## 【更新履歴】
+### v.2.1.1 (2025/02/19)
+* ボタンを追加(50種)
+
 ### v.2.1.0 (2025/02/18)
-* ボタンを追加(種)
+* ボタンを追加(55種)
+* カテゴリ「呼びかけ系、ささやき系」を追加
 
 ### v.2.0.0 (2024/07/28)
 * 「編集モード」を追加
@@ -57,6 +61,15 @@ https://www.youtube.com/watch?v=Vh_pgT99IwQ
 
 * 【ピアノ生演奏】曲リストができたよー！【ねむぴぴあの/第85回】<br>
 https://www.youtube.com/watch?v=JW5ncm--utc
+
+* 【ピアノ生演奏】今日も深夜のおともに【ねむぴぴあの⧸第86回】<br>
+https://www.youtube.com/watch?v=JkrBnDoerTI
+
+* 【ピアノ生演奏】新衣装でピアノ弾く～！【ねむぴぴあの/第87日目】<br>
+https://www.youtube.com/watch?v=N1FFB18SWjY
+
+* 【ピアノ生演奏】ふわふわピアノたいむ【ねむぴぴあの⧸第89日目】<br>
+https://www.youtube.com/watch?v=NA5axDL7evM
 
 * 【ピアノ生演奏】のんびり練習したり弾いたりする𓂃 𓈒𓏸໒꒱【ねむぴぴあの⧸第95日目】<br>
 https://www.youtube.com/watch?v=qB83R8ek040
