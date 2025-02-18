@@ -5,6 +5,9 @@
 本ページのボタンを押下すると、対応する音声が出ます。音量等お気を付けください。
 
 ## 【更新履歴】
+### v.2.1.0 (2025/02/18)
+* ボタンを追加(種)
+
 ### v.2.0.0 (2024/07/28)
 * 「編集モード」を追加
 ボタンの表示／非表示状態を制御できるようになりました。
@@ -45,6 +48,18 @@ https://www.youtube.com/watch?v=kPHAV_IFI-s
 
 * 【８番出口】ねむぴぴ地下通路から脱出します！！！【ねむぴぴ/Vtuber】<br>
 https://www.youtube.com/watch?v=QfPTuUbnsI8
+
+* 【DYPING】恐怖のタイピングゲームをやってみる！【ねむぴぴ/Vtuber】<br>
+https://www.youtube.com/watch?v=DJsGWe5yX-8
+
+* 『世界で一番操作性の悪いゲーム』をやります！【ねむぴぴ/Vtuber】<br>
+https://www.youtube.com/watch?v=Vh_pgT99IwQ
+
+* 【ピアノ生演奏】曲リストができたよー！【ねむぴぴあの/第85回】<br>
+https://www.youtube.com/watch?v=JW5ncm--utc
+
+* 【ピアノ生演奏】のんびり練習したり弾いたりする𓂃 𓈒𓏸໒꒱【ねむぴぴあの⧸第95日目】<br>
+https://www.youtube.com/watch?v=qB83R8ek040
 
 ## 【その他】
 「ねむぴぴ*ボタン」は非公式のものとなりますため、ねむぴぴさんご本人様の活動とは一切関係ございません。<br>
