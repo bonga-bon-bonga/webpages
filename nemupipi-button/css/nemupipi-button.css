@@ -77,7 +77,7 @@ hr {
 }
 
 .btn-voice.button-loading {
-    background: #6594e0; /* 背景色 */
+    background: pink; /* 背景色 */
     color: #444; /* 文字色 */
     padding: 8px 30px; /* 上下の余白、左右の余白 */
     margin: 5px 5px;
