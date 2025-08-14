@@ -76,6 +76,32 @@ hr {
     background: palevioletred; /* 背景色 */
 }
 
+.btn-voice.button-loading {
+    background: #6594e0; /* 背景色 */
+    color: #444; /* 文字色 */
+    padding: 8px 30px; /* 上下の余白、左右の余白 */
+    margin: 5px 5px;
+    text-decoration: none; /* デフォルトで入る下線を消す */
+    border-radius: 30px; /* 角を丸くする */
+    transition-property: opacity;
+    -webkit-transition-property: opacity;
+    transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+}
+
+.btn-voice.button-error {
+    background: #444; /* 背景色 */
+    color: #444; /* 文字色 */
+    padding: 8px 30px; /* 上下の余白、左右の余白 */
+    margin: 5px 5px;
+    text-decoration: none; /* デフォルトで入る下線を消す */
+    border-radius: 30px; /* 角を丸くする */
+    transition-property: opacity;
+    -webkit-transition-property: opacity;
+    transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+}
+
 .btn-voice.button-disable {
     background: #aaa; /* 背景色 */
     color: #444; /* 文字色 */
