@@ -1,0 +1,221 @@
+:root {
+    --page-bg: #f7f4ef;
+    --page-text: #292524;
+    --page-muted: #78716c;
+    --page-accent: #b45309;
+    --page-accent-soft: #fff7ed;
+    --page-line: #e7e5e4;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--page-text);
+    background: #ffffff;
+    line-height: 1.7;
+    padding-top: 5.75rem;
+    padding-bottom: 3.25rem;
+}
+
+.navbar-brand {
+    padding-left: .75rem;
+    font-weight: 700;
+}
+
+.navbar-button {
+    margin-left: .75rem;
+    white-space: nowrap;
+}
+
+
+.site-footer p {
+    margin: .25rem 0;
+    font-weight: 700;
+    font-size: .9rem;
+    line-height: 1.35;
+}
+
+.app-shell {
+    max-width: 1120px;
+    padding-top: .75rem;
+}
+
+.app-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .25rem .75rem;
+    border-radius: 999px;
+    background: var(--page-accent-soft);
+    color: var(--page-accent);
+    font-weight: 700;
+    font-size: .875rem;
+}
+
+.app-title {
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+}
+
+.app-panel {
+    background: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(231, 229, 228, .9);
+    box-shadow: 0 12px 28px rgba(41, 37, 36, .08);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+}
+
+.nav-pills.app-tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: .5rem;
+    padding: .375rem;
+    border: 1px solid var(--page-line);
+    background: #fafaf9;
+    border-radius: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-pills.app-tabs .nav-item {
+    flex: 1 0 0;
+    min-width: 0;
+}
+
+.nav-pills.app-tabs .nav-link {
+    width: 100%;
+    min-height: 3rem;
+    border-radius: .85rem;
+    color: var(--page-muted);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.nav-pills.app-tabs .nav-link.active {
+    color: var(--page-text);
+    background: #fff;
+    box-shadow: 0 8px 18px rgba(41, 37, 36, .07);
+}
+
+.song-card {
+    border-color: var(--page-line);
+    border-radius: 1.25rem;
+    min-height: 100%;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.song-card:hover,
+.song-card:focus {
+    transform: translateY(-2px);
+    border-color: rgba(180, 83, 9, .35);
+    box-shadow: 0 .75rem 1.5rem rgba(41, 37, 36, .08);
+    outline: none;
+}
+
+.song-card:active {
+    transform: translateY(0);
+}
+
+.copy-toast-container {
+    position: fixed;
+    top: 4.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1080;
+    width: min(92vw, 560px);
+    pointer-events: none;
+}
+
+.copy-toast-container .toast {
+    width: 100%;
+    pointer-events: auto;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .22);
+}
+
+.copied-text {
+    margin-top: .35rem;
+    padding: .45rem .65rem;
+    border-radius: .65rem;
+    background: rgba(255, 255, 255, .14);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.45;
+    font-size: .9rem;
+}
+
+.song-title {
+    overflow-wrap: anywhere;
+    line-height: 1.35;
+}
+
+.song-artist,
+.footer-note,
+.status-text {
+    color: var(--page-muted);
+}
+
+.song-artist {
+    overflow-wrap: anywhere;
+}
+
+.stat-badge {
+    color: var(--page-muted);
+    background: #fafaf9;
+    border: 1px solid var(--page-line);
+}
+
+.stat-badge strong {
+    color: var(--page-text);
+}
+
+.badge-playable {
+    color: #15803d;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.badge-recommend {
+    color: var(--page-accent);
+    background: var(--page-accent-soft);
+    border: 1px solid #fed7aa;
+}
+
+.empty-box {
+    color: var(--page-muted);
+    border: 1px dashed var(--page-line);
+    border-radius: 1rem;
+    background: #fff;
+}
+
+@media (max-width: 575.98px) {
+    .app-panel {
+    border-radius: 1.1rem;
+    }
+
+    .nav-pills.app-tabs {
+    flex-wrap: nowrap;
+    }
+
+    .nav-pills.app-tabs .nav-item {
+    flex: 1 0 50%;
+    }
+
+    .nav-pills.app-tabs .nav-link {
+    font-size: .95rem;
+    padding-inline: .5rem;
+    }
+
+    body {
+    padding-top: 6.25rem;
+    }
+
+    .navbar-brand {
+    font-size: 1rem;
+    }
+
+    .app-title {
+    font-size: 2rem;
+    }
+}

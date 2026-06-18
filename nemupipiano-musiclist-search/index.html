@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ねむぴぴあの＊曲リストサーチ🦖💤</title>
+  <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/musiclist-search.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">ねむぴぴあの＊曲リストサーチ🦖💤</a>
+    <button type="button" class="btn navbar-button btn-outline-success my-2 my-sm-0 me-auto" data-bs-toggle="modal" data-bs-target="#informationModal">このページについて・使い方</button>
+  </nav>
+
+  <main role="main" class="container app-shell">
+    <header class="mb-4">
+      <h1 class="app-title display-4 fw-bold mb-3">ねむぴぴあの＊曲リストサーチ</h1>
+      <p class="lead text-secondary mb-0">
+        Googleスプレッドシート「ピアノ曲リスト」を読み取り、検索表示とランダムおすすめ表示をタブで切り替えるページです。<br>
+        <a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リストのスプレッドシートはこちら</a>
+      </p>
+    </header>
+
+    <section class="app-panel p-3 p-md-4" aria-label="曲リスト">
+      <ul class="nav nav-pills app-tabs mb-4" id="songTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="tab-search" type="button" role="tab" aria-selected="true" aria-controls="panel-search" data-tab="search">
+            検索
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-random" type="button" role="tab" aria-selected="false" aria-controls="panel-random" data-tab="random">
+            ランダムおすすめ10曲
+          </button>
+        </li>
+      </ul>
+
+      <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search">
+        <div class="row g-2 g-md-3 align-items-stretch">
+          <div class="col-12 col-md-6">
+            <label class="visually-hidden" for="search">検索キーワード</label>
+            <input id="search" class="form-control form-control-lg" type="search" placeholder="曲名・アーティストで検索" autocomplete="off" />
+          </div>
+          <div class="col-12 col-md-4">
+            <label class="visually-hidden" for="genre">ジャンル</label>
+            <select id="genre" class="form-select form-select-lg">
+              <option value="">すべてのジャンル</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-2 d-grid">
+            <button id="reload" class="btn btn-dark btn-lg" type="button">再読み込み</button>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mt-3" id="stats" aria-live="polite"></div>
+        <p class="status-text mt-3 mb-0" id="status">読み込み中…</p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1" id="songs"></div>
+        <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
+      </section>
+
+      <section class="tab-panel" id="panel-random" role="tabpanel" aria-labelledby="tab-random" hidden>
+        <div class="row g-3 align-items-center mb-1">
+          <div class="col-12 col-md">
+            <h2 class="h4 fw-bold mb-1">今日のランダムおすすめ10曲</h2>
+            <p class="recommend-desc text-secondary mb-0">読み込んだ曲リストからランダムに10曲を選びます。迷ったらこれ、という雑なくじ引き機能です。</p>
+          </div>
+          <div class="col-12 col-md-auto d-grid">
+            <button id="shuffle" class="btn btn-dark btn-lg" type="button">もう一回選ぶ</button>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2 mt-3" id="randomStats" aria-live="polite"></div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1" id="randomSongs"></div>
+        <div class="empty-box text-center p-4 mt-3" id="randomEmpty" hidden>おすすめできる曲がまだ読み込まれていません。</div>
+      </section>
+    </section>
+  </main>
+
+
+  <div class="modal fade" id="informationModal" tabindex="-1" aria-labelledby="informationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="informationModalLabel">このページについて・使い方</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            本ページは、公開Googleスプレッドシートの「ピアノ曲リスト」を読み取り、Webページ上で検索・ランダムおすすめ表示を行うサンプルです。
+          </p>
+          <hr>
+          <h5>使い方</h5>
+          <p>
+            1. <strong>検索</strong>タブでは、曲名・アーティスト名で曲を探せます。<br>
+            2. ジャンルを選ぶと、対象ジャンルの曲だけに絞り込めます。<br>
+            3. <strong>ランダムおすすめ10曲</strong>タブでは、曲リストからおすすめ曲をランダムに10曲表示します。<br>
+            4. 曲カードをクリックすると、下記の形式でクリップボードにコピーされます。<br>
+            <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲名&gt;／&lt;アーティスト&gt;</span><br>
+            5. コピー後は画面上部に、コピーした文字列が2秒ほど表示されます。
+          </p>
+          <hr>
+          <h5>機能</h5>
+          <p>
+            ・曲名、アーティストのキーワード検索<br>
+            ・ジャンルによる絞り込み<br>
+            ・ランダムおすすめ10曲の表示<br>
+            ・カードクリックによるリクエスト用テキストのコピー
+          </p>
+          <hr>
+          <p class="mb-0">
+            シート側を更新すると、ページ再読み込み時に表示内容も更新されます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copy-toast-container">
+    <div id="copyToast" class="toast text-bg-dark border-0" role="status" aria-live="polite" aria-atomic="true" data-bs-delay="2000">
+      <div class="d-flex align-items-start">
+        <div class="toast-body flex-grow-1">
+          <div id="copyToastMessage" class="fw-bold">クリップボードにコピーしました！</div>
+          <div id="copyToastText" class="copied-text"></div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 mt-3" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
+    <p>ver.1.0.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+  <script>
+    const SHEET_ID = "1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g";
+    const GID = "0";
+    const RANDOM_COUNT = 10;
+
+    const els = {
+      search: document.getElementById("search"),
+      genre: document.getElementById("genre"),
+      reload: document.getElementById("reload"),
+      status: document.getElementById("status"),
+      stats: document.getElementById("stats"),
+      songs: document.getElementById("songs"),
+      empty: document.getElementById("empty"),
+      shuffle: document.getElementById("shuffle"),
+      randomStats: document.getElementById("randomStats"),
+      randomSongs: document.getElementById("randomSongs"),
+      randomEmpty: document.getElementById("randomEmpty"),
+      tabs: document.querySelectorAll("[data-tab]"),
+      panels: document.querySelectorAll(".tab-panel"),
+      copyToast: document.getElementById("copyToast"),
+    };
+
+    let songs = [];
+    let recommendedSongs = [];
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function cellValue(cell) {
+      if (!cell) return "";
+      return cell.f ?? cell.v ?? "";
+    }
+
+    function normalizeHeader(value) {
+      return String(value ?? "").trim();
+    }
+
+    function loadSheet() {
+      els.status.textContent = "読み込み中…";
+      els.reload.disabled = true;
+      els.shuffle.disabled = true;
+
+      const callbackName = "handleSheetResponse_" + Date.now();
+      const script = document.createElement("script");
+      const query = encodeURIComponent("select *");
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${GID}&tq=${query}&tqx=out:json;responseHandler:${callbackName}`;
+
+      window[callbackName] = (response) => {
+        try {
+          if (response.status !== "ok") {
+            throw new Error(response.errors?.[0]?.detailed_message || "Google Sheetsの読み込みに失敗しました。");
+          }
+
+          songs = parseGvizResponse(response);
+          setupGenreOptions(songs);
+          pickRandomSongs();
+          render();
+          renderRandom();
+          els.status.textContent = `読み込み完了：${new Date().toLocaleString("ja-JP")}`;
+        } catch (error) {
+          console.error(error);
+          els.status.textContent = `エラー：${error.message}`;
+        } finally {
+          els.reload.disabled = false;
+          els.shuffle.disabled = false;
+          script.remove();
+          delete window[callbackName];
+        }
+      };
+
+      script.onerror = () => {
+        els.status.textContent = "エラー：シートを読み込めませんでした。公開設定を確認してください。";
+        els.reload.disabled = false;
+        els.shuffle.disabled = false;
+        script.remove();
+        delete window[callbackName];
+      };
+
+      script.src = url;
+      document.body.appendChild(script);
+    }
+
+    function parseGvizResponse(response) {
+      const table = response.table || {};
+      const rows = table.rows || [];
+      const cols = table.cols || [];
+      if (rows.length === 0) return [];
+
+      let headers = cols.map((col, index) => normalizeHeader(col.label || col.id || `col${index + 1}`));
+      let dataRows = rows;
+
+      const knownHeaders = ["No", "弾ける曲", "曲名", "アーティスト", "ジャンル", "補足"];
+      const hasKnownHeader = headers.some(header => knownHeaders.includes(header));
+      if (!hasKnownHeader) {
+        const firstRowValues = rows[0].c.map(cell => normalizeHeader(cellValue(cell)));
+        if (firstRowValues.some(value => knownHeaders.includes(value))) {
+          headers = firstRowValues;
+          dataRows = rows.slice(1);
+        }
+      }
+
+      return dataRows
+        .map(row => {
+          const item = {};
+          headers.forEach((header, index) => {
+            item[header || `col${index + 1}`] = cellValue(row.c[index]);
+          });
+          return {
+            no: item["No"] || item["no"] || "",
+            playable: item["弾ける曲"] || item["playable"] || "",
+            title: item["曲名"] || item["title"] || "",
+            artist: item["アーティスト"] || item["artist"] || "",
+            genre: item["ジャンル"] || item["genre"] || "",
+            note: item["補足"] || item["note"] || "",
+            raw: item,
+          };
+        })
+        .filter(song => song.title || song.artist || song.genre);
+    }
+
+    function setupGenreOptions(items) {
+      const current = els.genre.value;
+      const genres = [...new Set(items.map(item => item.genre).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ja"));
+
+      els.genre.innerHTML = '<option value="">すべてのジャンル</option>' +
+        genres.map(genre => `<option value="${escapeHtml(genre)}">${escapeHtml(genre)}</option>`).join("");
+
+      if (genres.includes(current)) els.genre.value = current;
+    }
+
+    function filteredSongs() {
+      const keyword = els.search.value.trim().toLowerCase();
+      const genre = els.genre.value;
+
+      return songs.filter(song => {
+        const text = `${song.title} ${song.artist}`.toLowerCase();
+        const keywordOk = !keyword || text.includes(keyword);
+        const genreOk = !genre || song.genre === genre;
+        return keywordOk && genreOk;
+      });
+    }
+
+    function isPlayable(song) {
+      return String(song.playable).includes("〇") || String(song.playable).includes("○") || String(song.playable).toLowerCase() === "yes";
+    }
+
+    function getRecommendSource() {
+      // 「弾ける曲」印がある曲を優先。10曲未満なら全曲からランダムにする。
+      const playableSongs = songs.filter(isPlayable);
+      return playableSongs.length >= RANDOM_COUNT ? playableSongs : songs;
+    }
+
+    function pickRandomSongs() {
+      const source = [...getRecommendSource()];
+      for (let i = source.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [source[i], source[j]] = [source[j], source[i]];
+      }
+      recommendedSongs = source.slice(0, RANDOM_COUNT);
+    }
+
+    function renderSongCards(items, options = {}) {
+      const { recommended = false } = options;
+      return items.map((song, index) => `
+        <div class="col">
+          <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
+            <div class="card-body d-flex flex-column gap-2 p-3 p-md-4">
+              <div class="d-flex justify-content-between gap-3 align-items-start">
+                <div class="min-w-0">
+                  <h2 class="song-title h5 fw-bold mb-1">${escapeHtml(song.title)}</h2>
+                  <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
+                </div>
+                <span class="text-secondary small flex-shrink-0">#${escapeHtml(song.no || "-")}</span>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2 mt-auto">
+                ${recommended ? `<span class="badge rounded-pill badge-recommend">おすすめ ${index + 1}</span>` : ""}
+                ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
+                ${song.genre ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(song.genre)}</span>` : ""}
+              </div>
+            </div>
+          </article>
+        </div>
+      `).join("");
+    }
+
+    function render() {
+      const items = filteredSongs();
+      const playableCount = songs.filter(isPlayable).length;
+      const genreCount = new Set(songs.map(song => song.genre).filter(Boolean)).size;
+
+      els.stats.innerHTML = `
+        <span class="badge rounded-pill stat-badge px-3 py-2">全<strong>${songs.length}</strong>曲</span>
+        <span class="badge rounded-pill stat-badge px-3 py-2">弾ける曲<strong>${playableCount}</strong>曲</span>
+        <span class="badge rounded-pill stat-badge px-3 py-2">ジャンル<strong>${genreCount}</strong>種</span>
+        <span class="badge rounded-pill stat-badge px-3 py-2">表示中<strong>${items.length}</strong>曲</span>
+      `;
+
+      els.empty.hidden = items.length !== 0;
+      els.songs.innerHTML = renderSongCards(items);
+    }
+
+    function renderRandom() {
+      const recommendLabel = songs.filter(isPlayable).length >= RANDOM_COUNT ? "弾ける曲から選出" : "全曲から選出";
+
+      els.randomStats.innerHTML = `
+        <span class="badge rounded-pill stat-badge px-3 py-2">おすすめ<strong>${recommendedSongs.length}</strong>曲</span>
+        <span class="badge rounded-pill stat-badge px-3 py-2">方式：<strong>${recommendLabel}</strong></span>
+      `;
+
+      els.randomEmpty.hidden = recommendedSongs.length !== 0;
+      els.randomSongs.innerHTML = renderSongCards(recommendedSongs, { recommended: true });
+    }
+
+    function requestText(song) {
+      const title = String(song.title || "").trim();
+      const artist = String(song.artist || "").trim();
+      return `【ぴぴりく】${title}／${artist || "アーティスト未設定"}`;
+    }
+
+    async function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.top = "-9999px";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      const succeeded = document.execCommand("copy");
+      textarea.remove();
+
+      if (!succeeded) {
+        throw new Error("クリップボードへのコピーに失敗しました。");
+      }
+    }
+
+    function showCopyToast(message = "クリップボードにコピーしました！", copiedText = "") {
+      const messageEl = document.getElementById("copyToastMessage");
+      const textEl = document.getElementById("copyToastText");
+
+      if (messageEl) messageEl.textContent = message;
+      if (textEl) {
+        textEl.textContent = copiedText;
+        textEl.hidden = copiedText.length === 0;
+      }
+
+      if (window.bootstrap && els.copyToast) {
+        const toast = bootstrap.Toast.getOrCreateInstance(els.copyToast, { delay: 2000 });
+        toast.show();
+      }
+    }
+
+    async function handleCardCopy(card) {
+      const title = card.dataset.copySong || "";
+      const artist = card.dataset.copyArtist || "";
+      const text = requestText({ title, artist });
+
+      try {
+        await copyToClipboard(text);
+        showCopyToast("クリップボードにコピーしました！", text);
+      } catch (error) {
+        console.error(error);
+        showCopyToast("コピーに失敗しました");
+      }
+    }
+
+    function switchTab(tabName) {
+      els.tabs.forEach(tab => {
+        const active = tab.dataset.tab === tabName;
+        tab.classList.toggle("active", active);
+        tab.setAttribute("aria-selected", String(active));
+      });
+
+      els.panels.forEach(panel => {
+        const active = panel.id === `panel-${tabName}`;
+        panel.hidden = !active;
+      });
+    }
+
+    els.search.addEventListener("input", render);
+    els.genre.addEventListener("change", render);
+    els.reload.addEventListener("click", loadSheet);
+    els.shuffle.addEventListener("click", () => {
+      pickRandomSongs();
+      renderRandom();
+    });
+
+    document.addEventListener("click", (event) => {
+      const card = event.target.closest("[data-copy-song]");
+      if (!card) return;
+      handleCardCopy(card);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const card = event.target.closest("[data-copy-song]");
+      if (!card) return;
+      event.preventDefault();
+      handleCardCopy(card);
+    });
+
+    els.tabs.forEach(tab => {
+      tab.addEventListener("click", () => switchTab(tab.dataset.tab));
+    });
+
+    loadSheet();
+  </script>
+</body>
+</html>
