@@ -34,6 +34,15 @@ def utc_now():
 def normalize_text(value):
     return str(value or "").strip()
 
+def normalize_no(value):
+    if value is None or value == "":
+        return ""
+
+    if isinstance(value, float) and value.is_integer():
+        return str(int(value))
+
+    return normalize_text(value)
+
 ''' マッチキーを作成する関数 '''
 def create_match_key(title, artist):
     return (
@@ -115,7 +124,7 @@ def calc_revision(rows):
         targets.append(
             "|".join(
                 [
-                    str(row.get("No", "") or row.get("no", "")),
+                    normalize_no(row.get("No", "") or row.get("no", "")),
                     str(row.get("弾ける曲", "") or row.get("playable", "")),
                     str(row.get("曲名", "") or row.get("title", "")),
                     str(row.get("アーティスト", "") or row.get("artist", "")),
@@ -233,7 +242,7 @@ def main():
 
     # 既存のアイテムを更新する
     for row in sheet_rows:
-        no = str(
+        no = normalize_no(
             row.get("No")
             or row.get("no")
             or ""
