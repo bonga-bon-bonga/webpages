@@ -1,60 +1,69 @@
 name: update-musiclist
 
 on:
-    workflow_dispatch: {}       # 手動実行
-    # schedule:
-    #     - cron: "0 20 * * *"    # 毎日 05:00 JST に実行
+  workflow_dispatch: {}
+  schedule:
+    - cron: "0 20 * * *"
 
 permissions:
-    contents: write
+  contents: write
 
 concurrency:
-    group: update-json-from-sheets
-    cancel-in-progress: false
+  group: update-json-from-sheets
+  cancel-in-progress: false
 
 jobs:
-    update-json:
-        runs-on: ubuntu-latest
+  update-json:
+    runs-on: ubuntu-latest
 
-        env:
-            SPREAD_SHEET_ID: ${{ vars.SPREAD_SHEET_ID }}
-            OUTPUT_JSON_PATH: ${{ vars.OUTPUT_JSON_PATH }}
+    env:
+      SPREADSHEET_ID: ${{ vars.SPREADSHEET_ID }}
+      SPREAD_SHEET_ID: ${{ vars.SPREAD_SHEET_ID }}
+      OUTPUT_JSON_PATH: ${{ vars.OUTPUT_JSON_PATH }}
 
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-          - name: Setup Python
-            uses: actions/setup-python@v5
-            with:
-                python-version: "3.12"
-                cache: "pip"
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: .github/workflows/requirements.txt
 
-          - name: Install dependencies
-            run: |
-                python -m pip install --upgrade pip
-                pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -s .github/workflows/requirements.txt ]; then
+            pip install -r .github/workflows/requirements.txt
+          fi
 
-          - name: Run batch script
-            run: |
-                python scripts/build_musiclist.py
+      - name: Check batch script syntax
+        run: python -m py_compile scripts/build_musiclist.py
 
-          - name: Validate generated JSON
-            run: |
-                test -f "$OUTPUT_JSON_PATH"
-                python -m json.tool "$OUTPUT_JSON_PATH" > /dev/null
+      - name: Run batch script
+        run: python scripts/build_musiclist.py
 
-          - name: Commit and push if changed
-            run: |
-                git config user.name "github-actions[bot]"
-                git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Validate generated JSON
+        run: |
+          output_path="${OUTPUT_JSON_PATH:-nemupipiano-musiclist-search/data/musiclist.json}"
+          test -f "$output_path"
+          python -m json.tool "$output_path" > /dev/null
 
-                git add "$OUTPUT_JSON_PATH"
+      - name: Commit and push if changed
+        run: |
+          output_path="${OUTPUT_JSON_PATH:-nemupipiano-musiclist-search/data/musiclist.json}"
 
-                if git diff --cached --quiet; then
-                    echo "No changes to commit."
-                    exit 0
-                fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-                git commit -m "[System] Update generated JSON from Google Sheets"
-                git push
+          git add "$output_path"
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "[System] Update generated JSON from Google Sheets"
+          git push

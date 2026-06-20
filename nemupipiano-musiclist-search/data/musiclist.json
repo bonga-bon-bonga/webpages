@@ -1,7 +1,6409 @@
-[
-    {
-        "title": "愛言葉Ⅴ",
-        "artist": "DECO*27",
-        "searchText":"愛言葉Ⅴ 愛言葉 あいことば あいことば5 DECO*27 deco でこ"
+{
+  "items": {
+    "ルパン3世のテーマ|大野雄二": {
+      "searchWords": [],
+      "artistAliases": [
+        "大野雄二"
+      ],
+      "tags": []
+    },
+    "キセキ|GReeeeN": {
+      "searchWords": [],
+      "artistAliases": [
+        "GReeeeN"
+      ],
+      "tags": []
+    },
+    "コネクト|ClariS": {
+      "searchWords": [],
+      "artistAliases": [
+        "ClariS"
+      ],
+      "tags": []
+    },
+    "レオ|優里": {
+      "searchWords": [],
+      "artistAliases": [
+        "優里"
+      ],
+      "tags": []
+    },
+    "点描のうた|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "千本桜|黒うさP": {
+      "searchWords": [],
+      "artistAliases": [
+        "黒うさP"
+      ],
+      "tags": []
+    },
+    "群青|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "ドライフラワー|優里": {
+      "searchWords": [],
+      "artistAliases": [
+        "優里"
+      ],
+      "tags": []
+    },
+    "春泥棒|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "DANDAN心惹かれてく|FIELD OF VIEW": {
+      "searchWords": [],
+      "artistAliases": [
+        "FIELD OF VIEW"
+      ],
+      "tags": []
+    },
+    "夜空|音田雅則": {
+      "searchWords": [],
+      "artistAliases": [
+        "音田雅則"
+      ],
+      "tags": []
+    },
+    "小さな恋の歌|MONGOL800": {
+      "searchWords": [],
+      "artistAliases": [
+        "MONGOL800"
+      ],
+      "tags": []
+    },
+    "Rain|秦 基博": {
+      "searchWords": [],
+      "artistAliases": [
+        "秦 基博"
+      ],
+      "tags": []
+    },
+    "晩餐歌|tuki.": {
+      "searchWords": [],
+      "artistAliases": [
+        "tuki."
+      ],
+      "tags": []
+    },
+    "幾億光年|Omoinotake": {
+      "searchWords": [],
+      "artistAliases": [
+        "Omoinotake"
+      ],
+      "tags": []
+    },
+    "夜明けと蛍|n-buna": {
+      "searchWords": [],
+      "artistAliases": [
+        "n-buna"
+      ],
+      "tags": []
+    },
+    "おかえり|Tani Yuuki": {
+      "searchWords": [],
+      "artistAliases": [
+        "Tani Yuuki"
+      ],
+      "tags": []
+    },
+    "花に亡霊|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "Soranji|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "愛をこめて花束を|Superfly": {
+      "searchWords": [],
+      "artistAliases": [
+        "Superfly"
+      ],
+      "tags": []
+    },
+    "First love|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "名探偵コナンのテーマ|大野克夫": {
+      "searchWords": [],
+      "artistAliases": [
+        "大野克夫"
+      ],
+      "tags": []
+    },
+    "花束|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "プロローグ|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "君はロックを聴かない|あいみょん": {
+      "searchWords": [],
+      "artistAliases": [
+        "あいみょん"
+      ],
+      "tags": []
+    },
+    "栄光の架け橋|ゆず": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆず"
+      ],
+      "tags": []
+    },
+    "ありがとう|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "怪獣の花唄|Vaundy": {
+      "searchWords": [],
+      "artistAliases": [
+        "Vaundy"
+      ],
+      "tags": []
+    },
+    "３月９日|レミオロメン": {
+      "searchWords": [],
+      "artistAliases": [
+        "レミオロメン"
+      ],
+      "tags": []
+    },
+    "紅蓮華|LiSA": {
+      "searchWords": [],
+      "artistAliases": [
+        "LiSA"
+      ],
+      "tags": []
+    },
+    "HANABI|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "変わらないもの|奥華子": {
+      "searchWords": [],
+      "artistAliases": [
+        "奥華子"
+      ],
+      "tags": []
+    },
+    "プラネタリウム|大塚愛": {
+      "searchWords": [],
+      "artistAliases": [
+        "大塚愛"
+      ],
+      "tags": []
+    },
+    "晴る|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "ひとりごつ|トクマルシューゴ": {
+      "searchWords": [],
+      "artistAliases": [
+        "トクマルシューゴ"
+      ],
+      "tags": []
+    },
+    "CHA-LA HEAD-CHA-LA|影山 ヒロノブ": {
+      "searchWords": [],
+      "artistAliases": [
+        "影山 ヒロノブ"
+      ],
+      "tags": []
+    },
+    "残酷な天使のテーゼ|高橋 洋子": {
+      "searchWords": [],
+      "artistAliases": [
+        "高橋 洋子"
+      ],
+      "tags": []
+    },
+    "心得|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "水平線|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "夢をかなえてドラえもん|mao": {
+      "searchWords": [],
+      "artistAliases": [
+        "mao"
+      ],
+      "tags": []
+    },
+    "勇者|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "ブルーバード|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "丸の内サディスティック|椎名 林檎": {
+      "searchWords": [],
+      "artistAliases": [
+        "椎名 林檎"
+      ],
+      "tags": []
+    },
+    "ひぐらしの泣く頃にyou|dai": {
+      "searchWords": [],
+      "artistAliases": [
+        "dai"
+      ],
+      "tags": []
+    },
+    "Story|AI": {
+      "searchWords": [],
+      "artistAliases": [
+        "AI"
+      ],
+      "tags": []
+    },
+    "サザンカ|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "粉雪|レミオロメン": {
+      "searchWords": [],
+      "artistAliases": [
+        "レミオロメン"
+      ],
+      "tags": []
+    },
+    "虹|菅田 将暉": {
+      "searchWords": [],
+      "artistAliases": [
+        "菅田 将暉"
+      ],
+      "tags": []
+    },
+    "満ちてゆく|藤井風": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤井風"
+      ],
+      "tags": []
+    },
+    "少女レイ|みきとP": {
+      "searchWords": [],
+      "artistAliases": [
+        "みきとP"
+      ],
+      "tags": []
+    },
+    "ふゆびより|佐々木恵梨": {
+      "searchWords": [],
+      "artistAliases": [
+        "佐々木恵梨"
+      ],
+      "tags": []
+    },
+    "雪の華|中島美嘉": {
+      "searchWords": [],
+      "artistAliases": [
+        "中島美嘉"
+      ],
+      "tags": []
+    },
+    "Butter-Fly|和田光司": {
+      "searchWords": [],
+      "artistAliases": [
+        "和田光司"
+      ],
+      "tags": []
+    },
+    "僕のこと|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "最上級にかわいいの!|超ときめき♡宣伝部": {
+      "searchWords": [],
+      "artistAliases": [
+        "超ときめき♡宣伝部"
+      ],
+      "tags": []
+    },
+    "subtitle|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "アイノカタチ|MISIA": {
+      "searchWords": [],
+      "artistAliases": [
+        "MISIA"
+      ],
+      "tags": []
+    },
+    "糸|中島みゆき": {
+      "searchWords": [],
+      "artistAliases": [
+        "中島みゆき"
+      ],
+      "tags": []
+    },
+    "白い恋人たち|桑田佳祐": {
+      "searchWords": [],
+      "artistAliases": [
+        "桑田佳祐"
+      ],
+      "tags": []
+    },
+    "明日への扉|I WiSH": {
+      "searchWords": [],
+      "artistAliases": [
+        "I WiSH"
+      ],
+      "tags": []
+    },
+    "フリージア|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "竈門炭治郎のうた|椎名豪featuring中川奈美": {
+      "searchWords": [],
+      "artistAliases": [
+        "椎名豪featuring中川奈美"
+      ],
+      "tags": []
+    },
+    "クリスマスソング|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "いつかのメリークリスマス|B’z": {
+      "searchWords": [],
+      "artistAliases": [
+        "B’z"
+      ],
+      "tags": []
+    },
+    "ライラック|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "それを愛と呼ぶなら|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "奏|スキマスイッチ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スキマスイッチ"
+      ],
+      "tags": []
+    },
+    "ガーネット|奥華子": {
+      "searchWords": [],
+      "artistAliases": [
+        "奥華子"
+      ],
+      "tags": []
+    },
+    "僕が死のうと思ったのは|中島美嘉": {
+      "searchWords": [],
+      "artistAliases": [
+        "中島美嘉"
+      ],
+      "tags": []
+    },
+    "アルジャーノン|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "おジャ魔女カーニバル‼|MAHO堂": {
+      "searchWords": [],
+      "artistAliases": [
+        "MAHO堂"
+      ],
+      "tags": []
+    },
+    "ヒロイン|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "花束の代わりにメロディを|清水翔太": {
+      "searchWords": [],
+      "artistAliases": [
+        "清水翔太"
+      ],
+      "tags": []
+    },
+    "Pretender|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "ハルカ|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "月光|鬼束ちひろ": {
+      "searchWords": [],
+      "artistAliases": [
+        "鬼束ちひろ"
+      ],
+      "tags": []
+    },
+    "innocent world|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "蕾|コブクロ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コブクロ"
+      ],
+      "tags": []
+    },
+    "366日|HY": {
+      "searchWords": [],
+      "artistAliases": [
+        "HY"
+      ],
+      "tags": []
+    },
+    "ロビンソン|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "手紙～拝啓十五の君へ～|アンジェラ・アキ": {
+      "searchWords": [],
+      "artistAliases": [
+        "アンジェラ・アキ"
+      ],
+      "tags": []
+    },
+    "明日への手紙|手嶌葵": {
+      "searchWords": [],
+      "artistAliases": [
+        "手嶌葵"
+      ],
+      "tags": []
+    },
+    "かわいいだけじゃだめですか？|CUTIE STREET": {
+      "searchWords": [],
+      "artistAliases": [
+        "CUTIE STREET"
+      ],
+      "tags": []
+    },
+    "もしもピアノが弾けたなら|西田敏行": {
+      "searchWords": [],
+      "artistAliases": [
+        "西田敏行"
+      ],
+      "tags": []
+    },
+    "カブトムシ|aiko": {
+      "searchWords": [],
+      "artistAliases": [
+        "aiko"
+      ],
+      "tags": []
+    },
+    "若者たち|森山直太朗": {
+      "searchWords": [],
+      "artistAliases": [
+        "森山直太朗"
+      ],
+      "tags": []
+    },
+    "手紙|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "SAKURA|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "more than words|羊文学": {
+      "searchWords": [],
+      "artistAliases": [
+        "羊文学"
+      ],
+      "tags": []
+    },
+    "ダーリン|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "スパークル|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "きらり|藤井風": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤井風"
+      ],
+      "tags": []
+    },
+    "眠り姫|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "Lemon|米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師"
+      ],
+      "tags": []
+    },
+    "カーテンコール|優里": {
+      "searchWords": [],
+      "artistAliases": [
+        "優里"
+      ],
+      "tags": []
+    },
+    "シルエット|KANA-BOON": {
+      "searchWords": [],
+      "artistAliases": [
+        "KANA-BOON"
+      ],
+      "tags": []
+    },
+    "忘れてください|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "愛にできることはまだあるかい|RADWINPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWINPS"
+      ],
+      "tags": []
+    },
+    "DOWN TOWN|シュガーベイブ": {
+      "searchWords": [],
+      "artistAliases": [
+        "シュガーベイブ"
+      ],
+      "tags": []
+    },
+    "未来予想図Ⅱ|DREAMS COME TRUE": {
+      "searchWords": [],
+      "artistAliases": [
+        "DREAMS COME TRUE"
+      ],
+      "tags": []
+    },
+    "ナハトムジーク|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "楓|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "花は咲く|菅野よう子": {
+      "searchWords": [],
+      "artistAliases": [
+        "菅野よう子"
+      ],
+      "tags": []
+    },
+    "なんでもないや|RADWINPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWINPS"
+      ],
+      "tags": []
+    },
+    "再会|LiSA×Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "LiSA×Uru"
+      ],
+      "tags": []
+    },
+    "グランドエスケープ|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "カナタハルカ|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "桜ノ雨|halyosy": {
+      "searchWords": [],
+      "artistAliases": [
+        "halyosy"
+      ],
+      "tags": []
+    },
+    "弱虫モンブラン|DECO*27": {
+      "searchWords": [],
+      "artistAliases": [
+        "DECO*27"
+      ],
+      "tags": []
+    },
+    "空も飛べるはず|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "忘れじの言の葉|未来古代楽団": {
+      "searchWords": [],
+      "artistAliases": [
+        "未来古代楽団"
+      ],
+      "tags": []
+    },
+    "サヨナラの意味|乃木坂46": {
+      "searchWords": [],
+      "artistAliases": [
+        "乃木坂46"
+      ],
+      "tags": []
+    },
+    "MIRACLE SHOPPING|田中マイミ": {
+      "searchWords": [],
+      "artistAliases": [
+        "田中マイミ"
+      ],
+      "tags": []
+    },
+    "マツケンサンバⅡ|松平健": {
+      "searchWords": [],
+      "artistAliases": [
+        "松平健"
+      ],
+      "tags": []
+    },
+    "明日へ|MISIA": {
+      "searchWords": [],
+      "artistAliases": [
+        "MISIA"
+      ],
+      "tags": []
+    },
+    "ただ声一つ|ロクデナシ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ロクデナシ"
+      ],
+      "tags": []
+    },
+    "君の知らない物語|supercell": {
+      "searchWords": [],
+      "artistAliases": [
+        "supercell"
+      ],
+      "tags": []
+    },
+    "夜に駆ける|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "青と夏|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "ラブレター|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "たばこ|コレサワ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コレサワ"
+      ],
+      "tags": []
+    },
+    "なごり雪|イルカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "イルカ"
+      ],
+      "tags": []
+    },
+    "群青日和|東京事変": {
+      "searchWords": [],
+      "artistAliases": [
+        "東京事変"
+      ],
+      "tags": []
+    },
+    "卒業写真|荒井由実": {
+      "searchWords": [],
+      "artistAliases": [
+        "荒井由実"
+      ],
+      "tags": []
+    },
+    "心做し|蝶々P feat. GUMI": {
+      "searchWords": [],
+      "artistAliases": [
+        "蝶々P feat. GUMI"
+      ],
+      "tags": []
+    },
+    "上を向いて歩こう|坂本九": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本九"
+      ],
+      "tags": []
+    },
+    "いつかこの涙が|Little Glee Monster": {
+      "searchWords": [],
+      "artistAliases": [
+        "Little Glee Monster"
+      ],
+      "tags": []
+    },
+    "Best Friend|西野カナ": {
+      "searchWords": [],
+      "artistAliases": [
+        "西野カナ"
+      ],
+      "tags": []
+    },
+    "ラストソング|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "いのちの歌|竹内まりや": {
+      "searchWords": [],
+      "artistAliases": [
+        "竹内まりや"
+      ],
+      "tags": []
+    },
+    "アンパンマンのマーチ|ドリーミング": {
+      "searchWords": [],
+      "artistAliases": [
+        "ドリーミング"
+      ],
+      "tags": []
+    },
+    "サリシノハラ|みきとP": {
+      "searchWords": [],
+      "artistAliases": [
+        "みきとP"
+      ],
+      "tags": []
+    },
+    "secret base〜君がくれたもの〜|ZONE": {
+      "searchWords": [],
+      "artistAliases": [
+        "ZONE"
+      ],
+      "tags": []
+    },
+    "怪獣|サカナクション": {
+      "searchWords": [],
+      "artistAliases": [
+        "サカナクション"
+      ],
+      "tags": []
+    },
+    "One more time, One more chance|山崎まさよし": {
+      "searchWords": [],
+      "artistAliases": [
+        "山崎まさよし"
+      ],
+      "tags": []
+    },
+    "rain stops, good-bye|におP": {
+      "searchWords": [],
+      "artistAliases": [
+        "におP"
+      ],
+      "tags": []
+    },
+    "フィナーレ。|eill": {
+      "searchWords": [],
+      "artistAliases": [
+        "eill"
+      ],
+      "tags": []
+    },
+    "Bunny Girl|AKASAKI": {
+      "searchWords": [],
+      "artistAliases": [
+        "AKASAKI"
+      ],
+      "tags": []
+    },
+    "unravel|TK from 凛として時雨": {
+      "searchWords": [],
+      "artistAliases": [
+        "TK from 凛として時雨"
+      ],
+      "tags": []
+    },
+    "正解|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "新しい恋人達に|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "ダンスホール|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "エルフ|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "わたしに花束|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "からくりピエロ|40mP": {
+      "searchWords": [],
+      "artistAliases": [
+        "40mP"
+      ],
+      "tags": []
+    },
+    "テレパシ|DECO*27": {
+      "searchWords": [],
+      "artistAliases": [
+        "DECO*27"
+      ],
+      "tags": []
+    },
+    "上弦の月|黒うさP": {
+      "searchWords": [],
+      "artistAliases": [
+        "黒うさP"
+      ],
+      "tags": []
+    },
+    "タイムパラドックス|Vaundy": {
+      "searchWords": [],
+      "artistAliases": [
+        "Vaundy"
+      ],
+      "tags": []
+    },
+    "アイドル|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "シャルル|バルーン": {
+      "searchWords": [],
+      "artistAliases": [
+        "バルーン"
+      ],
+      "tags": []
+    },
+    "マリーゴールド|あいみょん": {
+      "searchWords": [],
+      "artistAliases": [
+        "あいみょん"
+      ],
+      "tags": []
+    },
+    "だから僕は音楽を辞めた|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "美しい鰭|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "君の銀の庭|Kalafina": {
+      "searchWords": [],
+      "artistAliases": [
+        "Kalafina"
+      ],
+      "tags": []
+    },
+    "僕らまた|SG": {
+      "searchWords": [],
+      "artistAliases": [
+        "SG"
+      ],
+      "tags": []
+    },
+    "さくら|森山直太朗": {
+      "searchWords": [],
+      "artistAliases": [
+        "森山直太朗"
+      ],
+      "tags": []
+    },
+    "メリクリ|BoA": {
+      "searchWords": [],
+      "artistAliases": [
+        "BoA"
+      ],
+      "tags": []
+    },
+    "ロウワー|ぬゆり": {
+      "searchWords": [],
+      "artistAliases": [
+        "ぬゆり"
+      ],
+      "tags": []
+    },
+    "コロブチカ/テトリス|作曲者不詳/柊マグネタイト": {
+      "searchWords": [],
+      "artistAliases": [
+        "作曲者不詳/柊マグネタイト"
+      ],
+      "tags": []
+    },
+    "BOW AND ARROW|米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師"
+      ],
+      "tags": []
+    },
+    "真っ白|藤井風": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤井風"
+      ],
+      "tags": []
+    },
+    "春愁|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "ひまわりの約束|秦基博": {
+      "searchWords": [],
+      "artistAliases": [
+        "秦基博"
+      ],
+      "tags": []
+    },
+    "猫|DISH//": {
+      "searchWords": [],
+      "artistAliases": [
+        "DISH//"
+      ],
+      "tags": []
+    },
+    "向日葵|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "ただ君に晴れ|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "チェリー|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "回る空うさぎ|Orangestar": {
+      "searchWords": [],
+      "artistAliases": [
+        "Orangestar"
+      ],
+      "tags": []
+    },
+    "会いたい|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "へび|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "真生活|案山子": {
+      "searchWords": [],
+      "artistAliases": [
+        "案山子"
+      ],
+      "tags": []
+    },
+    "remember|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "勇気100%|光GENJI": {
+      "searchWords": [],
+      "artistAliases": [
+        "光GENJI"
+      ],
+      "tags": []
+    },
+    "若者のすべて|フジファブリック": {
+      "searchWords": [],
+      "artistAliases": [
+        "フジファブリック"
+      ],
+      "tags": []
+    },
+    "はいよろこんで|こっちのけんと": {
+      "searchWords": [],
+      "artistAliases": [
+        "こっちのけんと"
+      ],
+      "tags": []
+    },
+    "元気を出して|竹内まりや": {
+      "searchWords": [],
+      "artistAliases": [
+        "竹内まりや"
+      ],
+      "tags": []
+    },
+    "Anytime Anywhere|milet": {
+      "searchWords": [],
+      "artistAliases": [
+        "milet"
+      ],
+      "tags": []
+    },
+    "Get Wild|TM NETWORK": {
+      "searchWords": [],
+      "artistAliases": [
+        "TM NETWORK"
+      ],
+      "tags": []
+    },
+    "天国|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "ウィーアー！|きただにひろし": {
+      "searchWords": [],
+      "artistAliases": [
+        "きただにひろし"
+      ],
+      "tags": []
+    },
+    "可愛くてごめん|HoneyWorks": {
+      "searchWords": [],
+      "artistAliases": [
+        "HoneyWorks"
+      ],
+      "tags": []
+    },
+    "ハロ／ハワユ|ナノウ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ナノウ"
+      ],
+      "tags": []
+    },
+    "雨とカプチーノ|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "ENDLESS RAIN|X JAPAN": {
+      "searchWords": [],
+      "artistAliases": [
+        "X JAPAN"
+      ],
+      "tags": []
+    },
+    "繋いだ手から|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "クスシキ|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "RAIN|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "StaRt|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "青のすみか|キタニタツヤ": {
+      "searchWords": [],
+      "artistAliases": [
+        "キタニタツヤ"
+      ],
+      "tags": []
+    },
+    "Yesterday Once More|カーペンターズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "カーペンターズ"
+      ],
+      "tags": []
+    },
+    "GET BACK|ゆず": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆず"
+      ],
+      "tags": []
+    },
+    "RPG|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "アイネクライネ|米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師"
+      ],
+      "tags": []
+    },
+    "コウを追いかけて|坂本秀一": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本秀一"
+      ],
+      "tags": []
+    },
+    "さわって・変わって|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "ずっと2人で…|GLAY": {
+      "searchWords": [],
+      "artistAliases": [
+        "GLAY"
+      ],
+      "tags": []
+    },
+    "レイニーブルー|徳永英明": {
+      "searchWords": [],
+      "artistAliases": [
+        "徳永英明"
+      ],
+      "tags": []
+    },
+    "春の歌|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "帝国のマーチ(The Imperial March)|ジョン・ウィリアムズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョン・ウィリアムズ"
+      ],
+      "tags": []
+    },
+    "暴れん坊将軍のテーマ|菊池俊輔": {
+      "searchWords": [],
+      "artistAliases": [
+        "菊池俊輔"
+      ],
+      "tags": []
+    },
+    "Dear|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "遥か|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "ツバサ|アンダーグラフ": {
+      "searchWords": [],
+      "artistAliases": [
+        "アンダーグラフ"
+      ],
+      "tags": []
+    },
+    "抜錨|ナナホシ管弦楽団": {
+      "searchWords": [],
+      "artistAliases": [
+        "ナナホシ管弦楽団"
+      ],
+      "tags": []
+    },
+    "デイ・ドリーム・ビリーバー|ザ・モンキーズ / ザ・タイマーズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ザ・モンキーズ / ザ・タイマーズ"
+      ],
+      "tags": []
+    },
+    "Realize|玉置成実": {
+      "searchWords": [],
+      "artistAliases": [
+        "玉置成実"
+      ],
+      "tags": []
+    },
+    "瑠璃色の地球|松田聖子": {
+      "searchWords": [],
+      "artistAliases": [
+        "松田聖子"
+      ],
+      "tags": []
+    },
+    "て|上野大樹": {
+      "searchWords": [],
+      "artistAliases": [
+        "上野大樹"
+      ],
+      "tags": []
+    },
+    "花になって|緑黄色社会": {
+      "searchWords": [],
+      "artistAliases": [
+        "緑黄色社会"
+      ],
+      "tags": []
+    },
+    "花束を君に|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "花|中孝介 / 森山直太朗(Self Cover)": {
+      "searchWords": [],
+      "artistAliases": [
+        "中孝介 / 森山直太朗(Self Cover)"
+      ],
+      "tags": []
+    },
+    "花|ORANGE RANGE": {
+      "searchWords": [],
+      "artistAliases": [
+        "ORANGE RANGE"
+      ],
+      "tags": []
+    },
+    "花占い|Vaundy": {
+      "searchWords": [],
+      "artistAliases": [
+        "Vaundy"
+      ],
+      "tags": []
+    },
+    "花|樹原涼子": {
+      "searchWords": [],
+      "artistAliases": [
+        "樹原涼子"
+      ],
+      "tags": []
+    },
+    "花の名|BUMP OF CHICKEN": {
+      "searchWords": [],
+      "artistAliases": [
+        "BUMP OF CHICKEN"
+      ],
+      "tags": []
+    },
+    "花の塔|さユり": {
+      "searchWords": [],
+      "artistAliases": [
+        "さユり"
+      ],
+      "tags": []
+    },
+    "桜坂|福山雅治": {
+      "searchWords": [],
+      "artistAliases": [
+        "福山雅治"
+      ],
+      "tags": []
+    },
+    "ひまわり|福山雅治": {
+      "searchWords": [],
+      "artistAliases": [
+        "福山雅治"
+      ],
+      "tags": []
+    },
+    "帰ろう|藤井風": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤井風"
+      ],
+      "tags": []
+    },
+    "ケセラセラ|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "コーヒールンバ|ウーゴ・ブランコ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ウーゴ・ブランコ"
+      ],
+      "tags": []
+    },
+    "コーヒーとシロップ|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "一杯のコーヒーから|霧島昇とミス・コロムビア": {
+      "searchWords": [],
+      "artistAliases": [
+        "霧島昇とミス・コロムビア"
+      ],
+      "tags": []
+    },
+    "God knows...|涼宮ハルヒ(CV.平野 綾)": {
+      "searchWords": [],
+      "artistAliases": [
+        "涼宮ハルヒ(CV.平野 綾)"
+      ],
+      "tags": []
+    },
+    "コーヒーハウスにて|相曽晴日": {
+      "searchWords": [],
+      "artistAliases": [
+        "相曽晴日"
+      ],
+      "tags": []
+    },
+    "ベンチとコーヒー|BUMP OF CHICKEN": {
+      "searchWords": [],
+      "artistAliases": [
+        "BUMP OF CHICKEN"
+      ],
+      "tags": []
+    },
+    "コーヒーショップで|あべ静江": {
+      "searchWords": [],
+      "artistAliases": [
+        "あべ静江"
+      ],
+      "tags": []
+    },
+    "Coffee|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "MELODY|福山雅治": {
+      "searchWords": [],
+      "artistAliases": [
+        "福山雅治"
+      ],
+      "tags": []
+    },
+    "時代|中島みゆき": {
+      "searchWords": [],
+      "artistAliases": [
+        "中島みゆき"
+      ],
+      "tags": []
+    },
+    "新時代|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "少年時代|井上陽水": {
+      "searchWords": [],
+      "artistAliases": [
+        "井上陽水"
+      ],
+      "tags": []
+    },
+    "川の流れのように|美空ひばり": {
+      "searchWords": [],
+      "artistAliases": [
+        "美空ひばり"
+      ],
+      "tags": []
+    },
+    "神田川|かぐや姫": {
+      "searchWords": [],
+      "artistAliases": [
+        "かぐや姫"
+      ],
+      "tags": []
+    },
+    "神っぽいな|ピノキオピー": {
+      "searchWords": [],
+      "artistAliases": [
+        "ピノキオピー"
+      ],
+      "tags": []
+    },
+    "Love Song|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "水の星へ愛をこめて|森口博子": {
+      "searchWords": [],
+      "artistAliases": [
+        "森口博子"
+      ],
+      "tags": []
+    },
+    "翔べ! ガンダム|池田鴻": {
+      "searchWords": [],
+      "artistAliases": [
+        "池田鴻"
+      ],
+      "tags": []
+    },
+    "哀 戦士|井上大輔": {
+      "searchWords": [],
+      "artistAliases": [
+        "井上大輔"
+      ],
+      "tags": []
+    },
+    "Plazma|米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師"
+      ],
+      "tags": []
+    },
+    "ナイショの話|ClariS": {
+      "searchWords": [],
+      "artistAliases": [
+        "ClariS"
+      ],
+      "tags": []
+    },
+    "渡月橋 〜君 想ふ〜|倉木麻衣": {
+      "searchWords": [],
+      "artistAliases": [
+        "倉木麻衣"
+      ],
+      "tags": []
+    },
+    "名もなき詩|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "終わりなき旅|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "しるし|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "強風オールバック|ゆこぴ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆこぴ"
+      ],
+      "tags": []
+    },
+    "愛が灯る|ロクデナシ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ロクデナシ"
+      ],
+      "tags": []
+    },
+    "七つの海を渡る風のように|愛内里菜&三枝夕夏": {
+      "searchWords": [],
+      "artistAliases": [
+        "愛内里菜&三枝夕夏"
+      ],
+      "tags": []
+    },
+    "炎|LiSA": {
+      "searchWords": [],
+      "artistAliases": [
+        "LiSA"
+      ],
+      "tags": []
+    },
+    "月夜の悪戯の魔法|BREAKERZ": {
+      "searchWords": [],
+      "artistAliases": [
+        "BREAKERZ"
+      ],
+      "tags": []
+    },
+    "PLAYERS|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "Watch me!|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "もう少しだけ|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "夏祭り|JITTERIN'JINN(原曲) / Whiteberry(Cover)": {
+      "searchWords": [],
+      "artistAliases": [
+        "JITTERIN'JINN(原曲) / Whiteberry(Cover)"
+      ],
+      "tags": []
+    },
+    "雲は白リンゴは赤|aiko": {
+      "searchWords": [],
+      "artistAliases": [
+        "aiko"
+      ],
+      "tags": []
+    },
+    "ナツノハナ|JUJU": {
+      "searchWords": [],
+      "artistAliases": [
+        "JUJU"
+      ],
+      "tags": []
+    },
+    "夏色|ゆず": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆず"
+      ],
+      "tags": []
+    },
+    "Summer|久石譲": {
+      "searchWords": [],
+      "artistAliases": [
+        "久石譲"
+      ],
+      "tags": []
+    },
+    "旅立ちの日に|小嶋登、坂本浩美": {
+      "searchWords": [],
+      "artistAliases": [
+        "小嶋登、坂本浩美"
+      ],
+      "tags": []
+    },
+    "渚のアデリーヌ|リチャード・クレイダーマン": {
+      "searchWords": [],
+      "artistAliases": [
+        "リチャード・クレイダーマン"
+      ],
+      "tags": []
+    },
+    "River flows in you|イルマ": {
+      "searchWords": [],
+      "artistAliases": [
+        "イルマ"
+      ],
+      "tags": []
+    },
+    "My Heart Will Go On|セリーヌ・ディオン": {
+      "searchWords": [],
+      "artistAliases": [
+        "セリーヌ・ディオン"
+      ],
+      "tags": []
+    },
+    "let it be|ビートルズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ビートルズ"
+      ],
+      "tags": []
+    },
+    "翼をください|村井邦彦": {
+      "searchWords": [],
+      "artistAliases": [
+        "村井邦彦"
+      ],
+      "tags": []
+    },
+    "戦場のメリークリスマス|坂本龍一": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本龍一"
+      ],
+      "tags": []
+    },
+    "The Rose|ベット・ミドラー": {
+      "searchWords": [],
+      "artistAliases": [
+        "ベット・ミドラー"
+      ],
+      "tags": []
+    },
+    "アメイジング・グレイス|ジョン・ニュートン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョン・ニュートン"
+      ],
+      "tags": []
+    },
+    "天城越え|石川さゆり": {
+      "searchWords": [],
+      "artistAliases": [
+        "石川さゆり"
+      ],
+      "tags": []
+    },
+    "二人セゾン|欅坂46": {
+      "searchWords": [],
+      "artistAliases": [
+        "欅坂46"
+      ],
+      "tags": []
+    },
+    "硝子の少年|KinKi Kids": {
+      "searchWords": [],
+      "artistAliases": [
+        "KinKi Kids"
+      ],
+      "tags": []
+    },
+    "Time goes by|Every Little Thing": {
+      "searchWords": [],
+      "artistAliases": [
+        "Every Little Thing"
+      ],
+      "tags": []
+    },
+    "スノーマジックファンタジー|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "純恋歌|湘南乃風": {
+      "searchWords": [],
+      "artistAliases": [
+        "湘南乃風"
+      ],
+      "tags": []
+    },
+    "夏の終わり|森山直太朗": {
+      "searchWords": [],
+      "artistAliases": [
+        "森山直太朗"
+      ],
+      "tags": []
+    },
+    "このまま君だけを奪い去りたい|DEEN": {
+      "searchWords": [],
+      "artistAliases": [
+        "DEEN"
+      ],
+      "tags": []
+    },
+    "涙のイエスタデー|GARNET CROW": {
+      "searchWords": [],
+      "artistAliases": [
+        "GARNET CROW"
+      ],
+      "tags": []
+    },
+    "energy flow|坂本龍一": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本龍一"
+      ],
+      "tags": []
+    },
+    "きらきら星|ジャン・フィリップ・ラモー": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジャン・フィリップ・ラモー"
+      ],
+      "tags": []
+    },
+    "7月7日、晴れ|DREAMS COME TRUE": {
+      "searchWords": [],
+      "artistAliases": [
+        "DREAMS COME TRUE"
+      ],
+      "tags": []
+    },
+    "渚にまつわるエトセトラ|PUFFY": {
+      "searchWords": [],
+      "artistAliases": [
+        "PUFFY"
+      ],
+      "tags": []
+    },
+    "渚|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "残響散歌|Aimer": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aimer"
+      ],
+      "tags": []
+    },
+    "夏の魔物|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "魔法の絨毯|川崎鷹也": {
+      "searchWords": [],
+      "artistAliases": [
+        "川崎鷹也"
+      ],
+      "tags": []
+    },
+    "わたしの一番かわいいところ|FRUITS ZIPPER": {
+      "searchWords": [],
+      "artistAliases": [
+        "FRUITS ZIPPER"
+      ],
+      "tags": []
+    },
+    "たなばたさま|下総皖一": {
+      "searchWords": [],
+      "artistAliases": [
+        "下総皖一"
+      ],
+      "tags": []
+    },
+    "シングル・アゲイン|竹内まりや": {
+      "searchWords": [],
+      "artistAliases": [
+        "竹内まりや"
+      ],
+      "tags": []
+    },
+    "毎日がスペシャル|竹内まりや": {
+      "searchWords": [],
+      "artistAliases": [
+        "竹内まりや"
+      ],
+      "tags": []
+    },
+    "うさぎ|作曲者不詳": {
+      "searchWords": [],
+      "artistAliases": [
+        "作曲者不詳"
+      ],
+      "tags": []
+    },
+    "祝福|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "いぬのおまわりさん|大中恩": {
+      "searchWords": [],
+      "artistAliases": [
+        "大中恩"
+      ],
+      "tags": []
+    },
+    "新宝島|サカナクション": {
+      "searchWords": [],
+      "artistAliases": [
+        "サカナクション"
+      ],
+      "tags": []
+    },
+    "ありがとう|大橋卓弥": {
+      "searchWords": [],
+      "artistAliases": [
+        "大橋卓弥"
+      ],
+      "tags": []
+    },
+    "ありがとう|井上陽水奥田民生": {
+      "searchWords": [],
+      "artistAliases": [
+        "井上陽水奥田民生"
+      ],
+      "tags": []
+    },
+    "青春ライン|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "天体観測|BUMP OF CHICKEN": {
+      "searchWords": [],
+      "artistAliases": [
+        "BUMP OF CHICKEN"
+      ],
+      "tags": []
+    },
+    "貴方の側に。|りりあ。": {
+      "searchWords": [],
+      "artistAliases": [
+        "りりあ。"
+      ],
+      "tags": []
+    },
+    "打上花火|DAOKO×米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "DAOKO×米津玄師"
+      ],
+      "tags": []
+    },
+    "海|文部省唱歌(作詞、作曲不詳)": {
+      "searchWords": [],
+      "artistAliases": [
+        "文部省唱歌(作詞、作曲不詳)"
+      ],
+      "tags": []
+    },
+    "久遠 ～光と波の記憶～|松枝賀子、江口貴勅": {
+      "searchWords": [],
+      "artistAliases": [
+        "松枝賀子、江口貴勅"
+      ],
+      "tags": []
+    },
+    "恋しさと せつなさと 心強さと|篠原涼子": {
+      "searchWords": [],
+      "artistAliases": [
+        "篠原涼子"
+      ],
+      "tags": []
+    },
+    "恋|星野源": {
+      "searchWords": [],
+      "artistAliases": [
+        "星野源"
+      ],
+      "tags": []
+    },
+    "世界は恋に落ちている|CHiCO with HoneyWorks": {
+      "searchWords": [],
+      "artistAliases": [
+        "CHiCO with HoneyWorks"
+      ],
+      "tags": []
+    },
+    "あなたに|MONGOL800": {
+      "searchWords": [],
+      "artistAliases": [
+        "MONGOL800"
+      ],
+      "tags": []
+    },
+    "ユアーズ|菅田将暉": {
+      "searchWords": [],
+      "artistAliases": [
+        "菅田将暉"
+      ],
+      "tags": []
+    },
+    "Cry Baby|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "Snow halation|μ's": {
+      "searchWords": [],
+      "artistAliases": [
+        "μ's"
+      ],
+      "tags": []
+    },
+    "SWEET MEMORIES|松田聖子": {
+      "searchWords": [],
+      "artistAliases": [
+        "松田聖子"
+      ],
+      "tags": []
+    },
+    "わたがし|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "115万キロのフィルム|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "I LOVE...|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "ミックスナッツ|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "灰色と青|米津玄師、菅田将暉": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師、菅田将暉"
+      ],
+      "tags": []
+    },
+    "それがあなたの幸せとしても|Heavenz": {
+      "searchWords": [],
+      "artistAliases": [
+        "Heavenz"
+      ],
+      "tags": []
+    },
+    "うたかた花火|supercell": {
+      "searchWords": [],
+      "artistAliases": [
+        "supercell"
+      ],
+      "tags": []
+    },
+    "ロミオとシンデレラ|doriko": {
+      "searchWords": [],
+      "artistAliases": [
+        "doriko"
+      ],
+      "tags": []
+    },
+    "ドーナツホール|ハチ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ハチ"
+      ],
+      "tags": []
+    },
+    "深海少女|ゆうゆ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆうゆ"
+      ],
+      "tags": []
+    },
+    "ホシアイ|レフティーモンスターP": {
+      "searchWords": [],
+      "artistAliases": [
+        "レフティーモンスターP"
+      ],
+      "tags": []
+    },
+    "宇宙戦艦ヤマト|ささきいさお": {
+      "searchWords": [],
+      "artistAliases": [
+        "ささきいさお"
+      ],
+      "tags": []
+    },
+    "銀河鉄道999|ゴダイゴ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゴダイゴ"
+      ],
+      "tags": []
+    },
+    "わんだふるぷりきゅあ！evolution!!|吉武千颯": {
+      "searchWords": [],
+      "artistAliases": [
+        "吉武千颯"
+      ],
+      "tags": []
+    },
+    "Over the Rainbow(虹の彼方に)|ハロルド・アーレン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ハロルド・アーレン"
+      ],
+      "tags": []
+    },
+    "あー夏休み|TUBE": {
+      "searchWords": [],
+      "artistAliases": [
+        "TUBE"
+      ],
+      "tags": []
+    },
+    "島唄|THE BOOM": {
+      "searchWords": [],
+      "artistAliases": [
+        "THE BOOM"
+      ],
+      "tags": []
+    },
+    "僕らの夏の夢|山下達郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "山下達郎"
+      ],
+      "tags": []
+    },
+    "深い森|Do As Infinity": {
+      "searchWords": [],
+      "artistAliases": [
+        "Do As Infinity"
+      ],
+      "tags": []
+    },
+    "高嶺の花子さん|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "全力少年|スキマスイッチ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スキマスイッチ"
+      ],
+      "tags": []
+    },
+    "君がくれた夏|家入レオ": {
+      "searchWords": [],
+      "artistAliases": [
+        "家入レオ"
+      ],
+      "tags": []
+    },
+    "ミツバチ|遊助": {
+      "searchWords": [],
+      "artistAliases": [
+        "遊助"
+      ],
+      "tags": []
+    },
+    "負けないで|ZARD": {
+      "searchWords": [],
+      "artistAliases": [
+        "ZARD"
+      ],
+      "tags": []
+    },
+    "M|浜崎あゆみ": {
+      "searchWords": [],
+      "artistAliases": [
+        "浜崎あゆみ"
+      ],
+      "tags": []
+    },
+    "M|プリンセス プリンセス": {
+      "searchWords": [],
+      "artistAliases": [
+        "プリンセス プリンセス"
+      ],
+      "tags": []
+    },
+    "Driver's High|L'Arc〜en〜Ciel": {
+      "searchWords": [],
+      "artistAliases": [
+        "L'Arc〜en〜Ciel"
+      ],
+      "tags": []
+    },
+    "アイスクリーム シンドローム|スキマスイッチ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スキマスイッチ"
+      ],
+      "tags": []
+    },
+    "君は天然色|大滝詠一": {
+      "searchWords": [],
+      "artistAliases": [
+        "大滝詠一"
+      ],
+      "tags": []
+    },
+    "チューリングラブ|ナナヲアカリ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ナナヲアカリ"
+      ],
+      "tags": []
+    },
+    "Diamonds|プリンセス プリンセス": {
+      "searchWords": [],
+      "artistAliases": [
+        "プリンセス プリンセス"
+      ],
+      "tags": []
+    },
+    "月光浴|柴田淳": {
+      "searchWords": [],
+      "artistAliases": [
+        "柴田淳"
+      ],
+      "tags": []
+    },
+    "地上の星|中島みゆき": {
+      "searchWords": [],
+      "artistAliases": [
+        "中島みゆき"
+      ],
+      "tags": []
+    },
+    "Myra|Tani Yuuki": {
+      "searchWords": [],
+      "artistAliases": [
+        "Tani Yuuki"
+      ],
+      "tags": []
+    },
+    "W/X/Y|Tani Yuuki": {
+      "searchWords": [],
+      "artistAliases": [
+        "Tani Yuuki"
+      ],
+      "tags": []
+    },
+    "サクラキミワタシ|tuki.": {
+      "searchWords": [],
+      "artistAliases": [
+        "tuki."
+      ],
+      "tags": []
+    },
+    "白日|King Gnu": {
+      "searchWords": [],
+      "artistAliases": [
+        "King Gnu"
+      ],
+      "tags": []
+    },
+    "にじ|中川ひろたか": {
+      "searchWords": [],
+      "artistAliases": [
+        "中川ひろたか"
+      ],
+      "tags": []
+    },
+    "虹|手嶌葵": {
+      "searchWords": [],
+      "artistAliases": [
+        "手嶌葵"
+      ],
+      "tags": []
+    },
+    "虹|Aqua Timez": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aqua Timez"
+      ],
+      "tags": []
+    },
+    "虹|福山雅治": {
+      "searchWords": [],
+      "artistAliases": [
+        "福山雅治"
+      ],
+      "tags": []
+    },
+    "虹|高橋優": {
+      "searchWords": [],
+      "artistAliases": [
+        "高橋優"
+      ],
+      "tags": []
+    },
+    "虹|二宮和也": {
+      "searchWords": [],
+      "artistAliases": [
+        "二宮和也"
+      ],
+      "tags": []
+    },
+    "虹|ゆず": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆず"
+      ],
+      "tags": []
+    },
+    "虹|コブクロ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コブクロ"
+      ],
+      "tags": []
+    },
+    "虹色の心|リチャード・クレイダーマン": {
+      "searchWords": [],
+      "artistAliases": [
+        "リチャード・クレイダーマン"
+      ],
+      "tags": []
+    },
+    "ベテルギウス|優里": {
+      "searchWords": [],
+      "artistAliases": [
+        "優里"
+      ],
+      "tags": []
+    },
+    "あの夢をなぞって|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "サヨナラ|GAO": {
+      "searchWords": [],
+      "artistAliases": [
+        "GAO"
+      ],
+      "tags": []
+    },
+    "どんぐりころころ|梁田貞": {
+      "searchWords": [],
+      "artistAliases": [
+        "梁田貞"
+      ],
+      "tags": []
+    },
+    "森の小さなレストラン|手嶌葵": {
+      "searchWords": [],
+      "artistAliases": [
+        "手嶌葵"
+      ],
+      "tags": []
+    },
+    "ドラえもん|星野源": {
+      "searchWords": [],
+      "artistAliases": [
+        "星野源"
+      ],
+      "tags": []
+    },
+    "YUME日和|島谷ひとみ": {
+      "searchWords": [],
+      "artistAliases": [
+        "島谷ひとみ"
+      ],
+      "tags": []
+    },
+    "ボクノート|スキマスイッチ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スキマスイッチ"
+      ],
+      "tags": []
+    },
+    "また会える日まで|ゆず": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆず"
+      ],
+      "tags": []
+    },
+    "ぼくドラえもん|大山のぶ代、こおろぎ'73": {
+      "searchWords": [],
+      "artistAliases": [
+        "大山のぶ代、こおろぎ'73"
+      ],
+      "tags": []
+    },
+    "少年期|武田鉄矢": {
+      "searchWords": [],
+      "artistAliases": [
+        "武田鉄矢"
+      ],
+      "tags": []
+    },
+    "スター・ウォーズ メインテーマ|ジョン・ウィリアムズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョン・ウィリアムズ"
+      ],
+      "tags": []
+    },
+    "ヘドウィグのテーマ|ジョン・ウィリアムズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョン・ウィリアムズ"
+      ],
+      "tags": []
+    },
+    "レイダース・マーチ|ジョン・ウィリアムズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョン・ウィリアムズ"
+      ],
+      "tags": []
+    },
+    "スーパーマンのテーマ|ジョン・ウィリアムズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョン・ウィリアムズ"
+      ],
+      "tags": []
+    },
+    "ミッションインポッシブルのテーマ|ラロ・シフリン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ラロ・シフリン"
+      ],
+      "tags": []
+    },
+    "バック・トゥ・ザ・フューチャーのテーマ|アラン・シルヴェストリ": {
+      "searchWords": [],
+      "artistAliases": [
+        "アラン・シルヴェストリ"
+      ],
+      "tags": []
+    },
+    "ロッキーのテーマ|ビル・コンティ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ビル・コンティ"
+      ],
+      "tags": []
+    },
+    "ゴーストバスターズ|レイ・パーカー・ジュニア": {
+      "searchWords": [],
+      "artistAliases": [
+        "レイ・パーカー・ジュニア"
+      ],
+      "tags": []
+    },
+    "80日間世界一周|ビクター・ヤング": {
+      "searchWords": [],
+      "artistAliases": [
+        "ビクター・ヤング"
+      ],
+      "tags": []
+    },
+    "フォレストガンプのテーマ|アラン・シルヴェストリ": {
+      "searchWords": [],
+      "artistAliases": [
+        "アラン・シルヴェストリ"
+      ],
+      "tags": []
+    },
+    "月のワルツ|諫山実生": {
+      "searchWords": [],
+      "artistAliases": [
+        "諫山実生"
+      ],
+      "tags": []
+    },
+    "TRUE LOVE|藤井フミヤ": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤井フミヤ"
+      ],
+      "tags": []
+    },
+    "I LOVE YOU|尾崎豊": {
+      "searchWords": [],
+      "artistAliases": [
+        "尾崎豊"
+      ],
+      "tags": []
+    },
+    "Everything|MISIA": {
+      "searchWords": [],
+      "artistAliases": [
+        "MISIA"
+      ],
+      "tags": []
+    },
+    "OH MY LITTLE GIRL|尾崎豊": {
+      "searchWords": [],
+      "artistAliases": [
+        "尾崎豊"
+      ],
+      "tags": []
+    },
+    "オレンジ|SMAP": {
+      "searchWords": [],
+      "artistAliases": [
+        "SMAP"
+      ],
+      "tags": []
+    },
+    "アンドロメダ|aiko": {
+      "searchWords": [],
+      "artistAliases": [
+        "aiko"
+      ],
+      "tags": []
+    },
+    "LOVE LOVE LOVE|DREAMS COME TRUE": {
+      "searchWords": [],
+      "artistAliases": [
+        "DREAMS COME TRUE"
+      ],
+      "tags": []
+    },
+    "守ってあげたい|松任谷由実": {
+      "searchWords": [],
+      "artistAliases": [
+        "松任谷由実"
+      ],
+      "tags": []
+    },
+    "風のように|S.E.N.S.": {
+      "searchWords": [],
+      "artistAliases": [
+        "S.E.N.S."
+      ],
+      "tags": []
+    },
+    "かたち あるもの|柴咲コウ": {
+      "searchWords": [],
+      "artistAliases": [
+        "柴咲コウ"
+      ],
+      "tags": []
+    },
+    "オーケストラ|BiSH": {
+      "searchWords": [],
+      "artistAliases": [
+        "BiSH"
+      ],
+      "tags": []
+    },
+    "まちがいさがし|菅田将暉": {
+      "searchWords": [],
+      "artistAliases": [
+        "菅田将暉"
+      ],
+      "tags": []
+    },
+    "君に届け|flumpool": {
+      "searchWords": [],
+      "artistAliases": [
+        "flumpool"
+      ],
+      "tags": []
+    },
+    "BELIEVE|杉本竜一": {
+      "searchWords": [],
+      "artistAliases": [
+        "杉本竜一"
+      ],
+      "tags": []
+    },
+    "マイ バラード|松井孝夫": {
+      "searchWords": [],
+      "artistAliases": [
+        "松井孝夫"
+      ],
+      "tags": []
+    },
+    "証|flumpool": {
+      "searchWords": [],
+      "artistAliases": [
+        "flumpool"
+      ],
+      "tags": []
+    },
+    "南風|レミオロメン": {
+      "searchWords": [],
+      "artistAliases": [
+        "レミオロメン"
+      ],
+      "tags": []
+    },
+    "二人のアカボシ|キンモクセイ": {
+      "searchWords": [],
+      "artistAliases": [
+        "キンモクセイ"
+      ],
+      "tags": []
+    },
+    "キンモクセイ|オレンジスパイニクラブ": {
+      "searchWords": [],
+      "artistAliases": [
+        "オレンジスパイニクラブ"
+      ],
+      "tags": []
+    },
+    "カワキヲアメク|美波": {
+      "searchWords": [],
+      "artistAliases": [
+        "美波"
+      ],
+      "tags": []
+    },
+    "あんたなんて。|りりあ。": {
+      "searchWords": [],
+      "artistAliases": [
+        "りりあ。"
+      ],
+      "tags": []
+    },
+    "なんでもないよ、|マカロニえんぴつ": {
+      "searchWords": [],
+      "artistAliases": [
+        "マカロニえんぴつ"
+      ],
+      "tags": []
+    },
+    "Eyes On Me|Superfly": {
+      "searchWords": [],
+      "artistAliases": [
+        "Superfly"
+      ],
+      "tags": []
+    },
+    "AM11:00|HY": {
+      "searchWords": [],
+      "artistAliases": [
+        "HY"
+      ],
+      "tags": []
+    },
+    "黒毛和牛上塩タン焼680円|大塚愛": {
+      "searchWords": [],
+      "artistAliases": [
+        "大塚愛"
+      ],
+      "tags": []
+    },
+    "夜空ノムコウ|SMAP": {
+      "searchWords": [],
+      "artistAliases": [
+        "SMAP"
+      ],
+      "tags": []
+    },
+    "想い出がいっぱい|H2O": {
+      "searchWords": [],
+      "artistAliases": [
+        "H2O"
+      ],
+      "tags": []
+    },
+    "Your Best Friend|倉木麻衣": {
+      "searchWords": [],
+      "artistAliases": [
+        "倉木麻衣"
+      ],
+      "tags": []
+    },
+    "めざせポケモンマスター|松本梨香": {
+      "searchWords": [],
+      "artistAliases": [
+        "松本梨香"
+      ],
+      "tags": []
+    },
+    "乙女どもよ。|CHiCO with HoneyWorks": {
+      "searchWords": [],
+      "artistAliases": [
+        "CHiCO with HoneyWorks"
+      ],
+      "tags": []
+    },
+    "パリは燃えているか|加古隆": {
+      "searchWords": [],
+      "artistAliases": [
+        "加古隆"
+      ],
+      "tags": []
+    },
+    "木蘭の涙|スターダストレビュー": {
+      "searchWords": [],
+      "artistAliases": [
+        "スターダストレビュー"
+      ],
+      "tags": []
+    },
+    "夏の決心|大江千里": {
+      "searchWords": [],
+      "artistAliases": [
+        "大江千里"
+      ],
+      "tags": []
+    },
+    "未来へ|Kiroro": {
+      "searchWords": [],
+      "artistAliases": [
+        "Kiroro"
+      ],
+      "tags": []
+    },
+    "Sunny Day Sunday|センチメンタル・バス": {
+      "searchWords": [],
+      "artistAliases": [
+        "センチメンタル・バス"
+      ],
+      "tags": []
+    },
+    "Over Drive|JUDY AND MARY": {
+      "searchWords": [],
+      "artistAliases": [
+        "JUDY AND MARY"
+      ],
+      "tags": []
+    },
+    "ミュージック・アワー|ポルノグラフィティ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ポルノグラフィティ"
+      ],
+      "tags": []
+    },
+    "HOT LIMIT|T.M.Revolution": {
+      "searchWords": [],
+      "artistAliases": [
+        "T.M.Revolution"
+      ],
+      "tags": []
+    },
+    "奥寺先輩のテーマ|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "ガラモン・ソング|蓜島邦明": {
+      "searchWords": [],
+      "artistAliases": [
+        "蓜島邦明"
+      ],
+      "tags": []
+    },
+    "Same Blue|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "サザエさん一家|宇野ゆう子": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇野ゆう子"
+      ],
+      "tags": []
+    },
+    "サザエさん|宇野ゆう子": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇野ゆう子"
+      ],
+      "tags": []
+    },
+    "サマータイム ブルース|渡辺美里": {
+      "searchWords": [],
+      "artistAliases": [
+        "渡辺美里"
+      ],
+      "tags": []
+    },
+    "I'm a mess|MY FIRST STORY": {
+      "searchWords": [],
+      "artistAliases": [
+        "MY FIRST STORY"
+      ],
+      "tags": []
+    },
+    "ワインレッドの心|安全地帯": {
+      "searchWords": [],
+      "artistAliases": [
+        "安全地帯"
+      ],
+      "tags": []
+    },
+    "カイト|嵐": {
+      "searchWords": [],
+      "artistAliases": [
+        "嵐"
+      ],
+      "tags": []
+    },
+    "世界に一つだけの花|SMAP": {
+      "searchWords": [],
+      "artistAliases": [
+        "SMAP"
+      ],
+      "tags": []
+    },
+    "Hello, Again 〜昔からある場所〜|MY LITTLE LOVER": {
+      "searchWords": [],
+      "artistAliases": [
+        "MY LITTLE LOVER"
+      ],
+      "tags": []
+    },
+    "星座になれたら|結束バンド": {
+      "searchWords": [],
+      "artistAliases": [
+        "結束バンド"
+      ],
+      "tags": []
+    },
+    "You Raise Me Up|Secret Garden": {
+      "searchWords": [],
+      "artistAliases": [
+        "Secret Garden"
+      ],
+      "tags": []
+    },
+    "花火|aiko": {
+      "searchWords": [],
+      "artistAliases": [
+        "aiko"
+      ],
+      "tags": []
+    },
+    "Top of the World|カーペンターズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "カーペンターズ"
+      ],
+      "tags": []
+    },
+    "青春の輝き(I Need to Be in Love)|カーペンターズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "カーペンターズ"
+      ],
+      "tags": []
+    },
+    "Sing|カーペンターズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "カーペンターズ"
+      ],
+      "tags": []
+    },
+    "365日の紙飛行機|AKB48": {
+      "searchWords": [],
+      "artistAliases": [
+        "AKB48"
+      ],
+      "tags": []
+    },
+    "CRUCIFY MY LOVE|X JAPAN": {
+      "searchWords": [],
+      "artistAliases": [
+        "X JAPAN"
+      ],
+      "tags": []
+    },
+    "紅|X JAPAN": {
+      "searchWords": [],
+      "artistAliases": [
+        "X JAPAN"
+      ],
+      "tags": []
+    },
+    "金魚花火|大塚愛": {
+      "searchWords": [],
+      "artistAliases": [
+        "大塚愛"
+      ],
+      "tags": []
+    },
+    "天使のくれた奇跡|Libera": {
+      "searchWords": [],
+      "artistAliases": [
+        "Libera"
+      ],
+      "tags": []
+    },
+    "唱|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "うっせぇわ|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "ドラえもんのうた|大杉久美子": {
+      "searchWords": [],
+      "artistAliases": [
+        "大杉久美子"
+      ],
+      "tags": []
+    },
+    "倍倍FIGHT!|CANDY TUNE": {
+      "searchWords": [],
+      "artistAliases": [
+        "CANDY TUNE"
+      ],
+      "tags": []
+    },
+    "恋のメガラバ|マキシマム ザ ホルモン": {
+      "searchWords": [],
+      "artistAliases": [
+        "マキシマム ザ ホルモン"
+      ],
+      "tags": []
+    },
+    "決意の朝に|Aqua Timez": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aqua Timez"
+      ],
+      "tags": []
+    },
+    "Violet Snow|結城アイラ": {
+      "searchWords": [],
+      "artistAliases": [
+        "結城アイラ"
+      ],
+      "tags": []
+    },
+    "みちしるべ|茅原実里": {
+      "searchWords": [],
+      "artistAliases": [
+        "茅原実里"
+      ],
+      "tags": []
+    },
+    "WILL|TRUE": {
+      "searchWords": [],
+      "artistAliases": [
+        "TRUE"
+      ],
+      "tags": []
+    },
+    "KissHug|aiko": {
+      "searchWords": [],
+      "artistAliases": [
+        "aiko"
+      ],
+      "tags": []
+    },
+    "相思相愛|aiko": {
+      "searchWords": [],
+      "artistAliases": [
+        "aiko"
+      ],
+      "tags": []
+    },
+    "Zoltraak|Evan Call": {
+      "searchWords": [],
+      "artistAliases": [
+        "Evan Call"
+      ],
+      "tags": []
+    },
+    "怪獣のバラード|東海林修": {
+      "searchWords": [],
+      "artistAliases": [
+        "東海林修"
+      ],
+      "tags": []
+    },
+    "愛のメモリー|松崎しげる": {
+      "searchWords": [],
+      "artistAliases": [
+        "松崎しげる"
+      ],
+      "tags": []
+    },
+    "I Don't Want to Set the World on Fire|The Ink Spots": {
+      "searchWords": [],
+      "artistAliases": [
+        "The Ink Spots"
+      ],
+      "tags": []
+    },
+    "銀色飛行船|supercell": {
+      "searchWords": [],
+      "artistAliases": [
+        "supercell"
+      ],
+      "tags": []
+    },
+    "雨に唄えば(Singin' in the Rain)|ナシオ・ハーブ・ブラウン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ナシオ・ハーブ・ブラウン"
+      ],
+      "tags": []
+    },
+    "ハナミズキ|一青窈": {
+      "searchWords": [],
+      "artistAliases": [
+        "一青窈"
+      ],
+      "tags": []
+    },
+    "明日へ|富岡博志": {
+      "searchWords": [],
+      "artistAliases": [
+        "富岡博志"
+      ],
+      "tags": []
+    },
+    "荒城の月|滝廉太郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "滝廉太郎"
+      ],
+      "tags": []
+    },
+    "花|滝廉太郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "滝廉太郎"
+      ],
+      "tags": []
+    },
+    "さくらんぼ|大塚愛": {
+      "searchWords": [],
+      "artistAliases": [
+        "大塚愛"
+      ],
+      "tags": []
+    },
+    "夕焼小焼|草川信": {
+      "searchWords": [],
+      "artistAliases": [
+        "草川信"
+      ],
+      "tags": []
+    },
+    "故郷|岡野貞一": {
+      "searchWords": [],
+      "artistAliases": [
+        "岡野貞一"
+      ],
+      "tags": []
+    },
+    "おもちゃのチャチャチャ|越部信義": {
+      "searchWords": [],
+      "artistAliases": [
+        "越部信義"
+      ],
+      "tags": []
+    },
+    "魂のルフラン|高橋洋子": {
+      "searchWords": [],
+      "artistAliases": [
+        "高橋洋子"
+      ],
+      "tags": []
+    },
+    "歩いて帰ろう|斉藤和義": {
+      "searchWords": [],
+      "artistAliases": [
+        "斉藤和義"
+      ],
+      "tags": []
+    },
+    "give it back|Cö shu Nie": {
+      "searchWords": [],
+      "artistAliases": [
+        "Cö shu Nie"
+      ],
+      "tags": []
+    },
+    "廻廻奇譚|Eve": {
+      "searchWords": [],
+      "artistAliases": [
+        "Eve"
+      ],
+      "tags": []
+    },
+    "夏の終りのハーモニー|井上陽水・安全地帯": {
+      "searchWords": [],
+      "artistAliases": [
+        "井上陽水・安全地帯"
+      ],
+      "tags": []
+    },
+    "赤とんぼ|山田耕筰": {
+      "searchWords": [],
+      "artistAliases": [
+        "山田耕筰"
+      ],
+      "tags": []
+    },
+    "シーズン・イン・ザ・サン|TUBE": {
+      "searchWords": [],
+      "artistAliases": [
+        "TUBE"
+      ],
+      "tags": []
+    },
+    "サマータイムシンデレラ|緑黄色社会": {
+      "searchWords": [],
+      "artistAliases": [
+        "緑黄色社会"
+      ],
+      "tags": []
+    },
+    "めぐりあい|井上大輔": {
+      "searchWords": [],
+      "artistAliases": [
+        "井上大輔"
+      ],
+      "tags": []
+    },
+    "檄！帝国華撃団|真宮寺さくら（横山智佐）＆帝国歌劇団": {
+      "searchWords": [],
+      "artistAliases": [
+        "真宮寺さくら（横山智佐）＆帝国歌劇団"
+      ],
+      "tags": []
+    },
+    "ZOO|川村かおり / ECHOES(Self Cover)": {
+      "searchWords": [],
+      "artistAliases": [
+        "川村かおり / ECHOES(Self Cover)"
+      ],
+      "tags": []
+    },
+    "ゆずれない願い|田村直美": {
+      "searchWords": [],
+      "artistAliases": [
+        "田村直美"
+      ],
+      "tags": []
+    },
+    "フォニイ|ツミキ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ツミキ"
+      ],
+      "tags": []
+    },
+    "パプリカ|Foorin": {
+      "searchWords": [],
+      "artistAliases": [
+        "Foorin"
+      ],
+      "tags": []
+    },
+    "君がいるから|菅原紗由理": {
+      "searchWords": [],
+      "artistAliases": [
+        "菅原紗由理"
+      ],
+      "tags": []
+    },
+    "できっこないを やらなくちゃ|サンボマスター": {
+      "searchWords": [],
+      "artistAliases": [
+        "サンボマスター"
+      ],
+      "tags": []
+    },
+    "第ゼロ感|10-FEET": {
+      "searchWords": [],
+      "artistAliases": [
+        "10-FEET"
+      ],
+      "tags": []
+    },
+    "ノスタルジックレインフォール|CHiCO with HoneyWorks": {
+      "searchWords": [],
+      "artistAliases": [
+        "CHiCO with HoneyWorks"
+      ],
+      "tags": []
+    },
+    "素直になれなくて|シカゴ": {
+      "searchWords": [],
+      "artistAliases": [
+        "シカゴ"
+      ],
+      "tags": []
+    },
+    "瞳を閉じて|平井堅": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井堅"
+      ],
+      "tags": []
+    },
+    "トドカナイカラ|平井堅": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井堅"
+      ],
+      "tags": []
+    },
+    "また逢う日まで|平井大": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井大"
+      ],
+      "tags": []
+    },
+    "Stand by me, Stand by you.|平井大": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井大"
+      ],
+      "tags": []
+    },
+    "祈り花|平井大": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井大"
+      ],
+      "tags": []
+    },
+    "幸せのレシピ|平井大": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井大"
+      ],
+      "tags": []
+    },
+    "アイコトバ|アイナ・ジ・エンド": {
+      "searchWords": [],
+      "artistAliases": [
+        "アイナ・ジ・エンド"
+      ],
+      "tags": []
+    },
+    "百花繚乱|幾田りら": {
+      "searchWords": [],
+      "artistAliases": [
+        "幾田りら"
+      ],
+      "tags": []
+    },
+    "アンビバレント|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "ひとりごと|Omoinotake": {
+      "searchWords": [],
+      "artistAliases": [
+        "Omoinotake"
+      ],
+      "tags": []
+    },
+    "愛は薬|wacci": {
+      "searchWords": [],
+      "artistAliases": [
+        "wacci"
+      ],
+      "tags": []
+    },
+    "ビギニング|井上大輔": {
+      "searchWords": [],
+      "artistAliases": [
+        "井上大輔"
+      ],
+      "tags": []
+    },
+    "葛飾ラプソディー|堂島孝平": {
+      "searchWords": [],
+      "artistAliases": [
+        "堂島孝平"
+      ],
+      "tags": []
+    },
+    "ココロソマリ|水瀬いのり": {
+      "searchWords": [],
+      "artistAliases": [
+        "水瀬いのり"
+      ],
+      "tags": []
+    },
+    "オトナブルー|新しい学校のリーダーズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "新しい学校のリーダーズ"
+      ],
+      "tags": []
+    },
+    "私は最強|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "きかんしゃトーマスのテーマ|マイク・オドネル、ジュニア・キャンベル": {
+      "searchWords": [],
+      "artistAliases": [
+        "マイク・オドネル、ジュニア・キャンベル"
+      ],
+      "tags": []
+    },
+    "A列車で行こう|ビリー・ストレイホーン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ビリー・ストレイホーン"
+      ],
+      "tags": []
+    },
+    "銀の龍の背に乗って|中島みゆき": {
+      "searchWords": [],
+      "artistAliases": [
+        "中島みゆき"
+      ],
+      "tags": []
+    },
+    "デンジャー・ゾーン|ケニー・ロギンス": {
+      "searchWords": [],
+      "artistAliases": [
+        "ケニー・ロギンス"
+      ],
+      "tags": []
+    },
+    "ワタリドリ|Alexandros": {
+      "searchWords": [],
+      "artistAliases": [
+        "Alexandros"
+      ],
+      "tags": []
+    },
+    "手紙|諫山実生": {
+      "searchWords": [],
+      "artistAliases": [
+        "諫山実生"
+      ],
+      "tags": []
+    },
+    "手紙|坂本真綾": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本真綾"
+      ],
+      "tags": []
+    },
+    "手紙|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "星屑ビーナス|Aimer": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aimer"
+      ],
+      "tags": []
+    },
+    "Carrying Happiness|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "ラブソング|上野大樹": {
+      "searchWords": [],
+      "artistAliases": [
+        "上野大樹"
+      ],
+      "tags": []
+    },
+    "革命道中|アイナ・ジ・エンド": {
+      "searchWords": [],
+      "artistAliases": [
+        "アイナ・ジ・エンド"
+      ],
+      "tags": []
+    },
+    "紡ぐ|とた": {
+      "searchWords": [],
+      "artistAliases": [
+        "とた"
+      ],
+      "tags": []
+    },
+    "ランデヴー|シャイトープ": {
+      "searchWords": [],
+      "artistAliases": [
+        "シャイトープ"
+      ],
+      "tags": []
+    },
+    "香水|瑛人": {
+      "searchWords": [],
+      "artistAliases": [
+        "瑛人"
+      ],
+      "tags": []
+    },
+    "Make you happy|NiziU": {
+      "searchWords": [],
+      "artistAliases": [
+        "NiziU"
+      ],
+      "tags": []
+    },
+    "恋するフォーチュンクッキー|AKB48": {
+      "searchWords": [],
+      "artistAliases": [
+        "AKB48"
+      ],
+      "tags": []
+    },
+    "夏の影|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "YAH YAH YAH|CHAGE&ASKA": {
+      "searchWords": [],
+      "artistAliases": [
+        "CHAGE&ASKA"
+      ],
+      "tags": []
+    },
+    "トウキョウ・シャンディ・ランデヴ|MAISONdes": {
+      "searchWords": [],
+      "artistAliases": [
+        "MAISONdes"
+      ],
+      "tags": []
+    },
+    "トリセツ|西野カナ": {
+      "searchWords": [],
+      "artistAliases": [
+        "西野カナ"
+      ],
+      "tags": []
+    },
+    "会いたくて 会いたくて|西野カナ": {
+      "searchWords": [],
+      "artistAliases": [
+        "西野カナ"
+      ],
+      "tags": []
+    },
+    "Lovers|sumika": {
+      "searchWords": [],
+      "artistAliases": [
+        "sumika"
+      ],
+      "tags": []
+    },
+    "愛燦燦|美空ひばり": {
+      "searchWords": [],
+      "artistAliases": [
+        "美空ひばり"
+      ],
+      "tags": []
+    },
+    "ハッピーラッキーチャッピー|ano": {
+      "searchWords": [],
+      "artistAliases": [
+        "ano"
+      ],
+      "tags": []
+    },
+    "キミとルララ|キミとアイドルプリキュア♪": {
+      "searchWords": [],
+      "artistAliases": [
+        "キミとアイドルプリキュア♪"
+      ],
+      "tags": []
+    },
+    "恋風|幾田りら": {
+      "searchWords": [],
+      "artistAliases": [
+        "幾田りら"
+      ],
+      "tags": []
+    },
+    "残酷な夜に輝け|LiSA": {
+      "searchWords": [],
+      "artistAliases": [
+        "LiSA"
+      ],
+      "tags": []
+    },
+    "オリビアを聴きながら|杏里": {
+      "searchWords": [],
+      "artistAliases": [
+        "杏里"
+      ],
+      "tags": []
+    },
+    "シンデレラボーイ|Saucy Dog": {
+      "searchWords": [],
+      "artistAliases": [
+        "Saucy Dog"
+      ],
+      "tags": []
+    },
+    "三日月|絢香": {
+      "searchWords": [],
+      "artistAliases": [
+        "絢香"
+      ],
+      "tags": []
+    },
+    "ちいさい秋みつけた|中田喜直": {
+      "searchWords": [],
+      "artistAliases": [
+        "中田喜直"
+      ],
+      "tags": []
+    },
+    "まっかな秋|小林秀雄": {
+      "searchWords": [],
+      "artistAliases": [
+        "小林秀雄"
+      ],
+      "tags": []
+    },
+    "もみじ|岡野貞一": {
+      "searchWords": [],
+      "artistAliases": [
+        "岡野貞一"
+      ],
+      "tags": []
+    },
+    "ツキミソウ|Novelbright": {
+      "searchWords": [],
+      "artistAliases": [
+        "Novelbright"
+      ],
+      "tags": []
+    },
+    "コイスルオトメ|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "エイリアンズ|キリンジ": {
+      "searchWords": [],
+      "artistAliases": [
+        "キリンジ"
+      ],
+      "tags": []
+    },
+    "スターライトパレード|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "ウルトラマンの歌|みすず児童合唱団、コーロ・ステルラ": {
+      "searchWords": [],
+      "artistAliases": [
+        "みすず児童合唱団、コーロ・ステルラ"
+      ],
+      "tags": []
+    },
+    "愛を伝えたいだとか|あいみょん": {
+      "searchWords": [],
+      "artistAliases": [
+        "あいみょん"
+      ],
+      "tags": []
+    },
+    "星間飛行|ランカ・リー＝中島愛": {
+      "searchWords": [],
+      "artistAliases": [
+        "ランカ・リー＝中島愛"
+      ],
+      "tags": []
+    },
+    "KING|Kanaria": {
+      "searchWords": [],
+      "artistAliases": [
+        "Kanaria"
+      ],
+      "tags": []
+    },
+    "明日晴れるかな|桑田佳祐": {
+      "searchWords": [],
+      "artistAliases": [
+        "桑田佳祐"
+      ],
+      "tags": []
+    },
+    "イエスタデイ|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "インフェルノ|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "心拍数♯0822|蝶々P": {
+      "searchWords": [],
+      "artistAliases": [
+        "蝶々P"
+      ],
+      "tags": []
+    },
+    "ぎゅっと。|もさを。": {
+      "searchWords": [],
+      "artistAliases": [
+        "もさを。"
+      ],
+      "tags": []
+    },
+    "UNICORN|澤野弘之": {
+      "searchWords": [],
+      "artistAliases": [
+        "澤野弘之"
+      ],
+      "tags": []
+    },
+    "Blue Dragon|澤野弘之": {
+      "searchWords": [],
+      "artistAliases": [
+        "澤野弘之"
+      ],
+      "tags": []
+    },
+    "ninelie|imer with chelly(EGOIST)": {
+      "searchWords": [],
+      "artistAliases": [
+        "imer with chelly(EGOIST)"
+      ],
+      "tags": []
+    },
+    "E0$-3:罪|澤野弘之": {
+      "searchWords": [],
+      "artistAliases": [
+        "澤野弘之"
+      ],
+      "tags": []
+    },
+    "10月無口な君を忘れる|あたらよ": {
+      "searchWords": [],
+      "artistAliases": [
+        "あたらよ"
+      ],
+      "tags": []
+    },
+    "Crazy Party Night 〜ぱんぷきんの逆襲〜|きゃりーぱみゅぱみゅ": {
+      "searchWords": [],
+      "artistAliases": [
+        "きゃりーぱみゅぱみゅ"
+      ],
+      "tags": []
+    },
+    "ハロウィン・ナイト|AKB48": {
+      "searchWords": [],
+      "artistAliases": [
+        "AKB48"
+      ],
+      "tags": []
+    },
+    "私のお気に入り(My Favorite Things)|リチャード・ロジャース": {
+      "searchWords": [],
+      "artistAliases": [
+        "リチャード・ロジャース"
+      ],
+      "tags": []
+    },
+    "IRIS OUT|米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師"
+      ],
+      "tags": []
+    },
+    "ラスト・クリスマス|Wham!": {
+      "searchWords": [],
+      "artistAliases": [
+        "Wham!"
+      ],
+      "tags": []
+    },
+    "ヴァンパイア|DECO*27": {
+      "searchWords": [],
+      "artistAliases": [
+        "DECO*27"
+      ],
+      "tags": []
+    },
+    "恋人がサンタクロース|松任谷由実": {
+      "searchWords": [],
+      "artistAliases": [
+        "松任谷由実"
+      ],
+      "tags": []
+    },
+    "Wherever you are|ONE OK ROCK": {
+      "searchWords": [],
+      "artistAliases": [
+        "ONE OK ROCK"
+      ],
+      "tags": []
+    },
+    "スターマーカー|KANA-BOON": {
+      "searchWords": [],
+      "artistAliases": [
+        "KANA-BOON"
+      ],
+      "tags": []
+    },
+    "僕はここにいる|山崎まさよし": {
+      "searchWords": [],
+      "artistAliases": [
+        "山崎まさよし"
+      ],
+      "tags": []
+    },
+    "オールドファッション|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "津軽海峡・冬景色|石川さゆり": {
+      "searchWords": [],
+      "artistAliases": [
+        "石川さゆり"
+      ],
+      "tags": []
+    },
+    "break|宮本笑里": {
+      "searchWords": [],
+      "artistAliases": [
+        "宮本笑里"
+      ],
+      "tags": []
+    },
+    "君がいるだけで|米米CLUB": {
+      "searchWords": [],
+      "artistAliases": [
+        "米米CLUB"
+      ],
+      "tags": []
+    },
+    "Overdose|なとり": {
+      "searchWords": [],
+      "artistAliases": [
+        "なとり"
+      ],
+      "tags": []
+    },
+    "こんなに近くで...|Crystal Kay": {
+      "searchWords": [],
+      "artistAliases": [
+        "Crystal Kay"
+      ],
+      "tags": []
+    },
+    "月灯りふんわり落ちてくる夜|小川七生": {
+      "searchWords": [],
+      "artistAliases": [
+        "小川七生"
+      ],
+      "tags": []
+    },
+    "ヒカリへ|miwa": {
+      "searchWords": [],
+      "artistAliases": [
+        "miwa"
+      ],
+      "tags": []
+    },
+    "さよならエレジー|菅田将暉": {
+      "searchWords": [],
+      "artistAliases": [
+        "菅田将暉"
+      ],
+      "tags": []
+    },
+    "サウダージ|ポルノグラフィティ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ポルノグラフィティ"
+      ],
+      "tags": []
+    },
+    "恋人ごっこ|マカロニえんぴつ": {
+      "searchWords": [],
+      "artistAliases": [
+        "マカロニえんぴつ"
+      ],
+      "tags": []
+    },
+    "イケナイ太陽|ORANGE RANGE": {
+      "searchWords": [],
+      "artistAliases": [
+        "ORANGE RANGE"
+      ],
+      "tags": []
+    },
+    "世界が終るまでは…|WANDS": {
+      "searchWords": [],
+      "artistAliases": [
+        "WANDS"
+      ],
+      "tags": []
+    },
+    "大阪LOVER|DREAMS COME TRUE": {
+      "searchWords": [],
+      "artistAliases": [
+        "DREAMS COME TRUE"
+      ],
+      "tags": []
+    },
+    "島人ぬ宝|BEGIN": {
+      "searchWords": [],
+      "artistAliases": [
+        "BEGIN"
+      ],
+      "tags": []
+    },
+    "最後の雨|中西保志": {
+      "searchWords": [],
+      "artistAliases": [
+        "中西保志"
+      ],
+      "tags": []
+    },
+    "シングルベッド|シャ乱Q": {
+      "searchWords": [],
+      "artistAliases": [
+        "シャ乱Q"
+      ],
+      "tags": []
+    },
+    "チャンカパーナ|NEWS": {
+      "searchWords": [],
+      "artistAliases": [
+        "NEWS"
+      ],
+      "tags": []
+    },
+    "気まぐれロマンティック|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "Blue Jeans|HANA": {
+      "searchWords": [],
+      "artistAliases": [
+        "HANA"
+      ],
+      "tags": []
+    },
+    "Bling-Bang-Bang-Born|Creepy Nuts": {
+      "searchWords": [],
+      "artistAliases": [
+        "Creepy Nuts"
+      ],
+      "tags": []
+    },
+    "ハレンチ|ちゃんみな": {
+      "searchWords": [],
+      "artistAliases": [
+        "ちゃんみな"
+      ],
+      "tags": []
+    },
+    "愛のかたまり|Kinki Kids": {
+      "searchWords": [],
+      "artistAliases": [
+        "Kinki Kids"
+      ],
+      "tags": []
+    },
+    "旅路|藤井風": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤井風"
+      ],
+      "tags": []
+    },
+    "月光花|Janne Da Arc": {
+      "searchWords": [],
+      "artistAliases": [
+        "Janne Da Arc"
+      ],
+      "tags": []
+    },
+    "そっけない|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "ぞうさん|團伊玖磨作曲": {
+      "searchWords": [],
+      "artistAliases": [
+        "團伊玖磨作曲"
+      ],
+      "tags": []
+    },
+    "アイアイ|宇野誠一郎作曲": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇野誠一郎作曲"
+      ],
+      "tags": []
+    },
+    "揺れる想い|ZARD": {
+      "searchWords": [],
+      "artistAliases": [
+        "ZARD"
+      ],
+      "tags": []
+    },
+    "女々しくて|ゴールデンボンバー": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゴールデンボンバー"
+      ],
+      "tags": []
+    },
+    "ポリリズム|Perfume": {
+      "searchWords": [],
+      "artistAliases": [
+        "Perfume"
+      ],
+      "tags": []
+    },
+    "ホワイトキス|鈴木鈴木": {
+      "searchWords": [],
+      "artistAliases": [
+        "鈴木鈴木"
+      ],
+      "tags": []
+    },
+    "め組のひと|ラッツ&スター": {
+      "searchWords": [],
+      "artistAliases": [
+        "ラッツ&スター"
+      ],
+      "tags": []
+    },
+    "ノスタルジア|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "笑顔|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "メリーゴーランド|優里": {
+      "searchWords": [],
+      "artistAliases": [
+        "優里"
+      ],
+      "tags": []
+    },
+    "ぶんぶんぶん|作曲者不詳（ボヘミア民謡)": {
+      "searchWords": [],
+      "artistAliases": [
+        "作曲者不詳（ボヘミア民謡)"
+      ],
+      "tags": []
+    },
+    "さよならの夏|手嶌葵": {
+      "searchWords": [],
+      "artistAliases": [
+        "手嶌葵"
+      ],
+      "tags": []
+    },
+    "幸せならてをたたこう|坂本九": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本九"
+      ],
+      "tags": []
+    },
+    "マジンガーZ|水木一郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "水木一郎"
+      ],
+      "tags": []
+    },
+    "鉄腕アトム|上高田少年合唱団": {
+      "searchWords": [],
+      "artistAliases": [
+        "上高田少年合唱団"
+      ],
+      "tags": []
+    },
+    "魔訶不思議アドベンチャー!|高橋洋樹": {
+      "searchWords": [],
+      "artistAliases": [
+        "高橋洋樹"
+      ],
+      "tags": []
+    },
+    "Flower Dance|DJ OKAWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "DJ OKAWARI"
+      ],
+      "tags": []
+    },
+    "愛は勝つ|KAN": {
+      "searchWords": [],
+      "artistAliases": [
+        "KAN"
+      ],
+      "tags": []
+    },
+    "もらい泣き|一青窈": {
+      "searchWords": [],
+      "artistAliases": [
+        "一青窈"
+      ],
+      "tags": []
+    },
+    "月|文部省唱歌(作詞、作曲不詳)": {
+      "searchWords": [],
+      "artistAliases": [
+        "文部省唱歌(作詞、作曲不詳)"
+      ],
+      "tags": []
+    },
+    "ロマンティックあげるよ|橋本潮": {
+      "searchWords": [],
+      "artistAliases": [
+        "橋本潮"
+      ],
+      "tags": []
+    },
+    "GO-GO たまごっち|ならゆりあ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ならゆりあ"
+      ],
+      "tags": []
+    },
+    "PIANO*GIRL|OSTER project": {
+      "searchWords": [],
+      "artistAliases": [
+        "OSTER project"
+      ],
+      "tags": []
+    },
+    "JANE DOE|米津玄師、宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師、宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "ビンクスの酒|麦わら海賊団": {
+      "searchWords": [],
+      "artistAliases": [
+        "麦わら海賊団"
+      ],
+      "tags": []
+    },
+    "ウイスキーが、お好きでしょ|SAYURI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SAYURI"
+      ],
+      "tags": []
+    },
+    "ファジーネーブル|Conton Candy": {
+      "searchWords": [],
+      "artistAliases": [
+        "Conton Candy"
+      ],
+      "tags": []
+    },
+    "都忘れ|GLAY": {
+      "searchWords": [],
+      "artistAliases": [
+        "GLAY"
+      ],
+      "tags": []
+    },
+    "美しき残酷な世界|日笠陽子": {
+      "searchWords": [],
+      "artistAliases": [
+        "日笠陽子"
+      ],
+      "tags": []
+    },
+    "コントラスト|TOMOO": {
+      "searchWords": [],
+      "artistAliases": [
+        "TOMOO"
+      ],
+      "tags": []
+    },
+    "Komm, susser Tod|ARIANNE": {
+      "searchWords": [],
+      "artistAliases": [
+        "ARIANNE"
+      ],
+      "tags": []
+    },
+    "カラフル|ClariS": {
+      "searchWords": [],
+      "artistAliases": [
+        "ClariS"
+      ],
+      "tags": []
+    },
+    "チューリップ|井上武士": {
+      "searchWords": [],
+      "artistAliases": [
+        "井上武士"
+      ],
+      "tags": []
+    },
+    "森のくまさん|リー・デビッド": {
+      "searchWords": [],
+      "artistAliases": [
+        "リー・デビッド"
+      ],
+      "tags": []
+    },
+    "夜行|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "左右盲|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "光|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "One Last Kiss|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "STILL LOVE HER (失われた風景)|TM NETWORK": {
+      "searchWords": [],
+      "artistAliases": [
+        "TM NETWORK"
+      ],
+      "tags": []
+    },
+    "おばけなんてないさ|峯陽": {
+      "searchWords": [],
+      "artistAliases": [
+        "峯陽"
+      ],
+      "tags": []
+    },
+    "Happy Birthday to You|Mildred J. Hill、Patty Smith Hill": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mildred J. Hill、Patty Smith Hill"
+      ],
+      "tags": []
+    },
+    "HAPPY HAPPY BIRTHDAY|DREAMS COME TRUE": {
+      "searchWords": [],
+      "artistAliases": [
+        "DREAMS COME TRUE"
+      ],
+      "tags": []
+    },
+    "ようかい体操第一|Dream5": {
+      "searchWords": [],
+      "artistAliases": [
+        "Dream5"
+      ],
+      "tags": []
+    },
+    "愛のうた|ストロベリー・フラワー": {
+      "searchWords": [],
+      "artistAliases": [
+        "ストロベリー・フラワー"
+      ],
+      "tags": []
+    },
+    "愛とか恋とか|Novelbright": {
+      "searchWords": [],
+      "artistAliases": [
+        "Novelbright"
+      ],
+      "tags": []
+    },
+    "Dynamite|BTS": {
+      "searchWords": [],
+      "artistAliases": [
+        "BTS"
+      ],
+      "tags": []
+    },
+    "愛唄|GReeeeN": {
+      "searchWords": [],
+      "artistAliases": [
+        "GReeeeN"
+      ],
+      "tags": []
+    },
+    "イイじゃん|M!LK": {
+      "searchWords": [],
+      "artistAliases": [
+        "M!LK"
+      ],
+      "tags": []
+    },
+    "明日の私に幸あれ|ナナヲアカリ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ナナヲアカリ"
+      ],
+      "tags": []
+    },
+    "手紙|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "君の好きなとこ|平井堅": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井堅"
+      ],
+      "tags": []
+    },
+    "灯を護る|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "flos|R Sound Design": {
+      "searchWords": [],
+      "artistAliases": [
+        "R Sound Design"
+      ],
+      "tags": []
+    },
+    "歌うたいのバラッド|斉藤和義": {
+      "searchWords": [],
+      "artistAliases": [
+        "斉藤和義"
+      ],
+      "tags": []
+    },
+    "陽だまり|村下孝蔵": {
+      "searchWords": [],
+      "artistAliases": [
+        "村下孝蔵"
+      ],
+      "tags": []
+    },
+    "This Is Halloween|ダニー・エルフマン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ダニー・エルフマン"
+      ],
+      "tags": []
+    },
+    "プラットフォーム|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "かえるの合唱|ドイツ民謡": {
+      "searchWords": [],
+      "artistAliases": [
+        "ドイツ民謡"
+      ],
+      "tags": []
+    },
+    "ノンフィクション|平井堅": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井堅"
+      ],
+      "tags": []
+    },
+    "君は薔薇より美しい|布施明": {
+      "searchWords": [],
+      "artistAliases": [
+        "布施明"
+      ],
+      "tags": []
+    },
+    "冬が終わる前に|清水翔太": {
+      "searchWords": [],
+      "artistAliases": [
+        "清水翔太"
+      ],
+      "tags": []
+    },
+    "冬のうた|Kiroro": {
+      "searchWords": [],
+      "artistAliases": [
+        "Kiroro"
+      ],
+      "tags": []
+    },
+    "冬がはじまるよ|槇原敬之": {
+      "searchWords": [],
+      "artistAliases": [
+        "槇原敬之"
+      ],
+      "tags": []
+    },
+    "冬と春|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "冬のプレゼント|もさを。": {
+      "searchWords": [],
+      "artistAliases": [
+        "もさを。"
+      ],
+      "tags": []
+    },
+    "冬のこもりうた|原田知世": {
+      "searchWords": [],
+      "artistAliases": [
+        "原田知世"
+      ],
+      "tags": []
+    },
+    "あなたに出会わなければ〜夏雪冬花〜|Aimer": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aimer"
+      ],
+      "tags": []
+    },
+    "蝶々結び|Aimer": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aimer"
+      ],
+      "tags": []
+    },
+    "人形の夢と目覚め|テオドール・エステン": {
+      "searchWords": [],
+      "artistAliases": [
+        "テオドール・エステン"
+      ],
+      "tags": []
+    },
+    "朝ごはんの歌|手嶌葵": {
+      "searchWords": [],
+      "artistAliases": [
+        "手嶌葵"
+      ],
+      "tags": []
+    },
+    "春よ、来い|松任谷由実": {
+      "searchWords": [],
+      "artistAliases": [
+        "松任谷由実"
+      ],
+      "tags": []
+    },
+    "AlwayS|NiziU": {
+      "searchWords": [],
+      "artistAliases": [
+        "NiziU"
+      ],
+      "tags": []
+    },
+    "友 〜旅立ちの時〜|ゆず": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆず"
+      ],
+      "tags": []
+    },
+    "赤いスイートピー|松田聖子": {
+      "searchWords": [],
+      "artistAliases": [
+        "松田聖子"
+      ],
+      "tags": []
+    },
+    "青い珊瑚礁|松田聖子": {
+      "searchWords": [],
+      "artistAliases": [
+        "松田聖子"
+      ],
+      "tags": []
+    },
+    "HAPPY BIRTHDAY|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "帰りたくなったよ|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "ちょうちょう|ドイツ民謡": {
+      "searchWords": [],
+      "artistAliases": [
+        "ドイツ民謡"
+      ],
+      "tags": []
+    },
+    "KICK BACK|米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師"
+      ],
+      "tags": []
+    },
+    "とてと|パペットスンスン": {
+      "searchWords": [],
+      "artistAliases": [
+        "パペットスンスン"
+      ],
+      "tags": []
+    },
+    "１９９１|米津玄師": {
+      "searchWords": [],
+      "artistAliases": [
+        "米津玄師"
+      ],
+      "tags": []
+    },
+    "春風|Rihwa": {
+      "searchWords": [],
+      "artistAliases": [
+        "Rihwa"
+      ],
+      "tags": []
+    },
+    "超最強|超ときめき♡宣伝部": {
+      "searchWords": [],
+      "artistAliases": [
+        "超ときめき♡宣伝部"
+      ],
+      "tags": []
+    },
+    "はちゃめちゃわちゃライフ!|FRUITS ZIPPER": {
+      "searchWords": [],
+      "artistAliases": [
+        "FRUITS ZIPPER"
+      ],
+      "tags": []
+    },
+    "エーデルワイス|ロジャース&ハマースタイン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ロジャース&ハマースタイン"
+      ],
+      "tags": []
+    },
+    "プラチナ|坂本真綾": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本真綾"
+      ],
+      "tags": []
+    },
+    "たしかなこと|小田和正": {
+      "searchWords": [],
+      "artistAliases": [
+        "小田和正"
+      ],
+      "tags": []
+    },
+    "雨|森高千里": {
+      "searchWords": [],
+      "artistAliases": [
+        "森高千里"
+      ],
+      "tags": []
+    },
+    "雨|弘田竜太郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "弘田竜太郎"
+      ],
+      "tags": []
+    },
+    "雨と僕の話|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "ファッションモンスター|きゃりーぱみゅぱみゅ": {
+      "searchWords": [],
+      "artistAliases": [
+        "きゃりーぱみゅぱみゅ"
+      ],
+      "tags": []
+    },
+    "未来|コブクロ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コブクロ"
+      ],
+      "tags": []
+    },
+    "ある未来より愛を込めて|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "未来|Kalafina": {
+      "searchWords": [],
+      "artistAliases": [
+        "Kalafina"
+      ],
+      "tags": []
+    },
+    "透明人間|東京事変": {
+      "searchWords": [],
+      "artistAliases": [
+        "東京事変"
+      ],
+      "tags": []
+    },
+    "長く短い祭|椎名林檎": {
+      "searchWords": [],
+      "artistAliases": [
+        "椎名林檎"
+      ],
+      "tags": []
+    },
+    "好きすぎて滅！|M!LK": {
+      "searchWords": [],
+      "artistAliases": [
+        "M!LK"
+      ],
+      "tags": []
+    },
+    "すてきなホリデイ|竹内まりや": {
+      "searchWords": [],
+      "artistAliases": [
+        "竹内まりや"
+      ],
+      "tags": []
+    },
+    "プラスティック・ラヴ|竹内まりや": {
+      "searchWords": [],
+      "artistAliases": [
+        "竹内まりや"
+      ],
+      "tags": []
+    },
+    "Love me, Love you|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "Forever Love|X JAPAN": {
+      "searchWords": [],
+      "artistAliases": [
+        "X JAPAN"
+      ],
+      "tags": []
+    },
+    "The Christmas Song|Nat King Cole": {
+      "searchWords": [],
+      "artistAliases": [
+        "Nat King Cole"
+      ],
+      "tags": []
+    },
+    "恋人たちのクリスマス|マライア・キャリー": {
+      "searchWords": [],
+      "artistAliases": [
+        "マライア・キャリー"
+      ],
+      "tags": []
+    },
+    "クリスマス・イブ|山下達郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "山下達郎"
+      ],
+      "tags": []
+    },
+    "あわてんぼうのサンタクロース|小林亜星": {
+      "searchWords": [],
+      "artistAliases": [
+        "小林亜星"
+      ],
+      "tags": []
+    },
+    "サンタが街にやってくる|ヘヴン・ギレスピー、フレッド・クーツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヘヴン・ギレスピー、フレッド・クーツ"
+      ],
+      "tags": []
+    },
+    "ジングルベル|ジェームズ・ロード・ピアポント": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジェームズ・ロード・ピアポント"
+      ],
+      "tags": []
+    },
+    "きよしこの夜|ヨゼフ・モール、フランツ・クサーヴァー・グルーバー": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨゼフ・モール、フランツ・クサーヴァー・グルーバー"
+      ],
+      "tags": []
+    },
+    "もろびとこぞりて|ゲオルク・フリードリヒ・ヘンデル": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゲオルク・フリードリヒ・ヘンデル"
+      ],
+      "tags": []
+    },
+    "Winter Bells|倉木麻衣": {
+      "searchWords": [],
+      "artistAliases": [
+        "倉木麻衣"
+      ],
+      "tags": []
+    },
+    "バニラ|きゃない": {
+      "searchWords": [],
+      "artistAliases": [
+        "きゃない"
+      ],
+      "tags": []
+    },
+    "恋をして|HY": {
+      "searchWords": [],
+      "artistAliases": [
+        "HY"
+      ],
+      "tags": []
+    },
+    "TAKUMI/匠|松谷卓": {
+      "searchWords": [],
+      "artistAliases": [
+        "松谷卓"
+      ],
+      "tags": []
+    },
+    "We Wish You a Merry Christmas|イギリス民謡": {
+      "searchWords": [],
+      "artistAliases": [
+        "イギリス民謡"
+      ],
+      "tags": []
+    },
+    "笑ったり転んだり|ハンバート ハンバート": {
+      "searchWords": [],
+      "artistAliases": [
+        "ハンバート ハンバート"
+      ],
+      "tags": []
+    },
+    "愛の言霊 〜Spiritual Message〜|サザンオールスターズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "サザンオールスターズ"
+      ],
+      "tags": []
+    },
+    "TSUNAMI|サザンオールスターズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "サザンオールスターズ"
+      ],
+      "tags": []
+    },
+    "TOMORROW|岡本真夜": {
+      "searchWords": [],
+      "artistAliases": [
+        "岡本真夜"
+      ],
+      "tags": []
+    },
+    "365日|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "前前前世|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "賜物|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "ノーチラス|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "やさしい気持ち|CHARA": {
+      "searchWords": [],
+      "artistAliases": [
+        "CHARA"
+      ],
+      "tags": []
+    },
+    "最後の優しさ|JAY'ED": {
+      "searchWords": [],
+      "artistAliases": [
+        "JAY'ED"
+      ],
+      "tags": []
+    },
+    "ヒーロー|FUNKY MONKEY BABYS": {
+      "searchWords": [],
+      "artistAliases": [
+        "FUNKY MONKEY BABYS"
+      ],
+      "tags": []
+    },
+    "さすらい|奥田民生": {
+      "searchWords": [],
+      "artistAliases": [
+        "奥田民生"
+      ],
+      "tags": []
+    },
+    "Have Yourself a Merry Little Christmas|ヒュー・マーティン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヒュー・マーティン"
+      ],
+      "tags": []
+    },
+    "サクラウサギ|川崎鷹也": {
+      "searchWords": [],
+      "artistAliases": [
+        "川崎鷹也"
+      ],
+      "tags": []
+    },
+    "あたしを彼女にしたいなら|コレサワ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コレサワ"
+      ],
+      "tags": []
+    },
+    "ミッドナイト・リフレクション|NOMELON NOLEMON": {
+      "searchWords": [],
+      "artistAliases": [
+        "NOMELON NOLEMON"
+      ],
+      "tags": []
+    },
+    "桜が降る夜は|あいみょん": {
+      "searchWords": [],
+      "artistAliases": [
+        "あいみょん"
+      ],
+      "tags": []
+    },
+    "手のひらを太陽に|いずみたく": {
+      "searchWords": [],
+      "artistAliases": [
+        "いずみたく"
+      ],
+      "tags": []
+    },
+    "らしさ|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "Funny Bunny|the pillows": {
+      "searchWords": [],
+      "artistAliases": [
+        "the pillows"
+      ],
+      "tags": []
+    },
+    "Share The World|東方神起": {
+      "searchWords": [],
+      "artistAliases": [
+        "東方神起"
+      ],
+      "tags": []
+    },
+    "蛍の光|作曲者不詳": {
+      "searchWords": [],
+      "artistAliases": [
+        "作曲者不詳"
+      ],
+      "tags": []
+    },
+    "Autumn Leaves|ジョゼフ・コズマ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョゼフ・コズマ"
+      ],
+      "tags": []
+    },
+    "Moon River|ヘンリー・マンシーニ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヘンリー・マンシーニ"
+      ],
+      "tags": []
+    },
+    "Fly Me To The Moon|バート・ハワード": {
+      "searchWords": [],
+      "artistAliases": [
+        "バート・ハワード"
+      ],
+      "tags": []
+    },
+    "Misty|エロル・ガーナー": {
+      "searchWords": [],
+      "artistAliases": [
+        "エロル・ガーナー"
+      ],
+      "tags": []
+    },
+    "ムーンライト伝説|DALI": {
+      "searchWords": [],
+      "artistAliases": [
+        "DALI"
+      ],
+      "tags": []
+    },
+    "青い車|スピッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "スピッツ"
+      ],
+      "tags": []
+    },
+    "風といっしょに|小林幸子": {
+      "searchWords": [],
+      "artistAliases": [
+        "小林幸子"
+      ],
+      "tags": []
+    },
+    "愛♡スクリ〜ム！|AiScReam": {
+      "searchWords": [],
+      "artistAliases": [
+        "AiScReam"
+      ],
+      "tags": []
+    },
+    "呼び声|Vaundy": {
+      "searchWords": [],
+      "artistAliases": [
+        "Vaundy"
+      ],
+      "tags": []
+    },
+    "アドレナ|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "最後の彼女になりたかった|コレサワ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コレサワ"
+      ],
+      "tags": []
+    },
+    "pink|シャイトープ": {
+      "searchWords": [],
+      "artistAliases": [
+        "シャイトープ"
+      ],
+      "tags": []
+    },
+    "たんぽぽ|遊助": {
+      "searchWords": [],
+      "artistAliases": [
+        "遊助"
+      ],
+      "tags": []
+    },
+    "Memories|MAN WITH A MISSION": {
+      "searchWords": [],
+      "artistAliases": [
+        "MAN WITH A MISSION"
+      ],
+      "tags": []
+    },
+    "泥中に咲く|ウォルピスカーター": {
+      "searchWords": [],
+      "artistAliases": [
+        "ウォルピスカーター"
+      ],
+      "tags": []
+    },
+    "備忘録|高瀬統也": {
+      "searchWords": [],
+      "artistAliases": [
+        "高瀬統也"
+      ],
+      "tags": []
+    },
+    "セロリ|山崎まさよし": {
+      "searchWords": [],
+      "artistAliases": [
+        "山崎まさよし"
+      ],
+      "tags": []
+    },
+    "初恋サイダー|Buono!": {
+      "searchWords": [],
+      "artistAliases": [
+        "Buono!"
+      ],
+      "tags": []
+    },
+    "ギブス|椎名林檎": {
+      "searchWords": [],
+      "artistAliases": [
+        "椎名林檎"
+      ],
+      "tags": []
+    },
+    "fragile|Every Little Thing": {
+      "searchWords": [],
+      "artistAliases": [
+        "Every Little Thing"
+      ],
+      "tags": []
+    },
+    "さらば恋人|堺正章": {
+      "searchWords": [],
+      "artistAliases": [
+        "堺正章"
+      ],
+      "tags": []
+    },
+    "ひだまりの詩|Le Couple": {
+      "searchWords": [],
+      "artistAliases": [
+        "Le Couple"
+      ],
+      "tags": []
+    },
+    "Swallowtail Butterfly 〜あいのうた〜|YEN TOWN BAND": {
+      "searchWords": [],
+      "artistAliases": [
+        "YEN TOWN BAND"
+      ],
+      "tags": []
+    },
+    "やぎさんゆうびん|團伊玖磨": {
+      "searchWords": [],
+      "artistAliases": [
+        "團伊玖磨"
+      ],
+      "tags": []
+    },
+    "おやすみ泣き声、さよなら歌姫|クリープハイプ": {
+      "searchWords": [],
+      "artistAliases": [
+        "クリープハイプ"
+      ],
+      "tags": []
+    },
+    "ミカヅキ|さユり": {
+      "searchWords": [],
+      "artistAliases": [
+        "さユり"
+      ],
+      "tags": []
+    },
+    "フィクション|sumika": {
+      "searchWords": [],
+      "artistAliases": [
+        "sumika"
+      ],
+      "tags": []
+    },
+    "コイワズライ|Aimer": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aimer"
+      ],
+      "tags": []
+    },
+    "SAD SONG|ちゃんみな": {
+      "searchWords": [],
+      "artistAliases": [
+        "ちゃんみな"
+      ],
+      "tags": []
+    },
+    "情熱大陸|葉加瀬太郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "葉加瀬太郎"
+      ],
+      "tags": []
+    },
+    "Another Day of Sun|ジャスティン・ハーウィッツ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジャスティン・ハーウィッツ"
+      ],
+      "tags": []
+    },
+    "世界には愛しかない|欅坂46": {
+      "searchWords": [],
+      "artistAliases": [
+        "欅坂46"
+      ],
+      "tags": []
+    },
+    "海の声|浦島太郎（桐谷健太）": {
+      "searchWords": [],
+      "artistAliases": [
+        "浦島太郎（桐谷健太）"
+      ],
+      "tags": []
+    },
+    "ふたつ星|I WiSH": {
+      "searchWords": [],
+      "artistAliases": [
+        "I WiSH"
+      ],
+      "tags": []
+    },
+    "ら・ら・ら|大黒摩季": {
+      "searchWords": [],
+      "artistAliases": [
+        "大黒摩季"
+      ],
+      "tags": []
+    },
+    "みかんの花咲く丘|井口小夜子": {
+      "searchWords": [],
+      "artistAliases": [
+        "井口小夜子"
+      ],
+      "tags": []
+    },
+    "はじめてのチュウ|あんしんパパ": {
+      "searchWords": [],
+      "artistAliases": [
+        "あんしんパパ"
+      ],
+      "tags": []
+    },
+    "また あした|Every Little Thing": {
+      "searchWords": [],
+      "artistAliases": [
+        "Every Little Thing"
+      ],
+      "tags": []
+    },
+    "Around The World|MONKEY MAJIK": {
+      "searchWords": [],
+      "artistAliases": [
+        "MONKEY MAJIK"
+      ],
+      "tags": []
+    },
+    "あの素晴しい愛をもう一度|加藤和彦、北山修": {
+      "searchWords": [],
+      "artistAliases": [
+        "加藤和彦、北山修"
+      ],
+      "tags": []
+    },
+    "lulu.|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "大丈夫|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "火星人|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "裸の勇者|Vaundy": {
+      "searchWords": [],
+      "artistAliases": [
+        "Vaundy"
+      ],
+      "tags": []
+    },
+    "裸の心|あいみょん": {
+      "searchWords": [],
+      "artistAliases": [
+        "あいみょん"
+      ],
+      "tags": []
+    },
+    "さよならぼくたちのようちえん|新沢としひこ": {
+      "searchWords": [],
+      "artistAliases": [
+        "新沢としひこ"
+      ],
+      "tags": []
+    },
+    "詠人|北島三郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "北島三郎"
+      ],
+      "tags": []
+    },
+    "あなたに逢いたくて〜Missing You〜|松田聖子": {
+      "searchWords": [],
+      "artistAliases": [
+        "松田聖子"
+      ],
+      "tags": []
+    },
+    "あなた|小坂明子": {
+      "searchWords": [],
+      "artistAliases": [
+        "小坂明子"
+      ],
+      "tags": []
+    },
+    "Song for…|HY": {
+      "searchWords": [],
+      "artistAliases": [
+        "HY"
+      ],
+      "tags": []
+    },
+    "まつり|藤井風": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤井風"
+      ],
+      "tags": []
+    },
+    "butterfly|木村カエラ": {
+      "searchWords": [],
+      "artistAliases": [
+        "木村カエラ"
+      ],
+      "tags": []
+    },
+    "どうしてもどうしても|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "乾杯|長渕剛": {
+      "searchWords": [],
+      "artistAliases": [
+        "長渕剛"
+      ],
+      "tags": []
+    },
+    "明日、春が来たら|松たか子": {
+      "searchWords": [],
+      "artistAliases": [
+        "松たか子"
+      ],
+      "tags": []
+    },
+    "タッチ|岩崎良美": {
+      "searchWords": [],
+      "artistAliases": [
+        "岩崎良美"
+      ],
+      "tags": []
+    },
+    "Love so sweet|嵐": {
+      "searchWords": [],
+      "artistAliases": [
+        "嵐"
+      ],
+      "tags": []
+    },
+    "桜|コブクロ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コブクロ"
+      ],
+      "tags": []
+    },
+    "桜|清水翔太": {
+      "searchWords": [],
+      "artistAliases": [
+        "清水翔太"
+      ],
+      "tags": []
+    },
+    "さくらさくら|作曲者不詳": {
+      "searchWords": [],
+      "artistAliases": [
+        "作曲者不詳"
+      ],
+      "tags": []
+    },
+    "花は桜 君は美し|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "桜晴|優里": {
+      "searchWords": [],
+      "artistAliases": [
+        "優里"
+      ],
+      "tags": []
+    },
+    "桜|河口恭吾": {
+      "searchWords": [],
+      "artistAliases": [
+        "河口恭吾"
+      ],
+      "tags": []
+    },
+    "大切なもの|ロードオブメジャー": {
+      "searchWords": [],
+      "artistAliases": [
+        "ロードオブメジャー"
+      ],
+      "tags": []
+    },
+    "エジソン|水曜日のカンパネラ": {
+      "searchWords": [],
+      "artistAliases": [
+        "水曜日のカンパネラ"
+      ],
+      "tags": []
+    },
+    "カタオモイ|Aimer": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aimer"
+      ],
+      "tags": []
+    },
+    "夢を信じて|徳永英明": {
+      "searchWords": [],
+      "artistAliases": [
+        "徳永英明"
+      ],
+      "tags": []
+    },
+    "オー・シャンゼリゼ|ジョー・ダッサン": {
+      "searchWords": [],
+      "artistAliases": [
+        "ジョー・ダッサン"
+      ],
+      "tags": []
+    },
+    "青春の影|チューリップ": {
+      "searchWords": [],
+      "artistAliases": [
+        "チューリップ"
+      ],
+      "tags": []
+    },
+    "虹とスニーカーの頃|チューリップ": {
+      "searchWords": [],
+      "artistAliases": [
+        "チューリップ"
+      ],
+      "tags": []
+    },
+    "Honto|sumika": {
+      "searchWords": [],
+      "artistAliases": [
+        "sumika"
+      ],
+      "tags": []
+    },
+    "拝啓、少年よ|Hump Back": {
+      "searchWords": [],
+      "artistAliases": [
+        "Hump Back"
+      ],
+      "tags": []
+    },
+    "Happiness|嵐": {
+      "searchWords": [],
+      "artistAliases": [
+        "嵐"
+      ],
+      "tags": []
+    },
+    "曇天|DOES": {
+      "searchWords": [],
+      "artistAliases": [
+        "DOES"
+      ],
+      "tags": []
+    },
+    "とくべチュ、して|＝LOVE": {
+      "searchWords": [],
+      "artistAliases": [
+        "＝LOVE"
+      ],
+      "tags": []
+    },
+    "YELL|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "Honesty|ビリー・ジョエル": {
+      "searchWords": [],
+      "artistAliases": [
+        "ビリー・ジョエル"
+      ],
+      "tags": []
+    },
+    "壊れかけのRadio|徳永英明": {
+      "searchWords": [],
+      "artistAliases": [
+        "徳永英明"
+      ],
+      "tags": []
+    },
+    "爆裂愛してる|M!LK": {
+      "searchWords": [],
+      "artistAliases": [
+        "M!LK"
+      ],
+      "tags": []
+    },
+    "ともに|WANIMA": {
+      "searchWords": [],
+      "artistAliases": [
+        "WANIMA"
+      ],
+      "tags": []
+    },
+    "チェックのワンピース|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "切手のないおくりもの|財津和夫": {
+      "searchWords": [],
+      "artistAliases": [
+        "財津和夫"
+      ],
+      "tags": []
+    },
+    "Again|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "シル・ヴ・プレジデント|P丸様。": {
+      "searchWords": [],
+      "artistAliases": [
+        "P丸様。"
+      ],
+      "tags": []
+    },
+    "mix juiceのいうとおり|UNISON SQUARE GARDEN": {
+      "searchWords": [],
+      "artistAliases": [
+        "UNISON SQUARE GARDEN"
+      ],
+      "tags": []
+    },
+    "今はいいんだよ。|MIMI": {
+      "searchWords": [],
+      "artistAliases": [
+        "MIMI"
+      ],
+      "tags": []
+    },
+    "SAKURAドロップス|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "サクラ咲ケ|嵐": {
+      "searchWords": [],
+      "artistAliases": [
+        "嵐"
+      ],
+      "tags": []
+    },
+    "勿忘|Awesome City Club": {
+      "searchWords": [],
+      "artistAliases": [
+        "Awesome City Club"
+      ],
+      "tags": []
+    },
+    "パラボラ|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "エルダーフラワー|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "GOOD DAY|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "桜恋|もさを。": {
+      "searchWords": [],
+      "artistAliases": [
+        "もさを。"
+      ],
+      "tags": []
+    },
+    "もう恋なんてしない|槇原敬之": {
+      "searchWords": [],
+      "artistAliases": [
+        "槇原敬之"
+      ],
+      "tags": []
+    },
+    "melt bitter|さとうもか": {
+      "searchWords": [],
+      "artistAliases": [
+        "さとうもか"
+      ],
+      "tags": []
+    },
+    "Brand New Tomorrow|家入レオ": {
+      "searchWords": [],
+      "artistAliases": [
+        "家入レオ"
+      ],
+      "tags": []
+    },
+    "Sincerely|TRUE": {
+      "searchWords": [],
+      "artistAliases": [
+        "TRUE"
+      ],
+      "tags": []
+    },
+    "瞬き|back number": {
+      "searchWords": [],
+      "artistAliases": [
+        "back number"
+      ],
+      "tags": []
+    },
+    "水|中島みゆき": {
+      "searchWords": [],
+      "artistAliases": [
+        "中島みゆき"
+      ],
+      "tags": []
+    },
+    "PRIDE|今井美樹": {
+      "searchWords": [],
+      "artistAliases": [
+        "今井美樹"
+      ],
+      "tags": []
+    },
+    "I am|森田真奈美": {
+      "searchWords": [],
+      "artistAliases": [
+        "森田真奈美"
+      ],
+      "tags": []
+    },
+    "ONE WORLD|吉川晃司": {
+      "searchWords": [],
+      "artistAliases": [
+        "吉川晃司"
+      ],
+      "tags": []
+    },
+    "VISIONS|NAQT VANE": {
+      "searchWords": [],
+      "artistAliases": [
+        "NAQT VANE"
+      ],
+      "tags": []
+    },
+    "おどるポンポコリン|B.B.クィーンズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "B.B.クィーンズ"
+      ],
+      "tags": []
+    },
+    "宝島|T-SQUARE": {
+      "searchWords": [],
+      "artistAliases": [
+        "T-SQUARE"
+      ],
+      "tags": []
+    },
+    "アイデア|星野源": {
+      "searchWords": [],
+      "artistAliases": [
+        "星野源"
+      ],
+      "tags": []
+    },
+    "風のゆくえ|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "元彼女のみなさまへ|コレサワ": {
+      "searchWords": [],
+      "artistAliases": [
+        "コレサワ"
+      ],
+      "tags": []
+    },
+    "アイガアル|Every Little Thing": {
+      "searchWords": [],
+      "artistAliases": [
+        "Every Little Thing"
+      ],
+      "tags": []
+    },
+    "素敵だね|RIKKI": {
+      "searchWords": [],
+      "artistAliases": [
+        "RIKKI"
+      ],
+      "tags": []
+    },
+    "ハルノヒ|あいみょん": {
+      "searchWords": [],
+      "artistAliases": [
+        "あいみょん"
+      ],
+      "tags": []
+    },
+    "Sakura|レミオロメン": {
+      "searchWords": [],
+      "artistAliases": [
+        "レミオロメン"
+      ],
+      "tags": []
+    },
+    "Oz.|yama": {
+      "searchWords": [],
+      "artistAliases": [
+        "yama"
+      ],
+      "tags": []
+    },
+    "初恋|村下孝蔵": {
+      "searchWords": [],
+      "artistAliases": [
+        "村下孝蔵"
+      ],
+      "tags": []
+    },
+    "愛が生まれた日|藤谷美和子・大内義昭": {
+      "searchWords": [],
+      "artistAliases": [
+        "藤谷美和子・大内義昭"
+      ],
+      "tags": []
+    },
+    "100万回の「I love you」|Rake": {
+      "searchWords": [],
+      "artistAliases": [
+        "Rake"
+      ],
+      "tags": []
+    },
+    "ベイビー・アイラブユー|TEE": {
+      "searchWords": [],
+      "artistAliases": [
+        "TEE"
+      ],
+      "tags": []
+    },
+    "ウィアートル|rionos": {
+      "searchWords": [],
+      "artistAliases": [
+        "rionos"
+      ],
+      "tags": []
+    },
+    "夢花火|Novelbright": {
+      "searchWords": [],
+      "artistAliases": [
+        "Novelbright"
+      ],
+      "tags": []
+    },
+    "今日という日を|Uru": {
+      "searchWords": [],
+      "artistAliases": [
+        "Uru"
+      ],
+      "tags": []
+    },
+    "じょいふる|いきものがかり": {
+      "searchWords": [],
+      "artistAliases": [
+        "いきものがかり"
+      ],
+      "tags": []
+    },
+    "愛人|テレサ・テン": {
+      "searchWords": [],
+      "artistAliases": [
+        "テレサ・テン"
+      ],
+      "tags": []
+    },
+    "Sign|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "ごはん食べヨ|Mega Shinnosuke": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mega Shinnosuke"
+      ],
+      "tags": []
+    },
+    "星降る海|月見ヤチヨ(CV.早見沙織)": {
+      "searchWords": [],
+      "artistAliases": [
+        "月見ヤチヨ(CV.早見沙織)"
+      ],
+      "tags": []
+    },
+    "ray|BUMP OF CHICKEN": {
+      "searchWords": [],
+      "artistAliases": [
+        "BUMP OF CHICKEN"
+      ],
+      "tags": []
+    },
+    "勇者王誕生!|遠藤正明": {
+      "searchWords": [],
+      "artistAliases": [
+        "遠藤正明"
+      ],
+      "tags": []
+    },
+    "Beautiful World|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "輝きは君の中に|鈴木結女": {
+      "searchWords": [],
+      "artistAliases": [
+        "鈴木結女"
+      ],
+      "tags": []
+    },
+    "僕らの戦場|ワルキューレ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ワルキューレ"
+      ],
+      "tags": []
+    },
+    "15の夜|尾崎豊": {
+      "searchWords": [],
+      "artistAliases": [
+        "尾崎豊"
+      ],
+      "tags": []
+    },
+    "駅|中森明菜 / 竹内まりや(Self Cover)": {
+      "searchWords": [],
+      "artistAliases": [
+        "中森明菜 / 竹内まりや(Self Cover)"
+      ],
+      "tags": []
+    },
+    "桜流し|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "TOMORROW|BISH": {
+      "searchWords": [],
+      "artistAliases": [
+        "BISH"
+      ],
+      "tags": []
+    },
+    "希望の轍|サザンオールスターズ": {
+      "searchWords": [],
+      "artistAliases": [
+        "サザンオールスターズ"
+      ],
+      "tags": []
+    },
+    "RIDE ON TIME|山下達郎": {
+      "searchWords": [],
+      "artistAliases": [
+        "山下達郎"
+      ],
+      "tags": []
+    },
+    "バレッタ|乃木坂46": {
+      "searchWords": [],
+      "artistAliases": [
+        "乃木坂46"
+      ],
+      "tags": []
+    },
+    "Never Ending World|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "水流のロック|日食なつこ": {
+      "searchWords": [],
+      "artistAliases": [
+        "日食なつこ"
+      ],
+      "tags": []
+    },
+    "Ti Amo|Exile": {
+      "searchWords": [],
+      "artistAliases": [
+        "Exile"
+      ],
+      "tags": []
+    },
+    "思秋期|岩崎宏美": {
+      "searchWords": [],
+      "artistAliases": [
+        "岩崎宏美"
+      ],
+      "tags": []
+    },
+    "また君に恋してる|ビリーバンバン / 坂本冬美(Cover)": {
+      "searchWords": [],
+      "artistAliases": [
+        "ビリーバンバン / 坂本冬美(Cover)"
+      ],
+      "tags": []
+    },
+    "まなざしは光|キタニタツヤ": {
+      "searchWords": [],
+      "artistAliases": [
+        "キタニタツヤ"
+      ],
+      "tags": []
+    },
+    "名前のない怪物|EGOIST": {
+      "searchWords": [],
+      "artistAliases": [
+        "EGOIST"
+      ],
+      "tags": []
+    },
+    "つぐない|テレサ・テン": {
+      "searchWords": [],
+      "artistAliases": [
+        "テレサ・テン"
+      ],
+      "tags": []
+    },
+    "怪物|YOASOBI": {
+      "searchWords": [],
+      "artistAliases": [
+        "YOASOBI"
+      ],
+      "tags": []
+    },
+    "only my railgun|fripSide": {
+      "searchWords": [],
+      "artistAliases": [
+        "fripSide"
+      ],
+      "tags": []
+    },
+    "甲賀忍法帖|陰陽座": {
+      "searchWords": [],
+      "artistAliases": [
+        "陰陽座"
+      ],
+      "tags": []
+    },
+    "明日へのbrilliant road|angela": {
+      "searchWords": [],
+      "artistAliases": [
+        "angela"
+      ],
+      "tags": []
+    },
+    "1/6夢旅人2002|樋口了一": {
+      "searchWords": [],
+      "artistAliases": [
+        "樋口了一"
+      ],
+      "tags": []
+    },
+    "思いがかさなるその前に…|平井堅": {
+      "searchWords": [],
+      "artistAliases": [
+        "平井堅"
+      ],
+      "tags": []
+    },
+    "AXIA〜ダイスキでダイキライ〜|ワルキューレ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ワルキューレ"
+      ],
+      "tags": []
+    },
+    "愛の讃歌|エディット・ピアフ": {
+      "searchWords": [],
+      "artistAliases": [
+        "エディット・ピアフ"
+      ],
+      "tags": []
+    },
+    "Good-bye days|YUI for 雨音薫": {
+      "searchWords": [],
+      "artistAliases": [
+        "YUI for 雨音薫"
+      ],
+      "tags": []
+    },
+    "冬の花|宮本浩次": {
+      "searchWords": [],
+      "artistAliases": [
+        "宮本浩次"
+      ],
+      "tags": []
+    },
+    "夜の踊り子|サカナクション": {
+      "searchWords": [],
+      "artistAliases": [
+        "サカナクション"
+      ],
+      "tags": []
+    },
+    "銀河街の悪夢|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "異邦人|久保田早紀": {
+      "searchWords": [],
+      "artistAliases": [
+        "久保田早紀"
+      ],
+      "tags": []
+    },
+    "サヨナラバス|ゆず": {
+      "searchWords": [],
+      "artistAliases": [
+        "ゆず"
+      ],
+      "tags": []
+    },
+    "紫陽花|PEOPLE 1": {
+      "searchWords": [],
+      "artistAliases": [
+        "PEOPLE 1"
+      ],
+      "tags": []
+    },
+    "夜桜お七|坂本冬美": {
+      "searchWords": [],
+      "artistAliases": [
+        "坂本冬美"
+      ],
+      "tags": []
+    },
+    "me me she|RADWIMPS": {
+      "searchWords": [],
+      "artistAliases": [
+        "RADWIMPS"
+      ],
+      "tags": []
+    },
+    "いい日旅立ち|山口百恵": {
+      "searchWords": [],
+      "artistAliases": [
+        "山口百恵"
+      ],
+      "tags": []
+    },
+    "Five|嵐": {
+      "searchWords": [],
+      "artistAliases": [
+        "嵐"
+      ],
+      "tags": []
+    },
+    "少女A|中森明菜": {
+      "searchWords": [],
+      "artistAliases": [
+        "中森明菜"
+      ],
+      "tags": []
+    },
+    "ウミユリ海底譚|n-buna": {
+      "searchWords": [],
+      "artistAliases": [
+        "n-buna"
+      ],
+      "tags": []
+    },
+    "朝顔|折坂悠太": {
+      "searchWords": [],
+      "artistAliases": [
+        "折坂悠太"
+      ],
+      "tags": []
+    },
+    "マーメイドラプソディー|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "炎と森のカーニバル|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "Habit|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "虹色の戦争|SEKAI NO OWARI": {
+      "searchWords": [],
+      "artistAliases": [
+        "SEKAI NO OWARI"
+      ],
+      "tags": []
+    },
+    "風と町|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "ビーナスベルト|あいみょん": {
+      "searchWords": [],
+      "artistAliases": [
+        "あいみょん"
+      ],
+      "tags": []
+    },
+    "Tomorrow never knows|Mr.Children": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mr.Children"
+      ],
+      "tags": []
+    },
+    "秒針を噛む|ずっと真夜中でいいのに。": {
+      "searchWords": [],
+      "artistAliases": [
+        "ずっと真夜中でいいのに。"
+      ],
+      "tags": []
+    },
+    "ぼくたちの失敗|森田童子": {
+      "searchWords": [],
+      "artistAliases": [
+        "森田童子"
+      ],
+      "tags": []
+    },
+    "ピタゴラスイッチ オープニングテーマ|栗原正己": {
+      "searchWords": [],
+      "artistAliases": [
+        "栗原正己"
+      ],
+      "tags": []
+    },
+    "RE:I AM|Aimer": {
+      "searchWords": [],
+      "artistAliases": [
+        "Aimer"
+      ],
+      "tags": []
+    },
+    "Wild Flowers|RAMAR": {
+      "searchWords": [],
+      "artistAliases": [
+        "RAMAR"
+      ],
+      "tags": []
+    },
+    "涙そうそう|森山良子 / 夏川りみ(Cover)": {
+      "searchWords": [],
+      "artistAliases": [
+        "森山良子 / 夏川りみ(Cover)"
+      ],
+      "tags": []
+    },
+    "春に舞う|Ado": {
+      "searchWords": [],
+      "artistAliases": [
+        "Ado"
+      ],
+      "tags": []
+    },
+    "パッパパラダイス|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "あぶく|ヨルシカ": {
+      "searchWords": [],
+      "artistAliases": [
+        "ヨルシカ"
+      ],
+      "tags": []
+    },
+    "アイドルパワー|M!LK": {
+      "searchWords": [],
+      "artistAliases": [
+        "M!LK"
+      ],
+      "tags": []
+    },
+    "スターダスト|Official髭男dism": {
+      "searchWords": [],
+      "artistAliases": [
+        "Official髭男dism"
+      ],
+      "tags": []
+    },
+    "One Love|嵐": {
+      "searchWords": [],
+      "artistAliases": [
+        "嵐"
+      ],
+      "tags": []
+    },
+    "果てない空|嵐": {
+      "searchWords": [],
+      "artistAliases": [
+        "嵐"
+      ],
+      "tags": []
+    },
+    "炎のさだめ|TETSU": {
+      "searchWords": [],
+      "artistAliases": [
+        "TETSU"
+      ],
+      "tags": []
+    },
+    "Who What Who What|凛として時雨": {
+      "searchWords": [],
+      "artistAliases": [
+        "凛として時雨"
+      ],
+      "tags": []
+    },
+    "誰かの願いが叶うころ|宇多田ヒカル": {
+      "searchWords": [],
+      "artistAliases": [
+        "宇多田ヒカル"
+      ],
+      "tags": []
+    },
+    "いきどまり|星野源": {
+      "searchWords": [],
+      "artistAliases": [
+        "星野源"
+      ],
+      "tags": []
+    },
+    "巡ループ|Perfume": {
+      "searchWords": [],
+      "artistAliases": [
+        "Perfume"
+      ],
+      "tags": []
+    },
+    "Part of me|Mrs. GREEN APPLE": {
+      "searchWords": [],
+      "artistAliases": [
+        "Mrs. GREEN APPLE"
+      ],
+      "tags": []
+    },
+    "プレゼント|マルシィ": {
+      "searchWords": [],
+      "artistAliases": [
+        "マルシィ"
+      ],
+      "tags": []
+    },
+    "ラブソング|マルシィ": {
+      "searchWords": [],
+      "artistAliases": [
+        "マルシィ"
+      ],
+      "tags": []
     }
-]
+  }
+}
