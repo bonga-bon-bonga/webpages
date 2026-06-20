@@ -277,10 +277,15 @@ def main():
 
         updated_items.append(existing)
 
-    # 既存のアイテムをNoでソートする
-    updated_items.sort(
-        key=lambda x: str(x.get("no", ""))
-    )
+    # 既存のアイテムをNoでソートする（数字として比較できる場合は数値順）
+    def sort_key(item):
+        value = str(item.get("no", "")).strip()
+        try:
+            return (0, int(value))
+        except ValueError:
+            return (1, value)
+
+    updated_items.sort(key=sort_key)
 
     # JSONファイルを更新する
     musiclist["generatedAt"] = now
