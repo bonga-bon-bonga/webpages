@@ -322,9 +322,11 @@
     }
 
     // 曲が「弾ける曲」かどうかを判定する。セルの値に「〇」や「○」、または「yes」（大文字小文字問わず）が含まれていれば弾ける曲とみなす。
-    function isPlayable(song) {
-      return String(song.playable).includes("〇") || String(song.playable).includes("○") || String(song.playable).toLowerCase() === "yes";
-    }
+function isPlayable(song) {
+  const raw = String(song.playable ?? "");
+  const normalized = raw.trim().toLowerCase();
+  return raw.includes("〇") || raw.includes("○") || /\byes\b/.test(normalized);
+}
 
     function getRecommendSource() {
       // 「弾ける曲」印がある曲を優先。10曲未満なら全曲からランダムにする。
