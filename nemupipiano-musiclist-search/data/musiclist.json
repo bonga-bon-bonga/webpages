@@ -7986,9 +7986,9 @@
         "fuyunopurezento"
       ],
       "artistAliases": [
-        "もさを。",
-        "モサヲ。",
-        "mosawo."
+        "もさを",
+        "モサヲ",
+        "mosawo"
       ],
       "tags": []
     },
@@ -7999,7 +7999,6 @@
         "fuyunokomoriuta"
       ],
       "artistAliases": [
-        "原田知世",
         "はらだともよ",
         "ハラダトモヨ",
         "haradatomoyo"
@@ -8008,9 +8007,12 @@
     },
     "あなたに出会わなければ〜夏雪冬花〜|Aimer": {
       "searchWords": [
-        "あなたにであいわなければ〜なつゆきふゆはな〜",
-        "アナタニデアイワナケレバ〜ナツユキフユハナ〜",
-        "anatanideaiwanakereba~natsuyukifuyuhana~"
+        "あなたにであわなければ",
+        "アナタニデアワナケレバ",
+        "なつゆきふゆはな",
+        "ナツユキフユハナ",
+        "かせつとうか",
+        "カセツトウカ"
       ],
       "artistAliases": [
         "Aimer"
@@ -8024,7 +8026,6 @@
         "chouchoumusubi"
       ],
       "artistAliases": [
-        "Aimer"
       ],
       "tags": []
     },
@@ -8035,9 +8036,9 @@
         "ningyounoyumetomezame"
       ],
       "artistAliases": [
-        "テオドール・エステン",
-        "ておどーる・えすてん",
-        "teodooru・esuten"
+        "テオドールエステン",
+        "ておどーるえすてん",
+        "teodooru esuten"
       ],
       "tags": []
     },
@@ -8048,7 +8049,6 @@
         "asagohannouta"
       ],
       "artistAliases": [
-        "手嶌葵",
         "てじまあおい",
         "テジマアオイ",
         "tejimaaoi"
@@ -8057,12 +8057,11 @@
     },
     "春よ、来い|松任谷由実": {
       "searchWords": [
-        "はるよ、こい",
-        "ハルヨ、コイ",
-        "haruyo,koi"
+        "はるよこい",
+        "ハルヨコイ",
+        "haruyo koi"
       ],
       "artistAliases": [
-        "松任谷由実",
         "まつとうやゆみ",
         "マツトウヤユミ",
         "matsutouyayumi"
@@ -8070,7 +8069,16 @@
       "tags": []
     },
     "AlwayS|NiziU": {
-      "searchWords": [],
+      "searchWords": [
+        "おーるうぇーず",
+        "オールウェーズ",
+        "おーるうぇいず",
+        "オールウェイズ",
+        "おるうぇーず",
+        "オルウェーズ",
+        "おるうぇいず",
+        "オルウェイズ"
+      ],
       "artistAliases": [
         "NiziU"
       ],
@@ -8078,9 +8086,10 @@
     },
     "友 〜旅立ちの時〜|ゆず": {
       "searchWords": [
-        "とも 〜たびだちのとき〜",
-        "トモ 〜タビダチノトキ〜",
-        "tomo ~tabidachinotoki~"
+        "とも",
+        "たびだちのとき",
+        "トモ",
+        "タビダチノトキ"
       ],
       "artistAliases": [
         "ゆず",
@@ -8096,7 +8105,6 @@
         "akaisuiitopii"
       ],
       "artistAliases": [
-        "松田聖子",
         "まつだせいこ",
         "マツダセイコ",
         "matsudaseiko"
@@ -8110,7 +8118,6 @@
         "aoisangoshou"
       ],
       "artistAliases": [
-        "松田聖子",
         "まつだせいこ",
         "マツダセイコ",
         "matsudaseiko"
@@ -8118,9 +8125,11 @@
       "tags": []
     },
     "HAPPY BIRTHDAY|back number": {
-      "searchWords": [],
+      "searchWords": [
+        "はっぴーばーすでー",
+        "ハッピーバースデー"
+      ],
       "artistAliases": [
-        "back number"
       ],
       "tags": []
     },
@@ -8143,7 +8152,6 @@
         "chouchou"
       ],
       "artistAliases": [
-        "ドイツ民謡",
         "どいつみんよう",
         "ドイツミンヨウ",
         "doitsuminyou"
@@ -8151,14 +8159,11 @@
       "tags": []
     },
     "KICK BACK|米津玄師": {
-      "searchWords": [],
+      "searchWords": [
+        "きっくばっく",
+        "キックバック"
+      ],
       "artistAliases": [
-        "米津玄師",
-        "よねづけんし",
-        "ヨネヅケンシ",
-        "よねつげんし",
-        "ヨネツゲンシ",
-        "yonetsugenshi"
       ],
       "tags": []
     },
@@ -8176,15 +8181,15 @@
     },
     "１９９１|米津玄師": {
       "searchWords": [
+        "いちきゅうきゅういち",
+        "イチキュウキュウイチ",
+        "いちきゅーきゅーいち",
+        "イチキューキューイチ",
         "1991"
       ],
       "artistAliases": [
-        "米津玄師",
         "よねづけんし",
-        "ヨネヅケンシ",
-        "よねつげんし",
-        "ヨネツゲンシ",
-        "yonetsugenshi"
+        "ヨネヅケンシ"
       ],
       "tags": []
     },
@@ -8195,7 +8200,6 @@
         "harukaze"
       ],
       "artistAliases": [
-        "Rihwa"
       ],
       "tags": []
     },
@@ -8206,21 +8210,19 @@
         "chousaikyou"
       ],
       "artistAliases": [
-        "超ときめき♡宣伝部",
-        "こえときめき♡せんでんぶ",
-        "コエトキメキ♡センデンブ",
-        "koetokimeki♡sendenbu"
+        "ちょうときめきせんでんぶ",
+        "チョウトキメキセンデンブ",
+        "choutokimekisendenbu"
       ],
       "tags": []
     },
     "はちゃめちゃわちゃライフ!|FRUITS ZIPPER": {
       "searchWords": [
-        "はちゃめちゃわちゃらいふ!",
-        "ハチャメチャワチャライフ!",
-        "hachamechawacharaifu!"
+        "はちゃめちゃわちゃらいふ",
+        "ハチャメチャワチャライフ",
+        "hachamechawacharaifu"
       ],
       "artistAliases": [
-        "FRUITS ZIPPER"
       ],
       "tags": []
     },
@@ -8230,9 +8232,10 @@
         "eederuwaisu"
       ],
       "artistAliases": [
-        "ロジャース&ハマースタイン",
-        "ろじゃーす&はまーすたいん",
-        "rojaasu&hamaasutain"
+        "ろじゃーす",
+        "ロジャース",
+        "はまーすたいん",
+        "ハマースタイン"
       ],
       "tags": []
     },
@@ -8242,7 +8245,6 @@
         "purachina"
       ],
       "artistAliases": [
-        "坂本真綾",
         "さかもとまあや",
         "サカモトマアヤ",
         "sakamotomaaya"
@@ -8255,7 +8257,6 @@
         "tashikanakoto"
       ],
       "artistAliases": [
-        "小田和正",
         "おだかずまさ",
         "オダカズマサ",
         "odakazumasa"
@@ -8269,7 +8270,6 @@
         "ame"
       ],
       "artistAliases": [
-        "森高千里",
         "もりたかちさと",
         "モリタカチサト",
         "moritakachisato"
@@ -8283,7 +8283,6 @@
         "ame"
       ],
       "artistAliases": [
-        "弘田竜太郎",
         "ひろたりゅうたろう",
         "ヒロタリュウタロウ",
         "hirotaryuutarou"
@@ -8297,7 +8296,6 @@
         "ametobokunohanashi"
       ],
       "artistAliases": [
-        "back number"
       ],
       "tags": []
     },
@@ -8344,7 +8342,6 @@
         "mirai"
       ],
       "artistAliases": [
-        "Kalafina"
       ],
       "tags": []
     },
@@ -8355,7 +8352,6 @@
         "toumeiningen"
       ],
       "artistAliases": [
-        "東京事変",
         "とうきょうじへん",
         "トウキョウジヘン",
         "toukyoujihen"
@@ -8369,7 +8365,6 @@
         "nagakumijikaimatsuri"
       ],
       "artistAliases": [
-        "椎名林檎",
         "しいなりんご",
         "シイナリンゴ",
         "shiinaringo"
@@ -8383,7 +8378,6 @@
         "sukisugitemetsu!"
       ],
       "artistAliases": [
-        "M!LK"
       ],
       "tags": []
     },
@@ -8394,7 +8388,6 @@
         "sutekinahoridei"
       ],
       "artistAliases": [
-        "竹内まりや",
         "たけうちまりや",
         "タケウチマリヤ",
         "takeuchimariya"
@@ -8403,11 +8396,14 @@
     },
     "プラスティック・ラヴ|竹内まりや": {
       "searchWords": [
-        "ぷらすてぃっく・らゔ",
-        "purasuteikku・ravu"
+        "ぷらすてぃっくらゔ",
+        "プラスティックラヴ",
+        "ぷらすてぃっくらぶ",
+        "プラスティックラブ",
+        "purasutikku ravu",
+        "purasutikku rabu"
       ],
       "artistAliases": [
-        "竹内まりや",
         "たけうちまりや",
         "タケウチマリヤ",
         "takeuchimariya"
@@ -8415,23 +8411,37 @@
       "tags": []
     },
     "Love me, Love you|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "らぶみーらぶゆー",
+        "ラブミーラブユー",
+        "rabumii rabuyuu"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
       ],
       "tags": []
     },
     "Forever Love|X JAPAN": {
-      "searchWords": [],
+      "searchWords": [
+        "ふぉーえばーらぶ",
+        "フォーエバーラブ",
+        "ふぉーえばーらゔ",
+        "フォーエバーラヴ",
+        "foeebaarabu",
+        "foeebaaravu"
+      ],
       "artistAliases": [
-        "X JAPAN"
       ],
       "tags": []
     },
     "The Christmas Song|Nat King Cole": {
-      "searchWords": [],
+      "searchWords": [
+        "ざくりすますそんぐ",
+        "ザクリスマスソング",
+        "za kurisumasu songu"
+      ],
       "artistAliases": [
-        "Nat King Cole"
+        "なっときんぐこーる",
+        "ナットキングコール"
       ],
       "tags": []
     },
@@ -8442,19 +8452,19 @@
         "koibitotachinokurisumasu"
       ],
       "artistAliases": [
-        "マライア・キャリー",
-        "まらいあ・きゃりー",
-        "maraia・kyarii"
+        "マライアキャリー",
+        "まらいあきゃりー",
+        "maraia kyarii"
       ],
       "tags": []
     },
     "クリスマス・イブ|山下達郎": {
       "searchWords": [
-        "くりすます・いぶ",
-        "kurisumasu・ibu"
+        "くりすますいぶ",
+        "クリスマスイブ",
+        "kurisumasu ibu"
       ],
       "artistAliases": [
-        "山下達郎",
         "やましたたつろう",
         "ヤマシタタツロウ",
         "yamashitatatsurou"
@@ -8468,7 +8478,6 @@
         "awatenbounosantakuroosu"
       ],
       "artistAliases": [
-        "小林亜星",
         "こばやしあせい",
         "コバヤシアセイ",
         "kobayashiasei"
@@ -8482,9 +8491,12 @@
         "santagamachiniyattekuru"
       ],
       "artistAliases": [
-        "ヘヴン・ギレスピー、フレッド・クーツ",
-        "へゔん・ぎれすぴー、ふれっど・くーつ",
-        "hevun・giresupii,fureddo・kuutsu"
+        "ヘヴンギレスピー",
+        "フレッド・クーツ",
+        "へゔんぎれすぴー",
+        "ふれっど・くーつ",
+        "hevun giresupii",
+        "fureddo kuutsu"
       ],
       "tags": []
     },
@@ -8494,9 +8506,9 @@
         "jinguruberu"
       ],
       "artistAliases": [
-        "ジェームズ・ロード・ピアポント",
-        "じぇーむず・ろーど・ぴあぽんと",
-        "jieemuzu・roodo・piaponto"
+        "ジェームズロードピアポント",
+        "じぇーむずろーどぴあぽんと",
+        "jieemuzu roodo piaponto"
       ],
       "tags": []
     },
@@ -8507,9 +8519,15 @@
         "kiyoshikonoyoru"
       ],
       "artistAliases": [
-        "ヨゼフ・モール、フランツ・クサーヴァー・グルーバー",
-        "よぜふ・もーる、ふらんつ・くさーゔぁー・ぐるーばー",
-        "yozefu・mooru,furantsu・kusaavaa・guruubaa"
+        "ヨゼフモール",
+        "よぜふもーる",
+        "ヨーゼフモール",
+        "よーぜふもーる",
+        "フランツクサーヴァーグルーバー",
+        "ふらんつくさーゔぁーぐるーばー",
+        "yozefu mooru",
+        "yozehu mooru",
+        "furantsu kusaavaa guruubaa"
       ],
       "tags": []
     },
@@ -8519,16 +8537,22 @@
         "morobitokozorite"
       ],
       "artistAliases": [
-        "ゲオルク・フリードリヒ・ヘンデル",
-        "げおるく・ふりーどりひ・へんでる",
-        "georuku・furiidorihi・henderu"
+        "ゲオルクフリードリヒヘンデル",
+        "げおるくふりーどりひへんでる",
+        "ジョージフレデリックハンドル",
+        "じょーじふれでりっくはんどる",
+        "georuku furiidorihi henderu",
+        "joji furederikku handoru"
       ],
       "tags": []
     },
     "Winter Bells|倉木麻衣": {
-      "searchWords": [],
+      "searchWords": [
+        "うぃんたーべる",
+        "ウィンターベル",
+        "wintaaberu"
+      ],
       "artistAliases": [
-        "倉木麻衣",
         "くらきまい",
         "クラキマイ",
         "kurakimai"
@@ -8554,18 +8578,16 @@
         "koiwoshite"
       ],
       "artistAliases": [
-        "HY"
       ],
       "tags": []
     },
     "TAKUMI/匠|松谷卓": {
       "searchWords": [
-        "TAKUMI/たくみ",
-        "TAKUMI/タクミ",
-        "TAKUMI/takumi"
+        "たくみ",
+        "タクミ",
+        "takumi"
       ],
       "artistAliases": [
-        "松谷卓",
         "まつたにすぐる",
         "マツタニスグル",
         "matsutanisuguru"
@@ -8573,9 +8595,12 @@
       "tags": []
     },
     "We Wish You a Merry Christmas|イギリス民謡": {
-      "searchWords": [],
+      "searchWords": [
+        "うぃーうぃっしゅゆーめりーくりすます",
+        "ウィーウィッシュユーメリークリスマス",
+        "wi wiisshu yuu merii kurisumasu"
+      ],
       "artistAliases": [
-        "イギリス民謡",
         "いぎりすみんよう",
         "イギリスミンヨウ",
         "igirisuminyou"
@@ -8589,17 +8614,20 @@
         "waratsutarikorondari"
       ],
       "artistAliases": [
-        "ハンバート ハンバート",
-        "はんばーと はんばーと",
+        "ハンバートハンバート",
+        "はんばーとはんばーと",
         "hanbaato hanbaato"
       ],
       "tags": []
     },
     "愛の言霊 〜Spiritual Message〜|サザンオールスターズ": {
       "searchWords": [
-        "あいのことだま 〜Spiritual Message〜",
-        "アイノコトダマ 〜Spiritual Message〜",
-        "ainokotodama ~Spiritual Message~"
+        "あいのことだま",
+        "アイノコトダマ",
+        "すぴりちゅあるめっせーじ",
+        "スピリチュアルメッセージ",
+        "ainokotodama",
+        "Spiritual Message"
       ],
       "artistAliases": [
         "サザンオールスターズ",
@@ -8609,7 +8637,11 @@
       "tags": []
     },
     "TSUNAMI|サザンオールスターズ": {
-      "searchWords": [],
+      "searchWords": [
+        "つなみ",
+        "ツナミ",
+        "tsunami"
+      ],
       "artistAliases": [
         "サザンオールスターズ",
         "さざんおーるすたーず",
@@ -8618,9 +8650,13 @@
       "tags": []
     },
     "TOMORROW|岡本真夜": {
-      "searchWords": [],
+      "searchWords": [
+        "とぅもろー",
+        "トゥモロー",
+        "とぅもろう",
+        "トゥモロウ"
+      ],
       "artistAliases": [
-        "岡本真夜",
         "おかもとまよ",
         "オカモトマヨ",
         "okamotomayo"
@@ -8629,12 +8665,11 @@
     },
     "365日|Mr.Children": {
       "searchWords": [
-        "365にち",
-        "365ニチ",
+        "さんびゃくろくじゅうごにち",
+        "サンビャクロクジュウゴニチ",
         "365nichi"
       ],
       "artistAliases": [
-        "Mr.Children"
       ],
       "tags": []
     },
@@ -8683,7 +8718,6 @@
         "yasashiikimochi"
       ],
       "artistAliases": [
-        "CHARA"
       ],
       "tags": []
     },
@@ -8694,7 +8728,6 @@
         "saigonoyasashisa"
       ],
       "artistAliases": [
-        "JAY'ED"
       ],
       "tags": []
     },
@@ -8704,7 +8737,6 @@
         "hiiroo"
       ],
       "artistAliases": [
-        "FUNKY MONKEY BABYS"
       ],
       "tags": []
     },
@@ -8714,19 +8746,20 @@
         "sasurai"
       ],
       "artistAliases": [
-        "奥田民生",
-        "おくだみんせい",
-        "オクダミンセイ",
-        "okudaminsei"
       ],
       "tags": []
     },
     "Have Yourself a Merry Little Christmas|ヒュー・マーティン": {
-      "searchWords": [],
+      "searchWords": [
+        "はぶゆあせるふあめりーりとるくりすます",
+        "ハブユアセルフアメリーリトルクリスマス",
+        "habu yua serufu a meri- ritorukurismasu"
+      ],
       "artistAliases": [
-        "ヒュー・マーティン",
-        "ひゅー・まーてぃん",
-        "hyuu・maatein"
+        "ヒューマーティン",
+        "ひゅーまーてぃん",
+        "hyuu maatein",
+        "hugh martin"
       ],
       "tags": []
     },
@@ -8736,7 +8769,6 @@
         "sakurausagi"
       ],
       "artistAliases": [
-        "川崎鷹也",
         "かわさきたかや",
         "カワサキタカヤ",
         "kawasakitakaya"
@@ -8758,11 +8790,11 @@
     },
     "ミッドナイト・リフレクション|NOMELON NOLEMON": {
       "searchWords": [
-        "みっどないと・りふれくしょん",
-        "middonaito・rifurekushon"
+        "みっどないとりふれくしょん",
+        "ミッドナイトリフレクション",
+        "middonaito rifurekushon"
       ],
       "artistAliases": [
-        "NOMELON NOLEMON"
       ],
       "tags": []
     },
@@ -8786,7 +8818,6 @@
         "tenohirawotaiyouni"
       ],
       "artistAliases": [
-        "いずみたく",
         "イズミタク",
         "izumitaku"
       ],
@@ -8798,24 +8829,26 @@
         "rashisa"
       ],
       "artistAliases": [
-        "Official髭男dism",
-        "Officialひげおとこdism",
-        "Officialヒゲオトコdism",
-        "Officialhigeotokodism"
       ],
       "tags": []
     },
     "Funny Bunny|the pillows": {
-      "searchWords": [],
+      "searchWords": [
+        "ふぁにーばにー",
+        "ファニーバニー",
+        "funnybunny"
+      ],
       "artistAliases": [
-        "the pillows"
       ],
       "tags": []
     },
     "Share The World|東方神起": {
-      "searchWords": [],
+      "searchWords": [
+        "しぇあざわーるど",
+        "シェアザワールド",
+        "shea za waarudo"
+      ],
       "artistAliases": [
-        "東方神起",
         "とうほうしんき",
         "トウホウシンキ",
         "touhoushinki"
@@ -8837,38 +8870,59 @@
       "tags": []
     },
     "Autumn Leaves|ジョゼフ・コズマ": {
-      "searchWords": [],
+      "searchWords": [
+        "おーとぅむりーぶす",
+        "オートゥムリーブス",
+        "ootumuriibusu",
+        "かれは",
+        "カレハ",
+        "kareha"
+      ],
       "artistAliases": [
-        "ジョゼフ・コズマ",
-        "じょぜふ・こずま",
-        "jozefu・kozuma"
+        "ジョゼフコズマ",
+        "じょぜふこずま",
+        "jozefu kozuma",
+        "joseph kosma"
       ],
       "tags": []
     },
     "Moon River|ヘンリー・マンシーニ": {
-      "searchWords": [],
+      "searchWords": [
+        "むーんりばー",
+        "ムーンリバー",
+        "muunribaa"
+      ],
       "artistAliases": [
-        "ヘンリー・マンシーニ",
-        "へんりー・まんしーに",
-        "henrii・manshiini"
+        "ヘンリーマンシーニ",
+        "へんりーまんしーに",
+        "henrii manshiini",
+        "Henry Mancini"
       ],
       "tags": []
     },
     "Fly Me To The Moon|バート・ハワード": {
-      "searchWords": [],
+      "searchWords": [
+        "ふらいみーとぅざむーん",
+        "フライミートゥザムーン",
+        "furaimiituzamuun"
+      ],
       "artistAliases": [
-        "バート・ハワード",
-        "ばーと・はわーど",
-        "baato・hawaado"
+        "バートハワード",
+        "ばーとはわーど",
+        "bart howard"
       ],
       "tags": []
     },
     "Misty|エロル・ガーナー": {
-      "searchWords": [],
+      "searchWords": [
+        "みすてぃ",
+        "ミスティ",
+        "misuti"
+      ],
       "artistAliases": [
-        "エロル・ガーナー",
-        "えろる・がーなー",
-        "eroru・gaanaa"
+        "エロルガーナー",
+        "えろるがーなー",
+        "Erroll Louis Garner"
       ],
       "tags": []
     },
@@ -8879,7 +8933,6 @@
         "muunraitodensetsu"
       ],
       "artistAliases": [
-        "DALI"
       ],
       "tags": []
     },
@@ -8890,9 +8943,9 @@
         "aoikuruma"
       ],
       "artistAliases": [
-        "スピッツ",
         "すぴっつ",
-        "supittsu"
+        "supittsu",
+        "spitz"
       ],
       "tags": []
     },
@@ -8903,18 +8956,19 @@
         "kazetoisshoni"
       ],
       "artistAliases": [
-        "小林幸子",
-        "こばやしゆきこ",
-        "コバヤシユキコ",
-        "kobayashiyukiko"
+        "こばやしさちこ",
+        "コバヤシサチコ",
+        "kobayashisachiko"
       ],
       "tags": []
     },
     "愛♡スクリ〜ム！|AiScReam": {
       "searchWords": [
-        "あい♡すくり〜む！",
-        "アイ♡スクリ〜ム！",
-        "ai♡sukuri~mu!"
+        "あいすくり〜む",
+        "アイスクリ〜ム",
+        "あいすくりーむ",
+        "アイスクリーム",
+        "ai sukuri-mu"
       ],
       "artistAliases": [
         "AiScReam"
@@ -8928,7 +8982,6 @@
         "yobigoe"
       ],
       "artistAliases": [
-        "Vaundy"
       ],
       "tags": []
     },
@@ -8938,7 +8991,6 @@
         "adorena"
       ],
       "artistAliases": [
-        "YOASOBI"
       ],
       "tags": []
     },
@@ -8956,7 +9008,11 @@
       "tags": []
     },
     "pink|シャイトープ": {
-      "searchWords": [],
+      "searchWords": [
+        "ぴんく",
+        "ピンク",
+        "pink"
+      ],
       "artistAliases": [
         "シャイトープ",
         "しゃいとーぷ",
@@ -8970,7 +9026,6 @@
         "tanpopo"
       ],
       "artistAliases": [
-        "遊助",
         "ゆうすけ",
         "ユウスケ",
         "yuusuke"
@@ -8978,9 +9033,11 @@
       "tags": []
     },
     "Memories|MAN WITH A MISSION": {
-      "searchWords": [],
+      "searchWords": [
+        "めもりーず",
+        "メモリーズ"
+      ],
       "artistAliases": [
-        "MAN WITH A MISSION"
       ],
       "tags": []
     },
@@ -9004,7 +9061,6 @@
         "bibouroku"
       ],
       "artistAliases": [
-        "高瀬統也",
         "たかせとうや",
         "タカセトウヤ",
         "takasetouya"
@@ -9017,7 +9073,6 @@
         "serori"
       ],
       "artistAliases": [
-        "山崎まさよし",
         "やまざきまさよし",
         "ヤマザキマサヨシ",
         "yamazakimasayoshi"
@@ -9031,7 +9086,6 @@
         "hatsukoisaidaa"
       ],
       "artistAliases": [
-        "Buono!"
       ],
       "tags": []
     },
@@ -9041,7 +9095,6 @@
         "gibusu"
       ],
       "artistAliases": [
-        "椎名林檎",
         "しいなりんご",
         "シイナリンゴ",
         "shiinaringo"
@@ -9049,9 +9102,13 @@
       "tags": []
     },
     "fragile|Every Little Thing": {
-      "searchWords": [],
+      "searchWords": [
+        "ふらじーる",
+        "フラジール",
+        "ふらじゃいる",
+        "フラジャイル"
+      ],
       "artistAliases": [
-        "Every Little Thing"
       ],
       "tags": []
     },
@@ -9062,7 +9119,6 @@
         "sarabakoibito"
       ],
       "artistAliases": [
-        "堺正章",
         "さかいまさあき",
         "サカイマサアキ",
         "sakaimasaaki"
@@ -9071,22 +9127,22 @@
     },
     "ひだまりの詩|Le Couple": {
       "searchWords": [
-        "ひだまりのし",
-        "ヒダマリノシ",
-        "hidamarinoshi"
+        "ひだまりのうた",
+        "ヒダマリノウタ",
+        "hidamarinouta"
       ],
       "artistAliases": [
-        "Le Couple"
       ],
       "tags": []
     },
     "Swallowtail Butterfly 〜あいのうた〜|YEN TOWN BAND": {
       "searchWords": [
-        "Swallowtail Butterfly 〜アイノウタ〜",
-        "Swallowtail Butterfly ~ainouta~"
+        "すわろうているばたふらい",
+        "スワロウテイルバタフライ",
+        "あいのうた",
+        "アイノウタ"
       ],
       "artistAliases": [
-        "YEN TOWN BAND"
       ],
       "tags": []
     },
@@ -9096,7 +9152,6 @@
         "yagisanyuubin"
       ],
       "artistAliases": [
-        "團伊玖磨",
         "だんいくま",
         "ダンイクマ",
         "danikuma"
@@ -9105,9 +9160,9 @@
     },
     "おやすみ泣き声、さよなら歌姫|クリープハイプ": {
       "searchWords": [
-        "おやすみなきこえ、さよならうたひめ",
-        "オヤスミナキコエ、サヨナラウタヒメ",
-        "oyasuminakikoe,sayonarautahime"
+        "おやすみなきごえさよならうたひめ",
+        "オヤスミナキゴエサヨナラウタヒメ",
+        "oyasuminakigoe sayonarautahime"
       ],
       "artistAliases": [
         "クリープハイプ",
@@ -9122,7 +9177,6 @@
         "mikazuki"
       ],
       "artistAliases": [
-        "さユり",
         "さゆり",
         "サユリ",
         "sayuri"
@@ -9135,7 +9189,6 @@
         "fikushon"
       ],
       "artistAliases": [
-        "sumika"
       ],
       "tags": []
     },
@@ -9145,12 +9198,15 @@
         "koiwazurai"
       ],
       "artistAliases": [
-        "Aimer"
       ],
       "tags": []
     },
     "SAD SONG|ちゃんみな": {
-      "searchWords": [],
+      "searchWords": [
+        "さっどそんぐ",
+        "サッドソング",
+        "saddosong"
+      ],
       "artistAliases": [
         "ちゃんみな",
         "チャンミナ",
@@ -9165,7 +9221,6 @@
         "jounetsutairiku"
       ],
       "artistAliases": [
-        "葉加瀬太郎",
         "はかせたろう",
         "ハカセタロウ",
         "hakasetarou"
@@ -9173,25 +9228,28 @@
       "tags": []
     },
     "Another Day of Sun|ジャスティン・ハーウィッツ": {
-      "searchWords": [],
+      "searchWords": [
+        "あなざーでいおぶさん",
+        "アナザーデイオブサン",
+        "anotherdayofsun"
+      ],
       "artistAliases": [
-        "ジャスティン・ハーウィッツ",
-        "じゃすてぃん・はーうぃっつ",
-        "jasutein・haauittsu"
+        "ジャスティンハーウィッツ",
+        "じゃすてぃんはーうぃっつ",
+        "jasutein haauittsu"
       ],
       "tags": []
     },
     "世界には愛しかない|欅坂46": {
       "searchWords": [
-        "せかいにはいとしかない",
-        "セカイニハイトシカナイ",
-        "sekainihaitoshikanai"
+        "せかいにはあいしかない",
+        "セカイニハアイシカナイ",
+        "sekainihaiishikanai"
       ],
       "artistAliases": [
-        "欅坂46",
-        "けやきざか46",
-        "ケヤキザカ46",
-        "keyakizaka46"
+        "けやきざか",
+        "ケヤキザカ",
+        "keyakizaka"
       ],
       "tags": []
     },
@@ -9202,48 +9260,49 @@
         "uminokoe"
       ],
       "artistAliases": [
-        "浦島太郎（桐谷健太）",
-        "うらしまたろう（きりたにけんた）",
-        "ウラシマタロウ（キリタニケンタ）",
-        "urashimatarou(kiritanikenta)"
+        "うらしまたろう",
+        "ウラシマタロウ",
+        "きりたにけんた",
+        "キリタニケンタ",
+        "urashimatarou",
+        "kiritanikenta"
       ],
       "tags": []
     },
     "ふたつ星|I WiSH": {
       "searchWords": [
-        "ふたつほし",
-        "フタツホシ",
-        "futatsuhoshi"
+        "ふたつぼし",
+        "フタツボシ",
+        "futatsuboshi"
       ],
       "artistAliases": [
-        "I WiSH"
       ],
       "tags": []
     },
     "ら・ら・ら|大黒摩季": {
       "searchWords": [
-        "ラ・ラ・ラ",
-        "ra・ra・ra"
+        "ららら",
+        "ラララ",
+        "ra ra ra"
       ],
       "artistAliases": [
-        "大黒摩季",
-        "だいこくまき",
-        "ダイコクマキ",
-        "daikokumaki"
+        "おおぐろまき",
+        "オオグロマキ",
+        "ooguro maki"
       ],
       "tags": []
     },
     "みかんの花咲く丘|井口小夜子": {
       "searchWords": [
-        "みかんのはなさきくおか",
-        "ミカンノハナサキクオカ",
-        "mikannohanasakikuoka"
+        "みかんのはなさくおか",
+        "ミカンノハナサクオカ",
+        "mikannohanasakuoka"
       ],
       "artistAliases": [
         "井口小夜子",
-        "いのくちさよこ",
-        "イノクチサヨコ",
-        "inokuchisayoko"
+        "いぐちさよこ",
+        "イグチサヨコ",
+        "iguchisayoko"
       ],
       "tags": []
     },
@@ -9254,7 +9313,6 @@
         "hajimetenochuu"
       ],
       "artistAliases": [
-        "あんしんパパ",
         "あんしんぱぱ",
         "アンシンパパ",
         "anshinpapa"
@@ -9263,18 +9321,19 @@
     },
     "また あした|Every Little Thing": {
       "searchWords": [
-        "マタ アシタ",
+        "マタアシタ",
         "mata ashita"
       ],
       "artistAliases": [
-        "Every Little Thing"
       ],
       "tags": []
     },
     "Around The World|MONKEY MAJIK": {
-      "searchWords": [],
+      "searchWords": [
+        "あらうんどざわーるど",
+        "アラウンドザワールド"
+      ],
       "artistAliases": [
-        "MONKEY MAJIK"
       ],
       "tags": []
     },
@@ -9285,17 +9344,21 @@
         "anosubarashiiaiwomouichido"
       ],
       "artistAliases": [
-        "加藤和彦、北山修",
-        "かとうかずひこ、きたやまおさむ",
-        "カトウカズヒコ、キタヤマオサム",
-        "katoukazuhiko,kitayamaosamu"
+        "かとうかずひこ",
+        "カトウカズヒコ",
+        "きたやまおさむ",
+        "キタヤマオサム",
+        "katoukazuhiko",
+        "kitayamaosamu"
       ],
       "tags": []
     },
     "lulu.|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "るる",
+        "ルル"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
       ],
       "tags": []
     },
@@ -9332,7 +9395,6 @@
         "hadakanoyuusha"
       ],
       "artistAliases": [
-        "Vaundy"
       ],
       "tags": []
     },
@@ -9355,7 +9417,6 @@
         "sayonarabokutachinoyouchien"
       ],
       "artistAliases": [
-        "新沢としひこ",
         "しんざわとしひこ",
         "シンザワトシヒコ",
         "shinzawatoshihiko"
@@ -9364,12 +9425,11 @@
     },
     "詠人|北島三郎": {
       "searchWords": [
-        "よみびと",
-        "ヨミビト",
-        "yomibito"
+        "うたびと",
+        "ウタビト",
+        "utabito"
       ],
       "artistAliases": [
-        "北島三郎",
         "きたじまさぶろう",
         "キタジマサブロウ",
         "kitajimasaburou"
@@ -9378,12 +9438,12 @@
     },
     "あなたに逢いたくて〜Missing You〜|松田聖子": {
       "searchWords": [
-        "あなたにあいたくて〜Missing You〜",
-        "アナタニアイタクテ〜Missing You〜",
-        "anataniaitakute~Missing You~"
+        "あなたにあいたくて",
+        "アナタニアイタクテ",
+        "みっしんぐゆー",
+        "ミッシングユー"
       ],
       "artistAliases": [
-        "松田聖子",
         "まつだせいこ",
         "マツダセイコ",
         "matsudaseiko"
@@ -9396,7 +9456,6 @@
         "anata"
       ],
       "artistAliases": [
-        "小坂明子",
         "こさかあきこ",
         "コサカアキコ",
         "kosakaakiko"
@@ -9404,7 +9463,10 @@
       "tags": []
     },
     "Song for…|HY": {
-      "searchWords": [],
+      "searchWords": [
+        "そんぐふぉー",
+        "ソングフォー"
+      ],
       "artistAliases": [
         "HY"
       ],
@@ -9416,7 +9478,6 @@
         "matsuri"
       ],
       "artistAliases": [
-        "藤井風",
         "ふじいかぜ",
         "フジイカゼ",
         "fujiikaze"
@@ -9424,9 +9485,11 @@
       "tags": []
     },
     "butterfly|木村カエラ": {
-      "searchWords": [],
+      "searchWords": [
+        "ばたふらい",
+        "バタフライ"
+      ],
       "artistAliases": [
-        "木村カエラ",
         "きむらかえら",
         "キムラカエラ",
         "kimurakaera"
@@ -9439,7 +9502,6 @@
         "doushitemodoushitemo"
       ],
       "artistAliases": [
-        "back number"
       ],
       "tags": []
     },
@@ -9450,7 +9512,6 @@
         "kanpai"
       ],
       "artistAliases": [
-        "長渕剛",
         "ながぶちつよし",
         "ナガブチツヨシ",
         "nagabuchitsuyoshi"
@@ -9459,12 +9520,11 @@
     },
     "明日、春が来たら|松たか子": {
       "searchWords": [
-        "あした、はるがきたら",
-        "アシタ、ハルガキタラ",
-        "ashita,harugakitara"
+        "あしたはるがきたら",
+        "アシタハルガキタラ",
+        "ashita harugakitara"
       ],
       "artistAliases": [
-        "松たか子",
         "まつたかこ",
         "マツタカコ",
         "matsutakako"
@@ -9474,10 +9534,9 @@
     "タッチ|岩崎良美": {
       "searchWords": [
         "たっち",
-        "tatchi"
+        "touch"
       ],
       "artistAliases": [
-        "岩崎良美",
         "いわさきよしみ",
         "イワサキヨシミ",
         "iwasakiyoshimi"
@@ -9485,9 +9544,12 @@
       "tags": []
     },
     "Love so sweet|嵐": {
-      "searchWords": [],
+      "searchWords": [
+        "らぶそーすいーと",
+        "ラブソースイート",
+        "rabu soosuiito"
+      ],
       "artistAliases": [
-        "嵐",
         "あらし",
         "アラシ",
         "arashi"
@@ -9514,7 +9576,6 @@
         "sakura"
       ],
       "artistAliases": [
-        "清水翔太",
         "しみずしょうた",
         "シミズショウタ",
         "shimizushouta"
@@ -9536,9 +9597,9 @@
     },
     "花は桜 君は美し|いきものがかり": {
       "searchWords": [
-        "はなはさくら くんはうつくし",
-        "ハナハサクラ クンハウツクシ",
-        "hanahasakura kunhautsukushi"
+        "はなはさくら きみはうつくし",
+        "ハナハサクラ キミハウツクシ",
+        "hanahasakura kimihautsukushi"
       ],
       "artistAliases": [
         "いきものがかり",
@@ -9554,10 +9615,6 @@
         "sakurasei"
       ],
       "artistAliases": [
-        "優里",
-        "ゆり",
-        "ユリ",
-        "yuri"
       ],
       "tags": []
     },
@@ -9568,7 +9625,6 @@
         "sakura"
       ],
       "artistAliases": [
-        "河口恭吾",
         "かこうきょうご",
         "カコウキョウゴ",
         "kakoukyougo"
@@ -9594,7 +9650,6 @@
         "ejison"
       ],
       "artistAliases": [
-        "水曜日のカンパネラ",
         "すいようびのかんぱねら",
         "スイヨウビノカンパネラ",
         "suiyoubinokanpanera"
@@ -9607,7 +9662,6 @@
         "kataomoi"
       ],
       "artistAliases": [
-        "Aimer"
       ],
       "tags": []
     },
@@ -9618,7 +9672,6 @@
         "yumewoshinjite"
       ],
       "artistAliases": [
-        "徳永英明",
         "とくながひであき",
         "トクナガヒデアキ",
         "tokunagahideaki"
@@ -9627,13 +9680,14 @@
     },
     "オー・シャンゼリゼ|ジョー・ダッサン": {
       "searchWords": [
-        "おー・しゃんぜりぜ",
-        "oo・shanzerize"
+        "おーしゃんぜりぜ",
+        "オーシャンゼリゼ",
+        "o- shanzerize"
       ],
       "artistAliases": [
-        "ジョー・ダッサン",
-        "じょー・だっさん",
-        "joo・dassan"
+        "ジョーダッサン",
+        "じょーだっさん",
+        "joe dassin"
       ],
       "tags": []
     },
@@ -9652,9 +9706,9 @@
     },
     "虹とスニーカーの頃|チューリップ": {
       "searchWords": [
-        "にじとすにーかーのごろ",
-        "ニジトスニーカーノゴロ",
-        "nijitosuniikaanogoro"
+        "にじとすにーかーのころ",
+        "ニジトスニーカーノコロ",
+        "nijitosuniikaanokoro"
       ],
       "artistAliases": [
         "チューリップ",
@@ -9664,27 +9718,32 @@
       "tags": []
     },
     "Honto|sumika": {
-      "searchWords": [],
+      "searchWords": [
+        "ほんと",
+        "ホント",
+        "honto"
+      ],
       "artistAliases": [
-        "sumika"
       ],
       "tags": []
     },
     "拝啓、少年よ|Hump Back": {
       "searchWords": [
-        "はいけい、しょうねんよ",
-        "ハイケイ、ショウネンヨ",
-        "haikei,shounenyo"
+        "はいけいしょうねんよ",
+        "ハイケイショウネンヨ",
+        "haikei shounenyo"
       ],
       "artistAliases": [
-        "Hump Back"
       ],
       "tags": []
     },
     "Happiness|嵐": {
-      "searchWords": [],
+      "searchWords": [
+        "はぴねす",
+        "ハピネス",
+        "happiness"
+      ],
       "artistAliases": [
-        "嵐",
         "あらし",
         "アラシ",
         "arashi"
@@ -9698,24 +9757,25 @@
         "donten"
       ],
       "artistAliases": [
-        "DOES"
       ],
       "tags": []
     },
     "とくべチュ、して|＝LOVE": {
       "searchWords": [
-        "とくべちゅ、して",
-        "トクベチュ、シテ",
-        "tokubechu,shite"
+        "とくべちゅして",
+        "トクベチュシテ",
+        "tokubechu shite"
       ],
       "artistAliases": [
-        "＝LOVE",
-        "LOVE"
       ],
       "tags": []
     },
     "YELL|いきものがかり": {
-      "searchWords": [],
+      "searchWords": [
+        "えーる",
+        "エール",
+        "yell"
+      ],
       "artistAliases": [
         "いきものがかり",
         "イキモノガカリ",
@@ -9724,22 +9784,27 @@
       "tags": []
     },
     "Honesty|ビリー・ジョエル": {
-      "searchWords": [],
+      "searchWords": [
+        "おねすてぃ",
+        "オネスティ",
+        "honesty"
+      ],
       "artistAliases": [
-        "ビリー・ジョエル",
-        "びりー・じょえる",
-        "birii・joeru"
+        "ビリージョエル",
+        "びりーじょえる",
+        "birii joeru"
       ],
       "tags": []
     },
     "壊れかけのRadio|徳永英明": {
       "searchWords": [
-        "こわれかけのRadio",
-        "コワレカケノRadio",
+        "こわれかけのれでぃお",
+        "コワレカケノレディオ",
+        "こわれかけのらじお",
+        "コワレカケノラジオ",
         "kowarekakenoRadio"
       ],
       "artistAliases": [
-        "徳永英明",
         "とくながひであき",
         "トクナガヒデアキ",
         "tokunagahideaki"
@@ -9748,12 +9813,11 @@
     },
     "爆裂愛してる|M!LK": {
       "searchWords": [
-        "ばくれついとしてる",
-        "バクレツイトシテル",
-        "bakuretsuitoshiteru"
+        "ばくれつあいしてる",
+        "バクレツアイシテル",
+        "bakuretsuaishiteru"
       ],
       "artistAliases": [
-        "M!LK"
       ],
       "tags": []
     },
@@ -9763,7 +9827,6 @@
         "tomoni"
       ],
       "artistAliases": [
-        "WANIMA"
       ],
       "tags": []
     },
@@ -9774,7 +9837,6 @@
         "chekkunowanpiisu"
       ],
       "artistAliases": [
-        "back number"
       ],
       "tags": []
     },
@@ -9785,7 +9847,6 @@
         "kittenonaiokurimono"
       ],
       "artistAliases": [
-        "財津和夫",
         "ざいつかずお",
         "ザイツカズオ",
         "zaitsukazuo"
@@ -9793,40 +9854,46 @@
       "tags": []
     },
     "Again|Mr.Children": {
-      "searchWords": [],
+      "searchWords": [
+        "あげいん",
+        "アゲイン",
+        "agein"
+      ],
       "artistAliases": [
-        "Mr.Children"
       ],
       "tags": []
     },
     "シル・ヴ・プレジデント|P丸様。": {
       "searchWords": [
-        "しる・ゔ・ぷれじでんと",
-        "shiru・vu・purejidento"
+        "しるゔぷれじでんと",
+        "しるぶぷれじでんと",
+        "シルヴプレジデント",
+        "シルブプレジデント",
+        "shiru vu purejidento",
+        "shiru bu purejidento"
       ],
       "artistAliases": [
-        "P丸様。",
-        "Pまるさま。",
-        "Pマルサマ。",
-        "Pmarusama."
+        "ぴーまるさま",
+        "ピーマルサマ",
+        "Pmarusama"
       ],
       "tags": []
     },
     "mix juiceのいうとおり|UNISON SQUARE GARDEN": {
       "searchWords": [
-        "mix juiceノイウトオリ",
-        "mix juicenoiutoori"
+        "みっくすじゅーすのいうとおり",
+        "ミックスジュースノイウトオリ",
+        "mix juice no iutori"
       ],
       "artistAliases": [
-        "UNISON SQUARE GARDEN"
       ],
       "tags": []
     },
     "今はいいんだよ。|MIMI": {
       "searchWords": [
-        "いまはいいんだよ。",
-        "イマハイインダヨ。",
-        "imahaiindayo."
+        "いまはいいんだよ",
+        "イマハイインダヨ",
+        "imahaiindayo"
       ],
       "artistAliases": [
         "MIMI"
@@ -9835,11 +9902,11 @@
     },
     "SAKURAドロップス|宇多田ヒカル": {
       "searchWords": [
-        "SAKURAどろっぷす",
-        "SAKURAdoroppusu"
+        "さくらどろっぷす",
+        "サクラドロップス",
+        "sakura doroppusu"
       ],
       "artistAliases": [
-        "宇多田ヒカル",
         "うただひかる",
         "ウタダヒカル",
         "utadahikaru"
@@ -9848,12 +9915,11 @@
     },
     "サクラ咲ケ|嵐": {
       "searchWords": [
-        "さくらさきけ",
-        "サクラサキケ",
-        "sakurasakike"
+        "さくらさけ",
+        "サクラサケ",
+        "sakurasake"
       ],
       "artistAliases": [
-        "嵐",
         "あらし",
         "アラシ",
         "arashi"
@@ -9862,12 +9928,11 @@
     },
     "勿忘|Awesome City Club": {
       "searchWords": [
-        "もちろんぼう",
-        "モチロンボウ",
-        "mochironbou"
+        "わすれな",
+        "ワスレナ",
+        "wasurena"
       ],
       "artistAliases": [
-        "Awesome City Club"
       ],
       "tags": []
     },
@@ -9877,10 +9942,6 @@
         "parabora"
       ],
       "artistAliases": [
-        "Official髭男dism",
-        "Officialひげおとこdism",
-        "Officialヒゲオトコdism",
-        "Officialhigeotokodism"
       ],
       "tags": []
     },
@@ -9890,17 +9951,15 @@
         "erudaafurawaa"
       ],
       "artistAliases": [
-        "Official髭男dism",
-        "Officialひげおとこdism",
-        "Officialヒゲオトコdism",
-        "Officialhigeotokodism"
       ],
       "tags": []
     },
     "GOOD DAY|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "ぐっどでい",
+        "グッドデイ"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
       ],
       "tags": []
     },
@@ -9911,9 +9970,9 @@
         "sakurakoi"
       ],
       "artistAliases": [
-        "もさを。",
-        "モサヲ。",
-        "mosawo."
+        "もさを",
+        "モサヲ",
+        "mosawo"
       ],
       "tags": []
     },
@@ -9924,15 +9983,17 @@
         "moukoinanteshinai"
       ],
       "artistAliases": [
-        "槇原敬之",
-        "まきはらたかゆき",
-        "マキハラタカユキ",
-        "makiharatakayuki"
+        "まきはらのりゆき",
+        "マキハラノリユキ",
+        "makiharanoriyuki"
       ],
       "tags": []
     },
     "melt bitter|さとうもか": {
-      "searchWords": [],
+      "searchWords": [
+        "めるとびたー",
+        "メルトビター"
+      ],
       "artistAliases": [
         "さとうもか",
         "サトウモカ",
@@ -9941,19 +10002,24 @@
       "tags": []
     },
     "Brand New Tomorrow|家入レオ": {
-      "searchWords": [],
+      "searchWords": [
+        "ぶらんどにゅーとぅもろー",
+        "ブランドニュートゥモロー"
+      ],
       "artistAliases": [
-        "家入レオ",
-        "いえにゅうれお",
-        "イエニュウレオ",
-        "ienyuureo"
+        "いえいりれお",
+        "イエイリレオ",
+        "ieirireo"
       ],
       "tags": []
     },
     "Sincerely|TRUE": {
-      "searchWords": [],
+      "searchWords": [
+        "しんしありー",
+        "シンシアリー",
+        "sincerely"
+      ],
       "artistAliases": [
-        "TRUE"
       ],
       "tags": []
     },
@@ -9964,7 +10030,6 @@
         "matataki"
       ],
       "artistAliases": [
-        "back number"
       ],
       "tags": []
     },
@@ -9975,7 +10040,6 @@
         "mizu"
       ],
       "artistAliases": [
-        "中島みゆき",
         "なかじまみゆき",
         "ナカジマミユキ",
         "nakajimamiyuki"
@@ -9983,9 +10047,12 @@
       "tags": []
     },
     "PRIDE|今井美樹": {
-      "searchWords": [],
+      "searchWords": [
+        "ぷらいど",
+        "プライド",
+        "puraido"
+      ],
       "artistAliases": [
-        "今井美樹",
         "いまいみき",
         "イマイミキ",
         "imaimiki"
@@ -9993,9 +10060,12 @@
       "tags": []
     },
     "I am|森田真奈美": {
-      "searchWords": [],
+      "searchWords": [
+        "あいあむ",
+        "アイアム",
+        "i am"
+      ],
       "artistAliases": [
-        "森田真奈美",
         "もりたまなみ",
         "モリタマナミ",
         "moritamanami"
@@ -10003,19 +10073,26 @@
       "tags": []
     },
     "ONE WORLD|吉川晃司": {
-      "searchWords": [],
+      "searchWords": [
+        "わんわーるど",
+        "ワンワールド",
+        "wanwaaludo"
+      ],
       "artistAliases": [
-        "吉川晃司",
-        "よしかわこうじ",
-        "ヨシカワコウジ",
-        "yoshikawakouji"
+        "きっかわこうじ",
+        "キッカワコウジ",
+        "kikkawa kouji"
       ],
       "tags": []
     },
     "VISIONS|NAQT VANE": {
-      "searchWords": [],
+      "searchWords": [
+        "びじょんず",
+        "ビジョンズ",
+        "ゔぃじょんず",
+        "ヴィジョンズ"
+      ],
       "artistAliases": [
-        "NAQT VANE"
       ],
       "tags": []
     },
@@ -10026,20 +10103,19 @@
         "odoruponpokorin"
       ],
       "artistAliases": [
-        "B.B.クィーンズ",
-        "B.B.くぃーんず",
+        "クィーンズ",
+        "びーびーくぃーんず",
         "B.B.kuiinzu"
       ],
       "tags": []
     },
     "宝島|T-SQUARE": {
       "searchWords": [
-        "たからしま",
-        "タカラシマ",
-        "takarashima"
+        "たからじま",
+        "タカラジマ",
+        "takarajima"
       ],
       "artistAliases": [
-        "T-SQUARE"
       ],
       "tags": []
     },
@@ -10049,7 +10125,6 @@
         "aidea"
       ],
       "artistAliases": [
-        "星野源",
         "ほしのげん",
         "ホシノゲン",
         "hoshinogen"
@@ -10063,15 +10138,14 @@
         "kazenoyukue"
       ],
       "artistAliases": [
-        "Ado"
       ],
       "tags": []
     },
     "元彼女のみなさまへ|コレサワ": {
       "searchWords": [
-        "もとかののみなさまへ",
-        "モトカノノミナサマヘ",
-        "motokanonominasamahe"
+        "もとかのじょのみなさまへ",
+        "モトカノジョノミナサマヘ",
+        "motokanojonominasamahe"
       ],
       "artistAliases": [
         "コレサワ",
@@ -10086,7 +10160,6 @@
         "aigaaru"
       ],
       "artistAliases": [
-        "Every Little Thing"
       ],
       "tags": []
     },
@@ -10097,7 +10170,6 @@
         "sutekidane"
       ],
       "artistAliases": [
-        "RIKKI"
       ],
       "tags": []
     },
@@ -10114,7 +10186,11 @@
       "tags": []
     },
     "Sakura|レミオロメン": {
-      "searchWords": [],
+      "searchWords": [
+        "さくら",
+        "サクラ",
+        "sakura"
+      ],
       "artistAliases": [
         "レミオロメン",
         "れみおろめん",
@@ -10123,9 +10199,11 @@
       "tags": []
     },
     "Oz.|yama": {
-      "searchWords": [],
+      "searchWords": [
+        "おず",
+        "オズ"
+      ],
       "artistAliases": [
-        "yama"
       ],
       "tags": []
     },
@@ -10136,7 +10214,6 @@
         "hatsukoi"
       ],
       "artistAliases": [
-        "村下孝蔵",
         "むらしたこうぞう",
         "ムラシタコウゾウ",
         "murashitakouzou"
@@ -10145,23 +10222,25 @@
     },
     "愛が生まれた日|藤谷美和子・大内義昭": {
       "searchWords": [
-        "あいがうまれたにち",
-        "アイガウマレタニチ",
-        "aigaumaretanichi"
+        "あいがうまれたひ",
+        "アイガウマレタヒ",
+        "aigaumaretahi"
       ],
       "artistAliases": [
-        "藤谷美和子・大内義昭",
-        "ふじたにみわこ・おおうちよしあき",
-        "フジタニミワコ・オオウチヨシアキ",
-        "fujitanimiwako・oouchiyoshiaki"
+        "ふじたにみわこ",
+        "おおうちよしあき",
+        "フジタニミワコ",
+        "オオウチヨシアキ",
+        "fujitanimiwako",
+        "oouchiyoshiaki"
       ],
       "tags": []
     },
     "100万回の「I love you」|Rake": {
       "searchWords": [
-        "100まんかいの「I love you」",
-        "100マンカイノ「I love you」",
-        "100mankaino(I love you)"
+        "ひゃくまんかいのあいらぶゆー",
+        "ヒャクマンカイノアイラブユー",
+        "100mankaianoairabuyuu"
       ],
       "artistAliases": [
         "Rake"
@@ -10170,8 +10249,9 @@
     },
     "ベイビー・アイラブユー|TEE": {
       "searchWords": [
-        "べいびー・あいらぶゆー",
-        "beibii・airabuyuu"
+        "べいびーあいらぶゆー",
+        "ベイビーアイラブユー",
+        "beibiiairabuyuu"
       ],
       "artistAliases": [
         "TEE"
@@ -10184,29 +10264,28 @@
         "uiaatoru"
       ],
       "artistAliases": [
-        "rionos"
+        "りおのす",
+        "リオノス"
       ],
       "tags": []
     },
     "夢花火|Novelbright": {
       "searchWords": [
-        "ゆめはなひ",
-        "ユメハナヒ",
-        "yumehanahi"
+        "ゆめはなび",
+        "ユメハナビ",
+        "yumehanabi"
       ],
       "artistAliases": [
-        "Novelbright"
       ],
       "tags": []
     },
     "今日という日を|Uru": {
       "searchWords": [
-        "きょうというにちを",
-        "キョウトイウニチヲ",
-        "kyoutoiunichiwo"
+        "きょうというひを",
+        "キョウトイウヒヲ",
+        "kyoutoiuhiwo"
       ],
       "artistAliases": [
-        "Uru"
       ],
       "tags": []
     },
@@ -10229,16 +10308,19 @@
         "aijin"
       ],
       "artistAliases": [
-        "テレサ・テン",
-        "てれさ・てん",
-        "teresa・ten"
+        "テレサテン",
+        "てれさてん",
+        "teresa ten"
       ],
       "tags": []
     },
     "Sign|Mr.Children": {
-      "searchWords": [],
+      "searchWords": [
+        "さいん",
+        "サイン",
+        "sain"
+      ],
       "artistAliases": [
-        "Mr.Children"
       ],
       "tags": []
     },
@@ -10249,7 +10331,6 @@
         "gohantabeyo"
       ],
       "artistAliases": [
-        "Mega Shinnosuke"
       ],
       "tags": []
     },
@@ -10260,28 +10341,32 @@
         "hoshifuruumi"
       ],
       "artistAliases": [
-        "月見ヤチヨ(CV.早見沙織)",
-        "つきみやちよ(CV.はやみさおり)",
-        "ツキミヤチヨ(CV.ハヤミサオリ)",
-        "tsukimiyachiyo(CV.hayamisaori)"
+        "つきみやちよ",
+        "はやみさおり",
+        "ツキミヤチヨ",
+        "ハヤミサオリ",
+        "tsukimiyachiyo",
+        "hayamisaori"
       ],
       "tags": []
     },
     "ray|BUMP OF CHICKEN": {
-      "searchWords": [],
+      "searchWords": [
+        "れい",
+        "レイ",
+        "rei"
+      ],
       "artistAliases": [
-        "BUMP OF CHICKEN"
       ],
       "tags": []
     },
     "勇者王誕生!|遠藤正明": {
       "searchWords": [
-        "ゆうしゃおうたんじょう!",
-        "ユウシャオウタンジョウ!",
-        "yuushaoutanjou!"
+        "ゆうしゃおうたんじょう",
+        "ユウシャオウタンジョウ",
+        "yuushaoutanjou"
       ],
       "artistAliases": [
-        "遠藤正明",
         "えんどうまさあき",
         "エンドウマサアキ",
         "endoumasaaki"
@@ -10289,9 +10374,12 @@
       "tags": []
     },
     "Beautiful World|宇多田ヒカル": {
-      "searchWords": [],
+      "searchWords": [
+        "びゅーてぃふるわーるど",
+        "ビューティフルワールド",
+        "byuutifuruwaarudo"
+      ],
       "artistAliases": [
-        "宇多田ヒカル",
         "うただひかる",
         "ウタダヒカル",
         "utadahikaru"
@@ -10300,12 +10388,11 @@
     },
     "輝きは君の中に|鈴木結女": {
       "searchWords": [
-        "かがやきはくんのなかに",
-        "カガヤキハクンノナカニ",
-        "kagayakihakunnonakani"
+        "かがやきはきみのなかに",
+        "カガヤキハキミノナカニ",
+        "kagayakihakimino nakani"
       ],
       "artistAliases": [
-        "鈴木結女",
         "すずきゆめ",
         "スズキユメ",
         "suzukiyume"
@@ -10327,12 +10414,11 @@
     },
     "15の夜|尾崎豊": {
       "searchWords": [
-        "15のよる",
-        "15ノヨル",
-        "15noyoru"
+        "じゅうごのよる",
+        "ジュウゴノヨル",
+        "juugo no yoru"
       ],
       "artistAliases": [
-        "尾崎豊",
         "おざきゆたか",
         "オザキユタカ",
         "ozakiyutaka"
@@ -10346,10 +10432,12 @@
         "eki"
       ],
       "artistAliases": [
-        "中森明菜 / 竹内まりや(Self Cover)",
-        "なかもりあきな / たけうちまりや(Self Cover)",
-        "ナカモリアキナ / タケウチマリヤ(Self Cover)",
-        "nakamoriakina / takeuchimariya(Self Cover)"
+        "なかもりあきな",
+        "たけうちまりや",
+        "ナカモリアキナ",
+        "タケウチマリヤ",
+        "nakamoriakina",
+        "takeuchimariya"
       ],
       "tags": []
     },
@@ -10360,7 +10448,6 @@
         "sakuranagashi"
       ],
       "artistAliases": [
-        "宇多田ヒカル",
         "うただひかる",
         "ウタダヒカル",
         "utadahikaru"
@@ -10368,7 +10455,13 @@
       "tags": []
     },
     "TOMORROW|BISH": {
-      "searchWords": [],
+      "searchWords": [
+        "とぅもろう",
+        "トゥモロウ",
+        "とぅもろー",
+        "トゥモロー",
+        "tomorrow"
+      ],
       "artistAliases": [
         "BISH"
       ],
@@ -10381,16 +10474,18 @@
         "kibounowadachi"
       ],
       "artistAliases": [
-        "サザンオールスターズ",
         "さざんおーるすたーず",
         "sazan'oorusutaazu"
       ],
       "tags": []
     },
     "RIDE ON TIME|山下達郎": {
-      "searchWords": [],
+      "searchWords": [
+        "らいどおんたいむ",
+        "ライドオンタイム",
+        "rideontime"
+      ],
       "artistAliases": [
-        "山下達郎",
         "やましたたつろう",
         "ヤマシタタツロウ",
         "yamashitatatsurou"
@@ -10403,17 +10498,19 @@
         "baretta"
       ],
       "artistAliases": [
-        "乃木坂46",
-        "のぎざか46",
-        "ノギザカ46",
-        "nogizaka46"
+        "のぎざかふぉーてぃーしっくす",
+        "ノギザカフォーティーシックス",
+        "nogizaka"
       ],
       "tags": []
     },
     "Never Ending World|SEKAI NO OWARI": {
-      "searchWords": [],
+      "searchWords": [
+        "ねばーえんでぃんぐわーるど",
+        "ネバーエンディングワールド",
+        "neberendinguwoorudo"
+      ],
       "artistAliases": [
-        "SEKAI NO OWARI"
       ],
       "tags": []
     },
@@ -10424,7 +10521,6 @@
         "suiryuunorokku"
       ],
       "artistAliases": [
-        "日食なつこ",
         "にっしょくなつこ",
         "ニッショクナツコ",
         "nisshokunatsuko"
@@ -10432,9 +10528,14 @@
       "tags": []
     },
     "Ti Amo|Exile": {
-      "searchWords": [],
+      "searchWords": [
+        "てぃあも",
+        "ティアモ",
+        "てぃあーも",
+        "ティアーモ",
+        "tiamo"
+      ],
       "artistAliases": [
-        "Exile"
       ],
       "tags": []
     },
@@ -10445,7 +10546,6 @@
         "shishuuki"
       ],
       "artistAliases": [
-        "岩崎宏美",
         "いわさきひろみ",
         "イワサキヒロミ",
         "iwasakihiromi"
@@ -10454,15 +10554,17 @@
     },
     "また君に恋してる|ビリーバンバン / 坂本冬美(Cover)": {
       "searchWords": [
-        "またくんにこいしてる",
-        "マタクンニコイシテル",
-        "matakunnikoishiteru"
+        "またきみにこいしてる",
+        "マタキミニコイシテル",
+        "matakimini koishiteru"
       ],
       "artistAliases": [
-        "ビリーバンバン / 坂本冬美(Cover)",
-        "びりーばんばん / さかもとふゆみ(Cover)",
-        "ビリーバンバン / サカモトフユミ(Cover)",
-        "biriibanban / sakamotofuyumi(Cover)"
+        "びりーばんばん",
+        "ビリーバンバン",
+        "さかもとふゆみ",
+        "サカモトフユミ",
+        "biriibanban",
+        "sakamotofuyumi"
       ],
       "tags": []
     },
@@ -10473,7 +10575,6 @@
         "manazashihahikari"
       ],
       "artistAliases": [
-        "キタニタツヤ",
         "きたにたつや",
         "kitanitatsuya"
       ],
@@ -10496,9 +10597,9 @@
         "tsugunai"
       ],
       "artistAliases": [
-        "テレサ・テン",
-        "てれさ・てん",
-        "teresa・ten"
+        "テレサテン",
+        "てれさてん",
+        "teresa ten"
       ],
       "tags": []
     },
@@ -10509,7 +10610,6 @@
         "kaibutsu"
       ],
       "artistAliases": [
-        "YOASOBI"
       ],
       "tags": []
     },
@@ -10528,31 +10628,29 @@
       ],
       "artistAliases": [
         "陰陽座",
-        "いんようざ",
-        "インヨウザ",
-        "inyouza"
+        "おんみょうざ",
+        "オンミョウザ",
+        "onmyouza"
       ],
       "tags": []
     },
     "明日へのbrilliant road|angela": {
       "searchWords": [
-        "あしたへのbrilliant road",
-        "アシタヘノbrilliant road",
-        "ashitahenobrilliant road"
+        "あしたへのぶりりあんとろーど",
+        "アシタヘノブリリアントロード",
+        "ashitahenobuririantoroodo"
       ],
       "artistAliases": [
-        "angela"
       ],
       "tags": []
     },
     "1/6夢旅人2002|樋口了一": {
       "searchWords": [
-        "1/6ゆめたびびと2002",
-        "1/6ユメタビビト2002",
+        "ろくぶんのいちのゆめたびびとにせんに",
+        "ロクブンノイチノユメタビビトニセンニ",
         "1/6yumetabibito2002"
       ],
       "artistAliases": [
-        "樋口了一",
         "ひぐちりょういち",
         "ヒグチリョウイチ",
         "higuchiryouichi"
@@ -10561,12 +10659,11 @@
     },
     "思いがかさなるその前に…|平井堅": {
       "searchWords": [
-        "おもいがかさなるそのまえに…",
-        "オモイガカサナルソノマエニ…",
-        "omoigakasanarusonomaeni…"
+        "おもいがかさなるそのまえに",
+        "オモイガカサナルソノマエニ",
+        "omoigakasanarusonomaeni"
       ],
       "artistAliases": [
-        "平井堅",
         "ひらいけん",
         "ヒライケン",
         "hiraiken"
@@ -10575,9 +10672,12 @@
     },
     "AXIA〜ダイスキでダイキライ〜|ワルキューレ": {
       "searchWords": [
-        "AXIA〜だいすきでだいきらい〜",
-        "AXIA〜ダイスキデダイキライ〜",
-        "AXIA~daisukidedaikirai~"
+        "あくしあ",
+        "アクシア",
+        "だいすきでだいきらい",
+        "ダイスキデダイキライ",
+        "akushia",
+        "daisukidedaikirai"
       ],
       "artistAliases": [
         "ワルキューレ",
@@ -10593,19 +10693,24 @@
         "ainosanka"
       ],
       "artistAliases": [
-        "エディット・ピアフ",
-        "えでぃっと・ぴあふ",
-        "editto・piafu"
+        "エディットピアフ",
+        "えでぃっとぴあふ",
+        "editto piafu"
       ],
       "tags": []
     },
     "Good-bye days|YUI for 雨音薫": {
-      "searchWords": [],
+      "searchWords": [
+        "ぐっばいでいず",
+        "グッバイデイズ",
+        "good bye days",
+        "gubbai days"
+      ],
       "artistAliases": [
-        "YUI for 雨音薫",
-        "YUI for あまおとかおる",
-        "YUI for アマオトカオル",
-        "YUI for amaotokaoru"
+        "あまおとかおる",
+        "アマオトカオル",
+        "YUI",
+        "amaotokaoru"
       ],
       "tags": []
     },
@@ -10616,7 +10721,6 @@
         "fuyunohana"
       ],
       "artistAliases": [
-        "宮本浩次",
         "みやもとこうじ",
         "ミヤモトコウジ",
         "miyamotokouji"
@@ -10638,12 +10742,11 @@
     },
     "銀河街の悪夢|SEKAI NO OWARI": {
       "searchWords": [
-        "ぎんがまちのあくむ",
-        "ギンガマチノアクム",
-        "gingamachinoakumu"
+        "ぎんががいのあくむ",
+        "ギンガガイノアクム",
+        "gingagainoakumu"
       ],
       "artistAliases": [
-        "SEKAI NO OWARI"
       ],
       "tags": []
     },
@@ -10654,7 +10757,6 @@
         "ihoujin"
       ],
       "artistAliases": [
-        "久保田早紀",
         "くぼたさき",
         "クボタサキ",
         "kubotasaki"
@@ -10680,7 +10782,6 @@
         "ajisai"
       ],
       "artistAliases": [
-        "PEOPLE 1"
       ],
       "tags": []
     },
@@ -10691,7 +10792,6 @@
         "yozakuraoshichi"
       ],
       "artistAliases": [
-        "坂本冬美",
         "さかもとふゆみ",
         "サカモトフユミ",
         "sakamotofuyumi"
@@ -10699,9 +10799,16 @@
       "tags": []
     },
     "me me she|RADWIMPS": {
-      "searchWords": [],
+      "searchWords": [
+        "めめしー",
+        "めめしい",
+        "メメシー",
+        "メメシイ",
+        "me me she"
+      ],
       "artistAliases": [
         "RADWIMPS",
+        "RADWINPS",
         "らっどうぃんぷす",
         "ラッドウィンプス"
       ],
@@ -10714,7 +10821,6 @@
         "iinichitabidachi"
       ],
       "artistAliases": [
-        "山口百恵",
         "やまぐちももえ",
         "ヤマグチモモエ",
         "yamaguchimomoe"
@@ -10722,9 +10828,12 @@
       "tags": []
     },
     "Five|嵐": {
-      "searchWords": [],
+      "searchWords": [
+        "ふぁいぶ",
+        "ファイブ",
+        "faibu"
+      ],
       "artistAliases": [
-        "嵐",
         "あらし",
         "アラシ",
         "arashi"
@@ -10733,12 +10842,11 @@
     },
     "少女A|中森明菜": {
       "searchWords": [
-        "しょうじょA",
-        "ショウジョA",
-        "shoujoA"
+        "しょうじょえー",
+        "ショウジョエー",
+        "shoujo a"
       ],
       "artistAliases": [
-        "中森明菜",
         "なかもりあきな",
         "ナカモリアキナ",
         "nakamoriakina"
@@ -10752,7 +10860,7 @@
         "umiyurikaiteitan"
       ],
       "artistAliases": [
-        "n-buna"
+        
       ],
       "tags": []
     },
@@ -10763,7 +10871,6 @@
         "asagao"
       ],
       "artistAliases": [
-        "折坂悠太",
         "おりさかゆうた",
         "オリサカユウタ",
         "orisakayuuta"
@@ -10776,7 +10883,6 @@
         "maameidorapusodii"
       ],
       "artistAliases": [
-        "SEKAI NO OWARI"
       ],
       "tags": []
     },
@@ -10787,14 +10893,16 @@
         "honootomorinokaanibaru"
       ],
       "artistAliases": [
-        "SEKAI NO OWARI"
       ],
       "tags": []
     },
     "Habit|SEKAI NO OWARI": {
-      "searchWords": [],
+      "searchWords": [
+        "はびっと",
+        "ハビット",
+        "habit"
+      ],
       "artistAliases": [
-        "SEKAI NO OWARI"
       ],
       "tags": []
     },
@@ -10805,7 +10913,6 @@
         "nijiironosensou"
       ],
       "artistAliases": [
-        "SEKAI NO OWARI"
       ],
       "tags": []
     },
@@ -10816,7 +10923,6 @@
         "kazetomachi"
       ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
       ],
       "tags": []
     },
@@ -10833,7 +10939,13 @@
       "tags": []
     },
     "Tomorrow never knows|Mr.Children": {
-      "searchWords": [],
+      "searchWords": [
+        "とぅもろうねばーのうず",
+        "トゥモロウネバーノウズ",
+        "とぅもろーねばーのうず",
+        "トゥモローネバーノウズ",
+        "tomorrowneverbows"
+      ],
       "artistAliases": [
         "Mr.Children"
       ],
@@ -10846,10 +10958,9 @@
         "byoushinwokamu"
       ],
       "artistAliases": [
-        "ずっと真夜中でいいのに。",
-        "ずっとまよなかでいいのに。",
-        "ズットマヨナカデイイノニ。",
-        "zuttomayonakadeiinoni."
+        "ずっとまよなかでいいのに",
+        "ズットマヨナカデイイノニ",
+        "zuttomayonakadeiinoni"
       ],
       "tags": []
     },
@@ -10860,7 +10971,6 @@
         "bokutachinoshippai"
       ],
       "artistAliases": [
-        "森田童子",
         "もりたどうじ",
         "モリタドウジ",
         "moritadouji"
@@ -10873,7 +10983,6 @@
         "pitagorasuitchi oopuninguteema"
       ],
       "artistAliases": [
-        "栗原正己",
         "くりはらまさみ",
         "クリハラマサミ",
         "kuriharamasami"
@@ -10881,14 +10990,22 @@
       "tags": []
     },
     "RE:I AM|Aimer": {
-      "searchWords": [],
+      "searchWords": [
+        "りあいあむ",
+        "リアイアム",
+        "re i am"
+      ],
       "artistAliases": [
         "Aimer"
       ],
       "tags": []
     },
     "Wild Flowers|RAMAR": {
-      "searchWords": [],
+      "searchWords": [
+        "わいるどふらわーず",
+        "ワイルドフラワーズ",
+        "wildflowers"
+      ],
       "artistAliases": [
         "RAMAR"
       ],
@@ -10896,15 +11013,19 @@
     },
     "涙そうそう|森山良子 / 夏川りみ(Cover)": {
       "searchWords": [
-        "なみだそうそう",
-        "ナミダソウソウ",
-        "namidasousou"
+        "なだそうそう",
+        "ナダソウソウ",
+        "nadasousou",
+        "なみだ",
+        "ナミダ"
       ],
       "artistAliases": [
-        "森山良子 / 夏川りみ(Cover)",
-        "もりやまよしこ / なつかわりみ(Cover)",
-        "モリヤマヨシコ / ナツカワリミ(Cover)",
-        "moriyamayoshiko / natsukawarimi(Cover)"
+        "もりやまよしこ",
+        "なつかわりみ",
+        "モリヤマヨシコ",
+        "ナツカワリミ",
+        "moriyamayoshiko",
+        "natsukawarimi"
       ],
       "tags": []
     },
@@ -10925,7 +11046,6 @@
         "pappaparadaisu"
       ],
       "artistAliases": [
-        "宇多田ヒカル",
         "うただひかる",
         "ウタダヒカル",
         "utadahikaru"
@@ -10960,17 +11080,16 @@
         "sutaadasuto"
       ],
       "artistAliases": [
-        "Official髭男dism",
-        "Officialひげおとこdism",
-        "Officialヒゲオトコdism",
-        "Officialhigeotokodism"
       ],
       "tags": []
     },
     "One Love|嵐": {
-      "searchWords": [],
+      "searchWords": [
+        "わんらぶ",
+        "ワンラブ",
+        "wanrabu"
+      ],
       "artistAliases": [
-        "嵐",
         "あらし",
         "アラシ",
         "arashi"
@@ -10984,7 +11103,6 @@
         "hatenaisora"
       ],
       "artistAliases": [
-        "嵐",
         "あらし",
         "アラシ",
         "arashi"
@@ -11003,9 +11121,12 @@
       "tags": []
     },
     "Who What Who What|凛として時雨": {
-      "searchWords": [],
+      "searchWords": [
+        "ふーわっとふーわっと",
+        "フーワットフーワット",
+        "fuuwattofuuwatto"
+      ],
       "artistAliases": [
-        "凛として時雨",
         "りんとしてしぐれ",
         "リントシテシグレ",
         "rintoshiteshigure"
@@ -11019,7 +11140,6 @@
         "darekanonegaigakanaukoro"
       ],
       "artistAliases": [
-        "宇多田ヒカル",
         "うただひかる",
         "ウタダヒカル",
         "utadahikaru"
@@ -11032,7 +11152,6 @@
         "ikidomari"
       ],
       "artistAliases": [
-        "星野源",
         "ほしのげん",
         "ホシノゲン",
         "hoshinogen"
@@ -11041,9 +11160,9 @@
     },
     "巡ループ|Perfume": {
       "searchWords": [
-        "じゅんるーぷ",
-        "ジュンループ",
-        "junruupu"
+        "めぐるーぷ",
+        "メグループ",
+        "meguruupu"
       ],
       "artistAliases": [
         "Perfume"
