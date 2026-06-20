@@ -45,6 +45,10 @@ jobs:
       - name: Run batch script
         run: python scripts/build_musiclist.py
 
+      - name: Enrich search metadata
+        run: |
+            python scripts/enrich_musiclist.py
+
       - name: Validate generated JSON
         run: |
           output_path="${OUTPUT_JSON_PATH:-nemupipiano-musiclist-search/data/musiclist.json}"
