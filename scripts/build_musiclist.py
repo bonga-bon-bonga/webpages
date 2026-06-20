@@ -160,6 +160,7 @@ def load_json():
 
 ''' JSONファイルを保存する関数 '''
 def save_json(data):
+    os.makedirs(os.path.dirname(OUTPUT_JSON_PATH) or ".", exist_ok=True)
     with open(
         OUTPUT_JSON_PATH,
         "w",
