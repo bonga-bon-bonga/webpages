@@ -7,6 +7,10 @@ OUTPUT_JSON_PATH = (
     os.environ.get("OUTPUT_JSON_PATH")
     or "nemupipiano-musiclist-search/data/musiclist.json"
 )
+ARTIST_ALIAS_DICTIONARY_PATH = (
+    os.environ.get("ARTIST_ALIAS_DICTIONARY_PATH")
+    or "nemupipiano-musiclist-search/data/artist_alias_dictionary.json"
+)
 
 kks = kakasi()
 
@@ -40,13 +44,48 @@ def split_key(key):
     return key, ""
 
 
-def convert_variants(text):
+def load_alias_dictionary():
+    if not os.path.exists(ARTIST_ALIAS_DICTIONARY_PATH):
+        return {}
+
+    with open(
+        ARTIST_ALIAS_DICTIONARY_PATH,
+        "r",
+        encoding="utf-8",
+    ) as f:
+        data = json.load(f)
+
+    if isinstance(data, dict):
+        return {
+            str(key).strip(): unique(value)
+            for key, value in data.items()
+            if str(key).strip() and isinstance(value, list)
+        }
+
+    if isinstance(data, list):
+        aliases = {}
+        for item in data:
+            if not isinstance(item, dict):
+                continue
+
+            for key, value in item.items():
+                key = str(key).strip()
+                if key and isinstance(value, list):
+                    aliases[key] = unique(value)
+
+        return aliases
+
+    return {}
+
+
+def convert_variants(text, alias_dictionary=None):
     text = str(text).strip()
 
     if not text:
         return []
 
     result = [text]
+    result.extend((alias_dictionary or {}).get(text, []))
 
     converted = kks.convert(text)
 
@@ -86,6 +125,7 @@ def main():
         musiclist = json.load(f)
 
     items = musiclist.get("items", {})
+    alias_dictionary = load_alias_dictionary()
 
     for key, entry in items.items():
         title, artist = split_key(key)
@@ -102,13 +142,13 @@ def main():
 
         generated_search_words = []
 
-        for value in convert_variants(title):
+        for value in convert_variants(title, alias_dictionary):
             if value != title:
                 generated_search_words.append(value)
 
         generated_artist_aliases = []
 
-        for value in convert_variants(artist):
+        for value in convert_variants(artist, alias_dictionary):
             if value != artist:
                 generated_artist_aliases.append(value)
 
