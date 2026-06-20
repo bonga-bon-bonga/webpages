@@ -1,688 +1,1323 @@
 {
   "items": {
     "ルパン3世のテーマ|大野雄二": {
-      "searchWords": [],
+      "searchWords": [
+        "るぱんさんせいのてーま",
+        "ルパンサンセイノテーマ",
+        "rupan3seinote-ma"
+      ],
       "artistAliases": [
-        "大野雄二"
+        "おおのゆうじ",
+        "オオノユウジ",
+        "oono yuuji"
       ],
       "tags": []
     },
     "キセキ|GReeeeN": {
-      "searchWords": [],
+      "searchWords": [
+        "きせき",
+        "kiseki"
+      ],
       "artistAliases": [
-        "GReeeeN"
+        "greeeen",
+        "ぐりーん",
+        "グリーン",
+        "green"
       ],
       "tags": []
     },
     "コネクト|ClariS": {
-      "searchWords": [],
+      "searchWords": [
+        "こねくと",
+        "konnekuto"
+      ],
       "artistAliases": [
-        "ClariS"
+        "くらりす",
+        "クラリス",
+        "kurarisu",
+        "claris"
       ],
       "tags": []
     },
     "レオ|優里": {
-      "searchWords": [],
+      "searchWords": [
+        "れお",
+        "reo"
+      ],
       "artistAliases": [
-        "優里"
+        "ゆうり",
+        "ユウリ",
+        "yuuri",
+        "yuri"
       ],
       "tags": []
     },
     "点描のうた|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "点描の唄",
+        "点描の歌",
+        "点描のうた",
+        "てんびょうのうた",
+        "テンビョウノウタ",
+        "tenbyounouta"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
+        "みせすぐりーんあっぷる",
+        "ミセスグリーンアップル",
+        "mrs green apple"
       ],
       "tags": []
     },
     "千本桜|黒うさP": {
-      "searchWords": [],
+      "searchWords": [
+        "せんぼんざくら",
+        "センボンザクラ",
+        "senbonzakura"
+      ],
       "artistAliases": [
-        "黒うさP"
+        "くろうさぴー",
+        "クロウサピー",
+        "kurousap"
       ],
       "tags": []
     },
     "群青|YOASOBI": {
-      "searchWords": [],
+      "searchWords": [
+        "ぐんじょう",
+        "グンジョウ",
+        "gunjou"
+      ],
       "artistAliases": [
-        "YOASOBI"
+        "よあそび",
+        "ヨアソビ",
+        "yoasobi"
       ],
       "tags": []
     },
     "ドライフラワー|優里": {
-      "searchWords": [],
+      "searchWords": [
+        "どらいふらわー",
+        "doraifurawā"
+      ],
       "artistAliases": [
-        "優里"
+        "ゆうり",
+        "ユウリ",
+        "yuuri",
+        "yuri"
       ],
       "tags": []
     },
     "春泥棒|ヨルシカ": {
-      "searchWords": [],
+      "searchWords": [
+        "はるどろぼう",
+        "ハルドロボウ",
+        "harudorobou"
+      ],
       "artistAliases": [
-        "ヨルシカ"
+        "よるしか",
+        "ヨルシカ",
+        "yorushika",
+        "yorusika"
       ],
       "tags": []
     },
     "DANDAN心惹かれてく|FIELD OF VIEW": {
-      "searchWords": [],
+      "searchWords": [
+        "だんだんこころひかれてく",
+        "ダンダンココロヒカレテク",
+        "dandan kokoro hikareteku"
+      ],
       "artistAliases": [
-        "FIELD OF VIEW"
+        "ふぃーるどおぶびゅー",
+        "フィールドオブビュー",
+        "field of view",
+        "fi-rudo obu byu"
       ],
       "tags": []
     },
     "夜空|音田雅則": {
-      "searchWords": [],
+      "searchWords": [
+        "よぞら",
+        "ヨゾラ",
+        "yozora"
+      ],
       "artistAliases": [
-        "音田雅則"
+        "おとだまさのり",
+        "オトダマサノリ",
+        "otoda masanori"
       ],
       "tags": []
     },
     "小さな恋の歌|MONGOL800": {
-      "searchWords": [],
+      "searchWords": [
+        "ちいさなこいのうた",
+        "チイサナコイノウタ",
+        "chiisana koi no uta"
+      ],
       "artistAliases": [
-        "MONGOL800"
+        "もんごるはっぴゃく",
+        "モンゴルハッピャク",
+        "mongol800"
       ],
       "tags": []
     },
     "Rain|秦 基博": {
-      "searchWords": [],
+      "searchWords": [
+        "れいん",
+        "レイン",
+        "rain"
+      ],
       "artistAliases": [
-        "秦 基博"
+        "はたもとひろ",
+        "ハタモトヒロ",
+        "hata motohiro"
       ],
       "tags": []
     },
     "晩餐歌|tuki.": {
-      "searchWords": [],
+      "searchWords": [
+        "ばんさんか",
+        "バンサンカ",
+        "bansanka"
+      ],
       "artistAliases": [
-        "tuki."
+        "tuki",
+        "つき",
+        "ツキ"
       ],
       "tags": []
     },
     "幾億光年|Omoinotake": {
-      "searchWords": [],
+      "searchWords": [
+        "いくおくこうねん",
+        "イクオクコウネン",
+        "ikuoku kounen"
+      ],
       "artistAliases": [
-        "Omoinotake"
+        "おもいのたけ",
+        "オモイノタケ",
+        "omoinotake"
       ],
       "tags": []
     },
     "夜明けと蛍|n-buna": {
-      "searchWords": [],
+      "searchWords": [
+        "よあけとほたる",
+        "ヨアケトホタル",
+        "yoaketo hotaru"
+      ],
       "artistAliases": [
-        "n-buna"
+        "n-buna",
+        "なぶな",
+        "ナブナ"
       ],
       "tags": []
     },
     "おかえり|Tani Yuuki": {
-      "searchWords": [],
+      "searchWords": [
+        "オカエリ",
+        "okaeri"
+      ],
       "artistAliases": [
-        "Tani Yuuki"
+        "たにゆうき",
+        "タニユウキ",
+        "tani yuuki"
       ],
       "tags": []
     },
     "花に亡霊|ヨルシカ": {
-      "searchWords": [],
+      "searchWords": [
+        "はなにぼうれい",
+        "ハナニボウレイ",
+        "hanani bourei"
+      ],
       "artistAliases": [
-        "ヨルシカ"
+        "よるしか",
+        "ヨルシカ",
+        "yorushika",
+        "yorusika"
       ],
       "tags": []
     },
     "Soranji|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "そらんじ",
+        "ソランジ",
+        "soranji"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
+        "みせすぐりーんあっぷる",
+        "ミセスグリーンアップル",
+        "mrs green apple"
       ],
       "tags": []
     },
     "愛をこめて花束を|Superfly": {
-      "searchWords": [],
+      "searchWords": [
+        "あいをこめてはなたばを",
+        "アイヲコメテハナタバヲ",
+        "ai wo komete hanataba wo"
+      ],
       "artistAliases": [
-        "Superfly"
+        "すーぱーふらい",
+        "スーパーフライ",
+        "superfly"
       ],
       "tags": []
     },
     "First love|宇多田ヒカル": {
-      "searchWords": [],
+      "searchWords": [
+        "ふぁーすとらぶ",
+        "ファーストラブ",
+        "first love"
+      ],
       "artistAliases": [
-        "宇多田ヒカル"
+        "うただひかる",
+        "ウタダヒカル",
+        "utada hikaru"
       ],
       "tags": []
     },
     "名探偵コナンのテーマ|大野克夫": {
-      "searchWords": [],
+      "searchWords": [
+        "めいたんていこなんのてーま",
+        "メイタンテイコナンノテーマ",
+        "meitantei konan no teema"
+      ],
       "artistAliases": [
-        "大野克夫"
+        "おおのかつお",
+        "オオノカツオ",
+        "ohno katsuo"
       ],
       "tags": []
     },
     "花束|back number": {
-      "searchWords": [],
+      "searchWords": [
+        "はなたば",
+        "ハナタバ",
+        "hanataba"
+      ],
       "artistAliases": [
-        "back number"
+        "ばっくなんばー",
+        "バックナンバー",
+        "back number",
+        "bakku nanbaa"
       ],
       "tags": []
     },
     "プロローグ|Uru": {
-      "searchWords": [],
+      "searchWords": [
+        "ぷろろーぐ",
+        "purorōgu"
+      ],
       "artistAliases": [
-        "Uru"
+        "うる",
+        "ウル",
+        "uru"
       ],
       "tags": []
     },
     "君はロックを聴かない|あいみょん": {
-      "searchWords": [],
+      "searchWords": [
+        "きみはろっくをきかない",
+        "キミハロックヲキカナイ",
+        "kimi wa rokku wo kikanai"
+      ],
       "artistAliases": [
-        "あいみょん"
+        "あいみょん",
+        "アイミョン",
+        "aimyon"
       ],
       "tags": []
     },
     "栄光の架け橋|ゆず": {
-      "searchWords": [],
+      "searchWords": [
+        "えいこうのかけはし",
+        "エイコウノカケハシ",
+        "eikou no kakehashi"
+      ],
       "artistAliases": [
-        "ゆず"
+        "ゆず",
+        "ユズ",
+        "yuzu"
       ],
       "tags": []
     },
     "ありがとう|いきものがかり": {
-      "searchWords": [],
+      "searchWords": [
+        "ありがとう",
+        "アリガトウ",
+        "arigatou"
+      ],
       "artistAliases": [
-        "いきものがかり"
+        "いきものがかり",
+        "イキモノガカリ",
+        "ikimono gakari"
       ],
       "tags": []
     },
     "怪獣の花唄|Vaundy": {
-      "searchWords": [],
+      "searchWords": [
+        "かいじゅうのはなうた",
+        "カイジュウノハナウタ",
+        "kaijuu no hanauta"
+      ],
       "artistAliases": [
-        "Vaundy"
+        "vaundy",
+        "バウンディ",
+        "ヴァウンディ",
+        "ばうんでぃ",
+        "ゔぁうんでぃ"
       ],
       "tags": []
     },
     "３月９日|レミオロメン": {
-      "searchWords": [],
+      "searchWords": [
+        "さんがつここのか",
+        "サンガツココノカ",
+        "sangatsu kokonoka"
+      ],
       "artistAliases": [
-        "レミオロメン"
+        "れみおろめん",
+        "レミオロメン",
+        "remioromen"
       ],
       "tags": []
     },
     "紅蓮華|LiSA": {
-      "searchWords": [],
+      "searchWords": [
+        "ぐれんげ",
+        "グレンゲ",
+        "gurenge"
+      ],
       "artistAliases": [
-        "LiSA"
+        "LiSA",
+        "りさ",
+        "リサ"
       ],
       "tags": []
     },
     "HANABI|Mr.Children": {
-      "searchWords": [],
+      "searchWords": [
+        "はなび",
+        "ハナビ",
+        "hanabi"
+      ],
       "artistAliases": [
-        "Mr.Children"
+        "みすたーちるどれん",
+        "ミスターチルドレン",
+        "mr children"
       ],
       "tags": []
     },
     "変わらないもの|奥華子": {
-      "searchWords": [],
+      "searchWords": [
+        "かわらないもの",
+        "カワラナイモノ",
+        "kawaranai mono"
+      ],
       "artistAliases": [
-        "奥華子"
+        "おくはなこ",
+        "オクハナコ",
+        "okuhanako"
       ],
       "tags": []
     },
     "プラネタリウム|大塚愛": {
-      "searchWords": [],
+      "searchWords": [
+        "ぷらねたりうむ",
+        "プラネタリウム",
+        "puranetariumu"
+      ],
       "artistAliases": [
-        "大塚愛"
+        "おおつかあい",
+        "オオツカアイ",
+        "ootsuka ai"
       ],
       "tags": []
     },
     "晴る|ヨルシカ": {
-      "searchWords": [],
+      "searchWords": [
+        "はる",
+        "ハル",
+        "haru"
+      ],
       "artistAliases": [
-        "ヨルシカ"
+        "よるしか",
+        "ヨルシカ",
+        "yorushika",
+        "yorusika"
       ],
       "tags": []
     },
     "ひとりごつ|トクマルシューゴ": {
-      "searchWords": [],
+      "searchWords": [
+        "ひとりごつ",
+        "ヒトリゴツ",
+        "hitorigotsu"
+      ],
       "artistAliases": [
-        "トクマルシューゴ"
+        "とくまるしゅーご",
+        "トクマルシューゴ",
+        "tokumaru shugo",
+        "tokumaru syugo"
       ],
       "tags": []
     },
     "CHA-LA HEAD-CHA-LA|影山 ヒロノブ": {
       "searchWords": [],
       "artistAliases": [
-        "影山 ヒロノブ"
+        "かげやまひろのぶ",
+        "カゲヤマヒロノブ",
+        "kageyama hironobu"
       ],
       "tags": []
     },
     "残酷な天使のテーゼ|高橋 洋子": {
       "searchWords": [],
       "artistAliases": [
-        "高橋 洋子"
+        "たかはしようこ",
+        "タカハシヨウコ",
+        "takahashi youko",
+        "takahasi youko",
+        "takahashi yoko",
+        "takahasi yoko"
       ],
       "tags": []
     },
     "心得|Uru": {
-      "searchWords": [],
+      "searchWords": [
+        "こころえ",
+        "ココロエ",
+        "kokoroe"
+      ],
       "artistAliases": [
-        "Uru"
+        "uru",
+        "うる",
+        "ウル"
       ],
       "tags": []
     },
     "水平線|back number": {
-      "searchWords": [],
+      "searchWords": [
+        "すいへいせん",
+        "スイヘイセン",
+        "suiheisen"
+      ],
       "artistAliases": [
-        "back number"
+        "ばっくなんばー",
+        "バックナンバー",
+        "back number",
+        "bakku nanbaa"
       ],
       "tags": []
     },
     "夢をかなえてドラえもん|mao": {
-      "searchWords": [],
+      "searchWords": [
+        "ゆめをかなえてどらえもん",
+        "ユメヲカナエテドラエモン",
+        "yume wo kanaete doraemon"
+      ],
       "artistAliases": [
+        "まお",
+        "マオ",
         "mao"
       ],
       "tags": []
     },
     "勇者|YOASOBI": {
-      "searchWords": [],
+      "searchWords": [
+        "ゆうしゃ",
+        "ユウシャ",
+        "yuusha",
+        "yuusya"
+      ],
       "artistAliases": [
-        "YOASOBI"
+        "よあそび",
+        "ヨアソビ",
+        "yoasobi"
       ],
       "tags": []
     },
     "ブルーバード|いきものがかり": {
-      "searchWords": [],
+      "searchWords": [
+        "ぶるーばーど",
+        "ブルーバード",
+        "blue bird"
+      ],
       "artistAliases": [
-        "いきものがかり"
+        "いきものがかり",
+        "イキモノガカリ",
+        "ikimono gakari"
       ],
       "tags": []
     },
     "丸の内サディスティック|椎名 林檎": {
-      "searchWords": [],
+      "searchWords": [
+        "まるのうちさでぃすてぃっく",
+        "マルノウチサディスティック",
+        "marunouchi sadistic",
+        "sadisutikku",
+        "sadhisutikku"
+      ],
       "artistAliases": [
-        "椎名 林檎"
+        "しいなりんご",
+        "シイナリンゴ",
+        "shiina ringo",
+        "siina ringo"
       ],
       "tags": []
     },
     "ひぐらしの泣く頃にyou|dai": {
-      "searchWords": [],
+      "searchWords": [
+        "ゆう",
+        "ユウ",
+        "you",
+        "ひぐらしのなくころに",
+        "ヒグラシノナクコロニ",
+        "higurashi no naku koro ni",
+        "higurasi"
+      ],
       "artistAliases": [
+        "だい",
+        "ダイ",
         "dai"
       ],
       "tags": []
     },
     "Story|AI": {
-      "searchWords": [],
+      "searchWords": [
+        "すとーりー",
+        "ストーリー",
+        "story"
+      ],
       "artistAliases": [
+        "あい",
+        "アイ",
         "AI"
       ],
       "tags": []
     },
     "サザンカ|SEKAI NO OWARI": {
-      "searchWords": [],
+      "searchWords": [
+        "さざんか",
+        "サザンカ",
+        "sazanka"
+      ],
       "artistAliases": [
-        "SEKAI NO OWARI"
+        "せかいのおわり",
+        "セカイノオワリ",
+        "sekai no owari"
       ],
       "tags": []
     },
     "粉雪|レミオロメン": {
-      "searchWords": [],
+      "searchWords": [
+        "こなゆき",
+        "コナユキ",
+        "konayuki"
+      ],
       "artistAliases": [
-        "レミオロメン"
+        "れみおろめん",
+        "レミオロメン",
+        "remioromen"
       ],
       "tags": []
     },
     "虹|菅田 将暉": {
-      "searchWords": [],
+      "searchWords": [
+        "にじ",
+        "ニジ",
+        "niji"
+      ],
       "artistAliases": [
-        "菅田 将暉"
+        "すだまさき",
+        "スダマサキ",
+        "suda masaki"
       ],
       "tags": []
     },
     "満ちてゆく|藤井風": {
-      "searchWords": [],
+      "searchWords": [
+        "みちてゆく",
+        "ミチテユク",
+        "michiteyuku"
+      ],
       "artistAliases": [
-        "藤井風"
+        "ふじいかぜ",
+        "フジイカゼ",
+        "fujii kaze"
       ],
       "tags": []
     },
     "少女レイ|みきとP": {
-      "searchWords": [],
+      "searchWords": [
+        "しょうじょれい",
+        "ショウジョレイ",
+        "shoujo rei"
+      ],
       "artistAliases": [
-        "みきとP"
+        "みきとP",
+        "ミキトP",
+        "mikitop"
       ],
       "tags": []
     },
     "ふゆびより|佐々木恵梨": {
-      "searchWords": [],
+      "searchWords": [
+        "ふゆびより",
+        "フユビヨリ",
+        "fuyubiyori"
+      ],
       "artistAliases": [
-        "佐々木恵梨"
+        "ささきえり",
+        "ササキエリ",
+        "sasaki eri"
       ],
       "tags": []
     },
     "雪の華|中島美嘉": {
-      "searchWords": [],
+      "searchWords": [
+        "ゆきのはな",
+        "ユキノハナ",
+        "yuki no hana"
+      ],
       "artistAliases": [
-        "中島美嘉"
+        "なかじまみか",
+        "ナカジマミカ",
+        "なかしまみか",
+        "ナカシマミカ",
+        "nakashima mika",
+        "nakajima mika"
       ],
       "tags": []
     },
     "Butter-Fly|和田光司": {
-      "searchWords": [],
+      "searchWords": [
+        "ばたふらい",
+        "バタフライ",
+        "butter-fly",
+        "butterfly"
+      ],
       "artistAliases": [
-        "和田光司"
+        "わだこうじ",
+        "ワダコウジ",
+        "wada kouji"
       ],
       "tags": []
     },
     "僕のこと|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "ぼくのこと",
+        "ボクノコト",
+        "boku no koto"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
+        "みせすぐりーんあっぷる",
+        "ミセスグリーンアップル",
+        "mrs green apple"
       ],
       "tags": []
     },
     "最上級にかわいいの!|超ときめき♡宣伝部": {
-      "searchWords": [],
+      "searchWords": [
+        "さいじょうきゅうにかわいいの",
+        "サイジョウキュウニカワイイノ",
+        "saijoukyuu ni kawaii no"
+      ],
       "artistAliases": [
-        "超ときめき♡宣伝部"
+        "ちょうときめきせんでんぶ",
+        "チョウトキメキセンデンブ",
+        "chou tokimeki sendenbu"
       ],
       "tags": []
     },
     "subtitle|Official髭男dism": {
-      "searchWords": [],
+      "searchWords": [
+        "さぶたいとる",
+        "サブタイトル",
+        "subtitle",
+        "sabutaitoru"
+      ],
       "artistAliases": [
-        "Official髭男dism"
+        "おふぃしゃるひげだんでぃずむ",
+        "オフィシャルヒゲダンディズム",
+        "official hige dan dism",
+        "ofisharu hige dan disumu"
       ],
       "tags": []
     },
     "アイノカタチ|MISIA": {
-      "searchWords": [],
+      "searchWords": [
+        "あいのかたち",
+        "アイノカタチ",
+        "ai no katachi"
+      ],
       "artistAliases": [
-        "MISIA"
+        "みーしゃ",
+        "ミーシャ",
+        "misia",
+        "mi-sha",
+        "mi-sya"
       ],
       "tags": []
     },
     "糸|中島みゆき": {
-      "searchWords": [],
+      "searchWords": [
+        "いと",
+        "イト",
+        "ito"
+      ],
       "artistAliases": [
-        "中島みゆき"
+        "なかじまみゆき",
+        "ナカジマミユキ",
+        "nakajima miyuki"
       ],
       "tags": []
     },
     "白い恋人たち|桑田佳祐": {
-      "searchWords": [],
+      "searchWords": [
+        "しろいこいびとたち",
+        "シロイコイビトタチ",
+        "shiroi koibito tachi"
+      ],
       "artistAliases": [
-        "桑田佳祐"
+        "くわたけいすけ",
+        "クワタケイスケ",
+        "kuwata keisuke"
       ],
       "tags": []
     },
     "明日への扉|I WiSH": {
-      "searchWords": [],
+      "searchWords": [
+        "あすへのとびら",
+        "アスヘノトビラ",
+        "asu e no tobira"
+      ],
       "artistAliases": [
-        "I WiSH"
+        "あいうぃっしゅ",
+        "アイウィッシュ",
+        "i wish"
       ],
       "tags": []
     },
     "フリージア|Uru": {
-      "searchWords": [],
+      "searchWords": [
+        "ふりーじあ",
+        "フリージア",
+        "freesia"
+      ],
       "artistAliases": [
+        "うる",
+        "ウル",
         "Uru"
       ],
       "tags": []
     },
     "竈門炭治郎のうた|椎名豪featuring中川奈美": {
-      "searchWords": [],
+      "searchWords": [
+        "かまどたんじろうのうた",
+        "カマドタンジロウノウタ",
+        "kamado tanjirou no uta"
+      ],
       "artistAliases": [
-        "椎名豪featuring中川奈美"
+        "しいなごう ふぃーちゃりんぐ なかがわなみ",
+        "シイナゴウ フィーチャリング ナカガワナミ",
+        "shiina gou featuring nakagawa nami"
       ],
       "tags": []
     },
     "クリスマスソング|back number": {
-      "searchWords": [],
+      "searchWords": [
+        "くりすますそんぐ",
+        "クリスマスソング",
+        "kurisumasu songu"
+      ],
       "artistAliases": [
-        "back number"
+        "ばっくなんばー",
+        "バックナンバー",
+        "back number",
+        "bakku nanbaa"
       ],
       "tags": []
     },
     "いつかのメリークリスマス|B’z": {
-      "searchWords": [],
+      "searchWords": [
+        "いつかのめりーくりすます",
+        "イツカノメリークリスマス",
+        "itsuka no merry christmas",
+        "kurisumasu"
+      ],
       "artistAliases": [
-        "B’z"
+        "びーず",
+        "ビーズ",
+        "bz"
       ],
       "tags": []
     },
     "ライラック|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "らいらっく",
+        "ライラック",
+        "lilac",
+        "rairakku"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
+        "みせすぐりーんあっぷる",
+        "ミセスグリーンアップル",
+        "mrs green apple"
       ],
       "tags": []
     },
     "それを愛と呼ぶなら|Uru": {
-      "searchWords": [],
+      "searchWords": [
+        "それをあいとよぶなら",
+        "ソレヲアイトヨブナラ",
+        "sore wo ai to yobu nara"
+      ],
       "artistAliases": [
-        "Uru"
+        "うる",
+        "ウル",
+        "uru"
       ],
       "tags": []
     },
     "奏|スキマスイッチ": {
-      "searchWords": [],
+      "searchWords": [
+        "かなで",
+        "カナデ",
+        "kanade"
+      ],
       "artistAliases": [
-        "スキマスイッチ"
+        "すきますいっち",
+        "スキマスイッチ",
+        "sukima switch",
+        "sukima suitchi"
       ],
       "tags": []
     },
     "ガーネット|奥華子": {
-      "searchWords": [],
+      "searchWords": [
+        "がーねっと",
+        "ガーネット",
+        "garnet",
+        "ga-netto"
+      ],
       "artistAliases": [
-        "奥華子"
+        "おくはなこ",
+        "オクハナコ",
+        "oku hanako"
       ],
       "tags": []
     },
     "僕が死のうと思ったのは|中島美嘉": {
-      "searchWords": [],
+      "searchWords": [
+        "ぼくがしのうとおもったのは",
+        "ボクガシノウトオモッタノハ",
+        "boku ga shinou to omotta no wa"
+      ],
       "artistAliases": [
-        "中島美嘉"
+        "なかじまみか",
+        "ナカジマミカ",
+        "なかしまみか",
+        "ナカシマミカ",
+        "nakashima mika",
+        "nakajima mika"
       ],
       "tags": []
     },
     "アルジャーノン|ヨルシカ": {
-      "searchWords": [],
+      "searchWords": [
+        "あるじゃーのん",
+        "アルジャーノン",
+        "algernon",
+        "arujanonn"
+      ],
       "artistAliases": [
-        "ヨルシカ"
+        "よるしか",
+        "ヨルシカ",
+        "yorushika",
+        "yorusika"
       ],
       "tags": []
     },
     "おジャ魔女カーニバル‼|MAHO堂": {
-      "searchWords": [],
+      "searchWords": [
+        "おじゃまじょかーにばる",
+        "オジャマジョカーニバル",
+        "ojamajo carnival",
+        "ka-nibaru"
+      ],
       "artistAliases": [
-        "MAHO堂"
+        "まほうどう",
+        "マホウドウ",
+        "mahou dou",
+        "maho dou"
       ],
       "tags": []
     },
     "ヒロイン|back number": {
-      "searchWords": [],
+      "searchWords": [
+        "ひろいん",
+        "ヒロイン",
+        "heroine",
+        "hiroinn"
+      ],
       "artistAliases": [
-        "back number"
+        "ばっくなんばー",
+        "バックナンバー",
+        "back number",
+        "bakku nanbaa"
       ],
       "tags": []
     },
     "花束の代わりにメロディを|清水翔太": {
-      "searchWords": [],
+      "searchWords": [
+        "はなたばのかわりにめろでぃを",
+        "ハナタバノカワリニメロディヲ",
+        "hanataba no kawari ni melody wo"
+      ],
       "artistAliases": [
-        "清水翔太"
+        "しみずしょうた",
+        "シミズショウタ",
+        "shimizu shota"
       ],
       "tags": []
     },
     "Pretender|Official髭男dism": {
-      "searchWords": [],
+      "searchWords": [
+        "ぷりてんだー",
+        "プリテンダー",
+        "puritenda-"
+      ],
       "artistAliases": [
-        "Official髭男dism"
+        "おふぃしゃるひげだんでぃずむ",
+        "オフィシャルヒゲダンディズム",
+        "official hige dan dism",
+        "ofisharu hige dan disumu"
       ],
       "tags": []
     },
     "ハルカ|YOASOBI": {
-      "searchWords": [],
+      "searchWords": [
+        "はるか",
+        "ハルカ",
+        "haruka"
+      ],
       "artistAliases": [
-        "YOASOBI"
+        "よあそび",
+        "ヨアソビ",
+        "yoasobi"
       ],
       "tags": []
     },
     "月光|鬼束ちひろ": {
-      "searchWords": [],
+      "searchWords": [
+        "げっこう",
+        "ゲッコウ",
+        "gekkou"
+      ],
       "artistAliases": [
-        "鬼束ちひろ"
+        "おにつかちひろ",
+        "オニツカチヒロ",
+        "onitsuka chihiro"
       ],
       "tags": []
     },
     "innocent world|Mr.Children": {
-      "searchWords": [],
+      "searchWords": [
+        "いのせんとわーるど",
+        "イノセントワールド",
+        "inosento wa-rudo"
+      ],
       "artistAliases": [
-        "Mr.Children"
+        "みすたーちるどれん",
+        "ミスターチルドレン",
+        "mr children"
       ],
       "tags": []
     },
     "蕾|コブクロ": {
-      "searchWords": [],
+      "searchWords": [
+        "つぼみ",
+        "ツボミ",
+        "tsubomi"
+      ],
       "artistAliases": [
-        "コブクロ"
+        "こぶくろ",
+        "コブクロ",
+        "kobukuro"
       ],
       "tags": []
     },
     "366日|HY": {
-      "searchWords": [],
+      "searchWords": [
+        "さんびゃくろくじゅうろくにち",
+        "サンビャクロクジュウロクニチ",
+        "sanbyaku rokujuu roku nichi"
+      ],
       "artistAliases": [
-        "HY"
+        "えいちわい",
+        "エイチワイ",
+        "hy"
       ],
       "tags": []
     },
     "ロビンソン|スピッツ": {
-      "searchWords": [],
+      "searchWords": [
+        "ろびんそん",
+        "ロビンソン",
+        "robinson"
+      ],
       "artistAliases": [
-        "スピッツ"
+        "すぴっつ",
+        "スピッツ",
+        "spitz",
+        "supittsu"
       ],
       "tags": []
     },
     "手紙～拝啓十五の君へ～|アンジェラ・アキ": {
-      "searchWords": [],
+      "searchWords": [
+        "てがみはいけいじゅうごのきみへ",
+        "テガミハイケイジュウゴノキミヘ",
+        "tegami haikei juugo no kimi e"
+      ],
       "artistAliases": [
-        "アンジェラ・アキ"
+        "あんじぇらあき",
+        "アンジェラアキ",
+        "angela aki",
+        "anjera aki"
       ],
       "tags": []
     },
     "明日への手紙|手嶌葵": {
-      "searchWords": [],
+      "searchWords": [
+        "あすへのてがみ",
+        "アスヘノテガミ",
+        "asu e no tegami"
+      ],
       "artistAliases": [
-        "手嶌葵"
+        "てしまあおい",
+        "手嶌葵",
+        "teshima aoi"
       ],
       "tags": []
     },
     "かわいいだけじゃだめですか？|CUTIE STREET": {
-      "searchWords": [],
+      "searchWords": [
+        "かわいいだけじゃだめですか",
+        "カワイイダケジャダメデスカ",
+        "kawaii dake ja dame desu ka"
+      ],
       "artistAliases": [
-        "CUTIE STREET"
+        "きゅーてぃーすとりーと",
+        "キューティーストリート",
+        "cutie street",
+        "kyu-tee sutori-to"
       ],
       "tags": []
     },
     "もしもピアノが弾けたなら|西田敏行": {
-      "searchWords": [],
+      "searchWords": [
+        "もしもぴあのがひけたなら",
+        "モシモピアノガヒケタナラ",
+        "moshimo piano ga hiketa nara"
+      ],
       "artistAliases": [
-        "西田敏行"
+        "にしだとしゆき",
+        "ニシダトシユキ",
+        "nishida toshiyuki"
       ],
       "tags": []
     },
     "カブトムシ|aiko": {
-      "searchWords": [],
+      "searchWords": [
+        "かぶとむし",
+        "カブトムシ",
+        "kabutomushi"
+      ],
       "artistAliases": [
+        "あいこ",
+        "アイコ",
         "aiko"
       ],
       "tags": []
     },
     "若者たち|森山直太朗": {
-      "searchWords": [],
+      "searchWords": [
+        "わかものたち",
+        "ワカモノタチ",
+        "wakamono tachi"
+      ],
       "artistAliases": [
-        "森山直太朗"
+        "もりやまなおたろう",
+        "モリヤマナオタロウ",
+        "moriya naotaro"
       ],
       "tags": []
     },
     "手紙|back number": {
-      "searchWords": [],
+      "searchWords": [
+        "てがみ",
+        "テガミ",
+        "tegami"
+      ],
       "artistAliases": [
-        "back number"
+        "ばっくなんばー",
+        "バックナンバー",
+        "back number",
+        "bakku nanbaa"
       ],
       "tags": []
     },
     "SAKURA|いきものがかり": {
-      "searchWords": [],
+      "searchWords": [
+        "さくら",
+        "サクラ",
+        "sakura"
+      ],
       "artistAliases": [
-        "いきものがかり"
+        "いきものがかり",
+        "イキモノガカリ",
+        "ikimono gakari"
       ],
       "tags": []
     },
     "more than words|羊文学": {
-      "searchWords": [],
+      "searchWords": [
+        "もあざんわーず",
+        "モアザンワーズ",
+        "more than words"
+      ],
       "artistAliases": [
-        "羊文学"
+        "ひつじぶんがく",
+        "ヒツジブンガク",
+        "hitsuji bungaku"
       ],
       "tags": []
     },
     "ダーリン|Mrs. GREEN APPLE": {
-      "searchWords": [],
+      "searchWords": [
+        "だーりん",
+        "ダーリン",
+        "darling",
+        "da-rin"
+      ],
       "artistAliases": [
-        "Mrs. GREEN APPLE"
+        "みせすぐりーんあっぷる",
+        "ミセスグリーンアップル",
+        "mrs green apple"
       ],
       "tags": []
     },
     "スパークル|RADWIMPS": {
-      "searchWords": [],
+      "searchWords": [
+        "すぱーくる",
+        "スパークル",
+        "sparkle",
+        "supakuru"
+      ],
       "artistAliases": [
-        "RADWIMPS"
+        "らっどうぃんぷす",
+        "ラッドウィンプス",
+        "radwimps",
+        "radwinps"
       ],
       "tags": []
     },
     "きらり|藤井風": {
-      "searchWords": [],
+      "searchWords": [
+        "きらり",
+        "キラリ",
+        "kirari"
+      ],
       "artistAliases": [
-        "藤井風"
+        "ふじいかぜ",
+        "フジイカゼ",
+        "fujiikaze"
       ],
       "tags": []
     },
     "眠り姫|SEKAI NO OWARI": {
-      "searchWords": [],
+      "searchWords": [
+        "ねむりひめ",
+        "ネムリヒメ",
+        "nemuri hime"
+      ],
       "artistAliases": [
-        "SEKAI NO OWARI"
+        "せかいのおわり",
+        "セカイノオワリ",
+        "sekai no owari"
       ],
       "tags": []
     },
     "Lemon|米津玄師": {
-      "searchWords": [],
+      "searchWords": [
+        "れもん",
+        "レモン",
+        "remon"
+      ],
       "artistAliases": [
-        "米津玄師"
+        "よねづけんし",
+        "ヨネヅケンシ",
+        "yonezu kenshi"
       ],
       "tags": []
     },
     "カーテンコール|優里": {
-      "searchWords": [],
+      "searchWords": [
+        "かーてんこーる",
+        "カーテンコール",
+        "ka-ten ko-ru"
+      ],
       "artistAliases": [
-        "優里"
+        "ゆうり",
+        "ユウリ",
+        "yuuri",
+        "yuri"
       ],
       "tags": []
     },
     "シルエット|KANA-BOON": {
-      "searchWords": [],
+      "searchWords": [
+        "しるえっと",
+        "シルエット",
+        "silhouette",
+        "sirue-tto"
+      ],
       "artistAliases": [
-        "KANA-BOON"
+        "かなぶーん",
+        "カナブーン",
+        "kana boon"
       ],
       "tags": []
     },
     "忘れてください|ヨルシカ": {
-      "searchWords": [],
+      "searchWords": [
+        "わすれてください",
+        "ワスレテクダサイ",
+        "wasurete kudasai"
+      ],
       "artistAliases": [
-        "ヨルシカ"
+        "よるしか",
+        "ヨルシカ",
+        "yorushika",
+        "yorusika"
       ],
       "tags": []
     },
     "愛にできることはまだあるかい|RADWINPS": {
-      "searchWords": [],
+      "searchWords": [
+        "あいにできることはまだあるかい",
+        "アイニデキルコトハマダアルカイ",
+        "ai ni dekiru koto wa mada arukai"
+      ],
       "artistAliases": [
-        "RADWINPS"
+        "らっどうぃんぷす",
+        "ラッドウィンプス",
+        "radwimps",
+        "radwinps"
       ],
       "tags": []
     },
