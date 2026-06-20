@@ -16,9 +16,9 @@ SPREADSHEET_ID = (
 if not SPREADSHEET_ID:
     raise SystemExit("Missing env var: SPREADSHEET_ID (or SPREAD_SHEET_ID)")
 
-OUTPUT_JSON_PATH = os.environ.get(
-    "OUTPUT_JSON_PATH",
-    "nemupipiano-musiclist-search/data/musiclist.json",
+OUTPUT_JSON_PATH = (
+    os.environ.get("OUTPUT_JSON_PATH")
+    or "nemupipiano-musiclist-search/data/musiclist.json"
 )
 
 GOOGLE_SHEET_URL = (
@@ -121,6 +121,7 @@ def calc_revision(rows):
                     str(row.get("アーティスト", "") or row.get("artist", "")),
                     str(row.get("ジャンル", "") or row.get("genre", "")),
                     str(row.get("補足", "") or row.get("note", "")),
+                ]
             )
         )
 
@@ -130,15 +131,43 @@ def calc_revision(rows):
         source.encode("utf-8")
     ).hexdigest()
 
+def empty_musiclist():
+    return {
+        "schemaVersion": 1,
+        "generatedAt": "",
+        "spreadsheetRevision": "",
+        "items": [],
+    }
+
+def migrate_legacy_items(items):
+    migrated_items = []
+
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+
+        migrated = dict(item)
+        migrated.setdefault("no", "")
+        migrated.setdefault("version", 1)
+        migrated.setdefault("createdAt", "")
+        migrated.setdefault("updatedAt", "")
+        migrated.setdefault("active", True)
+        migrated.setdefault("playable", False)
+        migrated.setdefault("title", normalize_text(item.get("title")))
+        migrated.setdefault("artist", normalize_text(item.get("artist")))
+        migrated.setdefault("genre", normalize_text(item.get("genre")))
+        migrated.setdefault("note", normalize_text(item.get("note")))
+        migrated.setdefault("searchWords", [])
+        migrated.setdefault("artistAliases", [migrated["artist"]] if migrated["artist"] else [])
+        migrated.setdefault("tags", [])
+        migrated_items.append(migrated)
+
+    return migrated_items
+
 ''' JSONファイルを読み込む関数 '''
 def load_json():
     if not os.path.exists(OUTPUT_JSON_PATH):
-        return {
-            "schemaVersion": 1,
-            "generatedAt": "",
-            "spreadsheetRevision": "",
-            "items": [],
-        }
+        return empty_musiclist()
 
     # JSONファイルを読み込む
     with open(
@@ -148,13 +177,16 @@ def load_json():
     ) as f:
         data = json.load(f)
 
+    if isinstance(data, list):
+        musiclist = empty_musiclist()
+        musiclist["items"] = migrate_legacy_items(data)
+        return musiclist
+
     if not isinstance(data, dict):
-        return {
-            "schemaVersion": 1,
-            "generatedAt": "",
-            "spreadsheetRevision": "",
-            "items": [],
-        }
+        return empty_musiclist()
+
+    if not isinstance(data.get("items"), list):
+        data["items"] = []
 
     return data
 
