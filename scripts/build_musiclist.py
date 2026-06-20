@@ -4,10 +4,22 @@ import json
 import hashlib
 from datetime import datetime, timezone
 
-import requests
+try:
+    import requests  # type: ignore
+except ModuleNotFoundError:  # pragma: no cover
+    requests = None
 
-SPREADSHEET_ID = os.environ["SPREADSHEET_ID"]
-OUTPUT_JSON_PATH = os.environ.get("OUTPUT_JSON_PATH", "nemupipiano-musiclist-search/data/musiclist.json")
+SPREADSHEET_ID = (
+    os.environ.get("SPREADSHEET_ID")
+    or os.environ.get("SPREAD_SHEET_ID")
+)
+if not SPREADSHEET_ID:
+    raise SystemExit("Missing env var: SPREADSHEET_ID (or SPREAD_SHEET_ID)")
+
+OUTPUT_JSON_PATH = os.environ.get(
+    "OUTPUT_JSON_PATH",
+    "nemupipiano-musiclist-search/data/musiclist.json",
+)
 
 GOOGLE_SHEET_URL = (
     f"https://docs.google.com/spreadsheets/d/"
