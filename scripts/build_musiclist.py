@@ -54,13 +54,20 @@ def is_playable(value):
 
 ''' Googleスプレッドシートからデータを取得する関数 '''
 def load_sheet():
-    response = requests.get(GOOGLE_SHEET_URL)
-    response.raise_for_status()
+    if requests is None:
+        from urllib.request import urlopen
 
-    text = response.text
+        with urlopen(GOOGLE_SHEET_URL, timeout=30) as response:
+            text = response.read().decode("utf-8")
+    else:
+        response = requests.get(GOOGLE_SHEET_URL, timeout=30)
+        response.raise_for_status()
+        text = response.text
 
     start = text.find("{")
     end = text.rfind("}")
+    if start == -1 or end == -1 or end <= start:
+        raise ValueError("Unexpected Google Sheets response format")
 
     data = json.loads(text[start : end + 1])
 
