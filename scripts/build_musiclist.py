@@ -26,11 +26,11 @@ GOOGLE_SHEET_URL = (
     f"{SPREADSHEET_ID}/gviz/tq?tqx=out:json"
 )
 
-''' 時間をUTCで取得する関数 '''
+# 時間をUTCで取得する関数
 def utc_now():
     return datetime.now(timezone.utc).isoformat()
 
-''' 正規化されたテキストを取得する関数 '''
+# 正規化されたテキストを取得する関数
 def normalize_text(value):
     return str(value or "").strip()
 
