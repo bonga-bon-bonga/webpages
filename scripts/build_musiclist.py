@@ -71,26 +71,39 @@ def load_sheet():
 
     data = json.loads(text[start : end + 1])
 
-    table = data["table"]
+    table = data.get("table", {})
+    cols = table.get("cols", [])
+    raw_rows = table.get("rows", [])
 
     headers = [
-        col.get("label", "")
-        for col in table["cols"]
+        (col.get("label") or col.get("id") or f"col{idx + 1}").strip()
+        for idx, col in enumerate(cols)
     ]
 
+    known_headers = {"No", "弾ける曲", "曲名", "アーティスト", "ジャンル", "補足"}
+    data_rows = raw_rows
+
+    # ラベルが取れない場合、1行目がヘッダーになっているパターンがあるため推測する
+    if not any(h in known_headers for h in headers) and raw_rows:
+        first_row_cells = raw_rows[0].get("c", [])
+        inferred = []
+        for idx in range(len(headers)):
+            cell = first_row_cells[idx] if idx < len(first_row_cells) else None
+            value = "" if cell is None else str(cell.get("v", ""))
+            inferred.append(value.strip() or headers[idx])
+
+        if any(h in known_headers for h in inferred):
+            headers = inferred
+            data_rows = raw_rows[1:]
+
     rows = []
-
-    for row in table["rows"]:
-        values = []
-
-        for cell in row.get("c", []):
-            if cell is None:
-                values.append("")
-            else:
-                values.append(cell.get("v", ""))
-
-        item = dict(zip(headers, values))
-        rows.append(item)
+    for row in data_rows:
+        cells = row.get("c", [])
+        values = [
+            "" if i >= len(cells) or cells[i] is None else cells[i].get("v", "")
+            for i in range(len(headers))
+        ]
+        rows.append(dict(zip(headers, values)))
 
     return rows
 
