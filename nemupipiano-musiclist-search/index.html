@@ -160,6 +160,7 @@
     let songs = [];
     let recommendedSongs = [];
 
+    // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
       return String(value ?? "")
         .replaceAll("&", "&amp;")
@@ -169,15 +170,18 @@
         .replaceAll("'", "&#039;");
     }
 
+    // Google Visualization APIのセルオブジェクトから値を取り出す。f（フォーマット済み値）があればそれを優先し、なければv（生の値）を返す。どちらもない場合は空文字を返す。
     function cellValue(cell) {
       if (!cell) return "";
       return cell.f ?? cell.v ?? "";
     }
 
+    // Google Visualization APIの列ヘッダーを正規化して返す。nullやundefinedを空文字に、前後のスペースを削除。
     function normalizeHeader(value) {
       return String(value ?? "").trim();
     }
 
+    // Google Visualization APIを使ってシートを読み込む。レスポンスはJSONP形式で返されるため、コールバック関数を動的に生成して対応する。
     function loadSheet() {
       els.status.textContent = "読み込み中…";
       els.reload.disabled = true;
@@ -223,6 +227,7 @@
       document.body.appendChild(script);
     }
 
+    // Google Visualization APIのレスポンスから曲データを抽出して整形
     function parseGvizResponse(response) {
       const table = response.table || {};
       const rows = table.rows || [];
@@ -251,16 +256,24 @@
           return {
             no: item["No"] || item["no"] || "",
             playable: item["弾ける曲"] || item["playable"] || "",
-            title: item["曲名"] || item["title"] || "",
-            artist: item["アーティスト"] || item["artist"] || "",
-            genre: item["ジャンル"] || item["genre"] || "",
-            note: item["補足"] || item["note"] || "",
+            title: normalizeCellText(item["曲名"] || item["title"] || ""),
+            artist: normalizeCellText(item["アーティスト"] || item["artist"] || ""),
+            genre: normalizeCellText(item["ジャンル"] || item["genre"] || ""),
+            note: normalizeCellText(item["補足"] || item["note"] || ""),
             raw: item,
           };
         })
         .filter(song => song.title || song.artist || song.genre);
     }
 
+    // セルの値を正規化して返す（nullやundefinedを空文字に、複数スペースを単一スペースに置換、前後のスペースを削除）
+    function normalizeCellText(value) {
+      return String(value ?? "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    // 曲データからジャンルの選択肢を生成
     function setupGenreOptions(items) {
       const current = els.genre.value;
       const genres = [...new Set(items.map(item => item.genre).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ja"));
@@ -271,20 +284,57 @@
       if (genres.includes(current)) els.genre.value = current;
     }
 
+    // テキストを正規化して検索キーを作成する。全角半角を統一し、小文字に変換。
+    function normalizeText(text) {
+      const romanMap = {
+        "ⅰ": "1", "ⅱ": "2", "ⅲ": "3", "ⅳ": "4", "ⅴ": "5", "ⅵ": "6", "ⅶ": "7", "ⅷ": "8", "ⅸ": "9", "ⅹ": "10",
+        "Ⅰ": "1", "Ⅱ": "2", "Ⅲ": "3", "Ⅳ": "4", "Ⅴ": "5", "Ⅵ": "6", "Ⅶ": "7", "Ⅷ": "8", "Ⅸ": "9", "Ⅹ": "10",
+      };
+
+      return String(text ?? "")
+        .replace(
+          /[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹ]/g,
+          m => romanMap[m]
+        )
+        .normalize("NFKC")
+        .toLowerCase();
+    }
+
+    // テキストを正規化して検索キーを作成する。
+    function createSearchKey(text) {
+      return normalizeText(text)
+        // 空白除去
+        .replace(/\s+/g, "")
+        // ダッシュ類統一
+        .replace(/[‐–—―]/g, "-")
+        // 波ダッシュ統一
+        .replace(/[～〜]/g, "~")
+        // 括弧削除
+        .replace(/[\(\)\[\]\{\}<>〈〉《》「」『』【】〔〕〖〗〘〙〚〛]/g, "")
+        // 記号削除
+        .replace(/[!?*"#$%&',.:：;；･・…‥、。|]/g, "");
+    }
+
+    // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名とアーティスト名の両方に対して部分一致で検索する。
     function filteredSongs() {
-      const keyword = els.search.value.trim().toLowerCase();
+      const keyword = createSearchKey(els.search.value);
       const genre = els.genre.value;
 
       return songs.filter(song => {
-        const text = `${song.title} ${song.artist}`.toLowerCase();
-        const keywordOk = !keyword || text.includes(keyword);
+        const title = createSearchKey(song.title);
+        const artist = createSearchKey(song.artist);
+
+        const keywordOk = !keyword || title.includes(keyword) || artist.includes(keyword);
         const genreOk = !genre || song.genre === genre;
         return keywordOk && genreOk;
       });
     }
 
+    // 曲が「弾ける曲」かどうかを判定する。セルの値に「〇」や「○」、または「yes」（大文字小文字問わず）が含まれていれば弾ける曲とみなす。
     function isPlayable(song) {
-      return String(song.playable).includes("〇") || String(song.playable).includes("○") || String(song.playable).toLowerCase() === "yes";
+      const raw = String(song.playable ?? "");
+      const normalized = raw.trim().toLowerCase();
+      return raw.includes("〇") || raw.includes("○") || /\byes\b/.test(normalized);
     }
 
     function getRecommendSource() {
