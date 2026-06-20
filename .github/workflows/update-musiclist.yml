@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      SPREADSHEET_ID: ${{ vars.SPREADSHEET_ID }}
       SPREAD_SHEET_ID: ${{ vars.SPREAD_SHEET_ID }}
       OUTPUT_JSON_PATH: ${{ vars.OUTPUT_JSON_PATH }}
 
