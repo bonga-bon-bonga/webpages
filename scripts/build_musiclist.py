@@ -115,13 +115,12 @@ def calc_revision(rows):
         targets.append(
             "|".join(
                 [
-                    str(row.get("No", "")),
-                    str(row.get("弾ける曲", "")),
-                    str(row.get("曲名", "")),
-                    str(row.get("アーティスト", "")),
-                    str(row.get("ジャンル", "")),
-                    str(row.get("補足", "")),
-                ]
+                    str(row.get("No", "") or row.get("no", "")),
+                    str(row.get("弾ける曲", "") or row.get("playable", "")),
+                    str(row.get("曲名", "") or row.get("title", "")),
+                    str(row.get("アーティスト", "") or row.get("artist", "")),
+                    str(row.get("ジャンル", "") or row.get("genre", "")),
+                    str(row.get("補足", "") or row.get("note", "")),
             )
         )
 
