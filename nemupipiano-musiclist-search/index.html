@@ -271,12 +271,20 @@
       if (genres.includes(current)) els.genre.value = current;
     }
 
+    function normalizeSearchText(value) {
+      return String(value ?? "")
+        .replace(/[ⅴⅤ]/g, "5")
+        .normalize("NFKC")
+        .toLowerCase()
+        .replace(/[!！?？・\s]/g, "");
+    }
+
     function filteredSongs() {
-      const keyword = els.search.value.trim().toLowerCase();
+      const keyword = normalizeSearchText(els.search.value);
       const genre = els.genre.value;
 
       return songs.filter(song => {
-        const text = `${song.title} ${song.artist}`.toLowerCase();
+        const text = normalizeSearchText(`${song.title} ${song.artist}`);
         const keywordOk = !keyword || text.includes(keyword);
         const genreOk = !genre || song.genre === genre;
         return keywordOk && genreOk;
