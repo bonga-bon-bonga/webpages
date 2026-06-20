@@ -146,7 +146,17 @@ def load_json():
         "r",
         encoding="utf-8",
     ) as f:
-        return json.load(f)
+        data = json.load(f)
+
+    if not isinstance(data, dict):
+        return {
+            "schemaVersion": 1,
+            "generatedAt": "",
+            "spreadsheetRevision": "",
+            "items": [],
+        }
+
+    return data
 
 ''' JSONファイルを保存する関数 '''
 def save_json(data):
