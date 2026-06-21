@@ -1,3 +1,7 @@
+# scripts/build_artist_alias.py
+#####################################################
+# artist_alias_dictionary.json を Google スプレッドシートの内容で更新するスクリプト
+#####################################################
 import json
 import os
 import re
