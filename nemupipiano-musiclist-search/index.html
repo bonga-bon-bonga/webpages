@@ -53,6 +53,15 @@
             <button id="reload" class="btn btn-dark btn-lg" type="button">再読み込み</button>
           </div>
         </div>
+        <div class="search-scope mt-3" role="radiogroup" aria-label="検索対象">
+          <span class="search-scope-label">検索対象</span>
+          <input class="btn-check" type="radio" name="searchScope" id="searchScopeAll" value="all" autocomplete="off" checked>
+          <label class="btn search-scope-button" for="searchScopeAll">すべて</label>
+          <input class="btn-check" type="radio" name="searchScope" id="searchScopeTitle" value="title" autocomplete="off">
+          <label class="btn search-scope-button" for="searchScopeTitle">曲名</label>
+          <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
+          <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
+        </div>
 
         <div class="d-flex flex-wrap gap-2 mt-3" id="stats" aria-live="polite"></div>
         <p class="status-text mt-3 mb-0" id="status">読み込み中…</p>
@@ -129,7 +138,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.0.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.1.1.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -138,10 +147,12 @@
   <script>
     const SHEET_ID = "1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g";
     const GID = "0";
+    const MUSICLIST_JSON_PATH = "./data/musiclist.json";
     const RANDOM_COUNT = 10;
 
     const els = {
       search: document.getElementById("search"),
+      searchScopes: document.querySelectorAll("[name='searchScope']"),
       genre: document.getElementById("genre"),
       reload: document.getElementById("reload"),
       status: document.getElementById("status"),
@@ -159,6 +170,7 @@
 
     let songs = [];
     let recommendedSongs = [];
+    let musiclistItems = {};
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
@@ -181,24 +193,78 @@
       return String(value ?? "").trim();
     }
 
+    function normalizeStringArray(values) {
+      if (!Array.isArray(values)) return [];
+
+      return values
+        .map(value => normalizeCellText(value))
+        .filter(Boolean);
+    }
+
+    function normalizeMusiclistItems(data) {
+      const items = data?.items || {};
+
+      return Object.fromEntries(
+        Object.entries(items).map(([key, value]) => [
+          normalizeCellText(key),
+          {
+            searchWords: normalizeStringArray(value?.searchWords),
+            artistAliases: normalizeStringArray(value?.artistAliases),
+            tags: normalizeStringArray(value?.tags),
+          },
+        ])
+      );
+    }
+
+    async function loadMusiclist() {
+      const response = await fetch(MUSICLIST_JSON_PATH, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("musiclist.jsonの読み込みに失敗しました。");
+      }
+
+      return normalizeMusiclistItems(await response.json());
+    }
+
+    function musiclistKey(title, artist) {
+      return `${normalizeCellText(title)}|${normalizeCellText(artist)}`;
+    }
+
+    function enrichSongWithMusiclist(song) {
+      const extra = musiclistItems[musiclistKey(song.title, song.artist)] || {};
+
+      return {
+        ...song,
+        searchWords: extra.searchWords || [],
+        artistAliases: extra.artistAliases || [],
+        tags: extra.tags || [],
+      };
+    }
+
     // Google Visualization APIを使ってシートを読み込む。レスポンスはJSONP形式で返されるため、コールバック関数を動的に生成して対応する。
     function loadSheet() {
       els.status.textContent = "読み込み中…";
       els.reload.disabled = true;
       els.shuffle.disabled = true;
 
+      const musiclistPromise = loadMusiclist()
+        .then(items => ({ items }))
+        .catch(error => ({ error }));
       const callbackName = "handleSheetResponse_" + Date.now();
       const script = document.createElement("script");
       const query = encodeURIComponent("select *");
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${GID}&tq=${query}&tqx=out:json;responseHandler:${callbackName}`;
 
-      window[callbackName] = (response) => {
+      window[callbackName] = async (response) => {
         try {
           if (response.status !== "ok") {
             throw new Error(response.errors?.[0]?.detailed_message || "Google Sheetsの読み込みに失敗しました。");
           }
 
-          songs = parseGvizResponse(response);
+          const musiclistResult = await musiclistPromise;
+          if (musiclistResult.error) throw musiclistResult.error;
+
+          musiclistItems = musiclistResult.items;
+          songs = parseGvizResponse(response).map(enrichSongWithMusiclist);
           setupGenreOptions(songs);
           pickRandomSongs();
           render();
@@ -315,16 +381,35 @@
         .replace(/[!?*"#$%&',.:：;；･・…‥、。|]/g, "");
     }
 
-    // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名とアーティスト名の両方に対して部分一致で検索する。
+    function getSearchScope() {
+      return document.querySelector("[name='searchScope']:checked")?.value || "all";
+    }
+
+    function searchTargetsForScope(song, scope) {
+      const titleTargets = [song.title, ...normalizeStringArray(song.searchWords)];
+      const artistTargets = [song.artist, ...normalizeStringArray(song.artistAliases)];
+
+      if (scope === "title") return titleTargets;
+      if (scope === "artist") return artistTargets;
+      return [...titleTargets, ...artistTargets];
+    }
+
+    function matchesSearchKeyword(song, keyword, scope) {
+      if (!keyword) return true;
+
+      const searchTargets = searchTargetsForScope(song, scope);
+
+      return searchTargets.some(target => createSearchKey(target).includes(keyword));
+    }
+
+    // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
     function filteredSongs() {
       const keyword = createSearchKey(els.search.value);
+      const searchScope = getSearchScope();
       const genre = els.genre.value;
 
       return songs.filter(song => {
-        const title = createSearchKey(song.title);
-        const artist = createSearchKey(song.artist);
-
-        const keywordOk = !keyword || title.includes(keyword) || artist.includes(keyword);
+        const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
         const genreOk = !genre || song.genre === genre;
         return keywordOk && genreOk;
       });
@@ -478,6 +563,7 @@
     }
 
     els.search.addEventListener("input", render);
+    els.searchScopes.forEach(scope => scope.addEventListener("change", render));
     els.genre.addEventListener("change", render);
     els.reload.addEventListener("click", loadSheet);
     els.shuffle.addEventListener("click", () => {
