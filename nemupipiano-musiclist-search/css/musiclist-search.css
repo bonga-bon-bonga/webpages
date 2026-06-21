@@ -206,6 +206,28 @@ body {
     color: var(--page-text);
 }
 
+.stat-filter-button {
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.stat-filter-button:hover,
+.stat-filter-button:focus {
+    border-color: rgba(180, 83, 9, .45);
+    box-shadow: 0 0 0 .2rem rgba(180, 83, 9, .12);
+}
+
+.stat-filter-button.active {
+    color: var(--page-accent);
+    background: var(--page-accent-soft);
+    border-color: #fed7aa;
+}
+
+.stat-filter-button.active strong {
+    color: var(--page-accent);
+}
+
 .badge-playable {
     color: #15803d;
     background: #f0fdf4;
