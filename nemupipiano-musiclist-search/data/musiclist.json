@@ -111,7 +111,10 @@
       "searchWords": [
         "はるどろぼう",
         "ハルドロボウ",
-        "harudorobou"
+        "harudorobou",
+        "しゅんでいぼう",
+        "シュンデイボウ",
+        "shundeibou"
       ],
       "artistAliases": [
         "よるしか",
@@ -172,8 +175,7 @@
       ],
       "artistAliases": [
         "はたもとひろ",
-        "ハタモトヒロ",
-        "hata motohiro"
+        "ハタモトヒロ"
       ],
       "tags": []
     },
@@ -1550,7 +1552,10 @@
       "searchWords": [
         "きみのしらないものがたり",
         "キミノシラナイモノガタリ",
-        "kiminoshiranaimonogatari"
+        "kiminoshiranaimonogatari",
+        "くんのしらないものがたり",
+        "クンノシラナイモノガタリ",
+        "kunnoshiranaimonogatari"
       ],
       "artistAliases": [
         "すーぱーせる",
@@ -1639,7 +1644,9 @@
       ],
       "artistAliases": [
         "あらいゆみ",
-        "アライユミ"
+        "まつとうやゆみ",
+        "アライユミ",
+        "マツトウヤユミ"
       ],
       "tags": []
     },
@@ -1749,7 +1756,10 @@
       "searchWords": [
         "しーくれっとべーすきみがくれたもの",
         "シークレットベースキミガクレタモノ",
-        "secret base kimiga kuretamono"
+        "secret base kimiga kuretamono",
+        "secret base〜くんがくれたもの〜",
+        "secret base〜クンガクレタモノ〜",
+        "secret base~kungakuretamono~"
       ],
       "artistAliases": [
         "ぞーん",
@@ -1988,7 +1998,10 @@
       "searchWords": [
         "きみのぎんのにわ",
         "キミノギンノニワ",
-        "kiminoginnoniwa"
+        "kiminoginnoniwa",
+        "くんのぎんのにわ",
+        "クンノギンノニワ",
+        "kunnoginnoniwa"
       ],
       "artistAliases": [
         "Kalafina",
@@ -2126,7 +2139,10 @@
       "searchWords": [
         "ただきみにはれ",
         "タダキミニハレ",
-        "tadakiminihare"
+        "tadakiminihare",
+        "ただくんにはれ",
+        "タダクンニハレ",
+        "tadakunnihare"
       ],
       "artistAliases": [
         "よるしか",
@@ -2607,7 +2623,10 @@
       "searchWords": [
         "はなたばをきみに",
         "ハナタバヲキミニ",
-        "hanatabawokimini"
+        "hanatabawokimini",
+        "はなたばをくんに",
+        "ハナタバヲクンニ",
+        "hanatabawokunni"
       ],
       "artistAliases": [
         "うただひかる",
@@ -2997,7 +3016,10 @@
       "searchWords": [
         "とげつきょうきみおもふ",
         "トゲツキョウキミオモフ",
-        "togetsukyoukimiofomu"
+        "togetsukyoukimiofomu",
+        "とげつはし 〜くん おもふ〜",
+        "トゲツハシ 〜クン オモフ〜",
+        "togetsuhashi ~kun omofu~"
       ],
       "artistAliases": [
         "くらきまい",
@@ -4033,7 +4055,10 @@
       "searchWords": [
         "きみがくれたなつ",
         "キミガクレタナツ",
-        "kimigakuretanatsu"
+        "kimigakuretanatsu",
+        "くんがくれたなつ",
+        "クンガクレタナツ",
+        "kungakuretanatsu"
       ],
       "artistAliases": [
         "いえいりれお",
@@ -4103,7 +4128,10 @@
       "searchWords": [
         "きみはてんねんしょく",
         "キミハテンネンショク",
-        "kimihatennenshoku"
+        "kimihatennenshoku",
+        "くんはてんねんいろ",
+        "クンハテンネンイロ",
+        "kunhatenneniro"
       ],
       "artistAliases": [
         "おおたきえいいち",
@@ -4631,7 +4659,9 @@
       ],
       "artistAliases": [
         "まつとうやゆみ",
-        "マツトウヤユミ"
+        "あらいゆみ",
+        "マツトウヤユミ",
+        "アライユミ"
       ],
       "tags": []
     },
@@ -5636,7 +5666,10 @@
       "searchWords": [
         "きみがいるから",
         "キミガイルカラ",
-        "kimigairukara"
+        "kimigairukara",
+        "くんがいるから",
+        "クンガイルカラ",
+        "kungairukara"
       ],
       "artistAliases": [
         "すがわらさゆり",
@@ -6473,7 +6506,10 @@
         "juugatsumukuchinakimiwowsureru",
         "10がつむくちなきみをわすれる",
         "10ガツムクチナキミヲワスレル",
-        "10gatsumukuchinakimiwowsureru"
+        "10gatsumukuchinakimiwowsureru",
+        "10がつむくちなくんをわすれる",
+        "10ガツムクチナクンヲワスレル",
+        "10gatsumukuchinakunwowasureru"
       ],
       "artistAliases": [
         "あたらよ",
@@ -6485,7 +6521,10 @@
       "searchWords": [
         "くれいじーぱーてぃないとぱんぷきんのぎゃくしゅう",
         "クレイジーパーティナイトパンプキンノギャクシュウ",
-        "Crazy Party Night panpukinnogyakushuu"
+        "Crazy Party Night panpukinnogyakushuu",
+        "Crazy Party Night 〜ぱんぷきんのぎゃくしゅう〜",
+        "Crazy Party Night 〜パンプキンノギャクシュウ〜",
+        "Crazy Party Night ~panpukinnogyakushuu~"
       ],
       "artistAliases": [
         "きゃりーぱみゅぱみゅ",
@@ -6498,7 +6537,9 @@
         "はろうぃんないと",
         "ハロウィンナイト",
         "halloween night",
-        "harouin naito"
+        "harouin naito",
+        "はろうぃん・ないと",
+        "harouin・naito"
       ],
       "artistAliases": [
         "AKB48"
@@ -6512,7 +6553,10 @@
         "まいふぇいばりっとしんぐす",
         "マイフェイバリットシングス",
         "watashinookiniiri",
-        "my favorite things"
+        "my favorite things",
+        "わたしのおきにいり(My Favorite Things)",
+        "ワタシノオキニイリ(My Favorite Things)",
+        "watashinookiniiri(My Favorite Things)"
       ],
       "artistAliases": [
         "りちゃーどろじゃーす",
@@ -6533,7 +6577,9 @@
         "らすとくりすます",
         "ラス卜クリスマス",
         "last christmas",
-        "rasuto kurisumasu"
+        "rasuto kurisumasu",
+        "らすと・くりすます",
+        "rasuto・kurisumasu"
       ],
       "artistAliases": [
         "わむ",
@@ -6562,7 +6608,9 @@
       ],
       "artistAliases": [
         "まつとうやゆみ",
-        "マツトウヤユミ"
+        "あらいゆみ",
+        "マツトウヤユミ",
+        "アライユミ"
       ],
       "tags": []
     },
@@ -6615,7 +6663,10 @@
       "searchWords": [
         "つがるかいきょうふゆげしき",
         "ツガルカイキョウフユゲシキ",
-        "tsugarukaikyou fuyugeshiki"
+        "tsugarukaikyou fuyugeshiki",
+        "つがるかいきょう・とうけいいろ",
+        "ツガルカイキョウ・トウケイイロ",
+        "tsugarukaikyou・toukeiiro"
       ],
       "artistAliases": [
         "いしかわさゆり",
@@ -6639,7 +6690,10 @@
       "searchWords": [
         "きみがいるだけで",
         "キミガイルダケデ",
-        "kimigairudakede"
+        "kimigairudakede",
+        "くんがいるだけで",
+        "クンガイルダケデ",
+        "kungairudakede"
       ],
       "artistAliases": [
         "こめこめくらぶ",
@@ -6665,7 +6719,10 @@
       "searchWords": [
         "こんなにちかくで",
         "コンナニチカクデ",
-        "konnanichikakude"
+        "konnanichikakude",
+        "こんなにちかくで...",
+        "コンナニチカクデ...",
+        "konnanichikakude..."
       ],
       "artistAliases": [
         "Crystal Kay"
@@ -6676,7 +6733,10 @@
       "searchWords": [
         "つきあかりふんわりおちてくるよる",
         "ツキアカリフンワリオチテクルヨル",
-        "tsukiakarifunwariochitekuruyoru"
+        "tsukiakarifunwariochitekuruyoru",
+        "がつあかりふんわりおちてくるよる",
+        "ガツアカリフンワリオチテクルヨル",
+        "gatsuakarifunwariochitekuruyoru"
       ],
       "artistAliases": [
         "おがわななみ",
@@ -6746,7 +6806,10 @@
       "searchWords": [
         "せかいがおわるまでは",
         "セカイガオワルマデハ",
-        "sekaigaowarumadeha"
+        "sekaigaowarumadeha",
+        "せかいがおわるまでは…",
+        "セカイガオワルマデハ…",
+        "sekaigaowarumadeha…"
       ],
       "artistAliases": [
         "わんず",
@@ -6773,7 +6836,10 @@
       "searchWords": [
         "しまんちゅぬたから",
         "シマンチュヌタカラ",
-        "shimanchunnutakara"
+        "shimanchunnutakara",
+        "しまにんぬたから",
+        "シマニンヌタカラ",
+        "shimaninnutakara"
       ],
       "artistAliases": [
         "BEGIN"
@@ -6971,7 +7037,10 @@
       "searchWords": [
         "めぐみのひと",
         "メグミノヒト",
-        "meguminohito"
+        "meguminohito",
+        "めくのひと",
+        "メクノヒト",
+        "mekunohito"
       ],
       "artistAliases": [
         "らっつandすたー",
@@ -7081,7 +7150,10 @@
       "searchWords": [
         "まかふしぎあどべんちゃー",
         "マカフシギアドベンチャー",
-        "makafushigiadobenchaa"
+        "makafushigiadobenchaa",
+        "まかふしぎあどべんちゃー!",
+        "マカフシギアドベンチャー!",
+        "makafushigiadobenchaa!"
       ],
       "artistAliases": [
         "たかはしひろき",
@@ -7153,7 +7225,9 @@
         "ごーごーたまごっち",
         "ゴーゴータマゴッチ",
         "GO GO タマゴッチ",
-        "GO GO tamagotchi"
+        "GO GO tamagotchi",
+        "GO-GO タマゴッチ",
+        "GO-GO tamagotchi"
       ],
       "artistAliases": [
         "ならゆりあ",
@@ -7202,7 +7276,10 @@
       "searchWords": [
         "ういすきーがおすきでしょ",
         "ウイスキーガオスキデショ",
-        "uisukiiga osukidesho"
+        "uisukiiga osukidesho",
+        "ういすきーが、おすきでしょ",
+        "ウイスキーガ、オスキデショ",
+        "uisukiiga,osukidesho"
       ],
       "artistAliases": [
         "SAYURI"
@@ -7352,7 +7429,10 @@
         "スティールラブハー",
         "うしなわれたふうけい",
         "ウシナワレタフウケイ",
-        "ushinawaretafuukei"
+        "ushinawaretafuukei",
+        "STILL LOVE HER (うしなわれたふうけい)",
+        "STILL LOVE HER (ウシナワレタフウケイ)",
+        "STILL LOVE HER (ushinawaretafuukei)"
       ],
       "artistAliases": [
         "TM NETWORK"
@@ -7494,7 +7574,10 @@
       "searchWords": [
         "きみのすきなとこ",
         "キミノスキナトコ",
-        "kiminosukinatoko"
+        "kiminosukinatoko",
+        "くんのすきなとこ",
+        "クンノスキナトコ",
+        "kunnosukinatoko"
       ],
       "artistAliases": [
         "ひらいけん",
@@ -7541,7 +7624,10 @@
       "searchWords": [
         "ひだまり",
         "ヒダマリ",
-        "hidamari"
+        "hidamari",
+        "ようだまり",
+        "ヨウダマリ",
+        "youdamari"
       ],
       "artistAliases": [
         "むらしたこうぞう",
@@ -7560,7 +7646,8 @@
     "プラットフォーム|Uru": {
       "searchWords": [
         "ぷらっとふぉーむ",
-        "platform"
+        "platform",
+        "purattofoomu"
       ],
       "artistAliases": [
         "うる",
@@ -7595,7 +7682,10 @@
       "searchWords": [
         "きみはばらよりうつくしい",
         "キミハバラヨリウツクシイ",
-        "kimihabarayoriutsukushii"
+        "kimihabarayoriutsukushii",
+        "くんはばらよりうつくしい",
+        "クンハバラヨリウツクシイ",
+        "kunhabarayoriutsukushii"
       ],
       "artistAliases": [
         "ふせあきら",
@@ -7742,7 +7832,9 @@
       ],
       "artistAliases": [
         "まつとうやゆみ",
-        "マツトウヤユミ"
+        "あらいゆみ",
+        "マツトウヤユミ",
+        "アライユミ"
       ],
       "tags": []
     },
