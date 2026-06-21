@@ -219,13 +219,14 @@ body {
 }
 
 .stat-filter-button.active {
-    color: var(--page-accent);
-    background: var(--page-accent-soft);
-    border-color: #fed7aa;
+    color: #9a3412;
+    background: #ffedd5;
+    border-color: #fdba74;
+    box-shadow: inset 0 0 0 1px rgba(180, 83, 9, .18);
 }
 
 .stat-filter-button.active strong {
-    color: var(--page-accent);
+    color: #9a3412;
 }
 
 .badge-playable {
