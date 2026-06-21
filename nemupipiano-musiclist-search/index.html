@@ -172,6 +172,7 @@
     let songs = [];
     let recommendedSongs = [];
     let musiclistItems = {};
+    let playableOnly = false;
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
@@ -412,7 +413,8 @@
       return songs.filter(song => {
         const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
         const genreOk = !genre || song.genre === genre;
-        return keywordOk && genreOk;
+        const playableOk = !playableOnly || isPlayable(song);
+        return keywordOk && genreOk && playableOk;
       });
     }
 
@@ -470,7 +472,7 @@
 
       els.stats.innerHTML = `
         <span class="badge rounded-pill stat-badge px-3 py-2">全<strong>${songs.length}</strong>曲</span>
-        <span class="badge rounded-pill stat-badge px-3 py-2">弾ける曲<strong>${playableCount}</strong>曲</span>
+        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-filter="playable" aria-pressed="${playableOnly}">弾ける曲<strong>${playableCount}</strong>曲</button>
         <span class="badge rounded-pill stat-badge px-3 py-2">ジャンル<strong>${genreCount}</strong>種</span>
         <span class="badge rounded-pill stat-badge px-3 py-2">表示中<strong>${items.length}</strong>曲</span>
       `;
@@ -566,6 +568,13 @@
     els.search.addEventListener("input", render);
     els.searchScopes.forEach(scope => scope.addEventListener("change", render));
     els.genre.addEventListener("change", render);
+    els.stats.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-filter='playable']");
+      if (!button) return;
+
+      playableOnly = !playableOnly;
+      render();
+    });
     els.reload.addEventListener("click", loadSheet);
     els.shuffle.addEventListener("click", () => {
       pickRandomSongs();
