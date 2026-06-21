@@ -152,11 +152,13 @@ def main():
             if value != title:
                 generated_search_words.append(value)
 
-        # 変換されたアーティストのバリエーションを生成する
+        dictionary_artist_aliases = alias_dictionary.get(artist)
         generated_artist_aliases = []
-        for value in convert_variants(artist, alias_dictionary):
-            if value != artist:
-                generated_artist_aliases.append(value)
+        if dictionary_artist_aliases is None:
+            # 変換されたアーティストのバリエーションを生成する
+            for value in convert_variants(artist, alias_dictionary):
+                if value != artist:
+                    generated_artist_aliases.append(value)
 
         # 既存の検索ワードと生成された検索ワードを統合する
         entry["searchWords"] = unique(
@@ -164,11 +166,15 @@ def main():
             + generated_search_words
         )
 
-        # 既存のアーティストのエイリアスと生成されたアーティストのバリエーションを統合する
-        entry["artistAliases"] = unique(
-            artist_aliases
-            + generated_artist_aliases
-        )
+        if dictionary_artist_aliases is not None:
+            # 辞書にアーティスト名がある場合は、辞書の内容を優先する
+            entry["artistAliases"] = unique(dictionary_artist_aliases)
+        else:
+            # 既存のアーティストのエイリアスと生成されたアーティストのバリエーションを統合する
+            entry["artistAliases"] = unique(
+                artist_aliases
+                + generated_artist_aliases
+            )
 
         # タグを重複排除して更新する
         entry["tags"] = unique(
