@@ -19,6 +19,7 @@ jobs:
     env:
       SPREADSHEET_ID: ${{ vars.SPREADSHEET_ID }}
       SPREAD_SHEET_ID: ${{ vars.SPREAD_SHEET_ID }}
+      INPUT_SPREADSHEET_ID: ${{ vars.INPUT_SPREADSHEET_ID }}
       OUTPUT_JSON_PATH: ${{ vars.OUTPUT_JSON_PATH }}
 
     steps:
@@ -38,6 +39,9 @@ jobs:
           if [ -s .github/workflows/requirements.txt ]; then
             pip install -r .github/workflows/requirements.txt
           fi
+
+      - name: Run batch script
+        run: python scripts/build_artist_alias.py
 
       - name: Check batch script syntax
         run: python -m py_compile scripts/build_musiclist.py
