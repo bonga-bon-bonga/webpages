@@ -53,6 +53,15 @@
             <button id="reload" class="btn btn-dark btn-lg" type="button">再読み込み</button>
           </div>
         </div>
+        <div class="search-scope mt-3" role="radiogroup" aria-label="検索対象">
+          <span class="search-scope-label">検索対象</span>
+          <input class="btn-check" type="radio" name="searchScope" id="searchScopeAll" value="all" autocomplete="off" checked>
+          <label class="btn search-scope-button" for="searchScopeAll">すべて</label>
+          <input class="btn-check" type="radio" name="searchScope" id="searchScopeTitle" value="title" autocomplete="off">
+          <label class="btn search-scope-button" for="searchScopeTitle">曲名</label>
+          <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
+          <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
+        </div>
 
         <div class="d-flex flex-wrap gap-2 mt-3" id="stats" aria-live="polite"></div>
         <p class="status-text mt-3 mb-0" id="status">読み込み中…</p>
@@ -143,6 +152,7 @@
 
     const els = {
       search: document.getElementById("search"),
+      searchScopes: document.querySelectorAll("[name='searchScope']"),
       genre: document.getElementById("genre"),
       reload: document.getElementById("reload"),
       status: document.getElementById("status"),
@@ -371,15 +381,23 @@
         .replace(/[!?*"#$%&',.:：;；･・…‥、。|]/g, "");
     }
 
-    function matchesSearchKeyword(song, keyword) {
+    function getSearchScope() {
+      return document.querySelector("[name='searchScope']:checked")?.value || "all";
+    }
+
+    function searchTargetsForScope(song, scope) {
+      const titleTargets = [song.title, ...normalizeStringArray(song.searchWords)];
+      const artistTargets = [song.artist, ...normalizeStringArray(song.artistAliases)];
+
+      if (scope === "title") return titleTargets;
+      if (scope === "artist") return artistTargets;
+      return [...titleTargets, ...artistTargets];
+    }
+
+    function matchesSearchKeyword(song, keyword, scope) {
       if (!keyword) return true;
 
-      const searchTargets = [
-        song.title,
-        song.artist,
-        ...normalizeStringArray(song.searchWords),
-        ...normalizeStringArray(song.artistAliases),
-      ];
+      const searchTargets = searchTargetsForScope(song, scope);
 
       return searchTargets.some(target => createSearchKey(target).includes(keyword));
     }
@@ -387,10 +405,11 @@
     // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
     function filteredSongs() {
       const keyword = createSearchKey(els.search.value);
+      const searchScope = getSearchScope();
       const genre = els.genre.value;
 
       return songs.filter(song => {
-        const keywordOk = matchesSearchKeyword(song, keyword);
+        const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
         const genreOk = !genre || song.genre === genre;
         return keywordOk && genreOk;
       });
@@ -544,6 +563,7 @@
     }
 
     els.search.addEventListener("input", render);
+    els.searchScopes.forEach(scope => scope.addEventListener("change", render));
     els.genre.addEventListener("change", render);
     els.reload.addEventListener("click", loadSheet);
     els.shuffle.addEventListener("click", () => {

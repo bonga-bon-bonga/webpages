@@ -97,6 +97,42 @@ body {
     box-shadow: 0 8px 18px rgba(41, 37, 36, .07);
 }
 
+.search-scope {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .35rem;
+}
+
+.search-scope-label {
+    color: var(--page-muted);
+    font-size: .85rem;
+    font-weight: 700;
+    margin-right: .15rem;
+}
+
+.search-scope-button {
+    min-height: 2rem;
+    padding: .3rem .75rem;
+    border-color: var(--page-line);
+    border-radius: .45rem;
+    color: var(--page-muted);
+    background: #f5f5f4;
+    font-size: .875rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.btn-check:checked + .search-scope-button {
+    border-color: #44403c;
+    color: #fff;
+    background: #44403c;
+}
+
+.btn-check:focus + .search-scope-button {
+    box-shadow: 0 0 0 .2rem rgba(68, 64, 60, .18);
+}
+
 .song-card {
     border-color: var(--page-line);
     border-radius: 1.25rem;
