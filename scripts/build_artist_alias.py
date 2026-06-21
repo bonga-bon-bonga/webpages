@@ -33,10 +33,14 @@ def normalize_text(value):
 
 
 def normalize_header(value):
-    return normalize_text(value).replace(" ", "").replace("　", "")
+    return normalize_text(value).replace(" ", "").replace("　", "").casefold()
 
 
 NORMALIZED_KNOWN_HEADERS = {normalize_header(header) for header in KNOWN_HEADERS}
+NORMALIZED_ARTIST_HEADERS = {normalize_header(header) for header in ARTIST_HEADERS}
+NORMALIZED_HIRAGANA_HEADERS = {normalize_header(header) for header in HIRAGANA_HEADERS}
+NORMALIZED_KATAKANA_HEADERS = {normalize_header(header) for header in KATAKANA_HEADERS}
+NORMALIZED_ENGLISH_HEADERS = {normalize_header(header) for header in ENGLISH_HEADERS}
 
 
 def cell_value(cell):
@@ -81,10 +85,54 @@ def find_header(headers, candidates):
     normalized_candidates = {normalize_header(candidate) for candidate in candidates}
 
     for header in headers:
-        if normalize_header(header) in normalized_candidates:
+        normalized = normalize_header(header)
+        if normalized in normalized_candidates:
+            return header
+
+        first_token = normalize_header(str(header).split(maxsplit=1)[0])
+        if first_token in normalized_candidates:
             return header
 
     return None
+
+
+def header_kind(header):
+    normalized = normalize_header(header)
+    first_token = normalize_header(str(header).split(maxsplit=1)[0])
+
+    for candidate in (normalized, first_token):
+        if candidate in NORMALIZED_ARTIST_HEADERS:
+            return "artist"
+        if candidate in NORMALIZED_HIRAGANA_HEADERS:
+            return "hiragana"
+        if candidate in NORMALIZED_KATAKANA_HEADERS:
+            return "katakana"
+        if candidate in NORMALIZED_ENGLISH_HEADERS:
+            return "english"
+
+    return None
+
+
+def find_alias_headers(headers):
+    alias_headers = []
+    active_alias_group = False
+
+    for header in headers:
+        kind = header_kind(header)
+
+        if kind == "artist":
+            active_alias_group = False
+            continue
+
+        if kind in {"hiragana", "katakana", "english"}:
+            active_alias_group = True
+            alias_headers.append(header)
+            continue
+
+        if active_alias_group:
+            alias_headers.append(header)
+
+    return alias_headers
 
 
 def load_sheet():
@@ -139,15 +187,7 @@ def load_sheet():
 
 def build_alias_dictionary(headers, rows):
     artist_header = find_header(headers, ARTIST_HEADERS)
-    alias_headers = [
-        header
-        for header in [
-            find_header(headers, HIRAGANA_HEADERS),
-            find_header(headers, KATAKANA_HEADERS),
-            find_header(headers, ENGLISH_HEADERS),
-        ]
-        if header
-    ]
+    alias_headers = find_alias_headers(headers)
 
     if not artist_header:
         raise ValueError("Missing required column: アーティスト名")
