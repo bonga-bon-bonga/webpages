@@ -138,6 +138,7 @@
   <script>
     const SHEET_ID = "1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g";
     const GID = "0";
+    const MUSICLIST_JSON_PATH = "./data/musiclist.json";
     const RANDOM_COUNT = 10;
 
     const els = {
@@ -159,6 +160,7 @@
 
     let songs = [];
     let recommendedSongs = [];
+    let musiclistItems = {};
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
@@ -181,24 +183,78 @@
       return String(value ?? "").trim();
     }
 
+    function normalizeStringArray(values) {
+      if (!Array.isArray(values)) return [];
+
+      return values
+        .map(value => normalizeCellText(value))
+        .filter(Boolean);
+    }
+
+    function normalizeMusiclistItems(data) {
+      const items = data?.items || {};
+
+      return Object.fromEntries(
+        Object.entries(items).map(([key, value]) => [
+          normalizeCellText(key),
+          {
+            searchWords: normalizeStringArray(value?.searchWords),
+            artistAliases: normalizeStringArray(value?.artistAliases),
+            tags: normalizeStringArray(value?.tags),
+          },
+        ])
+      );
+    }
+
+    async function loadMusiclist() {
+      const response = await fetch(MUSICLIST_JSON_PATH, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("musiclist.jsonの読み込みに失敗しました。");
+      }
+
+      return normalizeMusiclistItems(await response.json());
+    }
+
+    function musiclistKey(title, artist) {
+      return `${normalizeCellText(title)}|${normalizeCellText(artist)}`;
+    }
+
+    function enrichSongWithMusiclist(song) {
+      const extra = musiclistItems[musiclistKey(song.title, song.artist)] || {};
+
+      return {
+        ...song,
+        searchWords: extra.searchWords || [],
+        artistAliases: extra.artistAliases || [],
+        tags: extra.tags || [],
+      };
+    }
+
     // Google Visualization APIを使ってシートを読み込む。レスポンスはJSONP形式で返されるため、コールバック関数を動的に生成して対応する。
     function loadSheet() {
       els.status.textContent = "読み込み中…";
       els.reload.disabled = true;
       els.shuffle.disabled = true;
 
+      const musiclistPromise = loadMusiclist()
+        .then(items => ({ items }))
+        .catch(error => ({ error }));
       const callbackName = "handleSheetResponse_" + Date.now();
       const script = document.createElement("script");
       const query = encodeURIComponent("select *");
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${GID}&tq=${query}&tqx=out:json;responseHandler:${callbackName}`;
 
-      window[callbackName] = (response) => {
+      window[callbackName] = async (response) => {
         try {
           if (response.status !== "ok") {
             throw new Error(response.errors?.[0]?.detailed_message || "Google Sheetsの読み込みに失敗しました。");
           }
 
-          songs = parseGvizResponse(response);
+          const musiclistResult = await musiclistPromise;
+          if (musiclistResult.error) throw musiclistResult.error;
+
+          musiclistItems = musiclistResult.items;
+          songs = parseGvizResponse(response).map(enrichSongWithMusiclist);
           setupGenreOptions(songs);
           pickRandomSongs();
           render();
@@ -315,16 +371,26 @@
         .replace(/[!?*"#$%&',.:：;；･・…‥、。|]/g, "");
     }
 
-    // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名とアーティスト名の両方に対して部分一致で検索する。
+    function matchesSearchKeyword(song, keyword) {
+      if (!keyword) return true;
+
+      const searchTargets = [
+        song.title,
+        song.artist,
+        ...normalizeStringArray(song.searchWords),
+        ...normalizeStringArray(song.artistAliases),
+      ];
+
+      return searchTargets.some(target => createSearchKey(target).includes(keyword));
+    }
+
+    // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
     function filteredSongs() {
       const keyword = createSearchKey(els.search.value);
       const genre = els.genre.value;
 
       return songs.filter(song => {
-        const title = createSearchKey(song.title);
-        const artist = createSearchKey(song.artist);
-
-        const keywordOk = !keyword || title.includes(keyword) || artist.includes(keyword);
+        const keywordOk = matchesSearchKeyword(song, keyword);
         const genreOk = !genre || song.genre === genre;
         return keywordOk && genreOk;
       });
