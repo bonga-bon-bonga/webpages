@@ -98,8 +98,8 @@
     "ドライフラワー|優里": {
       "searchWords": [
         "どらいふらわー",
-        "doraifurawā",
-        "doraifurawaa"
+        "doraifurawaa",
+        "dry flower"
       ],
       "artistAliases": [
         "ゆうり",
@@ -111,10 +111,7 @@
       "searchWords": [
         "はるどろぼう",
         "ハルドロボウ",
-        "harudorobou",
-        "しゅんでいぼう",
-        "シュンデイボウ",
-        "shundeibou"
+        "harudorobou"
       ],
       "artistAliases": [
         "よるしか",
@@ -175,7 +172,8 @@
       ],
       "artistAliases": [
         "はたもとひろ",
-        "ハタモトヒロ"
+        "ハタモトヒロ",
+        "hata motohiro"
       ],
       "tags": []
     },
@@ -1550,9 +1548,9 @@
     },
     "君の知らない物語|supercell": {
       "searchWords": [
-        "くんのしらないものがたり",
-        "クンノシラナイモノガタリ",
-        "kunnoshiranaimonogatari"
+        "きみのしらないものがたり",
+        "キミノシラナイモノガタリ",
+        "kiminoshiranaimonogatari"
       ],
       "artistAliases": [
         "すーぱーせる",
@@ -1749,9 +1747,9 @@
     },
     "secret base〜君がくれたもの〜|ZONE": {
       "searchWords": [
-        "secret base〜くんがくれたもの〜",
-        "secret base〜クンガクレタモノ〜",
-        "secret base~kungakuretamono~"
+        "しーくれっとべーすきみがくれたもの",
+        "シークレットベースキミガクレタモノ",
+        "secret base kimiga kuretamono"
       ],
       "artistAliases": [
         "ぞーん",
@@ -1988,9 +1986,9 @@
     },
     "君の銀の庭|Kalafina": {
       "searchWords": [
-        "くんのぎんのにわ",
-        "クンノギンノニワ",
-        "kunnoginnoniwa"
+        "きみのぎんのにわ",
+        "キミノギンノニワ",
+        "kiminoginnoniwa"
       ],
       "artistAliases": [
         "Kalafina",
@@ -2126,9 +2124,9 @@
     },
     "ただ君に晴れ|ヨルシカ": {
       "searchWords": [
-        "ただくんにはれ",
-        "タダクンニハレ",
-        "tadakunnihare"
+        "ただきみにはれ",
+        "タダキミニハレ",
+        "tadakiminihare"
       ],
       "artistAliases": [
         "よるしか",
@@ -2607,9 +2605,9 @@
     },
     "花束を君に|宇多田ヒカル": {
       "searchWords": [
-        "はなたばをくんに",
-        "ハナタバヲクンニ",
-        "hanatabawokunni"
+        "はなたばをきみに",
+        "ハナタバヲキミニ",
+        "hanatabawokimini"
       ],
       "artistAliases": [
         "うただひかる",
@@ -2997,9 +2995,9 @@
     },
     "渡月橋 〜君 想ふ〜|倉木麻衣": {
       "searchWords": [
-        "とげつはし 〜くん おもふ〜",
-        "トゲツハシ 〜クン オモフ〜",
-        "togetsuhashi ~kun omofu~"
+        "とげつきょうきみおもふ",
+        "トゲツキョウキミオモフ",
+        "togetsukyoukimiofomu"
       ],
       "artistAliases": [
         "くらきまい",
@@ -4033,9 +4031,9 @@
     },
     "君がくれた夏|家入レオ": {
       "searchWords": [
-        "くんがくれたなつ",
-        "クンガクレタナツ",
-        "kungakuretanatsu"
+        "きみがくれたなつ",
+        "キミガクレタナツ",
+        "kimigakuretanatsu"
       ],
       "artistAliases": [
         "いえいりれお",
@@ -4103,9 +4101,9 @@
     },
     "君は天然色|大滝詠一": {
       "searchWords": [
-        "くんはてんねんいろ",
-        "クンハテンネンイロ",
-        "kunhatenneniro"
+        "きみはてんねんしょく",
+        "キミハテンネンショク",
+        "kimihatennenshoku"
       ],
       "artistAliases": [
         "おおたきえいいち",
@@ -5636,9 +5634,9 @@
     },
     "君がいるから|菅原紗由理": {
       "searchWords": [
-        "くんがいるから",
-        "クンガイルカラ",
-        "kungairukara"
+        "きみがいるから",
+        "キミガイルカラ",
+        "kimigairukara"
       ],
       "artistAliases": [
         "すがわらさゆり",
@@ -6470,9 +6468,12 @@
     },
     "10月無口な君を忘れる|あたらよ": {
       "searchWords": [
-        "10がつむくちなくんをわすれる",
-        "10ガツムクチナクンヲワスレル",
-        "10gatsumukuchinakunwowasureru"
+        "じゅうがつむくちなきみをわすれる",
+        "ジュウガツムクチナキミヲワスレル",
+        "juugatsumukuchinakimiwowsureru",
+        "10がつむくちなきみをわすれる",
+        "10ガツムクチナキミヲワスレル",
+        "10gatsumukuchinakimiwowsureru"
       ],
       "artistAliases": [
         "あたらよ",
@@ -6482,9 +6483,9 @@
     },
     "Crazy Party Night 〜ぱんぷきんの逆襲〜|きゃりーぱみゅぱみゅ": {
       "searchWords": [
-        "Crazy Party Night 〜ぱんぷきんのぎゃくしゅう〜",
-        "Crazy Party Night 〜パンプキンノギャクシュウ〜",
-        "Crazy Party Night ~panpukinnogyakushuu~"
+        "くれいじーぱーてぃないとぱんぷきんのぎゃくしゅう",
+        "クレイジーパーティナイトパンプキンノギャクシュウ",
+        "Crazy Party Night panpukinnogyakushuu"
       ],
       "artistAliases": [
         "きゃりーぱみゅぱみゅ",
@@ -6494,8 +6495,10 @@
     },
     "ハロウィン・ナイト|AKB48": {
       "searchWords": [
-        "はろうぃん・ないと",
-        "harouin・naito"
+        "はろうぃんないと",
+        "ハロウィンナイト",
+        "halloween night",
+        "harouin naito"
       ],
       "artistAliases": [
         "AKB48"
@@ -6504,9 +6507,12 @@
     },
     "私のお気に入り(My Favorite Things)|リチャード・ロジャース": {
       "searchWords": [
-        "わたしのおきにいり(My Favorite Things)",
-        "ワタシノオキニイリ(My Favorite Things)",
-        "watashinookiniiri(My Favorite Things)"
+        "わたしのおきにいり",
+        "ワタシノオキニイリ",
+        "まいふぇいばりっとしんぐす",
+        "マイフェイバリットシングス",
+        "watashinookiniiri",
+        "my favorite things"
       ],
       "artistAliases": [
         "りちゃーどろじゃーす",
@@ -6524,8 +6530,10 @@
     },
     "ラスト・クリスマス|Wham!": {
       "searchWords": [
-        "らすと・くりすます",
-        "rasuto・kurisumasu"
+        "らすとくりすます",
+        "ラス卜クリスマス",
+        "last christmas",
+        "rasuto kurisumasu"
       ],
       "artistAliases": [
         "わむ",
@@ -6536,6 +6544,9 @@
     "ヴァンパイア|DECO*27": {
       "searchWords": [
         "ゔぁんぱいあ",
+        "ヴァンパイア",
+        "ばんぱいあ",
+        "バンパイア",
         "vanpaia"
       ],
       "artistAliases": [
@@ -6556,7 +6567,10 @@
       "tags": []
     },
     "Wherever you are|ONE OK ROCK": {
-      "searchWords": [],
+      "searchWords": [
+        "うえれゔぁーゆあー",
+        "ウエレヴァーユーアー"
+      ],
       "artistAliases": [
         "ONE OK ROCK"
       ],
@@ -6599,9 +6613,9 @@
     },
     "津軽海峡・冬景色|石川さゆり": {
       "searchWords": [
-        "つがるかいきょう・とうけいいろ",
-        "ツガルカイキョウ・トウケイイロ",
-        "tsugarukaikyou・toukeiiro"
+        "つがるかいきょうふゆげしき",
+        "ツガルカイキョウフユゲシキ",
+        "tsugarukaikyou fuyugeshiki"
       ],
       "artistAliases": [
         "いしかわさゆり",
@@ -6610,7 +6624,11 @@
       "tags": []
     },
     "break|宮本笑里": {
-      "searchWords": [],
+      "searchWords": [
+        "ぶれいく",
+        "ブレイク",
+        "break"
+      ],
       "artistAliases": [
         "みやもとえみり",
         "ミヤモトエミリ"
@@ -6619,9 +6637,9 @@
     },
     "君がいるだけで|米米CLUB": {
       "searchWords": [
-        "くんがいるだけで",
-        "クンガイルダケデ",
-        "kungairudakede"
+        "きみがいるだけで",
+        "キミガイルダケデ",
+        "kimigairudakede"
       ],
       "artistAliases": [
         "こめこめくらぶ",
@@ -6632,7 +6650,11 @@
       "tags": []
     },
     "Overdose|なとり": {
-      "searchWords": [],
+      "searchWords": [
+        "overdose",
+        "おーばーどーず",
+        "オーバードーズ"
+      ],
       "artistAliases": [
         "なとり",
         "ナトリ"
@@ -6641,9 +6663,9 @@
     },
     "こんなに近くで...|Crystal Kay": {
       "searchWords": [
-        "こんなにちかくで...",
-        "コンナニチカクデ...",
-        "konnanichikakude..."
+        "こんなにちかくで",
+        "コンナニチカクデ",
+        "konnanichikakude"
       ],
       "artistAliases": [
         "Crystal Kay"
@@ -6652,9 +6674,9 @@
     },
     "月灯りふんわり落ちてくる夜|小川七生": {
       "searchWords": [
-        "がつあかりふんわりおちてくるよる",
-        "ガツアカリフンワリオチテクルヨル",
-        "gatsuakarifunwariochitekuruyoru"
+        "つきあかりふんわりおちてくるよる",
+        "ツキアカリフンワリオチテクルヨル",
+        "tsukiakarifunwariochitekuruyoru"
       ],
       "artistAliases": [
         "おがわななみ",
@@ -6722,9 +6744,9 @@
     },
     "世界が終るまでは…|WANDS": {
       "searchWords": [
-        "せかいがおわるまでは…",
-        "セカイガオワルマデハ…",
-        "sekaigaowarumadeha…"
+        "せかいがおわるまでは",
+        "セカイガオワルマデハ",
+        "sekaigaowarumadeha"
       ],
       "artistAliases": [
         "わんず",
@@ -6734,6 +6756,10 @@
     },
     "大阪LOVER|DREAMS COME TRUE": {
       "searchWords": [
+        "おおさからばー",
+        "オオサカラバー",
+        "おおさからゔぁー",
+        "オオサカラヴァー",
         "おおさかLOVER",
         "オオサカLOVER",
         "oosakaLOVER"
@@ -6745,9 +6771,9 @@
     },
     "島人ぬ宝|BEGIN": {
       "searchWords": [
-        "しまにんぬたから",
-        "シマニンヌタカラ",
-        "shimaninnutakara"
+        "しまんちゅぬたから",
+        "シマンチュヌタカラ",
+        "shimanchunnutakara"
       ],
       "artistAliases": [
         "BEGIN"
@@ -6943,9 +6969,9 @@
     },
     "め組のひと|ラッツ&スター": {
       "searchWords": [
-        "めくのひと",
-        "メクノヒト",
-        "mekunohito"
+        "めぐみのひと",
+        "メグミノヒト",
+        "meguminohito"
       ],
       "artistAliases": [
         "らっつandすたー",
@@ -7029,6 +7055,8 @@
     "マジンガーZ|水木一郎": {
       "searchWords": [
         "まじんがーZ",
+        "まじんがーぜっと",
+        "マジンガーゼット",
         "majingaaZ"
       ],
       "artistAliases": [
@@ -7051,9 +7079,9 @@
     },
     "魔訶不思議アドベンチャー!|高橋洋樹": {
       "searchWords": [
-        "まかふしぎあどべんちゃー!",
-        "マカフシギアドベンチャー!",
-        "makafushigiadobenchaa!"
+        "まかふしぎあどべんちゃー",
+        "マカフシギアドベンチャー",
+        "makafushigiadobenchaa"
       ],
       "artistAliases": [
         "たかはしひろき",
@@ -7062,7 +7090,12 @@
       "tags": []
     },
     "Flower Dance|DJ OKAWARI": {
-      "searchWords": [],
+      "searchWords": [
+        "ふらわーだんす",
+        "フラワーダンス",
+        "flower dance",
+        "furawaa dansu"
+      ],
       "artistAliases": [
         "DJ OKAWARI"
       ],
@@ -7117,8 +7150,10 @@
     },
     "GO-GO たまごっち|ならゆりあ": {
       "searchWords": [
-        "GO-GO タマゴッチ",
-        "GO-GO tamagotchi"
+        "ごーごーたまごっち",
+        "ゴーゴータマゴッチ",
+        "GO GO タマゴッチ",
+        "GO GO tamagotchi"
       ],
       "artistAliases": [
         "ならゆりあ",
@@ -7127,14 +7162,22 @@
       "tags": []
     },
     "PIANO*GIRL|OSTER project": {
-      "searchWords": [],
+      "searchWords": [
+        "ぴあのがーる",
+        "ピアノガール",
+        "pianogaaru"
+      ],
       "artistAliases": [
         "OSTER project"
       ],
       "tags": []
     },
     "JANE DOE|米津玄師、宇多田ヒカル": {
-      "searchWords": [],
+      "searchWords": [
+        "じぇーんどー",
+        "ジェーンドー",
+        "jane doe"
+      ],
       "artistAliases": [
         "よねづけんし",
         "うただひかる",
@@ -7157,9 +7200,9 @@
     },
     "ウイスキーが、お好きでしょ|SAYURI": {
       "searchWords": [
-        "ういすきーが、おすきでしょ",
-        "ウイスキーガ、オスキデショ",
-        "uisukiiga,osukidesho"
+        "ういすきーがおすきでしょ",
+        "ウイスキーガオスキデショ",
+        "uisukiiga osukidesho"
       ],
       "artistAliases": [
         "SAYURI"
@@ -7210,7 +7253,11 @@
       "tags": []
     },
     "Komm, susser Tod|ARIANNE": {
-      "searchWords": [],
+      "searchWords": [
+        "こむずっさーとーと",
+        "コムズッサートート",
+        "komm, susser tod"
+      ],
       "artistAliases": [
         "ARIANNE"
       ],
@@ -7288,7 +7335,11 @@
       "tags": []
     },
     "One Last Kiss|宇多田ヒカル": {
-      "searchWords": [],
+      "searchWords": [
+        "わんらすときす",
+        "ワンラストキス",
+        "one last kiss"
+      ],
       "artistAliases": [
         "うただひかる",
         "ウタダヒカル"
@@ -7297,9 +7348,11 @@
     },
     "STILL LOVE HER (失われた風景)|TM NETWORK": {
       "searchWords": [
-        "STILL LOVE HER (うしなわれたふうけい)",
-        "STILL LOVE HER (ウシナワレタフウケイ)",
-        "STILL LOVE HER (ushinawaretafuukei)"
+        "すてぃーるらぶはー",
+        "スティールラブハー",
+        "うしなわれたふうけい",
+        "ウシナワレタフウケイ",
+        "ushinawaretafuukei"
       ],
       "artistAliases": [
         "TM NETWORK"
@@ -7318,7 +7371,11 @@
       "tags": []
     },
     "Happy Birthday to You|Mildred J. Hill、Patty Smith Hill": {
-      "searchWords": [],
+      "searchWords": [
+        "はっぴーばーすでいとぅーゆー",
+        "ハッピーバースデイトゥーユー",
+        "happy birthday to you"
+      ],
       "artistAliases": [
         "Mildred J. Hill、Patty Smith Hill",
         "Mildred J. Hill,Patty Smith Hill"
@@ -7326,7 +7383,11 @@
       "tags": []
     },
     "HAPPY HAPPY BIRTHDAY|DREAMS COME TRUE": {
-      "searchWords": [],
+      "searchWords": [
+        "はっぴーはっぴーばーすでい",
+        "ハッピーハッピーバースデイ",
+        "happy happy birthday"
+      ],
       "artistAliases": [
         "DREAMS COME TRUE"
       ],
@@ -7369,7 +7430,11 @@
       "tags": []
     },
     "Dynamite|BTS": {
-      "searchWords": [],
+      "searchWords": [
+        "だいなまいと",
+        "ダイナマイト",
+        "dynamite"
+      ],
       "artistAliases": [
         "BTS"
       ],
@@ -7427,9 +7492,9 @@
     },
     "君の好きなとこ|平井堅": {
       "searchWords": [
-        "くんのすきなとこ",
-        "クンノスキナトコ",
-        "kunnosukinatoko"
+        "きみのすきなとこ",
+        "キミノスキナトコ",
+        "kiminosukinatoko"
       ],
       "artistAliases": [
         "ひらいけん",
@@ -7450,7 +7515,11 @@
       "tags": []
     },
     "flos|R Sound Design": {
-      "searchWords": [],
+      "searchWords": [
+        "ふろす",
+        "フロス",
+        "flos"
+      ],
       "artistAliases": [
         "R Sound Design"
       ],
@@ -7470,9 +7539,9 @@
     },
     "陽だまり|村下孝蔵": {
       "searchWords": [
-        "ようだまり",
-        "ヨウダマリ",
-        "youdamari"
+        "ひだまり",
+        "ヒダマリ",
+        "hidamari"
       ],
       "artistAliases": [
         "むらしたこうぞう",
@@ -7491,7 +7560,7 @@
     "プラットフォーム|Uru": {
       "searchWords": [
         "ぷらっとふぉーむ",
-        "purattofoomu"
+        "platform"
       ],
       "artistAliases": [
         "うる",
@@ -7524,9 +7593,9 @@
     },
     "君は薔薇より美しい|布施明": {
       "searchWords": [
-        "くんはばらよりうつくしい",
-        "クンハバラヨリウツクシイ",
-        "kunhabarayoriutsukushii"
+        "きみはばらよりうつくしい",
+        "キミハバラヨリウツクシイ",
+        "kimihabarayoriutsukushii"
       ],
       "artistAliases": [
         "ふせあきら",
