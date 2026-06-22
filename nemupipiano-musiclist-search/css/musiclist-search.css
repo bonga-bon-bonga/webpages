@@ -64,6 +64,18 @@ body {
     border-radius: 1.5rem;
 }
 
+.app-panel.font-size-small {
+    font-size: .9rem;
+}
+
+.app-panel.font-size-medium {
+    font-size: 1rem;
+}
+
+.app-panel.font-size-large {
+    font-size: 1.1rem;
+}
+
 .nav-pills.app-tabs {
     display: flex;
     flex-direction: row;
@@ -372,10 +384,25 @@ body {
     border: 1px solid #bbf7d0;
 }
 
-.badge-recommend {
-    color: var(--page-accent);
-    background: var(--page-accent-soft);
-    border: 1px solid #fed7aa;
+.setting-options {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+}
+
+.setting-option-button {
+    min-width: 3.5rem;
+    border-color: var(--page-line);
+    border-radius: .5rem;
+    color: var(--page-muted);
+    background: #f5f5f4;
+    font-weight: 800;
+}
+
+.btn-check:checked + .setting-option-button {
+    border-color: #44403c;
+    color: #fff;
+    background: #44403c;
 }
 
 .empty-box {
@@ -385,9 +412,9 @@ body {
     background: #fff;
 }
 
-.back-to-top {
+.back-to-top,
+.settings-button {
     position: fixed;
-    right: 1rem;
     bottom: 4.25rem;
     z-index: 1070;
     display: inline-flex;
@@ -397,23 +424,36 @@ body {
     height: 3rem;
     border: 1px solid rgba(68, 64, 60, .18);
     border-radius: 999px;
+    padding: 0;
     color: #fff;
     background: #44403c;
     box-shadow: 0 .75rem 1.5rem rgba(41, 37, 36, .18);
+    cursor: pointer;
     font-size: 1.35rem;
     font-weight: 800;
     line-height: 1;
     transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
 
+.back-to-top {
+    right: 1rem;
+}
+
+.settings-button {
+    left: 1rem;
+}
+
 .back-to-top:hover,
-.back-to-top:focus {
+.back-to-top:focus,
+.settings-button:hover,
+.settings-button:focus {
     background: var(--page-accent);
     box-shadow: 0 1rem 1.75rem rgba(41, 37, 36, .22);
     transform: translateY(-2px);
 }
 
-.back-to-top:active {
+.back-to-top:active,
+.settings-button:active {
     transform: translateY(0);
 }
 
@@ -480,6 +520,11 @@ body {
     line-height: 1.55;
     }
 
+    .site-footer p {
+    font-size: .75rem;
+    line-height: 1.25;
+    }
+
     .result-controls {
     align-items: flex-start;
     flex-direction: column;
@@ -507,6 +552,7 @@ body {
     align-items: start;
     gap: .2rem .5rem !important;
     padding: .65rem .75rem !important;
+    position: relative;
     }
 
     .song-card-header,
@@ -542,11 +588,12 @@ body {
     .song-grid[data-columns="2"] .song-title,
     .song-grid[data-columns="3"] .song-title {
     display: -webkit-box;
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 1;
     font-size: 1rem;
     line-height: 1.25;
     overflow-wrap: anywhere;
+    padding-right: 3.25rem;
     white-space: normal;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -567,11 +614,12 @@ body {
     .song-grid[data-columns="2"] .song-number,
     .song-grid[data-columns="3"] .song-number {
     align-self: start;
-    grid-column: 2;
-    grid-row: 1;
     font-size: .8rem;
     line-height: 1;
+    position: absolute;
     padding-top: .15rem;
+    right: .75rem;
+    top: .65rem;
     }
 
     .song-card-meta,
@@ -606,4 +654,35 @@ body {
     width: 2.75rem;
     height: 2.75rem;
     }
+
+    .settings-button {
+    left: .75rem;
+    bottom: 4rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    }
+}
+
+.app-panel.font-size-small .form-control,
+.app-panel.font-size-small .form-select,
+.app-panel.font-size-small .btn,
+.app-panel.font-size-small .badge,
+.app-panel.font-size-small .song-title,
+.app-panel.font-size-small .song-artist,
+.app-panel.font-size-small .song-number,
+.app-panel.font-size-small .status-text,
+.app-panel.font-size-small .recommend-desc {
+    font-size: .9rem !important;
+}
+
+.app-panel.font-size-large .form-control,
+.app-panel.font-size-large .form-select,
+.app-panel.font-size-large .btn,
+.app-panel.font-size-large .badge,
+.app-panel.font-size-large .song-title,
+.app-panel.font-size-large .song-artist,
+.app-panel.font-size-large .song-number,
+.app-panel.font-size-large .status-text,
+.app-panel.font-size-large .recommend-desc {
+    font-size: 1.1rem !important;
 }
