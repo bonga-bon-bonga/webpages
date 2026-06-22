@@ -530,10 +530,6 @@ body {
     flex-direction: column;
     }
 
-    .display-columns {
-    display: none;
-    }
-
     .status-text {
     margin-left: 0;
     text-align: left;
