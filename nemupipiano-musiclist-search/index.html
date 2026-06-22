@@ -502,6 +502,15 @@
       return document.querySelector("[name='searchScope']:checked")?.value || "all";
     }
 
+    function updateSearchPlaceholder(scope = getSearchScope()) {
+      const placeholders = {
+        all: "曲名・アーティストで検索",
+        title: "曲名で検索",
+        artist: "アーティストで検索",
+      };
+      els.search.placeholder = placeholders[scope] || placeholders.all;
+    }
+
     function searchTargetsForScope(song, scope) {
       const titleTargets = [song.title, ...normalizeStringArray(song.searchWords)];
       const artistTargets = [song.artist, ...normalizeStringArray(song.artistAliases)];
@@ -747,6 +756,7 @@
     els.search.addEventListener("input", render);
     els.searchScopes.forEach(scope => scope.addEventListener("change", () => {
       localStorage.setItem(SEARCH_SCOPE_KEY, scope.value);
+      updateSearchPlaceholder(scope.value);
       render();
     }));
     els.displayColumns.forEach(column => {
@@ -820,7 +830,7 @@
 
     applyTheme(localStorage.getItem(THEME_KEY));
     applyAppPanelFontSize(localStorage.getItem(APP_PANEL_FONT_SIZE_KEY));
-    applyRadioValue(els.searchScopes, localStorage.getItem(SEARCH_SCOPE_KEY), "all");
+    updateSearchPlaceholder(applyRadioValue(els.searchScopes, localStorage.getItem(SEARCH_SCOPE_KEY), "all"));
     displayColumnCount = applyRadioValue(els.displayColumns, localStorage.getItem(DISPLAY_COLUMNS_KEY), "3");
     playableOnly = loadSavedBoolean(PLAYABLE_ONLY_KEY, false);
     randomPlayableOnly = loadSavedBoolean(RANDOM_PLAYABLE_ONLY_KEY, true);
