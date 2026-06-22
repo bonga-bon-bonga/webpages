@@ -10,12 +10,9 @@ try:
 except ModuleNotFoundError:  # pragma: no cover
     requests = None
 
-SPREADSHEET_ID = (
-    os.environ.get("SPREADSHEET_ID")
-    or os.environ.get("SPREAD_SHEET_ID")
-)
+SPREADSHEET_ID = os.environ.get("NEMUPIPIANO_SPREADSHEET_ID")
 if not SPREADSHEET_ID:
-    raise SystemExit("Missing env var: SPREADSHEET_ID (or SPREAD_SHEET_ID)")
+    raise SystemExit("Missing env var: NEMUPIPIANO_SPREADSHEET_ID")
 
 OUTPUT_JSON_PATH = (
     os.environ.get("OUTPUT_JSON_PATH")

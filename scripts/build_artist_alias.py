@@ -11,9 +11,13 @@ try:
 except ModuleNotFoundError:  # pragma: no cover
     requests = None
 
-INPUT_SPREADSHEET_ID = os.environ.get("INPUT_SPREADSHEET_ID")
-if not INPUT_SPREADSHEET_ID:
-    raise SystemExit("Missing env var: INPUT_SPREADSHEET_ID")
+ALIAS_SPREADSHEET_ID = os.environ.get("ALIAS_SPREADSHEET_ID")
+if not ALIAS_SPREADSHEET_ID:
+    raise SystemExit("Missing env var: ALIAS_SPREADSHEET_ID")
+
+ALIAS_GID_ARTISTLIST = os.environ.get("ALIAS_GID_ARTISTLIST")
+if not ALIAS_GID_ARTISTLIST:
+    raise SystemExit("Missing env var: ALIAS_GID_ARTISTLIST")
 
 OUTPUT_JSON_PATH = (
     os.environ.get("ARTIST_ALIAS_DICTIONARY_PATH")
@@ -22,7 +26,7 @@ OUTPUT_JSON_PATH = (
 
 GOOGLE_SHEET_URL = (
     f"https://docs.google.com/spreadsheets/d/"
-    f"{INPUT_SPREADSHEET_ID}/gviz/tq?tqx=out:json"
+    f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_ARTISTLIST}&tqx=out:json"
 )
 
 ARTIST_HEADERS = {"アーティスト名", "artist", "artistName", "artist_name"}

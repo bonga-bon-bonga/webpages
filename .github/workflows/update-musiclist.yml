@@ -17,9 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SPREADSHEET_ID: ${{ vars.SPREADSHEET_ID }}
-      SPREAD_SHEET_ID: ${{ vars.SPREAD_SHEET_ID }}
-      INPUT_SPREADSHEET_ID: ${{ vars.INPUT_SPREADSHEET_ID }}
+      NEMUPIPIANO_SPREADSHEET_ID: ${{ vars.NEMUPIPIANO_SPREADSHEET_ID }}
+      ALIAS_SPREADSHEET_ID: ${{ vars.ALIAS_SPREADSHEET_ID }}
+      ALIAS_GID_ARTISTLIST: ${{ vars.ALIAS_GID_ARTISTLIST }}
+      ALIAS_GID_MUSICLIST: ${{ vars.ALIAS_GID_MUSICLIST }}
       OUTPUT_JSON_PATH: ${{ vars.OUTPUT_JSON_PATH }}
 
     steps:
@@ -43,11 +44,15 @@ jobs:
       - name: Check batch script syntax
         run: |
           python -m py_compile scripts/build_artist_alias.py
+          python -m py_compile scripts/build_music_alias.py
           python -m py_compile scripts/build_musiclist.py
           python -m py_compile scripts/enrich_musiclist.py
 
       - name: Build artist alias dictionary
         run: python scripts/build_artist_alias.py
+
+      - name: Build music alias dictionary
+        run: python scripts/build_music_alias.py
 
       - name: Build music list
         run: python scripts/build_musiclist.py
@@ -60,20 +65,25 @@ jobs:
         run: |
           output_path="${OUTPUT_JSON_PATH:-nemupipiano-musiclist-search/data/musiclist.json}"
           artist_alias_path="${ARTIST_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/artist_alias_dictionary.json}"
+          music_alias_path="${MUSIC_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/music_alias_dictionary.json}"
           test -f "$artist_alias_path"
+          test -f "$music_alias_path"
           test -f "$output_path"
           python -m json.tool "$artist_alias_path" > /dev/null
+          python -m json.tool "$music_alias_path" > /dev/null
           python -m json.tool "$output_path" > /dev/null
 
       - name: Commit and push if changed
         run: |
           output_path="${OUTPUT_JSON_PATH:-nemupipiano-musiclist-search/data/musiclist.json}"
           artist_alias_path="${ARTIST_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/artist_alias_dictionary.json}"
+          music_alias_path="${MUSIC_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/music_alias_dictionary.json}"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add "$artist_alias_path"
+          git add "$music_alias_path"
           git add "$output_path"
 
           if git diff --cached --quiet; then
