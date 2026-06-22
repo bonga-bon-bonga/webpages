@@ -441,6 +441,10 @@ body {
     flex-direction: column;
     }
 
+    .display-columns {
+    display: none;
+    }
+
     .song-grid[data-columns="1"] .song-card-body,
     .song-grid[data-columns="2"] .song-card-body {
     align-items: stretch;
