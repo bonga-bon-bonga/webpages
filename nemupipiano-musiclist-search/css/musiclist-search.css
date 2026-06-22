@@ -97,6 +97,11 @@ body {
     box-shadow: 0 8px 18px rgba(41, 37, 36, .07);
 }
 
+.reload-button {
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
 .result-controls {
     display: flex;
     flex-wrap: wrap;
