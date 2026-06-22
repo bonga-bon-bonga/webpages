@@ -501,14 +501,12 @@
 
     function render() {
       const items = filteredSongs();
-      const playableCount = songs.filter(isPlayable).length;
       const genreCount = new Set(songs.map(song => song.genre).filter(Boolean)).size;
 
       els.stats.innerHTML = `
-        <span class="badge rounded-pill stat-badge px-3 py-2">全<strong>${songs.length}</strong>曲</span>
-        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-filter="playable" aria-pressed="${playableOnly}">弾ける曲<strong>${playableCount}</strong>曲</button>
+        <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
         <span class="badge rounded-pill stat-badge px-3 py-2">ジャンル<strong>${genreCount}</strong>種</span>
-        <span class="badge rounded-pill stat-badge px-3 py-2">表示中<strong>${items.length}</strong>曲</span>
+        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-filter="playable" aria-pressed="${playableOnly}">弾ける曲：<strong>${playableOnly ? "ON" : "OFF"}</strong></button>
       `;
 
       els.empty.hidden = items.length !== 0;
