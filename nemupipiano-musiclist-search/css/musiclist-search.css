@@ -664,7 +664,6 @@ body {
 }
 
 .app-panel.font-size-small .btn,
-.app-panel.font-size-small .song-title,
 .app-panel.font-size-small .song-artist,
 .app-panel.font-size-small .song-number,
 .app-panel.font-size-small .status-text,
@@ -673,7 +672,6 @@ body {
 }
 
 .app-panel.font-size-large .btn,
-.app-panel.font-size-large .song-title,
 .app-panel.font-size-large .song-artist,
 .app-panel.font-size-large .song-number,
 .app-panel.font-size-large .status-text,
@@ -694,6 +692,18 @@ body {
 .app-panel.font-size-large .form-control,
 .app-panel.font-size-large .form-select {
     font-size: 1.18rem !important;
+}
+
+.app-panel.font-size-small .song-title {
+    font-size: 1rem !important;
+}
+
+.app-panel.font-size-medium .song-title {
+    font-size: 1.18rem !important;
+}
+
+.app-panel.font-size-large .song-title {
+    font-size: 1.35rem !important;
 }
 
 .app-panel.font-size-small .badge {
