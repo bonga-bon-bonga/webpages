@@ -60,6 +60,10 @@
             <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
             <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
           </div>
+          <div class="playable-filter" aria-label="弾ける曲フィルター">
+            <span class="playable-filter-label">弾ける曲</span>
+            <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="playableFilter" type="button" data-filter="playable" aria-pressed="false">OFF</button>
+          </div>
         </div>
 
         <div class="stats-row mt-3">
@@ -221,6 +225,7 @@
       reload: document.getElementById("reload"),
       searchDetailToggle: document.getElementById("searchDetailToggle"),
       searchDetails: document.getElementById("searchDetails"),
+      playableFilter: document.getElementById("playableFilter"),
       stats: document.getElementById("stats"),
       songs: document.getElementById("songs"),
       empty: document.getElementById("empty"),
@@ -593,8 +598,10 @@
 
       els.stats.innerHTML = `
         <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
-        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-filter="playable" aria-pressed="${playableOnly}">弾ける曲：<strong>${playableOnly ? "ON" : "OFF"}</strong></button>
       `;
+      els.playableFilter.classList.toggle("active", playableOnly);
+      els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
+      els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
 
       els.empty.hidden = items.length !== 0;
       els.songs.innerHTML = renderSongCards(items);
@@ -750,10 +757,7 @@
       });
     });
     els.genre.addEventListener("change", render);
-    els.stats.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-filter='playable']");
-      if (!button) return;
-
+    els.playableFilter.addEventListener("click", () => {
       playableOnly = !playableOnly;
       localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
       render();

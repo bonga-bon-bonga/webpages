@@ -205,7 +205,8 @@ html[data-theme="dark"] .form-select {
 }
 
 .search-scope,
-.display-columns {
+.display-columns,
+.playable-filter {
     display: inline-flex;
     flex: 0 0 auto;
     flex-wrap: wrap;
@@ -214,7 +215,8 @@ html[data-theme="dark"] .form-select {
 }
 
 .search-scope-label,
-.display-columns-label {
+.display-columns-label,
+.playable-filter-label {
     color: var(--page-muted);
     font-size: .85rem;
     font-weight: 700;
@@ -459,6 +461,12 @@ html[data-theme="dark"] .form-select {
     color: #15803d;
     background: #f0fdf4;
     border: 1px solid #bbf7d0;
+}
+
+html[data-theme="dark"] .badge-playable {
+    color: #d8b4fe;
+    background: #312e81;
+    border-color: #6d28d9;
 }
 
 .setting-options {
