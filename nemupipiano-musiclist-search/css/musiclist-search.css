@@ -109,9 +109,25 @@ body {
     box-shadow: 0 8px 18px rgba(41, 37, 36, .07);
 }
 
-.reload-button {
+.detail-toggle-button {
     font-size: 1rem;
     white-space: nowrap;
+}
+
+.settings-reload-button {
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.search-details {
+    padding: .875rem;
+    border: 1px solid var(--page-line);
+    border-radius: .85rem;
+    background: #fafaf9;
+}
+
+.search-details[hidden] {
+    display: none;
 }
 
 .result-controls {
@@ -216,8 +232,7 @@ body {
 }
 
 .song-artist,
-.footer-note,
-.status-text {
+.footer-note {
     color: var(--page-muted);
 }
 
@@ -231,12 +246,6 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: .75rem 1rem;
-}
-
-.status-text {
-    flex: 0 1 auto;
-    margin-left: auto;
-    text-align: right;
 }
 
 .song-grid[data-columns="1"] .song-card-body,
@@ -538,11 +547,6 @@ body {
     flex-direction: column;
     }
 
-    .status-text {
-    margin-left: 0;
-    text-align: left;
-    }
-
     .song-card {
     border-radius: .9rem;
     }
@@ -670,7 +674,6 @@ body {
 .app-panel.font-size-small .btn,
 .app-panel.font-size-small .song-artist,
 .app-panel.font-size-small .song-number,
-.app-panel.font-size-small .status-text,
 .app-panel.font-size-small .recommend-desc {
     font-size: .9rem !important;
 }
@@ -678,7 +681,6 @@ body {
 .app-panel.font-size-large .btn,
 .app-panel.font-size-large .song-artist,
 .app-panel.font-size-large .song-number,
-.app-panel.font-size-large .status-text,
 .app-panel.font-size-large .recommend-desc {
     font-size: 1.1rem !important;
 }
