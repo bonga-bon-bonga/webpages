@@ -224,7 +224,7 @@
     const COPY_HISTORY_KEY = "nemupipiano:copyHistory";
     const RELOAD_BUTTON_DEFAULT_TEXT = "曲リストを再読み込みする";
     const LONG_PRESS_MS = 1000;
-    const COPY_HISTORY_LIMIT = 20;
+    const COPY_HISTORY_LIMIT = 500;
 
     const els = {
       search: document.getElementById("search"),
@@ -754,13 +754,15 @@
 
       const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
       const history = Array.isArray(savedHistory) ? savedHistory : [];
+      const timestamp = new Date().toISOString();
       history.unshift({
         key,
         no,
         title,
         artist,
         text,
-        copiedAt: new Date().toISOString(),
+        copiedAt: timestamp,
+        timestamp,
         count: counts[key],
       });
       writeJsonStorage(COPY_HISTORY_KEY, history.slice(0, COPY_HISTORY_LIMIT));
