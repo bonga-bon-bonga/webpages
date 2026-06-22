@@ -69,6 +69,22 @@ NORMALIZED_KATAKANA_HEADERS = {normalize_header(header) for header in KATAKANA_H
 NORMALIZED_ENGLISH_HEADERS = {normalize_header(header) for header in ENGLISH_HEADERS}
 
 
+def has_title_header(headers):
+    for header in headers:
+        normalized = normalize_header(header)
+        first_token = str(header).split(maxsplit=1)
+        normalized_first_token = normalize_header(first_token[0] if first_token else "")
+
+        if normalized in NORMALIZED_TITLE_HEADERS or normalized_first_token in NORMALIZED_TITLE_HEADERS:
+            return True
+
+    return False
+
+
+def has_known_header(headers):
+    return any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in headers)
+
+
 def cell_value(cell):
     if not cell:
         return ""
@@ -188,18 +204,27 @@ def load_sheet():
     ]
     data_rows = raw_rows
 
-    if not any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in headers) and raw_rows:
+    if not has_known_header(headers) and raw_rows:
+        inferred_rows = []
         for row_index, row in enumerate(raw_rows[:5]):
             row_cells = row.get("c", [])
             inferred = []
             for idx in range(len(headers)):
                 cell = row_cells[idx] if idx < len(row_cells) else None
                 inferred.append(normalize_text(cell_value(cell)) or headers[idx])
+            inferred_rows.append((row_index, inferred))
 
-            if any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in inferred):
+        for row_index, inferred in inferred_rows:
+            if has_title_header(inferred):
                 headers = inferred
                 data_rows = raw_rows[row_index + 1 :]
                 break
+        else:
+            for row_index, inferred in inferred_rows:
+                if has_known_header(inferred):
+                    headers = inferred
+                    data_rows = raw_rows[row_index + 1 :]
+                    break
 
     rows = []
     for row in data_rows:
@@ -232,6 +257,8 @@ def build_alias_dictionary(headers, rows):
     for row in rows:
         title = normalize_text(row.get(title_header))
         if not title:
+            continue
+        if normalize_header(title) in NORMALIZED_TITLE_HEADERS:
             continue
 
         aliases = []
