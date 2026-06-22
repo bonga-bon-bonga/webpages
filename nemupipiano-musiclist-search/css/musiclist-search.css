@@ -666,7 +666,6 @@ body {
 .app-panel.font-size-small .form-control,
 .app-panel.font-size-small .form-select,
 .app-panel.font-size-small .btn,
-.app-panel.font-size-small .badge,
 .app-panel.font-size-small .song-title,
 .app-panel.font-size-small .song-artist,
 .app-panel.font-size-small .song-number,
@@ -678,11 +677,22 @@ body {
 .app-panel.font-size-large .form-control,
 .app-panel.font-size-large .form-select,
 .app-panel.font-size-large .btn,
-.app-panel.font-size-large .badge,
 .app-panel.font-size-large .song-title,
 .app-panel.font-size-large .song-artist,
 .app-panel.font-size-large .song-number,
 .app-panel.font-size-large .status-text,
 .app-panel.font-size-large .recommend-desc {
     font-size: 1.1rem !important;
+}
+
+.app-panel.font-size-small .badge {
+    font-size: .72rem !important;
+}
+
+.app-panel.font-size-medium .badge {
+    font-size: .82rem !important;
+}
+
+.app-panel.font-size-large .badge {
+    font-size: .95rem !important;
 }
