@@ -37,7 +37,7 @@
             <input id="search" class="form-control form-control-lg" type="search" placeholder="曲名・アーティストで検索" autocomplete="off" />
           </div>
           <div class="col-auto favorite-filter-column">
-            <button id="favoriteFilter" class="btn btn-dark btn-lg favorite-filter-button" type="button" aria-label="お気に入りのみ表示" aria-pressed="false">♡</button>
+            <button id="favoriteFilter" class="btn btn-dark btn-lg favorite-filter-button" type="button" aria-label="お気に入りのみ表示" aria-pressed="false">☆</button>
           </div>
           <div class="col-auto col-md-2 d-grid">
             <button id="searchDetailToggle" class="btn btn-dark btn-lg detail-toggle-button" type="button" aria-expanded="false" aria-controls="searchDetails">▼詳細</button>
@@ -372,7 +372,7 @@
       els.favoriteFilter.classList.toggle("active", favoriteOnly);
       els.favoriteFilter.setAttribute("aria-pressed", String(favoriteOnly));
       els.favoriteFilter.setAttribute("aria-label", favoriteOnly ? "お気に入りのみ表示中" : "お気に入りのみ表示");
-      els.favoriteFilter.textContent = favoriteOnly ? "♥" : "♡";
+      els.favoriteFilter.textContent = favoriteOnly ? "★" : "☆";
     }
 
     function clearAllFavorites() {

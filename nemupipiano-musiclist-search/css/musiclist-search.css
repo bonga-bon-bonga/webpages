@@ -198,12 +198,12 @@ body {
     background: transparent !important;
     border-color: transparent !important;
     box-shadow: none !important;
-    color: #f43f5e;
+    color: #f59e0b;
 }
 
 html[data-theme="dark"] .favorite-filter-button.active,
 html[data-theme="dark"] .favorite-filter-button[aria-pressed="true"] {
-    color: #ff4e80;
+    color: #facc15;
 }
 
 .settings-reload-button {
@@ -632,7 +632,7 @@ html[data-theme="dark"] .favorite-filter-button[aria-pressed="true"] {
     background: transparent !important;
     border-color: transparent !important;
     box-shadow: none !important;
-    color: #ff4e80;
+    color: #facc15;
 }
 
 html[data-theme="dark"] .text-secondary {
