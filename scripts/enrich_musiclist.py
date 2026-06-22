@@ -15,6 +15,10 @@ ARTIST_ALIAS_DICTIONARY_PATH = (
     os.environ.get("ARTIST_ALIAS_DICTIONARY_PATH")
     or "nemupipiano-musiclist-search/data/artist_alias_dictionary.json"
 )
+MUSIC_ALIAS_DICTIONARY_PATH = (
+    os.environ.get("MUSIC_ALIAS_DICTIONARY_PATH")
+    or "nemupipiano-musiclist-search/data/music_alias_dictionary.json"
+)
 
 kks = kakasi()
 
@@ -49,12 +53,12 @@ def split_key(key):
     return key, ""
 
 ''' アーティストのエイリアス辞書を読み込む。'''
-def load_alias_dictionary():
-    if not os.path.exists(ARTIST_ALIAS_DICTIONARY_PATH):
+def load_alias_dictionary(path):
+    if not os.path.exists(path):
         return {}
 
     with open(
-        ARTIST_ALIAS_DICTIONARY_PATH,
+        path,
         "r",
         encoding="utf-8",
     ) as f:
@@ -131,7 +135,8 @@ def main():
         musiclist = json.load(f)
 
     # エイリアス辞書を読み込む
-    alias_dictionary = load_alias_dictionary()
+    artist_alias_dictionary = load_alias_dictionary(ARTIST_ALIAS_DICTIONARY_PATH)
+    music_alias_dictionary = load_alias_dictionary(MUSIC_ALIAS_DICTIONARY_PATH)
 
     # 音楽リストの各エントリを処理する
     items = musiclist.get("items", {})
@@ -152,23 +157,27 @@ def main():
 
         # 変換された曲名バリエーションを生成する
         generated_search_words = []
-        for value in convert_variants(title, alias_dictionary):
+        for value in convert_variants(title, music_alias_dictionary):
             if value != title:
                 generated_search_words.append(value)
 
-        dictionary_artist_aliases = alias_dictionary.get(artist)
+        dictionary_search_words = music_alias_dictionary.get(title)
+        dictionary_artist_aliases = artist_alias_dictionary.get(artist)
         generated_artist_aliases = []
         if dictionary_artist_aliases is None:
             # 変換されたアーティストのバリエーションを生成する
-            for value in convert_variants(artist, alias_dictionary):
+            for value in convert_variants(artist, artist_alias_dictionary):
                 if value != artist:
                     generated_artist_aliases.append(value)
 
         # 既存の検索ワードと生成された検索ワードを統合する
-        entry["searchWords"] = unique(
-            search_words
-            + generated_search_words
-        )
+        if dictionary_search_words is not None:
+            entry["searchWords"] = unique(search_words + dictionary_search_words)
+        else:
+            entry["searchWords"] = unique(
+                search_words
+                + generated_search_words
+            )
 
         if dictionary_artist_aliases is not None:
             # 辞書にアーティスト名がある場合は、辞書の内容を優先する

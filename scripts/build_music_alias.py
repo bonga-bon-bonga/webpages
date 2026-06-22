@@ -1,6 +1,6 @@
-# scripts/build_artist_alias.py
+# scripts/build_music_alias.py
 #####################################################
-# artist_alias_dictionary.json を Google スプレッドシートの内容で更新するスクリプト
+# music_alias_dictionary.json を Google スプレッドシートの内容で更新するスクリプト
 #####################################################
 import json
 import os
@@ -15,25 +15,43 @@ ALIAS_SPREADSHEET_ID = os.environ.get("ALIAS_SPREADSHEET_ID")
 if not ALIAS_SPREADSHEET_ID:
     raise SystemExit("Missing env var: ALIAS_SPREADSHEET_ID")
 
-ALIAS_GID_ARTISTLIST = os.environ.get("ALIAS_GID_ARTISTLIST")
-if not ALIAS_GID_ARTISTLIST:
-    raise SystemExit("Missing env var: ALIAS_GID_ARTISTLIST")
+ALIAS_GID_MUSICLIST = os.environ.get("ALIAS_GID_MUSICLIST")
+if not ALIAS_GID_MUSICLIST:
+    raise SystemExit("Missing env var: ALIAS_GID_MUSICLIST")
 
 OUTPUT_JSON_PATH = (
-    os.environ.get("ARTIST_ALIAS_DICTIONARY_PATH")
-    or "nemupipiano-musiclist-search/data/artist_alias_dictionary.json"
+    os.environ.get("MUSIC_ALIAS_DICTIONARY_PATH")
+    or "nemupipiano-musiclist-search/data/music_alias_dictionary.json"
 )
 
 GOOGLE_SHEET_URL = (
     f"https://docs.google.com/spreadsheets/d/"
-    f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_ARTISTLIST}&tqx=out:json"
+    f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_MUSICLIST}&tqx=out:json"
 )
 
-ARTIST_HEADERS = {"アーティスト名", "artist", "artistName", "artist_name"}
+TITLE_HEADERS = {
+    "曲名",
+    "曲",
+    "タイトル",
+    "title",
+    "titleName",
+    "title_name",
+    "music",
+    "musicName",
+    "music_name",
+    "musicTitle",
+    "music_title",
+    "song",
+    "songName",
+    "song_name",
+    "songTitle",
+    "song_title",
+    "name",
+}
 HIRAGANA_HEADERS = {"ひらがな", "hiragana", "hira"}
 KATAKANA_HEADERS = {"カタカナ", "katakana", "kana"}
 ENGLISH_HEADERS = {"英字", "英語", "english", "alphabet", "roman", "romaji"}
-KNOWN_HEADERS = ARTIST_HEADERS | HIRAGANA_HEADERS | KATAKANA_HEADERS | ENGLISH_HEADERS
+KNOWN_HEADERS = TITLE_HEADERS | HIRAGANA_HEADERS | KATAKANA_HEADERS | ENGLISH_HEADERS
 
 
 def normalize_text(value):
@@ -45,10 +63,26 @@ def normalize_header(value):
 
 
 NORMALIZED_KNOWN_HEADERS = {normalize_header(header) for header in KNOWN_HEADERS}
-NORMALIZED_ARTIST_HEADERS = {normalize_header(header) for header in ARTIST_HEADERS}
+NORMALIZED_TITLE_HEADERS = {normalize_header(header) for header in TITLE_HEADERS}
 NORMALIZED_HIRAGANA_HEADERS = {normalize_header(header) for header in HIRAGANA_HEADERS}
 NORMALIZED_KATAKANA_HEADERS = {normalize_header(header) for header in KATAKANA_HEADERS}
 NORMALIZED_ENGLISH_HEADERS = {normalize_header(header) for header in ENGLISH_HEADERS}
+
+
+def has_title_header(headers):
+    for header in headers:
+        normalized = normalize_header(header)
+        first_token = str(header).split(maxsplit=1)
+        normalized_first_token = normalize_header(first_token[0] if first_token else "")
+
+        if normalized in NORMALIZED_TITLE_HEADERS or normalized_first_token in NORMALIZED_TITLE_HEADERS:
+            return True
+
+    return False
+
+
+def has_known_header(headers):
+    return any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in headers)
 
 
 def cell_value(cell):
@@ -109,8 +143,8 @@ def header_kind(header):
     first_token = normalize_header(str(header).split(maxsplit=1)[0])
 
     for candidate in (normalized, first_token):
-        if candidate in NORMALIZED_ARTIST_HEADERS:
-            return "artist"
+        if candidate in NORMALIZED_TITLE_HEADERS:
+            return "title"
         if candidate in NORMALIZED_HIRAGANA_HEADERS:
             return "hiragana"
         if candidate in NORMALIZED_KATAKANA_HEADERS:
@@ -128,7 +162,7 @@ def find_alias_headers(headers):
     for header in headers:
         kind = header_kind(header)
 
-        if kind == "artist":
+        if kind == "title":
             active_alias_group = False
             continue
 
@@ -170,16 +204,27 @@ def load_sheet():
     ]
     data_rows = raw_rows
 
-    if not any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in headers) and raw_rows:
-        first_row_cells = raw_rows[0].get("c", [])
-        inferred = []
-        for idx in range(len(headers)):
-            cell = first_row_cells[idx] if idx < len(first_row_cells) else None
-            inferred.append(normalize_text(cell_value(cell)) or headers[idx])
+    if not has_known_header(headers) and raw_rows:
+        inferred_rows = []
+        for row_index, row in enumerate(raw_rows[:5]):
+            row_cells = row.get("c", [])
+            inferred = []
+            for idx in range(len(headers)):
+                cell = row_cells[idx] if idx < len(row_cells) else None
+                inferred.append(normalize_text(cell_value(cell)) or headers[idx])
+            inferred_rows.append((row_index, inferred))
 
-        if any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in inferred):
-            headers = inferred
-            data_rows = raw_rows[1:]
+        for row_index, inferred in inferred_rows:
+            if has_title_header(inferred):
+                headers = inferred
+                data_rows = raw_rows[row_index + 1 :]
+                break
+        else:
+            for row_index, inferred in inferred_rows:
+                if has_known_header(inferred):
+                    headers = inferred
+                    data_rows = raw_rows[row_index + 1 :]
+                    break
 
     rows = []
     for row in data_rows:
@@ -194,11 +239,15 @@ def load_sheet():
 
 
 def build_alias_dictionary(headers, rows):
-    artist_header = find_header(headers, ARTIST_HEADERS)
+    title_header = find_header(headers, TITLE_HEADERS) or (headers[0] if headers else None)
     alias_headers = find_alias_headers(headers)
 
-    if not artist_header:
-        raise ValueError("Missing required column: アーティスト名")
+    if not title_header:
+        raise ValueError("Missing required column: 曲名")
+
+    if not alias_headers:
+        title_index = headers.index(title_header)
+        alias_headers = headers[title_index + 1 :]
 
     if not alias_headers:
         raise ValueError("Missing alias columns: ひらがな, カタカナ, 英字")
@@ -206,15 +255,17 @@ def build_alias_dictionary(headers, rows):
     alias_dictionary = {}
 
     for row in rows:
-        artist = normalize_text(row.get(artist_header))
-        if not artist:
+        title = normalize_text(row.get(title_header))
+        if not title:
+            continue
+        if normalize_header(title) in NORMALIZED_TITLE_HEADERS:
             continue
 
         aliases = []
         for header in alias_headers:
             aliases.extend(split_alias_values(row.get(header)))
 
-        alias_dictionary[artist] = unique(aliases)
+        alias_dictionary[title] = unique(aliases)
 
     return alias_dictionary
 
@@ -230,7 +281,7 @@ def main():
     headers, rows = load_sheet()
     alias_dictionary = build_alias_dictionary(headers, rows)
     save_json(alias_dictionary)
-    print(f"Updated {len(alias_dictionary)} artist aliases.")
+    print(f"Updated {len(alias_dictionary)} music aliases.")
 
 
 if __name__ == "__main__":
