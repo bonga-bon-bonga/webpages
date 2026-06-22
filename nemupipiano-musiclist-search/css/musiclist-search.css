@@ -503,9 +503,9 @@ body {
     .song-grid[data-columns="2"] .song-card-body,
     .song-grid[data-columns="3"] .song-card-body {
     display: grid !important;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr) auto;
-    align-items: center;
-    gap: .25rem .55rem !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: .2rem .5rem !important;
     padding: .65rem .75rem !important;
     }
 
@@ -537,27 +537,67 @@ body {
     white-space: nowrap;
     }
 
-    .song-title {
+    .song-title,
+    .song-grid[data-columns="1"] .song-title,
+    .song-grid[data-columns="2"] .song-title,
+    .song-grid[data-columns="3"] .song-title {
+    display: -webkit-box;
+    grid-column: 1;
+    grid-row: 1;
     font-size: 1rem;
     line-height: 1.25;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     }
 
-    .song-artist {
+    .song-artist,
+    .song-grid[data-columns="1"] .song-artist,
+    .song-grid[data-columns="2"] .song-artist,
+    .song-grid[data-columns="3"] .song-artist {
+    grid-column: 1;
+    grid-row: 2;
     font-size: .85rem;
     line-height: 1.25;
     }
 
-    .song-number {
-    align-self: center;
+    .song-number,
+    .song-grid[data-columns="1"] .song-number,
+    .song-grid[data-columns="2"] .song-number,
+    .song-grid[data-columns="3"] .song-number {
+    align-self: start;
+    grid-column: 2;
+    grid-row: 1;
     font-size: .8rem;
     line-height: 1;
+    padding-top: .15rem;
     }
 
     .song-card-meta,
     .song-grid[data-columns="1"] .song-card-meta,
     .song-grid[data-columns="2"] .song-card-meta,
     .song-grid[data-columns="3"] .song-card-meta {
-    display: none !important;
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    grid-column: 2;
+    grid-row: 2;
+    justify-content: flex-end;
+    gap: .2rem !important;
+    margin-top: 0 !important;
+    min-width: 0;
+    }
+
+    .song-card-meta .badge,
+    .song-grid[data-columns="1"] .song-card-meta .badge,
+    .song-grid[data-columns="2"] .song-card-meta .badge,
+    .song-grid[data-columns="3"] .song-card-meta .badge {
+    max-width: 5.25rem;
+    overflow: hidden;
+    padding: .2rem .45rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: .72rem;
     }
 
     .back-to-top {
