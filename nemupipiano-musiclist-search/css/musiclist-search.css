@@ -20,6 +20,8 @@
     --page-filter-active-bg: #ffedd5;
     --page-filter-active-text: #9a3412;
     --page-filter-active-border: #fdba74;
+    --favorite-card-bg: #fffbeb;
+    --favorite-card-border: #fde68a;
 }
 
 html[data-theme="dark"] {
@@ -44,6 +46,8 @@ html[data-theme="dark"] {
     --page-filter-active-bg: #263850;
     --page-filter-active-text: #f1f1f1;
     --page-filter-active-border: #3ea6ff;
+    --favorite-card-bg: #1f2937;
+    --favorite-card-border: #38bdf8;
 }
 
 body {
@@ -157,6 +161,23 @@ body {
     padding-inline: .7rem;
 }
 
+.favorite-filter-button {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1;
+    padding-inline: .25rem;
+}
+
+.favorite-filter-button.active,
+.favorite-filter-button[aria-pressed="true"] {
+    color: #f43f5e;
+}
+
+html[data-theme="dark"] .favorite-filter-button.active,
+html[data-theme="dark"] .favorite-filter-button[aria-pressed="true"] {
+    color: #ff4e80;
+}
+
 .settings-reload-button {
     font-weight: 800;
     white-space: nowrap;
@@ -254,7 +275,14 @@ html[data-theme="dark"] .form-select {
     border-radius: 1.25rem;
     min-height: 100%;
     cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
     transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.song-card.is-favorite {
+    background: var(--favorite-card-bg);
+    border-color: var(--favorite-card-border);
 }
 
 .song-card:hover,
