@@ -191,6 +191,7 @@
     let recommendedSongs = [];
     let musiclistItems = {};
     let playableOnly = false;
+    let randomPlayableOnly = true;
     let displayColumnCount = "3";
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
@@ -445,9 +446,9 @@
     }
 
     function getRecommendSource() {
-      // 「弾ける曲」印がある曲を優先。10曲未満なら全曲からランダムにする。
-      const playableSongs = songs.filter(isPlayable);
-      return playableSongs.length >= RANDOM_COUNT ? playableSongs : songs;
+      if (!randomPlayableOnly) return songs;
+
+      return songs.filter(isPlayable);
     }
 
     function pickRandomSongs() {
@@ -510,10 +511,8 @@
     }
 
     function renderRandom() {
-      const recommendLabel = songs.filter(isPlayable).length >= RANDOM_COUNT ? "弾ける曲から選出" : "全曲から選出";
-
       els.randomStats.innerHTML = `
-        <span class="badge rounded-pill stat-badge px-3 py-2">方式：<strong>${recommendLabel}</strong></span>
+        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${randomPlayableOnly ? "active" : ""}" type="button" data-random-filter="playable" aria-pressed="${randomPlayableOnly}">弾ける曲：<strong>${randomPlayableOnly ? "ON" : "OFF"}</strong></button>
       `;
 
       els.randomEmpty.hidden = recommendedSongs.length !== 0;
@@ -614,6 +613,14 @@
 
       playableOnly = !playableOnly;
       render();
+    });
+    els.randomStats.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-random-filter='playable']");
+      if (!button) return;
+
+      randomPlayableOnly = !randomPlayableOnly;
+      pickRandomSongs();
+      renderRandom();
     });
     els.reload.addEventListener("click", loadSheet);
     els.shuffle.addEventListener("click", () => {
