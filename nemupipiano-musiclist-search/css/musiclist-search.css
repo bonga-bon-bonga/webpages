@@ -933,3 +933,8 @@ html[data-theme="dark"] .text-secondary {
 .app-panel.font-size-large .badge {
     font-size: .95rem !important;
 }
+
+.app-panel .favorite-filter-button {
+    font-size: 3.25rem !important;
+    line-height: 1 !important;
+}
