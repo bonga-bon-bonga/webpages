@@ -29,7 +29,25 @@ GOOGLE_SHEET_URL = (
     f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_MUSICLIST}&tqx=out:json"
 )
 
-TITLE_HEADERS = {"曲名", "title", "music", "musicName", "music_name", "song", "songName", "song_name"}
+TITLE_HEADERS = {
+    "曲名",
+    "曲",
+    "タイトル",
+    "title",
+    "titleName",
+    "title_name",
+    "music",
+    "musicName",
+    "music_name",
+    "musicTitle",
+    "music_title",
+    "song",
+    "songName",
+    "song_name",
+    "songTitle",
+    "song_title",
+    "name",
+}
 HIRAGANA_HEADERS = {"ひらがな", "hiragana", "hira"}
 KATAKANA_HEADERS = {"カタカナ", "katakana", "kana"}
 ENGLISH_HEADERS = {"英字", "英語", "english", "alphabet", "roman", "romaji"}
@@ -171,15 +189,17 @@ def load_sheet():
     data_rows = raw_rows
 
     if not any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in headers) and raw_rows:
-        first_row_cells = raw_rows[0].get("c", [])
-        inferred = []
-        for idx in range(len(headers)):
-            cell = first_row_cells[idx] if idx < len(first_row_cells) else None
-            inferred.append(normalize_text(cell_value(cell)) or headers[idx])
+        for row_index, row in enumerate(raw_rows[:5]):
+            row_cells = row.get("c", [])
+            inferred = []
+            for idx in range(len(headers)):
+                cell = row_cells[idx] if idx < len(row_cells) else None
+                inferred.append(normalize_text(cell_value(cell)) or headers[idx])
 
-        if any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in inferred):
-            headers = inferred
-            data_rows = raw_rows[1:]
+            if any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in inferred):
+                headers = inferred
+                data_rows = raw_rows[row_index + 1 :]
+                break
 
     rows = []
     for row in data_rows:
@@ -194,11 +214,15 @@ def load_sheet():
 
 
 def build_alias_dictionary(headers, rows):
-    title_header = find_header(headers, TITLE_HEADERS)
+    title_header = find_header(headers, TITLE_HEADERS) or (headers[0] if headers else None)
     alias_headers = find_alias_headers(headers)
 
     if not title_header:
         raise ValueError("Missing required column: 曲名")
+
+    if not alias_headers:
+        title_index = headers.index(title_header)
+        alias_headers = headers[title_index + 1 :]
 
     if not alias_headers:
         raise ValueError("Missing alias columns: ひらがな, カタカナ, 英字")
