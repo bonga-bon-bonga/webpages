@@ -171,8 +171,8 @@
             <label class="btn display-columns-button" for="displayColumns3">3列</label>
           </div>
           <p class="setting-note mt-2 mb-0">※スマホ・タブレット表示の場合、設定した表示列より少なく表示される場合があります</p>
-          <hr>
-          <div class="d-grid">
+          <div class="settings-actions d-grid gap-2">
+            <button id="clearFavorites" class="btn btn-outline-danger settings-clear-favorites-button" type="button">お気に入りを全解除</button>
             <button id="reload" class="btn btn-dark settings-reload-button" type="button">曲リストを再読み込みする</button>
           </div>
         </div>
@@ -232,6 +232,7 @@
       displayColumns: document.querySelectorAll("[name='displayColumns']"),
       genre: document.getElementById("genre"),
       reload: document.getElementById("reload"),
+      clearFavorites: document.getElementById("clearFavorites"),
       favoriteFilter: document.getElementById("favoriteFilter"),
       searchDetailToggle: document.getElementById("searchDetailToggle"),
       searchDetails: document.getElementById("searchDetails"),
@@ -372,6 +373,23 @@
       els.favoriteFilter.setAttribute("aria-pressed", String(favoriteOnly));
       els.favoriteFilter.setAttribute("aria-label", favoriteOnly ? "お気に入りのみ表示中" : "お気に入りのみ表示");
       els.favoriteFilter.textContent = favoriteOnly ? "♥" : "♡";
+    }
+
+    function clearAllFavorites() {
+      if (favoriteKeys.size === 0) {
+        showCopyToast("お気に入りは登録されていません");
+        return;
+      }
+
+      if (!window.confirm("登録したお気に入りをすべて解除します。よろしいですか？")) return;
+
+      favoriteKeys.clear();
+      saveFavoriteKeys();
+      favoriteOnly = false;
+      localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+      render();
+      renderRandom();
+      showCopyToast("お気に入りをすべて解除しました");
     }
 
     function setReloadButtonState(state) {
@@ -885,6 +903,7 @@
       localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
       render();
     });
+    els.clearFavorites.addEventListener("click", clearAllFavorites);
     els.randomStats.addEventListener("click", (event) => {
       const button = event.target.closest("[data-random-filter='playable']");
       if (!button) return;
