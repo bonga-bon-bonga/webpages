@@ -494,16 +494,70 @@ body {
     text-align: left;
     }
 
-    .song-grid[data-columns="2"] .song-card-body {
-    align-items: stretch;
-    flex-direction: column !important;
+    .song-card {
+    border-radius: .9rem;
     }
 
-    .song-grid[data-columns="2"] .song-card-text {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: .15rem;
+    .song-card-body,
+    .song-grid[data-columns="1"] .song-card-body,
+    .song-grid[data-columns="2"] .song-card-body,
+    .song-grid[data-columns="3"] .song-card-body {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr) auto;
+    align-items: center;
+    gap: .25rem .55rem !important;
+    padding: .65rem .75rem !important;
+    }
+
+    .song-card-header,
+    .song-grid[data-columns="1"] .song-card-header,
+    .song-grid[data-columns="2"] .song-card-header,
+    .song-grid[data-columns="3"] .song-card-header {
+    display: contents !important;
+    }
+
+    .song-card-text,
+    .song-grid[data-columns="1"] .song-card-text,
+    .song-grid[data-columns="2"] .song-card-text,
+    .song-grid[data-columns="3"] .song-card-text {
+    display: contents !important;
+    }
+
+    .song-title,
+    .song-artist,
+    .song-grid[data-columns="1"] .song-title,
+    .song-grid[data-columns="1"] .song-artist,
+    .song-grid[data-columns="2"] .song-title,
+    .song-grid[data-columns="2"] .song-artist,
+    .song-grid[data-columns="3"] .song-title,
+    .song-grid[data-columns="3"] .song-artist {
+    margin-bottom: 0 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    }
+
+    .song-title {
+    font-size: 1rem;
+    line-height: 1.25;
+    }
+
+    .song-artist {
+    font-size: .85rem;
+    line-height: 1.25;
+    }
+
+    .song-number {
+    align-self: center;
+    font-size: .8rem;
+    line-height: 1;
+    }
+
+    .song-card-meta,
+    .song-grid[data-columns="1"] .song-card-meta,
+    .song-grid[data-columns="2"] .song-card-meta,
+    .song-grid[data-columns="3"] .song-card-meta {
+    display: none !important;
     }
 
     .back-to-top {
