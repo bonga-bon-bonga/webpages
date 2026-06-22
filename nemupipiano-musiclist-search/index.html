@@ -53,23 +53,25 @@
             <button id="reload" class="btn btn-dark btn-lg" type="button">再読み込み</button>
           </div>
         </div>
-        <div class="search-scope mt-3" role="radiogroup" aria-label="検索対象">
-          <span class="search-scope-label">検索対象</span>
-          <input class="btn-check" type="radio" name="searchScope" id="searchScopeAll" value="all" autocomplete="off" checked>
-          <label class="btn search-scope-button" for="searchScopeAll">すべて</label>
-          <input class="btn-check" type="radio" name="searchScope" id="searchScopeTitle" value="title" autocomplete="off">
-          <label class="btn search-scope-button" for="searchScopeTitle">曲名</label>
-          <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
-          <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
-        </div>
-        <div class="display-columns mt-2" role="radiogroup" aria-label="表示列">
-          <span class="display-columns-label">表示列</span>
-          <input class="btn-check" type="radio" name="displayColumns" id="displayColumns1" value="1" autocomplete="off">
-          <label class="btn display-columns-button" for="displayColumns1">1列</label>
-          <input class="btn-check" type="radio" name="displayColumns" id="displayColumns2" value="2" autocomplete="off">
-          <label class="btn display-columns-button" for="displayColumns2">2列</label>
-          <input class="btn-check" type="radio" name="displayColumns" id="displayColumns3" value="3" autocomplete="off" checked>
-          <label class="btn display-columns-button" for="displayColumns3">3列</label>
+        <div class="result-controls mt-3">
+          <div class="search-scope" role="radiogroup" aria-label="検索対象">
+            <span class="search-scope-label">検索対象</span>
+            <input class="btn-check" type="radio" name="searchScope" id="searchScopeAll" value="all" autocomplete="off" checked>
+            <label class="btn search-scope-button" for="searchScopeAll">すべて</label>
+            <input class="btn-check" type="radio" name="searchScope" id="searchScopeTitle" value="title" autocomplete="off">
+            <label class="btn search-scope-button" for="searchScopeTitle">曲名</label>
+            <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
+            <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
+          </div>
+          <div class="display-columns" role="radiogroup" aria-label="表示列">
+            <span class="display-columns-label">表示列</span>
+            <input class="btn-check" type="radio" name="displayColumns" id="displayColumns1" value="1" autocomplete="off">
+            <label class="btn display-columns-button" for="displayColumns1">1列</label>
+            <input class="btn-check" type="radio" name="displayColumns" id="displayColumns2" value="2" autocomplete="off">
+            <label class="btn display-columns-button" for="displayColumns2">2列</label>
+            <input class="btn-check" type="radio" name="displayColumns" id="displayColumns3" value="3" autocomplete="off" checked>
+            <label class="btn display-columns-button" for="displayColumns3">3列</label>
+          </div>
         </div>
 
         <div class="d-flex flex-wrap gap-2 mt-3" id="stats" aria-live="polite"></div>
@@ -475,16 +477,16 @@
       return items.map((song, index) => `
         <div class="col">
           <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
-            <div class="card-body d-flex flex-column gap-2 p-3 p-md-4">
-              <div class="d-flex justify-content-between gap-3 align-items-start">
-                <div class="min-w-0">
+            <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
+              <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
+                <div class="song-card-text min-w-0">
                   <h2 class="song-title h5 fw-bold mb-1">${escapeHtml(song.title)}</h2>
                   <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
                 </div>
-                <span class="text-secondary small flex-shrink-0">#${escapeHtml(song.no || "-")}</span>
+                <span class="song-number text-secondary small flex-shrink-0">#${escapeHtml(song.no || "-")}</span>
               </div>
 
-              <div class="d-flex flex-wrap gap-2 mt-auto">
+              <div class="song-card-meta d-flex flex-wrap gap-2 mt-auto">
                 ${recommended ? `<span class="badge rounded-pill badge-recommend">おすすめ ${index + 1}</span>` : ""}
                 ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
                 ${song.genre ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(song.genre)}</span>` : ""}
