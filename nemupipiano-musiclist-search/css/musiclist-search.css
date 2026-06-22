@@ -146,7 +146,6 @@ body {
     border-radius: .45rem;
     color: var(--page-muted);
     background: #f5f5f4;
-    font-size: .875rem;
     font-weight: 800;
     line-height: 1.2;
 }
@@ -390,16 +389,25 @@ body {
     gap: .45rem;
 }
 
-.setting-option-button {
+.setting-option-button,
+.display-columns-button {
     min-width: 3.5rem;
     border-color: var(--page-line);
     border-radius: .5rem;
     color: var(--page-muted);
     background: #f5f5f4;
+    font-size: 1rem;
     font-weight: 800;
 }
 
-.btn-check:checked + .setting-option-button {
+.setting-note {
+    color: var(--page-muted);
+    font-size: .8rem;
+    line-height: 1.45;
+}
+
+.btn-check:checked + .setting-option-button,
+.btn-check:checked + .display-columns-button {
     border-color: #44403c;
     color: #fff;
     background: #44403c;
