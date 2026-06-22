@@ -32,14 +32,14 @@
 
       <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search">
         <div class="row g-2 g-md-3 align-items-stretch">
-          <div class="col-7 col-md-9">
+          <div class="col">
             <label class="visually-hidden" for="search">検索キーワード</label>
             <input id="search" class="form-control form-control-lg" type="search" placeholder="曲名・アーティストで検索" autocomplete="off" />
           </div>
-          <div class="col-2 col-md-1 d-grid">
+          <div class="col-auto favorite-filter-column">
             <button id="favoriteFilter" class="btn btn-dark btn-lg favorite-filter-button" type="button" aria-label="お気に入りのみ表示" aria-pressed="false">♡</button>
           </div>
-          <div class="col-3 col-md-2 d-grid">
+          <div class="col-auto col-md-2 d-grid">
             <button id="searchDetailToggle" class="btn btn-dark btn-lg detail-toggle-button" type="button" aria-expanded="false" aria-controls="searchDetails">▼詳細</button>
           </div>
         </div>
