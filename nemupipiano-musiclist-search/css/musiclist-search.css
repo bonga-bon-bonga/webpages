@@ -112,6 +112,7 @@ body {
 .search-scope,
 .display-columns {
     display: inline-flex;
+    flex: 0 0 auto;
     flex-wrap: wrap;
     align-items: center;
     gap: .35rem;
