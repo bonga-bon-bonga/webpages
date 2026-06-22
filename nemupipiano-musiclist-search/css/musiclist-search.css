@@ -146,7 +146,6 @@ body {
     border-radius: .45rem;
     color: var(--page-muted);
     background: #f5f5f4;
-    font-size: .875rem;
     font-weight: 800;
     line-height: 1.2;
 }
@@ -390,16 +389,25 @@ body {
     gap: .45rem;
 }
 
-.setting-option-button {
+.setting-option-button,
+.display-columns-button {
     min-width: 3.5rem;
     border-color: var(--page-line);
     border-radius: .5rem;
     color: var(--page-muted);
     background: #f5f5f4;
+    font-size: 1rem;
     font-weight: 800;
 }
 
-.btn-check:checked + .setting-option-button {
+.setting-note {
+    color: var(--page-muted);
+    font-size: .8rem;
+    line-height: 1.45;
+}
+
+.btn-check:checked + .setting-option-button,
+.btn-check:checked + .display-columns-button {
     border-color: #44403c;
     color: #fff;
     background: #44403c;
@@ -528,10 +536,6 @@ body {
     .result-controls {
     align-items: flex-start;
     flex-direction: column;
-    }
-
-    .display-columns {
-    display: none;
     }
 
     .status-text {
@@ -663,11 +667,7 @@ body {
     }
 }
 
-.app-panel.font-size-small .form-control,
-.app-panel.font-size-small .form-select,
 .app-panel.font-size-small .btn,
-.app-panel.font-size-small .badge,
-.app-panel.font-size-small .song-title,
 .app-panel.font-size-small .song-artist,
 .app-panel.font-size-small .song-number,
 .app-panel.font-size-small .status-text,
@@ -675,14 +675,49 @@ body {
     font-size: .9rem !important;
 }
 
-.app-panel.font-size-large .form-control,
-.app-panel.font-size-large .form-select,
 .app-panel.font-size-large .btn,
-.app-panel.font-size-large .badge,
-.app-panel.font-size-large .song-title,
 .app-panel.font-size-large .song-artist,
 .app-panel.font-size-large .song-number,
 .app-panel.font-size-large .status-text,
 .app-panel.font-size-large .recommend-desc {
     font-size: 1.1rem !important;
+}
+
+.app-panel.font-size-small .form-control,
+.app-panel.font-size-small .form-select {
+    font-size: .95rem !important;
+}
+
+.app-panel.font-size-medium .form-control,
+.app-panel.font-size-medium .form-select {
+    font-size: 1.05rem !important;
+}
+
+.app-panel.font-size-large .form-control,
+.app-panel.font-size-large .form-select {
+    font-size: 1.18rem !important;
+}
+
+.app-panel.font-size-small .song-title {
+    font-size: 1rem !important;
+}
+
+.app-panel.font-size-medium .song-title {
+    font-size: 1.18rem !important;
+}
+
+.app-panel.font-size-large .song-title {
+    font-size: 1.35rem !important;
+}
+
+.app-panel.font-size-small .badge {
+    font-size: .72rem !important;
+}
+
+.app-panel.font-size-medium .badge {
+    font-size: .82rem !important;
+}
+
+.app-panel.font-size-large .badge {
+    font-size: .95rem !important;
 }
