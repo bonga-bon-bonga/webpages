@@ -214,7 +214,8 @@ body {
 }
 
 .song-grid[data-columns="1"] .song-card-body {
-    flex-direction: row !important;
+    display: grid !important;
+    grid-template-columns: minmax(12rem, 1.35fr) minmax(10rem, .95fr) 3rem minmax(10rem, auto);
     align-items: center;
     gap: .75rem !important;
 }
@@ -226,7 +227,7 @@ body {
 }
 
 .song-grid[data-columns="1"] .song-card-header {
-    flex: 1 1 auto;
+    display: contents !important;
 }
 
 .song-grid[data-columns="1"] .song-card-text,
@@ -237,8 +238,7 @@ body {
 }
 
 .song-grid[data-columns="1"] .song-card-text {
-    flex: 1 1 auto;
-    gap: .75rem;
+    display: contents;
 }
 
 .song-grid[data-columns="1"] .song-title,
@@ -252,24 +252,27 @@ body {
 }
 
 .song-grid[data-columns="1"] .song-title {
-    flex: 1 1 42%;
     font-size: 1rem;
+    grid-column: 1;
 }
 
 .song-grid[data-columns="1"] .song-artist {
-    flex: 1 1 32%;
     font-size: .9rem;
+    grid-column: 2;
 }
 
 .song-grid[data-columns="1"] .song-number {
     font-size: .8rem;
+    grid-column: 3;
+    justify-self: end;
 }
 
 .song-grid[data-columns="1"] .song-card-meta {
-    flex: 0 0 auto;
     flex-wrap: nowrap !important;
+    grid-column: 4;
     margin-top: 0 !important;
     justify-content: flex-end;
+    min-width: 0;
 }
 
 .song-grid[data-columns="1"] .song-card-meta .badge {
@@ -439,11 +442,20 @@ body {
     flex-direction: column !important;
     }
 
+    .song-grid[data-columns="1"] .song-card-body {
+    display: flex !important;
+    }
+
     .song-grid[data-columns="1"] .song-card-text,
     .song-grid[data-columns="2"] .song-card-text {
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
     gap: .15rem;
+    }
+
+    .song-grid[data-columns="1"] .song-card-header {
+    display: flex !important;
     }
 
     .song-grid[data-columns="1"] .song-card-meta {

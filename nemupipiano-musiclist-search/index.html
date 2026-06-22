@@ -476,7 +476,7 @@
       const { recommended = false } = options;
       return items.map((song, index) => `
         <div class="col">
-          <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
+          <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
             <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
               <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
                 <div class="song-card-text min-w-0">
@@ -526,9 +526,11 @@
     }
 
     function requestText(song) {
+      const no = String(song.no || "").trim();
       const title = String(song.title || "").trim();
       const artist = String(song.artist || "").trim();
-      return `【ぴぴりく】${title}／${artist || "アーティスト未設定"}`;
+      const noPrefix = no ? `${no}.` : "";
+      return `【ぴぴりく】${noPrefix}${title}／${artist || "アーティスト未設定"}`;
     }
 
     async function copyToClipboard(text) {
@@ -571,9 +573,10 @@
     }
 
     async function handleCardCopy(card) {
+      const no = card.dataset.copyNo || "";
       const title = card.dataset.copySong || "";
       const artist = card.dataset.copyArtist || "";
-      const text = requestText({ title, artist });
+      const text = requestText({ no, title, artist });
 
       try {
         await copyToClipboard(text);
