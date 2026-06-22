@@ -474,9 +474,8 @@
       });
     }
 
-    function renderSongCards(items, options = {}) {
-      const { recommended = false } = options;
-      return items.map((song, index) => `
+    function renderSongCards(items) {
+      return items.map(song => `
         <div class="col">
           <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
             <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
@@ -489,7 +488,6 @@
               </div>
 
               <div class="song-card-meta d-flex flex-wrap gap-2 mt-auto">
-                ${recommended ? `<span class="badge rounded-pill badge-recommend">おすすめ ${index + 1}</span>` : ""}
                 ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
                 ${song.genre ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(song.genre)}</span>` : ""}
               </div>
@@ -501,11 +499,9 @@
 
     function render() {
       const items = filteredSongs();
-      const genreCount = new Set(songs.map(song => song.genre).filter(Boolean)).size;
 
       els.stats.innerHTML = `
         <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
-        <span class="badge rounded-pill stat-badge px-3 py-2">ジャンル<strong>${genreCount}</strong>種</span>
         <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-filter="playable" aria-pressed="${playableOnly}">弾ける曲：<strong>${playableOnly ? "ON" : "OFF"}</strong></button>
       `;
 
@@ -517,12 +513,11 @@
       const recommendLabel = songs.filter(isPlayable).length >= RANDOM_COUNT ? "弾ける曲から選出" : "全曲から選出";
 
       els.randomStats.innerHTML = `
-        <span class="badge rounded-pill stat-badge px-3 py-2">おすすめ<strong>${recommendedSongs.length}</strong>曲</span>
         <span class="badge rounded-pill stat-badge px-3 py-2">方式：<strong>${recommendLabel}</strong></span>
       `;
 
       els.randomEmpty.hidden = recommendedSongs.length !== 0;
-      els.randomSongs.innerHTML = renderSongCards(recommendedSongs, { recommended: true });
+      els.randomSongs.innerHTML = renderSongCards(recommendedSongs);
     }
 
     function requestText(song) {

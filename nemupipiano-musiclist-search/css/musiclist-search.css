@@ -372,12 +372,6 @@ body {
     border: 1px solid #bbf7d0;
 }
 
-.badge-recommend {
-    color: var(--page-accent);
-    background: var(--page-accent-soft);
-    border: 1px solid #fed7aa;
-}
-
 .empty-box {
     color: var(--page-muted);
     border: 1px dashed var(--page-line);
