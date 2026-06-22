@@ -211,6 +211,7 @@
     const DISPLAY_COLUMNS_KEY = "nemupipiano:displayColumns";
     const PLAYABLE_ONLY_KEY = "nemupipiano:playableOnly";
     const RANDOM_PLAYABLE_ONLY_KEY = "nemupipiano:randomPlayableOnly";
+    const RELOAD_BUTTON_DEFAULT_TEXT = "曲リストを再読み込みする";
 
     const els = {
       search: document.getElementById("search"),
@@ -243,6 +244,7 @@
     let playableOnly = false;
     let randomPlayableOnly = true;
     let displayColumnCount = "3";
+    let reloadFeedbackTimer = null;
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
@@ -312,10 +314,43 @@
       };
     }
 
+    function setReloadButtonState(state) {
+      clearTimeout(reloadFeedbackTimer);
+      reloadFeedbackTimer = null;
+
+      if (state === "loading") {
+        els.reload.disabled = true;
+        els.reload.innerHTML = '<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span><span>読み込み中…</span>';
+        return;
+      }
+
+      if (state === "complete") {
+        els.reload.disabled = false;
+        els.reload.textContent = "読み込み完了しました！";
+        reloadFeedbackTimer = setTimeout(() => setReloadButtonState("default"), 2000);
+        return;
+      }
+
+      if (state === "error") {
+        els.reload.disabled = false;
+        els.reload.textContent = "読み込みに失敗しました";
+        reloadFeedbackTimer = setTimeout(() => setReloadButtonState("default"), 2000);
+        return;
+      }
+
+      els.reload.disabled = false;
+      els.reload.textContent = RELOAD_BUTTON_DEFAULT_TEXT;
+    }
+
     // Google Visualization APIを使ってシートを読み込む。レスポンスはJSONP形式で返されるため、コールバック関数を動的に生成して対応する。
-    function loadSheet() {
-      els.reload.disabled = true;
+    function loadSheet({ showReloadFeedback = false } = {}) {
+      if (showReloadFeedback) {
+        setReloadButtonState("loading");
+      } else {
+        els.reload.disabled = true;
+      }
       els.shuffle.disabled = true;
+      let loadSucceeded = false;
 
       const musiclistPromise = loadMusiclist()
         .then(items => ({ items }))
@@ -340,10 +375,15 @@
           pickRandomSongs();
           render();
           renderRandom();
+          loadSucceeded = true;
         } catch (error) {
           console.error(error);
         } finally {
-          els.reload.disabled = false;
+          if (showReloadFeedback) {
+            setReloadButtonState(loadSucceeded ? "complete" : "error");
+          } else {
+            els.reload.disabled = false;
+          }
           els.shuffle.disabled = false;
           script.remove();
           delete window[callbackName];
@@ -351,7 +391,11 @@
       };
 
       script.onerror = () => {
-        els.reload.disabled = false;
+        if (showReloadFeedback) {
+          setReloadButtonState("error");
+        } else {
+          els.reload.disabled = false;
+        }
         els.shuffle.disabled = false;
         script.remove();
         delete window[callbackName];
@@ -726,7 +770,7 @@
     els.searchDetailToggle.addEventListener("click", () => {
       setSearchDetailsOpen(els.searchDetails.hidden);
     });
-    els.reload.addEventListener("click", loadSheet);
+    els.reload.addEventListener("click", () => loadSheet({ showReloadFeedback: true }));
     els.shuffle.addEventListener("click", () => {
       pickRandomSongs();
       renderRandom();
