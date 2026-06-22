@@ -480,6 +480,11 @@ body {
     line-height: 1.55;
     }
 
+    .site-footer p {
+    font-size: .75rem;
+    line-height: 1.25;
+    }
+
     .result-controls {
     align-items: flex-start;
     flex-direction: column;
