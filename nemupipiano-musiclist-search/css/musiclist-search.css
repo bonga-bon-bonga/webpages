@@ -97,21 +97,36 @@ body {
     box-shadow: 0 8px 18px rgba(41, 37, 36, .07);
 }
 
-.search-scope {
+.reload-button {
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.result-controls {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem 1rem;
+}
+
+.search-scope,
+.display-columns {
+    display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
     gap: .35rem;
 }
 
-.search-scope-label {
+.search-scope-label,
+.display-columns-label {
     color: var(--page-muted);
     font-size: .85rem;
     font-weight: 700;
     margin-right: .15rem;
 }
 
-.search-scope-button {
+.search-scope-button,
+.display-columns-button {
     min-height: 2rem;
     padding: .3rem .75rem;
     border-color: var(--page-line);
@@ -123,13 +138,15 @@ body {
     line-height: 1.2;
 }
 
-.btn-check:checked + .search-scope-button {
+.btn-check:checked + .search-scope-button,
+.btn-check:checked + .display-columns-button {
     border-color: #44403c;
     color: #fff;
     background: #44403c;
 }
 
-.btn-check:focus + .search-scope-button {
+.btn-check:focus + .search-scope-button,
+.btn-check:focus + .display-columns-button {
     box-shadow: 0 0 0 .2rem rgba(68, 64, 60, .18);
 }
 
@@ -196,6 +213,125 @@ body {
     overflow-wrap: anywhere;
 }
 
+.stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem 1rem;
+}
+
+.status-text {
+    flex: 0 1 auto;
+    margin-left: auto;
+    text-align: right;
+}
+
+.song-grid[data-columns="1"] .song-card-body,
+.song-grid[data-columns="2"] .song-card-body {
+    padding: .75rem 1rem !important;
+}
+
+.song-grid[data-columns="1"] .song-card-body {
+    display: grid !important;
+    grid-template-columns: minmax(12rem, 1.35fr) minmax(10rem, .95fr) 3rem minmax(10rem, auto);
+    align-items: center;
+    gap: .75rem !important;
+}
+
+.song-grid[data-columns="1"] .song-card-header,
+.song-grid[data-columns="2"] .song-card-header {
+    align-items: center !important;
+    min-width: 0;
+}
+
+.song-grid[data-columns="1"] .song-card-header {
+    display: contents !important;
+}
+
+.song-grid[data-columns="1"] .song-card-text,
+.song-grid[data-columns="2"] .song-card-text {
+    display: flex;
+    align-items: baseline;
+    min-width: 0;
+}
+
+.song-grid[data-columns="1"] .song-card-text {
+    display: contents;
+}
+
+.song-grid[data-columns="1"] .song-title,
+.song-grid[data-columns="1"] .song-artist,
+.song-grid[data-columns="2"] .song-title,
+.song-grid[data-columns="2"] .song-artist {
+    margin-bottom: 0 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.song-grid[data-columns="1"] .song-title {
+    font-size: 1rem;
+    grid-column: 1;
+}
+
+.song-grid[data-columns="1"] .song-artist {
+    font-size: .9rem;
+    grid-column: 2;
+}
+
+.song-grid[data-columns="1"] .song-number {
+    font-size: .8rem;
+    grid-column: 3;
+    justify-self: end;
+}
+
+.song-grid[data-columns="1"] .song-card-meta {
+    flex-wrap: nowrap !important;
+    grid-column: 4;
+    margin-top: 0 !important;
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+.song-grid[data-columns="1"] .song-card-meta .badge {
+    max-width: 9.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.song-grid[data-columns="2"] .song-card-body {
+    gap: .45rem !important;
+}
+
+.song-grid[data-columns="2"] .song-card-text {
+    flex: 1 1 auto;
+    gap: .5rem;
+}
+
+.song-grid[data-columns="2"] .song-title {
+    flex: 1 1 56%;
+    font-size: 1rem;
+}
+
+.song-grid[data-columns="2"] .song-artist {
+    flex: 1 1 34%;
+    font-size: .9rem;
+}
+
+.song-grid[data-columns="2"] .song-card-meta {
+    flex-wrap: nowrap !important;
+    margin-top: 0 !important;
+}
+
+.song-grid[data-columns="2"] .song-card-meta .badge {
+    max-width: 9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .stat-badge {
     color: var(--page-muted);
     background: #fafaf9;
@@ -248,6 +384,66 @@ body {
     background: #fff;
 }
 
+.back-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 4.25rem;
+    z-index: 1070;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(68, 64, 60, .18);
+    border-radius: 999px;
+    color: #fff;
+    background: #44403c;
+    box-shadow: 0 .75rem 1.5rem rgba(41, 37, 36, .18);
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+    background: var(--page-accent);
+    box-shadow: 0 1rem 1.75rem rgba(41, 37, 36, .22);
+    transform: translateY(-2px);
+}
+
+.back-to-top:active {
+    transform: translateY(0);
+}
+
+.back-to-top[hidden] {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .song-grid[data-columns="1"] .song-card-body {
+    align-items: stretch;
+    display: flex !important;
+    flex-direction: column !important;
+    }
+
+    .song-grid[data-columns="1"] .song-card-header {
+    display: flex !important;
+    }
+
+    .song-grid[data-columns="1"] .song-card-text {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    }
+
+    .song-grid[data-columns="1"] .song-card-meta {
+    flex-wrap: wrap !important;
+    justify-content: flex-start;
+    }
+}
+
 @media (max-width: 575.98px) {
     .app-panel {
     border-radius: 1.1rem;
@@ -276,5 +472,43 @@ body {
 
     .app-title {
     font-size: 2rem;
+    }
+
+    .app-shell header .lead {
+    font-size: .95rem;
+    line-height: 1.55;
+    }
+
+    .result-controls {
+    align-items: flex-start;
+    flex-direction: column;
+    }
+
+    .display-columns {
+    display: none;
+    }
+
+    .status-text {
+    margin-left: 0;
+    text-align: left;
+    }
+
+    .song-grid[data-columns="2"] .song-card-body {
+    align-items: stretch;
+    flex-direction: column !important;
+    }
+
+    .song-grid[data-columns="2"] .song-card-text {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .15rem;
+    }
+
+    .back-to-top {
+    right: .75rem;
+    bottom: 4rem;
+    width: 2.75rem;
+    height: 2.75rem;
     }
 }

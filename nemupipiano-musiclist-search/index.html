@@ -39,33 +39,46 @@
 
       <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search">
         <div class="row g-2 g-md-3 align-items-stretch">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-7">
             <label class="visually-hidden" for="search">検索キーワード</label>
             <input id="search" class="form-control form-control-lg" type="search" placeholder="曲名・アーティストで検索" autocomplete="off" />
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <label class="visually-hidden" for="genre">ジャンル</label>
             <select id="genre" class="form-select form-select-lg">
               <option value="">すべてのジャンル</option>
             </select>
           </div>
           <div class="col-12 col-md-2 d-grid">
-            <button id="reload" class="btn btn-dark btn-lg" type="button">再読み込み</button>
+            <button id="reload" class="btn btn-dark btn-lg reload-button" type="button">再読み込み</button>
           </div>
         </div>
-        <div class="search-scope mt-3" role="radiogroup" aria-label="検索対象">
-          <span class="search-scope-label">検索対象</span>
-          <input class="btn-check" type="radio" name="searchScope" id="searchScopeAll" value="all" autocomplete="off" checked>
-          <label class="btn search-scope-button" for="searchScopeAll">すべて</label>
-          <input class="btn-check" type="radio" name="searchScope" id="searchScopeTitle" value="title" autocomplete="off">
-          <label class="btn search-scope-button" for="searchScopeTitle">曲名</label>
-          <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
-          <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
+        <div class="result-controls mt-3">
+          <div class="search-scope" role="radiogroup" aria-label="検索対象">
+            <span class="search-scope-label">検索対象</span>
+            <input class="btn-check" type="radio" name="searchScope" id="searchScopeAll" value="all" autocomplete="off" checked>
+            <label class="btn search-scope-button" for="searchScopeAll">すべて</label>
+            <input class="btn-check" type="radio" name="searchScope" id="searchScopeTitle" value="title" autocomplete="off">
+            <label class="btn search-scope-button" for="searchScopeTitle">曲名</label>
+            <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
+            <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
+          </div>
+          <div class="display-columns" role="radiogroup" aria-label="表示列">
+            <span class="display-columns-label">表示列</span>
+            <input class="btn-check" type="radio" name="displayColumns" id="displayColumns1" value="1" autocomplete="off">
+            <label class="btn display-columns-button" for="displayColumns1">1列</label>
+            <input class="btn-check" type="radio" name="displayColumns" id="displayColumns2" value="2" autocomplete="off">
+            <label class="btn display-columns-button" for="displayColumns2">2列</label>
+            <input class="btn-check" type="radio" name="displayColumns" id="displayColumns3" value="3" autocomplete="off" checked>
+            <label class="btn display-columns-button" for="displayColumns3">3列</label>
+          </div>
         </div>
 
-        <div class="d-flex flex-wrap gap-2 mt-3" id="stats" aria-live="polite"></div>
-        <p class="status-text mt-3 mb-0" id="status">読み込み中…</p>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1" id="songs"></div>
+        <div class="stats-row mt-3">
+          <div class="d-flex flex-wrap gap-2" id="stats" aria-live="polite"></div>
+          <p class="status-text mb-0" id="status">読み込み中…</p>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="songs" data-columns="3"></div>
         <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
       </section>
 
@@ -80,7 +93,7 @@
           </div>
         </div>
         <div class="d-flex flex-wrap gap-2 mt-3" id="randomStats" aria-live="polite"></div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1" id="randomSongs"></div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="randomSongs" data-columns="3"></div>
         <div class="empty-box text-center p-4 mt-3" id="randomEmpty" hidden>おすすめできる曲がまだ読み込まれていません。</div>
       </section>
     </section>
@@ -105,7 +118,7 @@
             2. ジャンルを選ぶと、対象ジャンルの曲だけに絞り込めます。<br>
             3. <strong>ランダム表示</strong>タブでは、曲リストからランダムに10曲を表示します。<br>
             4. 曲カードをクリックすると、下記の形式でクリップボードにコピーされます。<br>
-            <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲名&gt;／&lt;アーティスト&gt;</span><br>
+            <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span><br>
             5. コピー後は画面上部に、コピーした文字列が2秒ほど表示されます。
           </p>
           <hr>
@@ -138,8 +151,12 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.2.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.1.3.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
+    <span aria-hidden="true">↑</span>
+  </button>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
@@ -153,6 +170,7 @@
     const els = {
       search: document.getElementById("search"),
       searchScopes: document.querySelectorAll("[name='searchScope']"),
+      displayColumns: document.querySelectorAll("[name='displayColumns']"),
       genre: document.getElementById("genre"),
       reload: document.getElementById("reload"),
       status: document.getElementById("status"),
@@ -166,12 +184,14 @@
       tabs: document.querySelectorAll("[data-tab]"),
       panels: document.querySelectorAll(".tab-panel"),
       copyToast: document.getElementById("copyToast"),
+      backToTop: document.getElementById("backToTop"),
     };
 
     let songs = [];
     let recommendedSongs = [];
     let musiclistItems = {};
     let playableOnly = false;
+    let displayColumnCount = "3";
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
@@ -439,21 +459,36 @@
       recommendedSongs = source.slice(0, RANDOM_COUNT);
     }
 
+    function gridClassesForColumns(columns) {
+      if (columns === "1") return "row row-cols-1 g-3 mt-1 song-grid";
+      if (columns === "2") return "row row-cols-1 row-cols-md-2 g-3 mt-1 song-grid";
+      return "row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid";
+    }
+
+    function applyColumnLayout() {
+      const gridClassName = gridClassesForColumns(displayColumnCount);
+
+      [els.songs, els.randomSongs].forEach(grid => {
+        grid.className = gridClassName;
+        grid.dataset.columns = displayColumnCount;
+      });
+    }
+
     function renderSongCards(items, options = {}) {
       const { recommended = false } = options;
       return items.map((song, index) => `
         <div class="col">
-          <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
-            <div class="card-body d-flex flex-column gap-2 p-3 p-md-4">
-              <div class="d-flex justify-content-between gap-3 align-items-start">
-                <div class="min-w-0">
+          <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
+            <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
+              <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
+                <div class="song-card-text min-w-0">
                   <h2 class="song-title h5 fw-bold mb-1">${escapeHtml(song.title)}</h2>
                   <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
                 </div>
-                <span class="text-secondary small flex-shrink-0">#${escapeHtml(song.no || "-")}</span>
+                <span class="song-number text-secondary small flex-shrink-0">#${escapeHtml(song.no || "-")}</span>
               </div>
 
-              <div class="d-flex flex-wrap gap-2 mt-auto">
+              <div class="song-card-meta d-flex flex-wrap gap-2 mt-auto">
                 ${recommended ? `<span class="badge rounded-pill badge-recommend">おすすめ ${index + 1}</span>` : ""}
                 ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
                 ${song.genre ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(song.genre)}</span>` : ""}
@@ -466,14 +501,12 @@
 
     function render() {
       const items = filteredSongs();
-      const playableCount = songs.filter(isPlayable).length;
       const genreCount = new Set(songs.map(song => song.genre).filter(Boolean)).size;
 
       els.stats.innerHTML = `
-        <span class="badge rounded-pill stat-badge px-3 py-2">全<strong>${songs.length}</strong>曲</span>
-        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-filter="playable" aria-pressed="${playableOnly}">弾ける曲<strong>${playableCount}</strong>曲</button>
+        <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
         <span class="badge rounded-pill stat-badge px-3 py-2">ジャンル<strong>${genreCount}</strong>種</span>
-        <span class="badge rounded-pill stat-badge px-3 py-2">表示中<strong>${items.length}</strong>曲</span>
+        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-filter="playable" aria-pressed="${playableOnly}">弾ける曲：<strong>${playableOnly ? "ON" : "OFF"}</strong></button>
       `;
 
       els.empty.hidden = items.length !== 0;
@@ -493,9 +526,11 @@
     }
 
     function requestText(song) {
+      const no = String(song.no || "").trim();
       const title = String(song.title || "").trim();
       const artist = String(song.artist || "").trim();
-      return `【ぴぴりく】${title}／${artist || "アーティスト未設定"}`;
+      const noPrefix = no ? `${no}.` : "";
+      return `【ぴぴりく】${noPrefix}${title}／${artist || "アーティスト未設定"}`;
     }
 
     async function copyToClipboard(text) {
@@ -538,9 +573,10 @@
     }
 
     async function handleCardCopy(card) {
+      const no = card.dataset.copyNo || "";
       const title = card.dataset.copySong || "";
       const artist = card.dataset.copyArtist || "";
-      const text = requestText({ title, artist });
+      const text = requestText({ no, title, artist });
 
       try {
         await copyToClipboard(text);
@@ -564,8 +600,18 @@
       });
     }
 
+    function updateBackToTopVisibility() {
+      els.backToTop.hidden = window.scrollY < 320;
+    }
+
     els.search.addEventListener("input", render);
     els.searchScopes.forEach(scope => scope.addEventListener("change", render));
+    els.displayColumns.forEach(column => {
+      column.addEventListener("change", () => {
+        displayColumnCount = column.value;
+        applyColumnLayout();
+      });
+    });
     els.genre.addEventListener("change", render);
     els.stats.addEventListener("click", (event) => {
       const button = event.target.closest("[data-filter='playable']");
@@ -579,6 +625,10 @@
       pickRandomSongs();
       renderRandom();
     });
+    els.backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
 
     document.addEventListener("click", (event) => {
       const card = event.target.closest("[data-copy-song]");
@@ -598,6 +648,8 @@
       tab.addEventListener("click", () => switchTab(tab.dataset.tab));
     });
 
+    applyColumnLayout();
+    updateBackToTopVisibility();
     loadSheet();
   </script>
 </body>
