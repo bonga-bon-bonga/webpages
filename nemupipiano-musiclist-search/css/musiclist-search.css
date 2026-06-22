@@ -168,13 +168,13 @@ body {
 
 .favorite-filter-button {
     align-self: center;
-    width: 2.25rem;
+    width: 3.5rem;
     min-height: 3rem;
     border-color: transparent;
     color: var(--page-text);
     background: transparent;
     box-shadow: none;
-    font-size: 1.85rem;
+    font-size: 3.25rem;
     font-weight: 900;
     line-height: 1;
     padding: 0;
