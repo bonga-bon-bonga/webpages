@@ -208,6 +208,20 @@ body {
     overflow-wrap: anywhere;
 }
 
+.stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem 1rem;
+}
+
+.status-text {
+    flex: 0 1 auto;
+    margin-left: auto;
+    text-align: right;
+}
+
 .song-grid[data-columns="1"] .song-card-body,
 .song-grid[data-columns="2"] .song-card-body {
     padding: .75rem 1rem !important;
@@ -467,6 +481,11 @@ body {
 
     .display-columns {
     display: none;
+    }
+
+    .status-text {
+    margin-left: 0;
+    text-align: left;
     }
 
     .song-grid[data-columns="2"] .song-card-body {
