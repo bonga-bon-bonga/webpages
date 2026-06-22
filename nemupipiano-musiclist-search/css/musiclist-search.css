@@ -507,6 +507,7 @@ body {
     align-items: start;
     gap: .2rem .5rem !important;
     padding: .65rem .75rem !important;
+    position: relative;
     }
 
     .song-card-header,
@@ -542,11 +543,12 @@ body {
     .song-grid[data-columns="2"] .song-title,
     .song-grid[data-columns="3"] .song-title {
     display: -webkit-box;
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 1;
     font-size: 1rem;
     line-height: 1.25;
     overflow-wrap: anywhere;
+    padding-right: 3.25rem;
     white-space: normal;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -567,11 +569,12 @@ body {
     .song-grid[data-columns="2"] .song-number,
     .song-grid[data-columns="3"] .song-number {
     align-self: start;
-    grid-column: 2;
-    grid-row: 1;
     font-size: .8rem;
     line-height: 1;
+    position: absolute;
     padding-top: .15rem;
+    right: .75rem;
+    top: .65rem;
     }
 
     .song-card-meta,
