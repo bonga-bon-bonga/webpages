@@ -62,10 +62,19 @@
           <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
           <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
         </div>
+        <div class="display-columns mt-2" role="radiogroup" aria-label="表示列">
+          <span class="display-columns-label">表示列</span>
+          <input class="btn-check" type="radio" name="displayColumns" id="displayColumns1" value="1" autocomplete="off">
+          <label class="btn display-columns-button" for="displayColumns1">1列</label>
+          <input class="btn-check" type="radio" name="displayColumns" id="displayColumns2" value="2" autocomplete="off">
+          <label class="btn display-columns-button" for="displayColumns2">2列</label>
+          <input class="btn-check" type="radio" name="displayColumns" id="displayColumns3" value="3" autocomplete="off" checked>
+          <label class="btn display-columns-button" for="displayColumns3">3列</label>
+        </div>
 
         <div class="d-flex flex-wrap gap-2 mt-3" id="stats" aria-live="polite"></div>
         <p class="status-text mt-3 mb-0" id="status">読み込み中…</p>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1" id="songs"></div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="songs" data-columns="3"></div>
         <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
       </section>
 
@@ -80,7 +89,7 @@
           </div>
         </div>
         <div class="d-flex flex-wrap gap-2 mt-3" id="randomStats" aria-live="polite"></div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1" id="randomSongs"></div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="randomSongs" data-columns="3"></div>
         <div class="empty-box text-center p-4 mt-3" id="randomEmpty" hidden>おすすめできる曲がまだ読み込まれていません。</div>
       </section>
     </section>
@@ -141,6 +150,10 @@
     <p>ver.1.3.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
+  <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
+    <span aria-hidden="true">↑</span>
+  </button>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
@@ -153,6 +166,7 @@
     const els = {
       search: document.getElementById("search"),
       searchScopes: document.querySelectorAll("[name='searchScope']"),
+      displayColumns: document.querySelectorAll("[name='displayColumns']"),
       genre: document.getElementById("genre"),
       reload: document.getElementById("reload"),
       status: document.getElementById("status"),
@@ -166,12 +180,14 @@
       tabs: document.querySelectorAll("[data-tab]"),
       panels: document.querySelectorAll(".tab-panel"),
       copyToast: document.getElementById("copyToast"),
+      backToTop: document.getElementById("backToTop"),
     };
 
     let songs = [];
     let recommendedSongs = [];
     let musiclistItems = {};
     let playableOnly = false;
+    let displayColumnCount = "3";
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
@@ -439,6 +455,21 @@
       recommendedSongs = source.slice(0, RANDOM_COUNT);
     }
 
+    function gridClassesForColumns(columns) {
+      if (columns === "1") return "row row-cols-1 g-3 mt-1 song-grid";
+      if (columns === "2") return "row row-cols-1 row-cols-md-2 g-3 mt-1 song-grid";
+      return "row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid";
+    }
+
+    function applyColumnLayout() {
+      const gridClassName = gridClassesForColumns(displayColumnCount);
+
+      [els.songs, els.randomSongs].forEach(grid => {
+        grid.className = gridClassName;
+        grid.dataset.columns = displayColumnCount;
+      });
+    }
+
     function renderSongCards(items, options = {}) {
       const { recommended = false } = options;
       return items.map((song, index) => `
@@ -564,8 +595,18 @@
       });
     }
 
+    function updateBackToTopVisibility() {
+      els.backToTop.hidden = window.scrollY < 320;
+    }
+
     els.search.addEventListener("input", render);
     els.searchScopes.forEach(scope => scope.addEventListener("change", render));
+    els.displayColumns.forEach(column => {
+      column.addEventListener("change", () => {
+        displayColumnCount = column.value;
+        applyColumnLayout();
+      });
+    });
     els.genre.addEventListener("change", render);
     els.stats.addEventListener("click", (event) => {
       const button = event.target.closest("[data-filter='playable']");
@@ -579,6 +620,10 @@
       pickRandomSongs();
       renderRandom();
     });
+    els.backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
 
     document.addEventListener("click", (event) => {
       const card = event.target.closest("[data-copy-song]");
@@ -598,6 +643,8 @@
       tab.addEventListener("click", () => switchTab(tab.dataset.tab));
     });
 
+    applyColumnLayout();
+    updateBackToTopVisibility();
     loadSheet();
   </script>
 </body>
