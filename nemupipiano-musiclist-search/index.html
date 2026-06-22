@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.4.2" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.4.3" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -23,7 +23,7 @@
       </p>
     </header>
 
-    <section class="app-panel p-3 p-md-4" aria-label="曲リスト">
+    <section class="app-panel font-size-medium p-3 p-md-4" id="appPanel" aria-label="曲リスト">
       <ul class="nav nav-pills app-tabs mb-4" id="songTabs" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="tab-search" type="button" role="tab" aria-selected="true" aria-controls="panel-search" data-tab="search">
@@ -138,6 +138,28 @@
     </div>
   </div>
 
+  <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingsModalLabel">設定</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>文字の大きさ</h5>
+          <div class="setting-options" role="radiogroup" aria-label="文字の大きさ">
+            <input class="btn-check" type="radio" name="panelFontSize" id="fontSizeSmall" value="small" autocomplete="off">
+            <label class="btn setting-option-button" for="fontSizeSmall">小</label>
+            <input class="btn-check" type="radio" name="panelFontSize" id="fontSizeMedium" value="medium" autocomplete="off" checked>
+            <label class="btn setting-option-button" for="fontSizeMedium">中</label>
+            <input class="btn-check" type="radio" name="panelFontSize" id="fontSizeLarge" value="large" autocomplete="off">
+            <label class="btn setting-option-button" for="fontSizeLarge">大</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="copy-toast-container">
     <div id="copyToast" class="toast text-bg-dark border-0" role="status" aria-live="polite" aria-atomic="true" data-bs-delay="2000">
       <div class="d-flex align-items-start">
@@ -151,11 +173,14 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.4.2 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.1.4.3 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
     <span aria-hidden="true">↑</span>
+  </button>
+  <button id="settingsButton" class="settings-button" type="button" aria-label="設定" data-bs-toggle="modal" data-bs-target="#settingsModal">
+    <span aria-hidden="true">&#9881;</span>
   </button>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -166,6 +191,7 @@
     const GID = "0";
     const MUSICLIST_JSON_PATH = "./data/musiclist.json";
     const RANDOM_COUNT = 10;
+    const APP_PANEL_FONT_SIZE_KEY = "nemupipiano:appPanelFontSize";
 
     const els = {
       search: document.getElementById("search"),
@@ -185,6 +211,8 @@
       panels: document.querySelectorAll(".tab-panel"),
       copyToast: document.getElementById("copyToast"),
       backToTop: document.getElementById("backToTop"),
+      appPanel: document.getElementById("appPanel"),
+      panelFontSizes: document.querySelectorAll("[name='panelFontSize']"),
     };
 
     let songs = [];
@@ -598,6 +626,16 @@
       els.backToTop.hidden = window.scrollY < 320;
     }
 
+    function applyAppPanelFontSize(size) {
+      const normalized = ["small", "medium", "large"].includes(size) ? size : "medium";
+      els.appPanel.classList.remove("font-size-small", "font-size-medium", "font-size-large");
+      els.appPanel.classList.add(`font-size-${normalized}`);
+      els.panelFontSizes.forEach(option => {
+        option.checked = option.value === normalized;
+      });
+      localStorage.setItem(APP_PANEL_FONT_SIZE_KEY, normalized);
+    }
+
     els.search.addEventListener("input", render);
     els.searchScopes.forEach(scope => scope.addEventListener("change", render));
     els.displayColumns.forEach(column => {
@@ -630,6 +668,9 @@
     els.backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+    els.panelFontSizes.forEach(option => {
+      option.addEventListener("change", () => applyAppPanelFontSize(option.value));
+    });
     window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
 
     document.addEventListener("click", (event) => {
@@ -651,6 +692,7 @@
     });
 
     applyColumnLayout();
+    applyAppPanelFontSize(localStorage.getItem(APP_PANEL_FONT_SIZE_KEY));
     updateBackToTopVisibility();
     loadSheet();
   </script>
