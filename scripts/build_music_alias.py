@@ -26,7 +26,8 @@ OUTPUT_JSON_PATH = (
 
 GOOGLE_SHEET_URL = (
     f"https://docs.google.com/spreadsheets/d/"
-    f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_MUSICLIST}&tqx=out:json"
+    f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_MUSICLIST}"
+    f"&headers=2&tqx=out:json"
 )
 
 TITLE_HEADERS = {
@@ -51,7 +52,6 @@ TITLE_HEADERS = {
 HIRAGANA_HEADERS = {"ひらがな", "hiragana", "hira"}
 KATAKANA_HEADERS = {"カタカナ", "katakana", "kana"}
 ENGLISH_HEADERS = {"英字", "英語", "english", "alphabet", "roman", "romaji"}
-KNOWN_HEADERS = TITLE_HEADERS | HIRAGANA_HEADERS | KATAKANA_HEADERS | ENGLISH_HEADERS
 
 
 def normalize_text(value):
@@ -62,27 +62,10 @@ def normalize_header(value):
     return normalize_text(value).replace(" ", "").replace("　", "").casefold()
 
 
-NORMALIZED_KNOWN_HEADERS = {normalize_header(header) for header in KNOWN_HEADERS}
 NORMALIZED_TITLE_HEADERS = {normalize_header(header) for header in TITLE_HEADERS}
 NORMALIZED_HIRAGANA_HEADERS = {normalize_header(header) for header in HIRAGANA_HEADERS}
 NORMALIZED_KATAKANA_HEADERS = {normalize_header(header) for header in KATAKANA_HEADERS}
 NORMALIZED_ENGLISH_HEADERS = {normalize_header(header) for header in ENGLISH_HEADERS}
-
-
-def has_title_header(headers):
-    for header in headers:
-        normalized = normalize_header(header)
-        first_token = str(header).split(maxsplit=1)
-        normalized_first_token = normalize_header(first_token[0] if first_token else "")
-
-        if normalized in NORMALIZED_TITLE_HEADERS or normalized_first_token in NORMALIZED_TITLE_HEADERS:
-            return True
-
-    return False
-
-
-def has_known_header(headers):
-    return any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in headers)
 
 
 def cell_value(cell):
@@ -90,6 +73,14 @@ def cell_value(cell):
         return ""
 
     return cell.get("f") or cell.get("v") or ""
+
+
+def row_values(row, column_count):
+    cells = (row or {}).get("c", [])
+    return [
+        cell_value(cells[i]) if i < len(cells) else ""
+        for i in range(column_count)
+    ]
 
 
 def unique(values):
@@ -202,37 +193,10 @@ def load_sheet():
         normalize_text(col.get("label") or col.get("id") or f"col{idx + 1}")
         for idx, col in enumerate(cols)
     ]
-    data_rows = raw_rows
-
-    if not has_known_header(headers) and raw_rows:
-        inferred_rows = []
-        for row_index, row in enumerate(raw_rows[:5]):
-            row_cells = row.get("c", [])
-            inferred = []
-            for idx in range(len(headers)):
-                cell = row_cells[idx] if idx < len(row_cells) else None
-                inferred.append(normalize_text(cell_value(cell)) or headers[idx])
-            inferred_rows.append((row_index, inferred))
-
-        for row_index, inferred in inferred_rows:
-            if has_title_header(inferred):
-                headers = inferred
-                data_rows = raw_rows[row_index + 1 :]
-                break
-        else:
-            for row_index, inferred in inferred_rows:
-                if has_known_header(inferred):
-                    headers = inferred
-                    data_rows = raw_rows[row_index + 1 :]
-                    break
 
     rows = []
-    for row in data_rows:
-        cells = row.get("c", [])
-        values = [
-            cell_value(cells[i]) if i < len(cells) else ""
-            for i in range(len(headers))
-        ]
+    for row in raw_rows:
+        values = row_values(row, len(headers))
         rows.append(dict(zip(headers, values)))
 
     return headers, rows
