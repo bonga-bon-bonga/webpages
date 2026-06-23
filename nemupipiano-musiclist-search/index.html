@@ -35,13 +35,13 @@
           <div class="row g-3 align-items-center mb-2">
             <div class="col-12 col-md">
               <h2 class="h4 fw-bold mb-1">今日のおすすめ</h2>
-              <p class="recommend-desc text-secondary mb-0">今日のおすすめ（ランダム表示）が5件表示されます。気になった曲をリクエストしてみましょう！</p>
+              <p class="recommend-desc text-secondary mb-0">今日のおすすめが5件ランダム表示されます。気になった曲をリクエストしてみましょう！</p>
             </div>
           </div>
           <div class="recommend-source-options" role="radiogroup" aria-label="今日のおすすめの選出方法">
-            <button class="btn recommend-source-button active" type="button" data-home-random-source="all" aria-pressed="true">全曲から</button>
-            <button class="btn recommend-source-button" type="button" data-home-random-source="favorite" aria-pressed="false">お気に入りから</button>
-            <button class="btn recommend-source-button" type="button" data-home-random-source="playable" aria-pressed="false">弾ける曲から</button>
+            <button class="btn recommend-source-button active" type="button" data-home-random-source="all" aria-pressed="true">全曲</button>
+            <button class="btn recommend-source-button" type="button" data-home-random-source="favorite" aria-pressed="false">お気に入り</button>
+            <button class="btn recommend-source-button" type="button" data-home-random-source="playable" aria-pressed="false">弾ける曲</button>
           </div>
           <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="homeRecommendations" data-columns="3"></div>
           <div class="empty-box text-center p-4 mt-3" id="homeRecommendEmpty" hidden>おすすめできる曲がまだありません。</div>
@@ -49,7 +49,7 @@
 
         <section class="home-section mt-4">
           <h2 class="h4 fw-bold mb-1">クリップボード履歴</h2>
-          <p class="recommend-desc text-secondary mb-0">過去にクリップボードコピーした直近5件の履歴です</p>
+          <p class="recommend-desc text-secondary mb-0">過去にコピーした直近5件の履歴です</p>
           <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="copyHistorySongs" data-columns="3"></div>
           <div class="empty-box text-center p-4 mt-3" id="copyHistoryEmpty" hidden>クリップボード履歴はまだありません。</div>
         </section>
@@ -121,20 +121,22 @@
           <hr>
           <h5>使い方</h5>
           <p>
-            1. <strong>検索</strong>タブでは、曲名・アーティスト名で曲を探せます。<br>
-            2. ジャンルを選ぶと、対象ジャンルの曲だけに絞り込めます。<br>
-            3. <strong>ホーム</strong>タブでは、今日のおすすめ5曲とクリップボード履歴を表示します。<br>
+            1. <strong>ホーム</strong>タブでは、今日のおすすめ5曲とクリップボード履歴が表示されます。<br>
+            2. <strong>検索</strong>タブでは、曲名・アーティスト名で曲を探せます。<br>
+            3. <strong>詳細</strong>を選ぶと、対象ジャンルの絞り込みなど、詳細設定が行えます。<br>
             4. 曲カードをクリックすると、下記の形式でクリップボードにコピーされます。<br>
             <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span><br>
-            5. コピー後は画面上部に、コピーした文字列が2秒ほど表示されます。
+            5. コピー後は画面上部に、コピーした文字列が表示されます。<br>
+            6. お気に入りの登録と解除は、曲カードを長押しすると行えます。
           </p>
           <hr>
           <h5>機能</h5>
           <p>
+            【ホーム】<br>
+            ・今日のおすすめ曲の表示<br>
+            ・直近のクリップボード履歴の表示<br>
+            【検索】<br>
             ・曲名、アーティストのキーワード検索<br>
-            ・ジャンルによる絞り込み<br>
-            ・今日のおすすめ5曲の表示<br>
-            ・直近のクリップボード履歴5件の表示<br>
             ・カードクリックによるリクエスト用テキストのコピー
           </p>
           <hr>
