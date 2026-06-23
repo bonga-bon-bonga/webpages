@@ -934,7 +934,17 @@ html[data-theme="dark"] .text-secondary {
     font-size: .95rem !important;
 }
 
-.app-panel .favorite-filter-button {
-    font-size: 3.25rem !important;
+.app-panel.font-size-small .favorite-filter-button {
+    font-size: 2.05rem !important;
+    line-height: 1 !important;
+}
+
+.app-panel.font-size-medium .favorite-filter-button {
+    font-size: 2.35rem !important;
+    line-height: 1 !important;
+}
+
+.app-panel.font-size-large .favorite-filter-button {
+    font-size: 2.65rem !important;
     line-height: 1 !important;
 }
