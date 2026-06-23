@@ -27,6 +27,8 @@ const els = {
   favoriteFilter: document.getElementById("favoriteFilter"),
   searchDetailToggle: document.getElementById("searchDetailToggle"),
   searchDetails: document.getElementById("searchDetails"),
+  searchGuideToggle: document.getElementById("searchGuideToggle"),
+  searchGuide: document.getElementById("searchGuide"),
   playableFilter: document.getElementById("playableFilter"),
   stats: document.getElementById("stats"),
   songs: document.getElementById("songs"),
@@ -391,11 +393,17 @@ function matchesSearchKeyword(song, keyword, scope) {
   return searchTargets.some(target => createSearchKey(target).includes(keyword));
 }
 
+function isSearchGuideDefaultState() {
+  return createSearchKey(els.search.value) === "" && !favoriteOnly;
+}
+
 // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
 function filteredSongs() {
   const keyword = createSearchKey(els.search.value);
   const searchScope = getSearchScope();
   const genre = els.genre.value;
+
+  if (!keyword && !favoriteOnly) return [];
 
   return songs.filter(song => {
     const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
@@ -469,6 +477,7 @@ function renderSongCards(items) {
 
 function render() {
   const items = filteredSongs();
+  const isDefaultSearchState = isSearchGuideDefaultState();
 
   els.stats.innerHTML = `
     <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
@@ -477,8 +486,9 @@ function render() {
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
   updateFavoriteFilterButton();
+  setSearchGuideOpen(isDefaultSearchState);
 
-  els.empty.hidden = items.length !== 0;
+  els.empty.hidden = isDefaultSearchState || items.length !== 0;
   els.songs.innerHTML = renderSongCards(items);
 }
 
@@ -724,6 +734,12 @@ function setSearchDetailsOpen(open) {
   els.searchDetailToggle.textContent = open ? "▲詳細" : "▼詳細";
 }
 
+function setSearchGuideOpen(open) {
+  els.searchGuide.hidden = !open;
+  els.searchGuideToggle.setAttribute("aria-expanded", String(open));
+  els.searchGuideToggle.textContent = open ? "▲検索ガイド" : "▼検索ガイド";
+}
+
 els.search.addEventListener("input", render);
 els.searchScopes.forEach(scope => scope.addEventListener("change", () => {
   localStorage.setItem(SEARCH_SCOPE_KEY, scope.value);
@@ -761,6 +777,9 @@ els.homeRandomOptions.forEach(button => {
 });
 els.searchDetailToggle.addEventListener("click", () => {
   setSearchDetailsOpen(els.searchDetails.hidden);
+});
+els.searchGuideToggle.addEventListener("click", () => {
+  setSearchGuideOpen(els.searchGuide.hidden);
 });
 els.reload.addEventListener("click", () => loadSheet({ showReloadFeedback: true }));
 els.backToTop.addEventListener("click", () => {

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.7.3" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.7.4" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -40,7 +40,13 @@
 
       <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
         <section class="home-section">
-          <h2 class="h4 fw-bold mb-1">ようこそ</h2>
+          <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
+            <span class="theme-icon section-heading-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/popper_white.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/popper_black.svg" alt="">
+            </span>
+            ようこそ
+          </h2>
           <p class="recommend-desc text-secondary mb-0">
             「ねむぴぴあの」で何をリクエストしよう…。曲を探すのが大変！という時のための検索・探索補助サイトとなっています。<br>
             はじめて使う方は、画面のヘッダ部にある「使い方」を参照ください。
@@ -118,6 +124,50 @@
             <div class="favorite-filter" aria-label="お気に入りフィルター">
               <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="favoriteFilter" type="button" aria-pressed="false">☆お気に入りのみ</button>
             </div>
+          </div>
+        </div>
+
+        <div class="search-guide-wrapper mt-3">
+          <button id="searchGuideToggle" class="btn search-guide-toggle" type="button" aria-expanded="false" aria-controls="searchGuide">▼検索ガイド</button>
+          <div class="search-guide mt-2" id="searchGuide" hidden>
+            <section class="search-guide-section">
+              <h2 class="search-guide-heading section-heading-with-icon">
+                <span class="theme-icon section-heading-icon" aria-hidden="true">
+                  <img class="theme-icon-light" src="../lib/icon/search_white.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/search_black.svg" alt="">
+                </span>
+                どうやって検索する？
+              </h2>
+              <ul class="mb-0">
+                <li>検索フォームにキーワードを入力すると、一致する曲カードが表示されます。</li>
+                <li>曲名・アーティストの原文に加えて、ひらがな・カタカナ読みでの検索にも対応しています。</li>
+                <li>「検索対象」「弾ける曲」「お気に入りのみ」を選ぶと、検索結果を絞り込めます。</li>
+                <li>「▼詳細」から、ジャンルなどの詳細な検索条件を設定できます。</li>
+              </ul>
+            </section>
+            <section class="search-guide-section">
+              <h2 class="search-guide-heading section-heading-with-icon">
+                <span class="theme-icon section-heading-icon" aria-hidden="true">
+                  <img class="theme-icon-light" src="../lib/icon/hint_white.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/hint_black.svg" alt="">
+                </span>
+                検索したあとは？
+              </h2>
+              <ul class="mb-0">
+                <li>曲カードをクリックまたはタップすると、リクエスト用の文言がクリップボードにコピーされます。</li>
+                <li>コピーした文言は「ねむぴぴあの」でそのままリクエストできます。</li>
+                <li>直近でコピーした履歴は、ホームタブの「クリップボード履歴」で確認できます。</li>
+              </ul>
+            </section>
+            <section class="search-guide-section">
+              <h2 class="search-guide-heading section-heading-with-icon">
+                <img class="section-heading-icon" src="../lib/icon/kirakira.svg" alt="" aria-hidden="true">
+                お気に入り機能を使いこなそう！
+              </h2>
+              <ul class="mb-0">
+                <li>検索表示された曲カードを長押しクリックまたは長押しタップすると、お気に入りの登録と解除ができます。</li>
+              </ul>
+            </section>
           </div>
         </div>
 
@@ -246,7 +296,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.7.3 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.1.7.4 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -263,6 +313,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=1.7.3"></script>
+  <script src="./js/musiclist-search.js?v=1.7.4"></script>
 </body>
 </html>
