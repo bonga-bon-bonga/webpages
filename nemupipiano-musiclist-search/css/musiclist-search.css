@@ -217,6 +217,14 @@ html[data-theme="dark"] .form-select {
     gap: .5rem 1rem;
 }
 
+.quick-filter-group {
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem 1rem;
+}
+
 .search-scope,
 .display-columns,
 .playable-filter,
@@ -693,6 +701,16 @@ html[data-theme="dark"] .text-secondary {
     .result-controls {
     align-items: flex-start;
     flex-direction: column;
+    }
+
+    .quick-filter-group {
+    flex-wrap: nowrap;
+    gap: .5rem;
+    max-width: 100%;
+    }
+
+    .quick-filter-group .stat-filter-button {
+    white-space: nowrap;
     }
 
     .song-card {
