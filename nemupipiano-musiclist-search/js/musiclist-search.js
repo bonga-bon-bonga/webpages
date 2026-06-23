@@ -245,7 +245,7 @@ function loadSheet({ showReloadFeedback = false } = {}) {
       songs = parseGvizResponse(response).map(enrichSongWithMusiclist);
       setupGenreOptions(songs);
       pickHomeRecommendations();
-      render();
+      render({ syncSearchGuide: true });
       renderHome();
       loadSucceeded = true;
     } catch (error) {
@@ -475,7 +475,7 @@ function renderSongCards(items) {
   `).join("");
 }
 
-function render() {
+function render({ syncSearchGuide = false } = {}) {
   const items = filteredSongs();
   const isDefaultSearchState = isSearchGuideDefaultState();
 
@@ -486,7 +486,9 @@ function render() {
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
   updateFavoriteFilterButton();
-  setSearchGuideOpen(isDefaultSearchState);
+  if (syncSearchGuide) {
+    setSearchGuideOpen(isDefaultSearchState);
+  }
 
   els.empty.hidden = isDefaultSearchState || items.length !== 0;
   els.songs.innerHTML = renderSongCards(items);
@@ -740,7 +742,7 @@ function setSearchGuideOpen(open) {
   els.searchGuideToggle.textContent = open ? "▲検索ガイド" : "▼検索ガイド";
 }
 
-els.search.addEventListener("input", render);
+els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
 els.searchScopes.forEach(scope => scope.addEventListener("change", () => {
   localStorage.setItem(SEARCH_SCOPE_KEY, scope.value);
   updateSearchPlaceholder(scope.value);
@@ -762,7 +764,7 @@ els.playableFilter.addEventListener("click", () => {
 els.favoriteFilter.addEventListener("click", () => {
   favoriteOnly = !favoriteOnly;
   localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
-  render();
+  render({ syncSearchGuide: true });
 });
 els.clearFavorites.addEventListener("click", clearAllFavorites);
 els.homeRandomOptions.forEach(button => {
