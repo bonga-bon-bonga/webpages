@@ -296,6 +296,59 @@ html[data-theme="dark"] .form-select {
     display: none;
 }
 
+.search-guide-toggle {
+    width: 100%;
+    min-height: 2.75rem;
+    border: 1px solid var(--page-line);
+    border-radius: .85rem;
+    color: var(--page-text);
+    background: var(--page-button-soft);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.search-guide-toggle:hover,
+.search-guide-toggle:focus {
+    border-color: var(--page-accent);
+    color: var(--page-text);
+    background: var(--page-active);
+}
+
+.search-guide {
+    padding: 1rem;
+    border: 1px solid var(--page-line);
+    border-radius: .85rem;
+    color: var(--page-muted);
+    background: var(--page-control-soft);
+    font-size: .92rem;
+    line-height: 1.65;
+}
+
+.search-guide[hidden] {
+    display: none;
+}
+
+.search-guide-section + .search-guide-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--page-line);
+}
+
+.search-guide-heading {
+    margin-bottom: .45rem;
+    color: var(--page-text);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.search-guide ul {
+    padding-left: 1.15rem;
+}
+
+.search-guide li + li {
+    margin-top: .25rem;
+}
+
 .result-controls {
     display: flex;
     flex-wrap: wrap;

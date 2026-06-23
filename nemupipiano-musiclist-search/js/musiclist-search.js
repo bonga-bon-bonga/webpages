@@ -27,6 +27,8 @@ const els = {
   favoriteFilter: document.getElementById("favoriteFilter"),
   searchDetailToggle: document.getElementById("searchDetailToggle"),
   searchDetails: document.getElementById("searchDetails"),
+  searchGuideToggle: document.getElementById("searchGuideToggle"),
+  searchGuide: document.getElementById("searchGuide"),
   playableFilter: document.getElementById("playableFilter"),
   stats: document.getElementById("stats"),
   songs: document.getElementById("songs"),
@@ -60,6 +62,7 @@ let longPressHandled = false;
 let longPressSuppressTimer = null;
 let longPressStartX = 0;
 let longPressStartY = 0;
+let lastSearchGuideHasKeyword = null;
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
 function escapeHtml(value) {
@@ -243,7 +246,7 @@ function loadSheet({ showReloadFeedback = false } = {}) {
       songs = parseGvizResponse(response).map(enrichSongWithMusiclist);
       setupGenreOptions(songs);
       pickHomeRecommendations();
-      render();
+      render({ syncSearchGuide: true, forceSearchGuideSync: true });
       renderHome();
       loadSucceeded = true;
     } catch (error) {
@@ -391,11 +394,29 @@ function matchesSearchKeyword(song, keyword, scope) {
   return searchTargets.some(target => createSearchKey(target).includes(keyword));
 }
 
+function hasSearchKeyword() {
+  return createSearchKey(els.search.value) !== "";
+}
+
+function isSearchGuideDefaultState() {
+  return !hasSearchKeyword() && !favoriteOnly;
+}
+
+function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
+  const currentHasKeyword = hasSearchKeyword();
+  if (!force && lastSearchGuideHasKeyword === currentHasKeyword) return;
+
+  lastSearchGuideHasKeyword = currentHasKeyword;
+  setSearchGuideOpen(!currentHasKeyword && !favoriteOnly);
+}
+
 // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
 function filteredSongs() {
   const keyword = createSearchKey(els.search.value);
   const searchScope = getSearchScope();
   const genre = els.genre.value;
+
+  if (!keyword && !favoriteOnly) return [];
 
   return songs.filter(song => {
     const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
@@ -467,8 +488,9 @@ function renderSongCards(items) {
   `).join("");
 }
 
-function render() {
+function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
   const items = filteredSongs();
+  const isDefaultSearchState = isSearchGuideDefaultState();
 
   els.stats.innerHTML = `
     <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
@@ -477,8 +499,11 @@ function render() {
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
   updateFavoriteFilterButton();
+  if (syncSearchGuide) {
+    syncSearchGuideOnSearchStateChange({ force: forceSearchGuideSync });
+  }
 
-  els.empty.hidden = items.length !== 0;
+  els.empty.hidden = isDefaultSearchState || items.length !== 0;
   els.songs.innerHTML = renderSongCards(items);
 }
 
@@ -724,7 +749,13 @@ function setSearchDetailsOpen(open) {
   els.searchDetailToggle.textContent = open ? "▲詳細" : "▼詳細";
 }
 
-els.search.addEventListener("input", render);
+function setSearchGuideOpen(open) {
+  els.searchGuide.hidden = !open;
+  els.searchGuideToggle.setAttribute("aria-expanded", String(open));
+  els.searchGuideToggle.textContent = open ? "▲検索ガイド" : "▼検索ガイド";
+}
+
+els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
 els.searchScopes.forEach(scope => scope.addEventListener("change", () => {
   localStorage.setItem(SEARCH_SCOPE_KEY, scope.value);
   updateSearchPlaceholder(scope.value);
@@ -746,7 +777,7 @@ els.playableFilter.addEventListener("click", () => {
 els.favoriteFilter.addEventListener("click", () => {
   favoriteOnly = !favoriteOnly;
   localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
-  render();
+  render({ syncSearchGuide: true, forceSearchGuideSync: true });
 });
 els.clearFavorites.addEventListener("click", clearAllFavorites);
 els.homeRandomOptions.forEach(button => {
@@ -761,6 +792,9 @@ els.homeRandomOptions.forEach(button => {
 });
 els.searchDetailToggle.addEventListener("click", () => {
   setSearchDetailsOpen(els.searchDetails.hidden);
+});
+els.searchGuideToggle.addEventListener("click", () => {
+  setSearchGuideOpen(els.searchGuide.hidden);
 });
 els.reload.addEventListener("click", () => loadSheet({ showReloadFeedback: true }));
 els.backToTop.addEventListener("click", () => {

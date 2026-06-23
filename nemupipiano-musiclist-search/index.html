@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.7.2" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.7.6" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -40,13 +40,27 @@
 
       <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
         <section class="home-section">
+          <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
+            <span class="theme-icon section-heading-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/popper_white.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/popper_black.svg" alt="">
+            </span>
+            ようこそ
+          </h2>
+          <p class="recommend-desc text-secondary mb-0">
+            「ねむぴぴあの」で何をリクエストしよう…。曲を探すのが大変！という時のための検索・探索補助サイトとなっています。<br>
+            はじめて使う方は、画面のヘッダ部にある「使い方」を参照ください。
+          </p>
+        </section>
+
+        <section class="home-section mt-4">
           <div class="row g-3 align-items-center mb-2">
             <div class="col-12 col-md">
               <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
                 <img class="section-heading-icon" src="../lib/icon/kirakira.svg" alt="" aria-hidden="true">
                 今日のおすすめ
               </h2>
-              <p class="recommend-desc text-secondary mb-0">今日のおすすめが5件ランダム表示されます。気になった曲はリクエストしてみましょう！</p>
+              <p class="recommend-desc text-secondary mb-0">下の条件を選ぶ毎に、おすすめ曲を5件ランダム表示します。気になった曲はリクエストしてみましょう！</p>
             </div>
           </div>
           <div class="recommend-source-options" role="radiogroup" aria-label="今日のおすすめの選出方法">
@@ -113,6 +127,50 @@
           </div>
         </div>
 
+        <div class="search-guide-wrapper mt-3">
+          <button id="searchGuideToggle" class="btn search-guide-toggle" type="button" aria-expanded="false" aria-controls="searchGuide">▼検索ガイド</button>
+          <div class="search-guide mt-2" id="searchGuide" hidden>
+            <section class="search-guide-section">
+              <h2 class="search-guide-heading section-heading-with-icon">
+                <span class="theme-icon section-heading-icon" aria-hidden="true">
+                  <img class="theme-icon-light" src="../lib/icon/search_white.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/search_black.svg" alt="">
+                </span>
+                どうやって検索する？
+              </h2>
+              <ul class="mb-0">
+                <li>検索フォームにキーワードを入力すると、一致する曲カードが表示されます。</li>
+                <li>曲名・アーティストの原文に加えて、ひらがな・カタカナ読みでの検索にも対応しています。</li>
+                <li>「検索対象」「弾ける曲」「お気に入りのみ」を選ぶと、検索結果を絞り込めます。</li>
+                <li>「▼詳細」から、ジャンルなどの詳細な検索条件を設定できます。</li>
+              </ul>
+            </section>
+            <section class="search-guide-section">
+              <h2 class="search-guide-heading section-heading-with-icon">
+                <span class="theme-icon section-heading-icon" aria-hidden="true">
+                  <img class="theme-icon-light" src="../lib/icon/hint_white.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/hint_black.svg" alt="">
+                </span>
+                検索したあとは？
+              </h2>
+              <ul class="mb-0">
+                <li>曲カードをクリックまたはタップすると、リクエスト用の文言がクリップボードにコピーされます。</li>
+                <li>コピーした文言は「ねむぴぴあの」でそのままリクエストできます。</li>
+                <li>直近でコピーした履歴は、ホームタブの「クリップボード履歴」で確認できます。</li>
+              </ul>
+            </section>
+            <section class="search-guide-section">
+              <h2 class="search-guide-heading section-heading-with-icon">
+                <img class="section-heading-icon" src="../lib/icon/kirakira.svg" alt="" aria-hidden="true">
+                お気に入り機能を使いこなそう！
+              </h2>
+              <ul class="mb-0">
+                <li>検索表示された曲カードを長押しクリックまたは長押しタップすると、お気に入りの登録と解除ができます。</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+
         <div class="stats-row mt-3">
           <div class="d-flex flex-wrap gap-2" id="stats" aria-live="polite"></div>
         </div>
@@ -132,34 +190,48 @@
         </div>
         <div class="modal-body">
           <p>
-            本ページは、Googleスプレッドシートの「<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>」を読み取り、曲のフィルタ検索と今日のおすすめ表示を行うことが出来ます。<br>
+            本ページはGoogleスプレッドシートの「<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>」を読み取り、曲のフィルタ検索を行うことが出来ます。
             リストに曲が無い時は、<a href="https://www.youtube.com/@nemupipi" target="_blank" rel="noopener noreferrer">ねむぴぴ</a>のピアノ配信「ねむぴぴあの」内でリクエスト！
           </p>
           <hr>
           <h5>使い方</h5>
-          <p>
-            1. <strong>ホーム</strong>タブでは、今日のおすすめ5曲とクリップボード履歴が表示されます。<br>
-            2. <strong>検索</strong>タブでは、曲名・アーティスト名で曲を探せます。<br>
-            3. <strong>詳細</strong>を選ぶと、対象ジャンルの絞り込みなど、詳細設定が行えます。<br>
-            4. 曲カードをクリックすると、下記の形式でクリップボードにコピーされます。<br>
-            <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span><br>
-            5. コピー後は画面上部に、コピーした文字列が表示されます。<br>
-            6. お気に入りの登録と解除は、曲カードを長押しすると行えます。
-          </p>
+          <p class="mb-2"><strong>ホーム</strong>タブでは、曲選びのきっかけになる情報を確認できます。</p>
+          <ul>
+            <li>今日のおすすめ曲を確認できます。</li>
+            <li>過去にコピーした曲の履歴を確認できます。</li>
+          </ul>
+          <p class="mb-2"><strong>検索</strong>タブでは、曲リストから目的の曲を探せます。</p>
+          <ul class="mb-0">
+            <li>曲名・アーティスト名でキーワード検索できます。</li>
+            <li>詳細を開くと、ジャンルなどの条件で絞り込めます。</li>
+            <li>弾ける曲やお気に入りのみの表示に切り替えられます。</li>
+          </ul>
           <hr>
           <h5>機能</h5>
-          <p>
-            【ホーム】<br>
-            ・今日のおすすめ曲の表示<br>
-            ・直近のクリップボード履歴の表示<br>
-            【検索】<br>
-            ・曲名、アーティストのキーワード検索<br>
-            ・カードクリックによるリクエスト用テキストのコピー
-          </p>
+          <ul>
+            <li>今日のおすすめ曲の表示</li>
+            <li>直近のクリップボード履歴の表示</li>
+            <li>検索タブによる曲名、アーティストのキーワード検索（ひらがな・カタカナでの検索にも対応）</li>
+            <li>
+              曲カードクリックによるリクエスト用テキストのコピー<br>
+              <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span>
+            </li>
+            <li>曲カードの長押しクリックによる「お気に入りの登録／解除」</li>
+          </ul>
+          <h6 class="fw-bold mt-3">設定</h6>
+          <p class="mb-2">設定欄では下記の設定ができます。</p>
+          <ul class="mb-0">
+            <li>テーマの選択</li>
+            <li>文字の大きさ</li>
+            <li>曲カードの表示列</li>
+            <li>「お気に入り登録」の全解除</li>
+            <li>曲リストの再読み込み</li>
+          </ul>
           <hr>
-          <p class="mb-0">
-            シート側を更新すると、ページ再読み込み時に表示内容も更新されます。
-          </p>
+          <ul class="mb-0">
+            <li>シート側を更新すると、ページ再読み込み時に表示内容も更新されます。</li>
+            <li>本ページはねむぴぴさんの非公式応援ページとなります。<br>ご本人様の活動とは一切関係ございません。<br>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -225,7 +297,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.7.2 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.1.7.6 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -242,6 +314,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=1.7.2"></script>
+  <script src="./js/musiclist-search.js?v=1.7.6"></script>
 </body>
 </html>
