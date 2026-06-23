@@ -62,6 +62,7 @@ let longPressHandled = false;
 let longPressSuppressTimer = null;
 let longPressStartX = 0;
 let longPressStartY = 0;
+let lastSearchGuideHasKeyword = null;
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
 function escapeHtml(value) {
@@ -245,7 +246,7 @@ function loadSheet({ showReloadFeedback = false } = {}) {
       songs = parseGvizResponse(response).map(enrichSongWithMusiclist);
       setupGenreOptions(songs);
       pickHomeRecommendations();
-      render({ syncSearchGuide: true });
+      render({ syncSearchGuide: true, forceSearchGuideSync: true });
       renderHome();
       loadSucceeded = true;
     } catch (error) {
@@ -393,8 +394,20 @@ function matchesSearchKeyword(song, keyword, scope) {
   return searchTargets.some(target => createSearchKey(target).includes(keyword));
 }
 
+function hasSearchKeyword() {
+  return createSearchKey(els.search.value) !== "";
+}
+
 function isSearchGuideDefaultState() {
-  return createSearchKey(els.search.value) === "" && !favoriteOnly;
+  return !hasSearchKeyword() && !favoriteOnly;
+}
+
+function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
+  const currentHasKeyword = hasSearchKeyword();
+  if (!force && lastSearchGuideHasKeyword === currentHasKeyword) return;
+
+  lastSearchGuideHasKeyword = currentHasKeyword;
+  setSearchGuideOpen(!currentHasKeyword && !favoriteOnly);
 }
 
 // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
@@ -475,7 +488,7 @@ function renderSongCards(items) {
   `).join("");
 }
 
-function render({ syncSearchGuide = false } = {}) {
+function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
   const items = filteredSongs();
   const isDefaultSearchState = isSearchGuideDefaultState();
 
@@ -487,7 +500,7 @@ function render({ syncSearchGuide = false } = {}) {
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
   updateFavoriteFilterButton();
   if (syncSearchGuide) {
-    setSearchGuideOpen(isDefaultSearchState);
+    syncSearchGuideOnSearchStateChange({ force: forceSearchGuideSync });
   }
 
   els.empty.hidden = isDefaultSearchState || items.length !== 0;
@@ -764,7 +777,7 @@ els.playableFilter.addEventListener("click", () => {
 els.favoriteFilter.addEventListener("click", () => {
   favoriteOnly = !favoriteOnly;
   localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
-  render({ syncSearchGuide: true });
+  render({ syncSearchGuide: true, forceSearchGuideSync: true });
 });
 els.clearFavorites.addEventListener("click", clearAllFavorites);
 els.homeRandomOptions.forEach(button => {
