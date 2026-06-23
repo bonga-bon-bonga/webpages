@@ -26,14 +26,14 @@ OUTPUT_JSON_PATH = (
 
 GOOGLE_SHEET_URL = (
     f"https://docs.google.com/spreadsheets/d/"
-    f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_ARTISTLIST}&tqx=out:json"
+    f"{ALIAS_SPREADSHEET_ID}/gviz/tq?gid={ALIAS_GID_ARTISTLIST}"
+    f"&headers=2&tqx=out:json"
 )
 
 ARTIST_HEADERS = {"アーティスト名", "artist", "artistName", "artist_name"}
 HIRAGANA_HEADERS = {"ひらがな", "hiragana", "hira"}
 KATAKANA_HEADERS = {"カタカナ", "katakana", "kana"}
 ENGLISH_HEADERS = {"英字", "英語", "english", "alphabet", "roman", "romaji"}
-KNOWN_HEADERS = ARTIST_HEADERS | HIRAGANA_HEADERS | KATAKANA_HEADERS | ENGLISH_HEADERS
 
 
 def normalize_text(value):
@@ -44,7 +44,6 @@ def normalize_header(value):
     return normalize_text(value).replace(" ", "").replace("　", "").casefold()
 
 
-NORMALIZED_KNOWN_HEADERS = {normalize_header(header) for header in KNOWN_HEADERS}
 NORMALIZED_ARTIST_HEADERS = {normalize_header(header) for header in ARTIST_HEADERS}
 NORMALIZED_HIRAGANA_HEADERS = {normalize_header(header) for header in HIRAGANA_HEADERS}
 NORMALIZED_KATAKANA_HEADERS = {normalize_header(header) for header in KATAKANA_HEADERS}
@@ -56,6 +55,14 @@ def cell_value(cell):
         return ""
 
     return cell.get("f") or cell.get("v") or ""
+
+
+def row_values(row, column_count):
+    cells = (row or {}).get("c", [])
+    return [
+        cell_value(cells[i]) if i < len(cells) else ""
+        for i in range(column_count)
+    ]
 
 
 def unique(values):
@@ -168,26 +175,10 @@ def load_sheet():
         normalize_text(col.get("label") or col.get("id") or f"col{idx + 1}")
         for idx, col in enumerate(cols)
     ]
-    data_rows = raw_rows
-
-    if not any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in headers) and raw_rows:
-        first_row_cells = raw_rows[0].get("c", [])
-        inferred = []
-        for idx in range(len(headers)):
-            cell = first_row_cells[idx] if idx < len(first_row_cells) else None
-            inferred.append(normalize_text(cell_value(cell)) or headers[idx])
-
-        if any(normalize_header(header) in NORMALIZED_KNOWN_HEADERS for header in inferred):
-            headers = inferred
-            data_rows = raw_rows[1:]
 
     rows = []
-    for row in data_rows:
-        cells = row.get("c", [])
-        values = [
-            cell_value(cells[i]) if i < len(cells) else ""
-            for i in range(len(headers))
-        ]
+    for row in raw_rows:
+        values = row_values(row, len(headers))
         rows.append(dict(zip(headers, values)))
 
     return headers, rows
