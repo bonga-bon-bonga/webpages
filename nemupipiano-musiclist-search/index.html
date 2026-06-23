@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.5.0" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.6.4" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -60,9 +60,14 @@
             <input class="btn-check" type="radio" name="searchScope" id="searchScopeArtist" value="artist" autocomplete="off">
             <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
           </div>
-          <div class="playable-filter" aria-label="弾ける曲フィルター">
-            <span class="playable-filter-label">弾ける曲</span>
-            <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="playableFilter" type="button" data-filter="playable" aria-pressed="false">OFF</button>
+          <div class="quick-filter-group">
+            <div class="playable-filter" aria-label="弾ける曲フィルター">
+              <span class="playable-filter-label">弾ける曲</span>
+              <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="playableFilter" type="button" data-filter="playable" aria-pressed="false">OFF</button>
+            </div>
+            <div class="favorite-filter" aria-label="お気に入りフィルター">
+              <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="favoriteFilter" type="button" aria-pressed="false">☆お気に入りのみ</button>
+            </div>
           </div>
         </div>
 
@@ -168,8 +173,8 @@
             <label class="btn display-columns-button" for="displayColumns3">3列</label>
           </div>
           <p class="setting-note mt-2 mb-0">※スマホ・タブレット表示の場合、設定した表示列より少なく表示される場合があります</p>
-          <hr>
-          <div class="d-grid">
+          <div class="settings-actions d-grid gap-2">
+            <button id="clearFavorites" class="btn btn-outline-danger settings-clear-favorites-button" type="button">お気に入りを全解除</button>
             <button id="reload" class="btn btn-dark settings-reload-button" type="button">曲リストを再読み込みする</button>
           </div>
         </div>
@@ -190,7 +195,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.5.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.1.6.4 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -215,7 +220,13 @@
     const DISPLAY_COLUMNS_KEY = "nemupipiano:displayColumns";
     const PLAYABLE_ONLY_KEY = "nemupipiano:playableOnly";
     const RANDOM_PLAYABLE_ONLY_KEY = "nemupipiano:randomPlayableOnly";
+    const FAVORITES_KEY = "nemupipiano:favorites";
+    const FAVORITES_ONLY_KEY = "nemupipiano:favoritesOnly";
+    const COPY_COUNTS_KEY = "nemupipiano:copyCounts";
+    const COPY_HISTORY_KEY = "nemupipiano:copyHistory";
     const RELOAD_BUTTON_DEFAULT_TEXT = "曲リストを再読み込みする";
+    const LONG_PRESS_MS = 1000;
+    const COPY_HISTORY_LIMIT = 500;
 
     const els = {
       search: document.getElementById("search"),
@@ -223,6 +234,8 @@
       displayColumns: document.querySelectorAll("[name='displayColumns']"),
       genre: document.getElementById("genre"),
       reload: document.getElementById("reload"),
+      clearFavorites: document.getElementById("clearFavorites"),
+      favoriteFilter: document.getElementById("favoriteFilter"),
       searchDetailToggle: document.getElementById("searchDetailToggle"),
       searchDetails: document.getElementById("searchDetails"),
       playableFilter: document.getElementById("playableFilter"),
@@ -248,8 +261,15 @@
     let musiclistItems = {};
     let playableOnly = false;
     let randomPlayableOnly = true;
+    let favoriteOnly = false;
+    let favoriteKeys = new Set();
     let displayColumnCount = "3";
     let reloadFeedbackTimer = null;
+    let longPressTimer = null;
+    let longPressHandled = false;
+    let longPressSuppressTimer = null;
+    let longPressStartX = 0;
+    let longPressStartY = 0;
 
     // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
     function escapeHtml(value) {
@@ -317,6 +337,61 @@
         artistAliases: extra.artistAliases || [],
         tags: extra.tags || [],
       };
+    }
+
+    function readJsonStorage(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (error) {
+        console.warn(`localStorageの読み込みに失敗しました: ${key}`, error);
+        return fallback;
+      }
+    }
+
+    function writeJsonStorage(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function favoriteKeyForSong(song) {
+      return `${normalizeCellText(song.title)}|${normalizeCellText(song.artist)}`;
+    }
+
+    function loadFavoriteKeys() {
+      const saved = readJsonStorage(FAVORITES_KEY, []);
+      favoriteKeys = new Set(Array.isArray(saved) ? saved : []);
+    }
+
+    function saveFavoriteKeys() {
+      writeJsonStorage(FAVORITES_KEY, [...favoriteKeys]);
+    }
+
+    function isFavorite(song) {
+      return favoriteKeys.has(favoriteKeyForSong(song));
+    }
+
+    function updateFavoriteFilterButton() {
+      els.favoriteFilter.classList.toggle("active", favoriteOnly);
+      els.favoriteFilter.setAttribute("aria-pressed", String(favoriteOnly));
+      els.favoriteFilter.setAttribute("aria-label", favoriteOnly ? "お気に入りのみ表示中" : "お気に入りのみ表示");
+      els.favoriteFilter.textContent = favoriteOnly ? "★お気に入りのみ" : "☆お気に入りのみ";
+    }
+
+    function clearAllFavorites() {
+      if (favoriteKeys.size === 0) {
+        showCopyToast("お気に入りは登録されていません");
+        return;
+      }
+
+      if (!window.confirm("登録したお気に入りをすべて解除します。よろしいですか？")) return;
+
+      favoriteKeys.clear();
+      saveFavoriteKeys();
+      favoriteOnly = false;
+      localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+      render();
+      renderRandom();
+      showCopyToast("お気に入りをすべて解除しました");
     }
 
     function setReloadButtonState(state) {
@@ -538,7 +613,8 @@
         const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
         const genreOk = !genre || song.genre === genre;
         const playableOk = !playableOnly || isPlayable(song);
-        return keywordOk && genreOk && playableOk;
+        const favoriteOk = !favoriteOnly || isFavorite(song);
+        return keywordOk && genreOk && playableOk && favoriteOk;
       });
     }
 
@@ -582,7 +658,7 @@
     function renderSongCards(items) {
       return items.map(song => `
         <div class="col">
-          <article class="card song-card h-100" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
+          <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""}" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
             <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
               <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
                 <div class="song-card-text min-w-0">
@@ -611,6 +687,7 @@
       els.playableFilter.classList.toggle("active", playableOnly);
       els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
       els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
+      updateFavoriteFilterButton();
 
       els.empty.hidden = items.length !== 0;
       els.songs.innerHTML = renderSongCards(items);
@@ -680,10 +757,61 @@
 
       try {
         await copyToClipboard(text);
+        recordCopyHistory({ no, title, artist, text });
         showCopyToast("クリップボードにコピーしました！", text);
       } catch (error) {
         console.error(error);
         showCopyToast("コピーに失敗しました");
+      }
+    }
+
+    function recordCopyHistory({ no, title, artist, text }) {
+      const key = favoriteKeyForSong({ title, artist });
+      const savedCounts = readJsonStorage(COPY_COUNTS_KEY, {});
+      const counts = savedCounts && !Array.isArray(savedCounts) && typeof savedCounts === "object" ? savedCounts : {};
+      counts[key] = (Number(counts[key]) || 0) + 1;
+      writeJsonStorage(COPY_COUNTS_KEY, counts);
+
+      const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
+      const history = Array.isArray(savedHistory) ? savedHistory : [];
+      const timestamp = new Date().toISOString();
+      history.unshift({
+        key,
+        no,
+        title,
+        artist,
+        text,
+        copiedAt: timestamp,
+        timestamp,
+        count: counts[key],
+      });
+      writeJsonStorage(COPY_HISTORY_KEY, history.slice(0, COPY_HISTORY_LIMIT));
+    }
+
+    function toggleFavoriteFromCard(card) {
+      const title = card.dataset.copySong || "";
+      const artist = card.dataset.copyArtist || "";
+      const key = favoriteKeyForSong({ title, artist });
+      const willFavorite = !favoriteKeys.has(key);
+
+      if (willFavorite) {
+        favoriteKeys.add(key);
+      } else {
+        favoriteKeys.delete(key);
+      }
+
+      saveFavoriteKeys();
+      render();
+      renderRandom();
+      showCopyToast(
+        willFavorite ? `${title}をお気に入りにしました！` : `${title}をお気に入りから解除しました`
+      );
+    }
+
+    function clearLongPressTimer() {
+      if (longPressTimer) {
+        clearTimeout(longPressTimer);
+        longPressTimer = null;
       }
     }
 
@@ -772,6 +900,12 @@
       localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
       render();
     });
+    els.favoriteFilter.addEventListener("click", () => {
+      favoriteOnly = !favoriteOnly;
+      localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+      render();
+    });
+    els.clearFavorites.addEventListener("click", clearAllFavorites);
     els.randomStats.addEventListener("click", (event) => {
       const button = event.target.closest("[data-random-filter='playable']");
       if (!button) return;
@@ -810,9 +944,47 @@
     }
     window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
 
+    document.addEventListener("pointerdown", (event) => {
+      const card = event.target.closest("[data-copy-song]");
+      if (!card) return;
+
+      clearLongPressTimer();
+      longPressHandled = false;
+      longPressStartX = event.clientX;
+      longPressStartY = event.clientY;
+      longPressTimer = setTimeout(() => {
+        longPressHandled = true;
+        clearTimeout(longPressSuppressTimer);
+        longPressSuppressTimer = setTimeout(() => {
+          longPressHandled = false;
+        }, 800);
+        toggleFavoriteFromCard(card);
+      }, LONG_PRESS_MS);
+    });
+
+    document.addEventListener("pointermove", (event) => {
+      if (!longPressTimer) return;
+      const movedX = Math.abs(event.clientX - longPressStartX);
+      const movedY = Math.abs(event.clientY - longPressStartY);
+      if (movedX > 10 || movedY > 10) {
+        clearLongPressTimer();
+      }
+    });
+
+    ["pointerup", "pointercancel", "pointerleave"].forEach(eventName => {
+      document.addEventListener(eventName, clearLongPressTimer);
+    });
+
     document.addEventListener("click", (event) => {
       const card = event.target.closest("[data-copy-song]");
       if (!card) return;
+      if (longPressHandled) {
+        event.preventDefault();
+        clearTimeout(longPressSuppressTimer);
+        longPressSuppressTimer = null;
+        longPressHandled = false;
+        return;
+      }
       handleCardCopy(card);
     });
 
@@ -834,6 +1006,8 @@
     displayColumnCount = applyRadioValue(els.displayColumns, localStorage.getItem(DISPLAY_COLUMNS_KEY), "3");
     playableOnly = loadSavedBoolean(PLAYABLE_ONLY_KEY, false);
     randomPlayableOnly = loadSavedBoolean(RANDOM_PLAYABLE_ONLY_KEY, true);
+    favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
+    loadFavoriteKeys();
     setSearchDetailsOpen(false);
     applyColumnLayout();
     switchTab(localStorage.getItem(ACTIVE_TAB_KEY));

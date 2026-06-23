@@ -20,6 +20,8 @@
     --page-filter-active-bg: #ffedd5;
     --page-filter-active-text: #9a3412;
     --page-filter-active-border: #fdba74;
+    --favorite-card-bg: #fffbeb;
+    --favorite-card-border: #fde68a;
 }
 
 html[data-theme="dark"] {
@@ -44,6 +46,8 @@ html[data-theme="dark"] {
     --page-filter-active-bg: #263850;
     --page-filter-active-text: #f1f1f1;
     --page-filter-active-border: #3ea6ff;
+    --favorite-card-bg: #1f2937;
+    --favorite-card-border: #38bdf8;
 }
 
 body {
@@ -162,6 +166,15 @@ body {
     white-space: nowrap;
 }
 
+.settings-actions {
+    margin-top: 1.25rem;
+}
+
+.settings-clear-favorites-button {
+    font-weight: 800;
+    white-space: nowrap;
+}
+
 .form-control,
 .form-select {
     color: var(--page-text);
@@ -204,9 +217,18 @@ html[data-theme="dark"] .form-select {
     gap: .5rem 1rem;
 }
 
+.quick-filter-group {
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem 1rem;
+}
+
 .search-scope,
 .display-columns,
-.playable-filter {
+.playable-filter,
+.favorite-filter {
     display: inline-flex;
     flex: 0 0 auto;
     flex-wrap: wrap;
@@ -254,7 +276,14 @@ html[data-theme="dark"] .form-select {
     border-radius: 1.25rem;
     min-height: 100%;
     cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
     transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.song-card.is-favorite {
+    background: var(--favorite-card-bg);
+    border-color: var(--favorite-card-border);
 }
 
 .song-card:hover,
@@ -672,6 +701,16 @@ html[data-theme="dark"] .text-secondary {
     .result-controls {
     align-items: flex-start;
     flex-direction: column;
+    }
+
+    .quick-filter-group {
+    flex-wrap: nowrap;
+    gap: .5rem;
+    max-width: 100%;
+    }
+
+    .quick-filter-group .stat-filter-button {
+    white-space: nowrap;
     }
 
     .song-card {
