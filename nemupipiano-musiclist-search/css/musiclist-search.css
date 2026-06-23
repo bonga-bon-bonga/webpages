@@ -277,8 +277,15 @@ html[data-theme="dark"] .form-select {
     min-height: 100%;
     cursor: pointer;
     touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
     user-select: none;
     transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.song-card * {
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .song-card.is-favorite {
@@ -711,6 +718,22 @@ html[data-theme="dark"] .text-secondary {
 
     .quick-filter-group .stat-filter-button {
     white-space: nowrap;
+    }
+
+    #settingsModal .modal-dialog {
+    margin: .75rem 1rem;
+    }
+
+    #settingsModal .modal-content {
+    max-height: calc(100vh - 8.75rem);
+    max-height: calc(100dvh - 8.75rem);
+    overflow: hidden;
+    }
+
+    #settingsModal .modal-body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
     }
 
     .song-card {
