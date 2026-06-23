@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.7.0" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.7.1" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -19,18 +19,43 @@
     <section class="app-panel font-size-medium p-3 p-md-4" id="appPanel" aria-label="曲リスト">
       <ul class="nav nav-pills app-tabs mb-4" id="songTabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="tab-search" type="button" role="tab" aria-selected="true" aria-controls="panel-search" data-tab="search">
-            検索
+          <button class="nav-link active" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" data-tab="home">
+            ホーム
           </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tab-random" type="button" role="tab" aria-selected="false" aria-controls="panel-random" data-tab="random">
-            ランダム表示
+          <button class="nav-link" id="tab-search" type="button" role="tab" aria-selected="false" aria-controls="panel-search" data-tab="search">
+            検索
           </button>
         </li>
       </ul>
 
-      <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search">
+      <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+        <section class="home-section">
+          <div class="row g-3 align-items-center mb-2">
+            <div class="col-12 col-md">
+              <h2 class="h4 fw-bold mb-1">今日のおすすめ</h2>
+              <p class="recommend-desc text-secondary mb-0">今日のおすすめ（ランダム表示）が5件表示されます。気になった曲をリクエストしてみましょう！</p>
+            </div>
+          </div>
+          <div class="recommend-source-options" role="radiogroup" aria-label="今日のおすすめの選出方法">
+            <button class="btn recommend-source-button active" type="button" data-home-random-source="all" aria-pressed="true">全曲からランダム</button>
+            <button class="btn recommend-source-button" type="button" data-home-random-source="playable" aria-pressed="false">弾ける曲からランダム</button>
+            <button class="btn recommend-source-button" type="button" data-home-random-source="favorite" aria-pressed="false">お気に入りからランダム</button>
+          </div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="homeRecommendations" data-columns="3"></div>
+          <div class="empty-box text-center p-4 mt-3" id="homeRecommendEmpty" hidden>おすすめできる曲がまだありません。</div>
+        </section>
+
+        <section class="home-section mt-4">
+          <h2 class="h4 fw-bold mb-1">クリップボード履歴</h2>
+          <p class="recommend-desc text-secondary mb-0">過去にクリップボードコピーした直近5件の履歴です</p>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="copyHistorySongs" data-columns="3"></div>
+          <div class="empty-box text-center p-4 mt-3" id="copyHistoryEmpty" hidden>クリップボード履歴はまだありません。</div>
+        </section>
+      </section>
+
+      <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search" hidden>
         <div class="row g-2 g-md-3 align-items-stretch">
           <div class="col-8 col-md-10">
             <label class="visually-hidden" for="search">検索キーワード</label>
@@ -77,21 +102,6 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="songs" data-columns="3"></div>
         <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
       </section>
-
-      <section class="tab-panel" id="panel-random" role="tabpanel" aria-labelledby="tab-random" hidden>
-        <div class="row g-3 align-items-center mb-1">
-          <div class="col-12 col-md">
-            <h2 class="h4 fw-bold mb-1">曲名ランダム表示（10曲）</h2>
-            <p class="recommend-desc text-secondary mb-0">読み込んだ曲リストからランダムに10曲を選びます。迷ったらこれ、という雑なくじ引き機能です。</p>
-          </div>
-          <div class="col-12 col-md-auto d-grid">
-            <button id="shuffle" class="btn btn-dark btn-lg" type="button">もう一回選ぶ</button>
-          </div>
-        </div>
-        <div class="d-flex flex-wrap gap-2 mt-3" id="randomStats" aria-live="polite"></div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="randomSongs" data-columns="3"></div>
-        <div class="empty-box text-center p-4 mt-3" id="randomEmpty" hidden>おすすめできる曲がまだ読み込まれていません。</div>
-      </section>
     </section>
   </main>
 
@@ -105,7 +115,7 @@
         </div>
         <div class="modal-body">
           <p>
-            本ページは、Googleスプレッドシートの「<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>」を読み取り、曲のフィルタ検索とランダム表示を行うことが出来ます。<br>
+            本ページは、Googleスプレッドシートの「<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>」を読み取り、曲のフィルタ検索と今日のおすすめ表示を行うことが出来ます。<br>
             リストに曲が無い時は、<a href="https://www.youtube.com/@nemupipi" target="_blank" rel="noopener noreferrer">ねむぴぴ</a>のピアノ配信「ねむぴぴあの」内でリクエスト！
           </p>
           <hr>
@@ -113,7 +123,7 @@
           <p>
             1. <strong>検索</strong>タブでは、曲名・アーティスト名で曲を探せます。<br>
             2. ジャンルを選ぶと、対象ジャンルの曲だけに絞り込めます。<br>
-            3. <strong>ランダム表示</strong>タブでは、曲リストからランダムに10曲を表示します。<br>
+            3. <strong>ホーム</strong>タブでは、今日のおすすめ5曲とクリップボード履歴を表示します。<br>
             4. 曲カードをクリックすると、下記の形式でクリップボードにコピーされます。<br>
             <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span><br>
             5. コピー後は画面上部に、コピーした文字列が2秒ほど表示されます。
@@ -123,7 +133,8 @@
           <p>
             ・曲名、アーティストのキーワード検索<br>
             ・ジャンルによる絞り込み<br>
-            ・ランダムおすすめ10曲の表示<br>
+            ・今日のおすすめ5曲の表示<br>
+            ・直近のクリップボード履歴5件の表示<br>
             ・カードクリックによるリクエスト用テキストのコピー
           </p>
           <hr>
@@ -195,7 +206,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.7.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.1.7.1 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -212,14 +223,14 @@
     const SHEET_ID = "1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g";
     const GID = "0";
     const MUSICLIST_JSON_PATH = "./data/musiclist.json";
-    const RANDOM_COUNT = 10;
+    const HOME_RECOMMEND_COUNT = 5;
     const THEME_KEY = "nemupipiano:theme";
     const APP_PANEL_FONT_SIZE_KEY = "nemupipiano:appPanelFontSize";
     const ACTIVE_TAB_KEY = "nemupipiano:activeTab";
     const SEARCH_SCOPE_KEY = "nemupipiano:searchScope";
     const DISPLAY_COLUMNS_KEY = "nemupipiano:displayColumns";
     const PLAYABLE_ONLY_KEY = "nemupipiano:playableOnly";
-    const RANDOM_PLAYABLE_ONLY_KEY = "nemupipiano:randomPlayableOnly";
+    const HOME_RANDOM_SOURCE_KEY = "nemupipiano:homeRandomSource";
     const FAVORITES_KEY = "nemupipiano:favorites";
     const FAVORITES_ONLY_KEY = "nemupipiano:favoritesOnly";
     const COPY_COUNTS_KEY = "nemupipiano:copyCounts";
@@ -242,10 +253,11 @@
       stats: document.getElementById("stats"),
       songs: document.getElementById("songs"),
       empty: document.getElementById("empty"),
-      shuffle: document.getElementById("shuffle"),
-      randomStats: document.getElementById("randomStats"),
-      randomSongs: document.getElementById("randomSongs"),
-      randomEmpty: document.getElementById("randomEmpty"),
+      homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
+      homeRecommendations: document.getElementById("homeRecommendations"),
+      homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
+      copyHistorySongs: document.getElementById("copyHistorySongs"),
+      copyHistoryEmpty: document.getElementById("copyHistoryEmpty"),
       tabs: document.querySelectorAll("[data-tab]"),
       panels: document.querySelectorAll(".tab-panel"),
       copyToast: document.getElementById("copyToast"),
@@ -257,10 +269,10 @@
 
     const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
     let songs = [];
-    let recommendedSongs = [];
+    let homeRecommendedSongs = [];
     let musiclistItems = {};
     let playableOnly = false;
-    let randomPlayableOnly = true;
+    let homeRandomSource = "all";
     let favoriteOnly = false;
     let favoriteKeys = new Set();
     let displayColumnCount = "3";
@@ -390,7 +402,8 @@
       favoriteOnly = false;
       localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
       render();
-      renderRandom();
+      pickHomeRecommendations();
+      renderHome();
       showCopyToast("お気に入りをすべて解除しました");
     }
 
@@ -429,7 +442,6 @@
       } else {
         els.reload.disabled = true;
       }
-      els.shuffle.disabled = true;
       let loadSucceeded = false;
 
       const musiclistPromise = loadMusiclist()
@@ -452,9 +464,9 @@
           musiclistItems = musiclistResult.items;
           songs = parseGvizResponse(response).map(enrichSongWithMusiclist);
           setupGenreOptions(songs);
-          pickRandomSongs();
+          pickHomeRecommendations();
           render();
-          renderRandom();
+          renderHome();
           loadSucceeded = true;
         } catch (error) {
           console.error(error);
@@ -464,7 +476,6 @@
           } else {
             els.reload.disabled = false;
           }
-          els.shuffle.disabled = false;
           script.remove();
           delete window[callbackName];
         }
@@ -476,7 +487,6 @@
         } else {
           els.reload.disabled = false;
         }
-        els.shuffle.disabled = false;
         script.remove();
         delete window[callbackName];
       };
@@ -625,19 +635,19 @@
       return raw.includes("〇") || raw.includes("○") || /\byes\b/.test(normalized);
     }
 
-    function getRecommendSource() {
-      if (!randomPlayableOnly) return songs;
-
-      return songs.filter(isPlayable);
+    function getHomeRecommendSource() {
+      if (homeRandomSource === "playable") return songs.filter(isPlayable);
+      if (homeRandomSource === "favorite") return songs.filter(isFavorite);
+      return songs;
     }
 
-    function pickRandomSongs() {
-      const source = [...getRecommendSource()];
+    function pickHomeRecommendations() {
+      const source = [...getHomeRecommendSource()];
       for (let i = source.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [source[i], source[j]] = [source[j], source[i]];
       }
-      recommendedSongs = source.slice(0, RANDOM_COUNT);
+      homeRecommendedSongs = source.slice(0, HOME_RECOMMEND_COUNT);
     }
 
     function gridClassesForColumns(columns) {
@@ -649,7 +659,8 @@
     function applyColumnLayout() {
       const gridClassName = gridClassesForColumns(displayColumnCount);
 
-      [els.songs, els.randomSongs].forEach(grid => {
+      [els.homeRecommendations, els.copyHistorySongs, els.songs].forEach(grid => {
+        if (!grid) return;
         grid.className = gridClassName;
         grid.dataset.columns = displayColumnCount;
       });
@@ -693,13 +704,51 @@
       els.songs.innerHTML = renderSongCards(items);
     }
 
-    function renderRandom() {
-      els.randomStats.innerHTML = `
-        <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${randomPlayableOnly ? "active" : ""}" type="button" data-random-filter="playable" aria-pressed="${randomPlayableOnly}">弾ける曲：<strong>${randomPlayableOnly ? "ON" : "OFF"}</strong></button>
-      `;
+    function renderHome() {
+      updateHomeRandomSourceButtons();
+      els.homeRecommendEmpty.hidden = homeRecommendedSongs.length !== 0;
+      els.homeRecommendations.innerHTML = renderSongCards(homeRecommendedSongs);
+      renderCopyHistory();
+    }
 
-      els.randomEmpty.hidden = recommendedSongs.length !== 0;
-      els.randomSongs.innerHTML = renderSongCards(recommendedSongs);
+    function updateHomeRandomSourceButtons() {
+      els.homeRandomOptions.forEach(button => {
+        const active = button.dataset.homeRandomSource === homeRandomSource;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+    }
+
+    function getCopyHistorySongs() {
+      const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
+      const history = Array.isArray(savedHistory) ? savedHistory : [];
+      const seen = new Set();
+      const items = [];
+
+      for (const entry of history) {
+        const key = String(entry?.key || favoriteKeyForSong(entry || {}));
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+
+        const matchedSong = songs.find(song => favoriteKeyForSong(song) === key);
+        items.push(matchedSong || {
+          no: entry?.no || "",
+          title: entry?.title || "",
+          artist: entry?.artist || "",
+          playable: "",
+          genre: "",
+        });
+
+        if (items.length >= HOME_RECOMMEND_COUNT) break;
+      }
+
+      return items.filter(song => song.title || song.artist);
+    }
+
+    function renderCopyHistory() {
+      const items = getCopyHistorySongs();
+      els.copyHistoryEmpty.hidden = items.length !== 0;
+      els.copyHistorySongs.innerHTML = renderSongCards(items);
     }
 
     function requestText(song) {
@@ -786,6 +835,7 @@
         count: counts[key],
       });
       writeJsonStorage(COPY_HISTORY_KEY, history.slice(0, COPY_HISTORY_LIMIT));
+      renderCopyHistory();
     }
 
     function toggleFavoriteFromCard(card) {
@@ -803,10 +853,13 @@
       saveFavoriteKeys();
       if (favoriteOnly) {
         render();
-        renderRandom();
       } else {
         updateFavoriteCards(key, willFavorite);
       }
+      if (homeRandomSource === "favorite") {
+        pickHomeRecommendations();
+      }
+      renderHome();
       showCopyToast(
         willFavorite ? `${title}をお気に入りにしました！` : `${title}をお気に入りから解除しました`
       );
@@ -828,7 +881,7 @@
     }
 
     function switchTab(tabName) {
-      const normalized = ["search", "random"].includes(tabName) ? tabName : "search";
+      const normalized = ["home", "search"].includes(tabName) ? tabName : "home";
       els.tabs.forEach(tab => {
         const active = tab.dataset.tab === normalized;
         tab.classList.toggle("active", active);
@@ -918,23 +971,20 @@
       render();
     });
     els.clearFavorites.addEventListener("click", clearAllFavorites);
-    els.randomStats.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-random-filter='playable']");
-      if (!button) return;
-
-      randomPlayableOnly = !randomPlayableOnly;
-      localStorage.setItem(RANDOM_PLAYABLE_ONLY_KEY, String(randomPlayableOnly));
-      pickRandomSongs();
-      renderRandom();
+    els.homeRandomOptions.forEach(button => {
+      button.addEventListener("click", () => {
+        homeRandomSource = ["all", "playable", "favorite"].includes(button.dataset.homeRandomSource)
+          ? button.dataset.homeRandomSource
+          : "all";
+        localStorage.setItem(HOME_RANDOM_SOURCE_KEY, homeRandomSource);
+        pickHomeRecommendations();
+        renderHome();
+      });
     });
     els.searchDetailToggle.addEventListener("click", () => {
       setSearchDetailsOpen(els.searchDetails.hidden);
     });
     els.reload.addEventListener("click", () => loadSheet({ showReloadFeedback: true }));
-    els.shuffle.addEventListener("click", () => {
-      pickRandomSongs();
-      renderRandom();
-    });
     els.backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -1029,7 +1079,9 @@
     updateSearchPlaceholder(applyRadioValue(els.searchScopes, localStorage.getItem(SEARCH_SCOPE_KEY), "all"));
     displayColumnCount = applyRadioValue(els.displayColumns, localStorage.getItem(DISPLAY_COLUMNS_KEY), "3");
     playableOnly = loadSavedBoolean(PLAYABLE_ONLY_KEY, false);
-    randomPlayableOnly = loadSavedBoolean(RANDOM_PLAYABLE_ONLY_KEY, true);
+    homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
+      ? localStorage.getItem(HOME_RANDOM_SOURCE_KEY)
+      : "all";
     favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
     loadFavoriteKeys();
     setSearchDetailsOpen(false);

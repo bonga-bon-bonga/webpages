@@ -152,6 +152,42 @@ body {
     box-shadow: 0 8px 18px var(--page-shadow);
 }
 
+.home-section + .home-section {
+    border-top: 1px solid var(--page-line);
+    padding-top: 1.25rem;
+}
+
+.recommend-source-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: .85rem;
+}
+
+.recommend-source-button {
+    min-height: 2.25rem;
+    padding: .35rem .9rem;
+    border: 1px solid var(--page-line);
+    border-radius: 999px;
+    color: var(--page-muted);
+    background: var(--page-button-soft);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.recommend-source-button:hover,
+.recommend-source-button:focus {
+    border-color: var(--page-accent);
+    color: var(--page-text);
+}
+
+.recommend-source-button.active,
+.recommend-source-button[aria-pressed="true"] {
+    border-color: var(--page-button-active);
+    color: var(--page-button-active-text);
+    background: var(--page-button-active);
+}
+
 .detail-toggle-button {
     font-size: 1rem;
     white-space: nowrap;
