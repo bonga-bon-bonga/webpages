@@ -52,15 +52,15 @@ ROMAN_NUMERAL_MAP = str.maketrans(
     }
 )
 
-
+''' 正規化されたセルのテキストを返す関数 '''
 def normalize_cell_text(value):
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
-
+''' 正規化されたテキストを返す関数 '''
 def normalize_text(value):
     return unicodedata.normalize("NFKC", str(value or "").translate(ROMAN_NUMERAL_MAP)).lower()
 
-
+''' 検索キーを作成する関数 '''
 def create_search_key(value):
     text = normalize_text(value)
     text = re.sub(r"\s+", "", text)
@@ -70,7 +70,7 @@ def create_search_key(value):
     text = re.sub(r"[!?*\"#$%&',.:\uff1a;\uff1b\uff65\u30fb\u2026\u2025\u3001\u3002|]", "", text)
     return text
 
-
+''' セルの値を取得する関数 '''
 def cell_value(cell):
     if not cell:
         return ""
@@ -78,10 +78,12 @@ def cell_value(cell):
     return cell.get("f") or cell.get("v") or ""
 
 
+''' 行から値を取得する関数 '''
 def pick_value(row, japanese_key, english_key):
     return normalize_cell_text(row.get(japanese_key) or row.get(english_key))
 
 
+''' 番号をフォーマットする関数 '''
 def format_no(value):
     text = normalize_cell_text(value)
     if not text:
@@ -95,6 +97,7 @@ def format_no(value):
     return int(number) if number.is_integer() else number
 
 
+''' ユニークな値のリストを作成する関数'''
 def unique(values):
     result = []
     seen = set()
@@ -113,15 +116,17 @@ def unique(values):
 
     return result
 
-
+''' キーを分割する関数 '''
 def song_key(title, artist):
     return f"{create_search_key(title)}|{create_search_key(artist)}"
 
-
+''' タイトルとアーティスト名を分割する関数 '''
 def normalize_entry(value):
+    # インスタンスが辞書でない場合は空の検索ワードを返す
     if not isinstance(value, dict):
         return {"titleSearchWords": [], "artistSearchWords": [], "tags": []}
 
+    # タイトルとアーティスト名の検索ワードをユニークにして返す
     return {
         "titleSearchWords": unique(
             value.get("titleSearchWords")
@@ -140,8 +145,10 @@ def normalize_entry(value):
         "tags": unique(value.get("tags") if isinstance(value.get("tags"), list) else []),
     }
 
-
+''' SudachiPyの読みを取得する関数。'''
 def load_sheet():
+
+    # Google SheetsからJSONデータを取得
     if requests is None:
         from urllib.request import urlopen
 
@@ -152,6 +159,7 @@ def load_sheet():
         response.raise_for_status()
         text = response.text
 
+    # Google SheetsのJSONレスポンスからデータを抽出
     start = text.find("{")
     end = text.rfind("}")
     if start == -1 or end == -1 or end <= start:
@@ -168,6 +176,7 @@ def load_sheet():
     ]
     data_rows = raw_rows
 
+    # ヘッダーが既知のヘッダーと一致しない場合、最初の行をヘッダーとして推測する
     if not any(header in KNOWN_HEADERS for header in headers) and raw_rows:
         first_row_cells = raw_rows[0].get("c", [])
         inferred = []
@@ -179,6 +188,7 @@ def load_sheet():
             headers = inferred
             data_rows = raw_rows[1:]
 
+    # データ行を辞書形式に変換する
     rows = []
     for row in data_rows:
         cells = row.get("c", [])
@@ -244,7 +254,7 @@ def load_search_enhancements():
         "artistCorrections": normalize_corrections(data.get("artistCorrections")),
     }
 
-
+''' 検索補正を正規化する関数。 '''
 def normalize_corrections(value):
     if not isinstance(value, dict):
         return {}
@@ -255,19 +265,19 @@ def normalize_corrections(value):
         if create_search_key(key) and normalize_cell_text(correction)
     }
 
-
+''' 値を補正する関数。補正が存在する場合は補正値を返し、存在しない場合は元の値を返す。'''
 def corrected_value(source_value, corrections):
     return corrections.get(create_search_key(source_value)) or source_value
 
-
+''' musiclistを構築する関数。Google Sheetsから音楽リストを取得し、既存のエントリと検索補正を適用して結果を出力する。 '''
 def build_musiclist(sheet_rows, existing_entries, search_enhancements):
     output_items = []
     title_corrections = search_enhancements["titleCorrections"]
     artist_corrections = search_enhancements["artistCorrections"]
 
     for row in sheet_rows:
-        source_title = pick_value(row, "曲名", "title")
-        source_artist = pick_value(row, "アーティスト", "artist")
+        source_title = pick_value(row, "曲名", "title").replace("〜", "～")
+        source_artist = pick_value(row, "アーティスト", "artist").replace("〜", "～")
         if not source_title and not source_artist:
             continue
 
@@ -301,14 +311,14 @@ def build_musiclist(sheet_rows, existing_entries, search_enhancements):
 
     return output_items
 
-
+''' JSONデータを保存する関数。 '''
 def save_json(data):
     os.makedirs(os.path.dirname(OUTPUT_JSON_PATH) or ".", exist_ok=True)
     with open(OUTPUT_JSON_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
-
+''' メイン関数。Google Sheetsから音楽リストを取得し、既存のエントリと検索補正を適用して結果を出力する。'''
 def main():
     sheet_rows = load_sheet()
     existing_entries = load_existing_entries()
