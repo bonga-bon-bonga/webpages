@@ -1,9 +1,7 @@
-# scripts/build_musiclist.py
-#####################################################
-# musiclist.json を Google スプレッドシートの内容で更新するスクリプト
-#####################################################
 import json
 import os
+import re
+import unicodedata
 
 try:
     import requests  # type: ignore
@@ -18,6 +16,10 @@ OUTPUT_JSON_PATH = (
     os.environ.get("OUTPUT_JSON_PATH")
     or "nemupipiano-musiclist-search/data/musiclist.json"
 )
+SEARCH_ENHANCEMENTS_PATH = (
+    os.environ.get("SEARCH_ENHANCEMENTS_PATH")
+    or "nemupipiano-musiclist-search/data/dictionary/search-enhancements.json"
+)
 
 GOOGLE_SHEET_URL = (
     f"https://docs.google.com/spreadsheets/d/"
@@ -25,15 +27,48 @@ GOOGLE_SHEET_URL = (
 )
 
 KNOWN_HEADERS = {"No", "弾ける曲", "曲名", "アーティスト", "ジャンル", "補足"}
-DEFAULT_ENTRY = {
-    "searchWords": [],
-    "artistAliases": [],
-    "tags": [],
-}
+ROMAN_NUMERAL_MAP = str.maketrans(
+    {
+        "Ⅰ": "1",
+        "Ⅱ": "2",
+        "Ⅲ": "3",
+        "Ⅳ": "4",
+        "Ⅴ": "5",
+        "Ⅵ": "6",
+        "Ⅶ": "7",
+        "Ⅷ": "8",
+        "Ⅸ": "9",
+        "Ⅹ": "10",
+        "ⅰ": "1",
+        "ⅱ": "2",
+        "ⅲ": "3",
+        "ⅳ": "4",
+        "ⅴ": "5",
+        "ⅵ": "6",
+        "ⅶ": "7",
+        "ⅷ": "8",
+        "ⅸ": "9",
+        "ⅹ": "10",
+    }
+)
+
+
+def normalize_cell_text(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
 def normalize_text(value):
-    return str(value or "").strip()
+    return unicodedata.normalize("NFKC", str(value or "").translate(ROMAN_NUMERAL_MAP)).lower()
+
+
+def create_search_key(value):
+    text = normalize_text(value)
+    text = re.sub(r"\s+", "", text)
+    text = re.sub(r"[\u2010\u2013\u2014\u2015]", "-", text)
+    text = re.sub(r"[\uff5e\u301c]", "~", text)
+    text = re.sub(r"[\(\)\[\]\{\}<>\u3008\u3009\u300a\u300b\u300c\u300d\u300e\u300f\u3010\u3011\u3014\u3015\u3016\u3017\u3018\u3019\u301a\u301b]", "", text)
+    text = re.sub(r"[!?*\"#$%&',.:\uff1a;\uff1b\uff65\u30fb\u2026\u2025\u3001\u3002|]", "", text)
+    return text
 
 
 def cell_value(cell):
@@ -44,25 +79,65 @@ def cell_value(cell):
 
 
 def pick_value(row, japanese_key, english_key):
-    return normalize_text(row.get(japanese_key) or row.get(english_key))
+    return normalize_cell_text(row.get(japanese_key) or row.get(english_key))
 
 
-def build_item_key(title, artist):
-    return f"{title}|{artist}"
+def format_no(value):
+    text = normalize_cell_text(value)
+    if not text:
+        return ""
+
+    try:
+        number = float(text)
+    except ValueError:
+        return text
+
+    return int(number) if number.is_integer() else number
 
 
-def empty_musiclist():
-    return {"items": {}}
+def unique(values):
+    result = []
+    seen = set()
+
+    for value in values:
+        value = normalize_cell_text(value)
+        if not value:
+            continue
+
+        key = value.lower()
+        if key in seen:
+            continue
+
+        seen.add(key)
+        result.append(value)
+
+    return result
+
+
+def song_key(title, artist):
+    return f"{create_search_key(title)}|{create_search_key(artist)}"
 
 
 def normalize_entry(value):
     if not isinstance(value, dict):
-        return dict(DEFAULT_ENTRY)
+        return {"titleSearchWords": [], "artistSearchWords": [], "tags": []}
 
     return {
-        "searchWords": value.get("searchWords") if isinstance(value.get("searchWords"), list) else [],
-        "artistAliases": value.get("artistAliases") if isinstance(value.get("artistAliases"), list) else [],
-        "tags": value.get("tags") if isinstance(value.get("tags"), list) else [],
+        "titleSearchWords": unique(
+            value.get("titleSearchWords")
+            if isinstance(value.get("titleSearchWords"), list)
+            else value.get("searchWords")
+            if isinstance(value.get("searchWords"), list)
+            else []
+        ),
+        "artistSearchWords": unique(
+            value.get("artistSearchWords")
+            if isinstance(value.get("artistSearchWords"), list)
+            else value.get("artistAliases")
+            if isinstance(value.get("artistAliases"), list)
+            else []
+        ),
+        "tags": unique(value.get("tags") if isinstance(value.get("tags"), list) else []),
     }
 
 
@@ -88,7 +163,7 @@ def load_sheet():
     raw_rows = table.get("rows", [])
 
     headers = [
-        normalize_text(col.get("label") or col.get("id") or f"col{idx + 1}")
+        normalize_cell_text(col.get("label") or col.get("id") or f"col{idx + 1}")
         for idx, col in enumerate(cols)
     ]
     data_rows = raw_rows
@@ -98,7 +173,7 @@ def load_sheet():
         inferred = []
         for idx in range(len(headers)):
             cell = first_row_cells[idx] if idx < len(first_row_cells) else None
-            inferred.append(normalize_text(cell_value(cell)) or headers[idx])
+            inferred.append(normalize_cell_text(cell_value(cell)) or headers[idx])
 
         if any(header in KNOWN_HEADERS for header in inferred):
             headers = inferred
@@ -116,57 +191,115 @@ def load_sheet():
     return rows
 
 
-def load_json():
+def load_existing_entries():
     if not os.path.exists(OUTPUT_JSON_PATH):
-        return empty_musiclist()
+        return {}
 
     with open(OUTPUT_JSON_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    entries = {}
     if isinstance(data, dict) and isinstance(data.get("items"), dict):
-        return {
-            "items": {
-                str(key): normalize_entry(value)
-                for key, value in data["items"].items()
-            }
-        }
+        for key, value in data["items"].items():
+            entries[str(key)] = normalize_entry(value)
+        return entries
 
-    if isinstance(data, dict) and isinstance(data.get("items"), list):
-        items = data["items"]
-    elif isinstance(data, list):
-        items = data
-    else:
-        return empty_musiclist()
+    items = data.get("items") if isinstance(data, dict) else data
+    if not isinstance(items, list):
+        return entries
 
-    migrated = empty_musiclist()
     for item in items:
         if not isinstance(item, dict):
             continue
 
-        title = normalize_text(item.get("title"))
-        artist = normalize_text(item.get("artist"))
-        if not title and not artist:
-            continue
+        keys = [
+            item.get("songKey"),
+            song_key(item.get("displayTitle"), item.get("displayArtist")),
+            f"{normalize_cell_text(item.get('sourceTitle'))}|{normalize_cell_text(item.get('sourceArtist'))}",
+        ]
+        entry = normalize_entry(item)
+        for key in keys:
+            key = normalize_cell_text(key)
+            if key:
+                entries[key] = entry
 
-        migrated["items"][build_item_key(title, artist)] = normalize_entry(item)
-
-    return migrated
+    return entries
 
 
-def build_musiclist(sheet_rows, existing_musiclist):
-    existing_items = existing_musiclist.get("items", {})
-    output_items = {}
+def load_search_enhancements():
+    if not os.path.exists(SEARCH_ENHANCEMENTS_PATH):
+        return {"titleCorrections": {}, "artistCorrections": {}}
+
+    with open(SEARCH_ENHANCEMENTS_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    if not isinstance(data, dict):
+        return {"titleCorrections": {}, "artistCorrections": {}}
+
+    if "titleCorrections" not in data and "artistCorrections" not in data:
+        data = {"titleCorrections": data, "artistCorrections": {}}
+
+    return {
+        "titleCorrections": normalize_corrections(data.get("titleCorrections")),
+        "artistCorrections": normalize_corrections(data.get("artistCorrections")),
+    }
+
+
+def normalize_corrections(value):
+    if not isinstance(value, dict):
+        return {}
+
+    return {
+        create_search_key(key): normalize_cell_text(correction)
+        for key, correction in value.items()
+        if create_search_key(key) and normalize_cell_text(correction)
+    }
+
+
+def corrected_value(source_value, corrections):
+    return corrections.get(create_search_key(source_value)) or source_value
+
+
+def build_musiclist(sheet_rows, existing_entries, search_enhancements):
+    output_items = []
+    title_corrections = search_enhancements["titleCorrections"]
+    artist_corrections = search_enhancements["artistCorrections"]
 
     for row in sheet_rows:
-        title = pick_value(row, "曲名", "title")
-        artist = pick_value(row, "アーティスト", "artist")
-        if not title and not artist:
+        source_title = pick_value(row, "曲名", "title")
+        source_artist = pick_value(row, "アーティスト", "artist")
+        if not source_title and not source_artist:
             continue
 
-        key = build_item_key(title, artist)
-        output_items[key] = normalize_entry(existing_items.get(key))
+        display_title = corrected_value(source_title, title_corrections)
+        display_artist = corrected_value(source_artist, artist_corrections)
+        key = song_key(display_title, display_artist)
+        legacy_key = f"{source_title}|{source_artist}"
+        existing = normalize_entry(
+            existing_entries.get(key)
+            or existing_entries.get(legacy_key)
+            or existing_entries.get(f"{display_title}|{display_artist}")
+        )
+        genre = pick_value(row, "ジャンル", "genre")
 
-    return {"items": output_items}
+        output_items.append(
+            {
+                "no": format_no(pick_value(row, "No", "no")),
+                "displayTitle": display_title,
+                "displayArtist": display_artist,
+                "songKey": key,
+                "titleSearchWords": existing["titleSearchWords"],
+                "artistSearchWords": existing["artistSearchWords"],
+                "tags": unique(existing["tags"] + ([genre] if genre else [])),
+                "sourceTitle": source_title,
+                "sourceArtist": source_artist,
+                "playable": pick_value(row, "弾ける曲", "playable"),
+                "genre": genre,
+                "note": pick_value(row, "補足", "note"),
+            }
+        )
+
+    return output_items
 
 
 def save_json(data):
@@ -178,10 +311,11 @@ def save_json(data):
 
 def main():
     sheet_rows = load_sheet()
-    existing_musiclist = load_json()
-    musiclist = build_musiclist(sheet_rows, existing_musiclist)
+    existing_entries = load_existing_entries()
+    search_enhancements = load_search_enhancements()
+    musiclist = build_musiclist(sheet_rows, existing_entries, search_enhancements)
     save_json(musiclist)
-    print(f"Updated {len(musiclist['items'])} records.")
+    print(f"Updated {len(musiclist)} records.")
 
 
 if __name__ == "__main__":
