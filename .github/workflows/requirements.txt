@@ -1,1 +1,2 @@
-pykakasi
+SudachiPy
+sudachidict_core

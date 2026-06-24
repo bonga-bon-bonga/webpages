@@ -1,5 +1,3 @@
-const SHEET_ID = "1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g";
-const GID = "0";
 const MUSICLIST_JSON_PATH = "./data/musiclist.json";
 const HOME_RECOMMEND_COUNT = 5;
 const THEME_KEY = "nemupipiano:theme";
@@ -50,7 +48,6 @@ const els = {
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 let songs = [];
 let homeRecommendedSongs = [];
-let musiclistItems = {};
 let playableOnly = false;
 let homeRandomSource = "all";
 let favoriteOnly = false;
@@ -74,17 +71,6 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-// Google Visualization APIのセルオブジェクトから値を取り出す。f（フォーマット済み値）があればそれを優先し、なければv（生の値）を返す。どちらもない場合は空文字を返す。
-function cellValue(cell) {
-  if (!cell) return "";
-  return cell.f ?? cell.v ?? "";
-}
-
-// Google Visualization APIの列ヘッダーを正規化して返す。nullやundefinedを空文字に、前後のスペースを削除。
-function normalizeHeader(value) {
-  return String(value ?? "").trim();
-}
-
 function normalizeStringArray(values) {
   if (!Array.isArray(values)) return [];
 
@@ -94,18 +80,53 @@ function normalizeStringArray(values) {
 }
 
 function normalizeMusiclistItems(data) {
-  const items = data?.items || {};
+  if (Array.isArray(data)) {
+    return data.map(normalizeMusiclistSong).filter(song => song.title || song.artist);
+  }
 
-  return Object.fromEntries(
-    Object.entries(items).map(([key, value]) => [
-      normalizeCellText(key),
-      {
-        searchWords: normalizeStringArray(value?.searchWords),
-        artistAliases: normalizeStringArray(value?.artistAliases),
-        tags: normalizeStringArray(value?.tags),
-      },
-    ])
-  );
+  if (Array.isArray(data?.items)) {
+    return data.items.map(normalizeMusiclistSong).filter(song => song.title || song.artist);
+  }
+
+  const items = data?.items || {};
+  return Object.entries(items).map(([key, value]) => {
+    const [title = "", artist = ""] = normalizeCellText(key).split("|");
+    return normalizeMusiclistSong({
+      ...(value || {}),
+      displayTitle: title,
+      displayArtist: artist,
+      sourceTitle: title,
+      sourceArtist: artist,
+      songKey: createSongKey(title, artist),
+    });
+  }).filter(song => song.title || song.artist);
+}
+
+function normalizeMusiclistSong(item) {
+  const displayTitle = normalizeCellText(item?.displayTitle ?? item?.title ?? "");
+  const displayArtist = normalizeCellText(item?.displayArtist ?? item?.artist ?? "");
+  const sourceTitle = normalizeCellText(item?.sourceTitle ?? displayTitle);
+  const sourceArtist = normalizeCellText(item?.sourceArtist ?? displayArtist);
+  const tags = normalizeStringArray(item?.tags);
+  const genre = normalizeCellText(item?.genre) || tags[0] || "";
+
+  return {
+    no: normalizeCellText(item?.no),
+    title: displayTitle,
+    artist: displayArtist,
+    displayTitle,
+    displayArtist,
+    sourceTitle,
+    sourceArtist,
+    songKey: normalizeCellText(item?.songKey) || createSongKey(displayTitle, displayArtist),
+    titleSearchWords: normalizeStringArray(item?.titleSearchWords ?? item?.searchWords),
+    artistSearchWords: normalizeStringArray(item?.artistSearchWords ?? item?.artistAliases),
+    tags,
+    playable: normalizeCellText(item?.playable),
+    genre,
+    note: normalizeCellText(item?.note),
+    raw: item,
+  };
 }
 
 async function loadMusiclist() {
@@ -117,19 +138,8 @@ async function loadMusiclist() {
   return normalizeMusiclistItems(await response.json());
 }
 
-function musiclistKey(title, artist) {
-  return `${normalizeCellText(title)}|${normalizeCellText(artist)}`;
-}
-
-function enrichSongWithMusiclist(song) {
-  const extra = musiclistItems[musiclistKey(song.title, song.artist)] || {};
-
-  return {
-    ...song,
-    searchWords: extra.searchWords || [],
-    artistAliases: extra.artistAliases || [],
-    tags: extra.tags || [],
-  };
+function createSongKey(title, artist) {
+  return `${createSearchKey(title)}|${createSearchKey(artist)}`;
 }
 
 function readJsonStorage(key, fallback) {
@@ -147,7 +157,45 @@ function writeJsonStorage(key, value) {
 }
 
 function favoriteKeyForSong(song) {
-  return `${normalizeCellText(song.title)}|${normalizeCellText(song.artist)}`;
+  return normalizeCellText(song.songKey) || createSongKey(song.title, song.artist);
+}
+
+function legacyKeysForSong(song) {
+  return [
+    `${normalizeCellText(song.title)}|${normalizeCellText(song.artist)}`,
+    `${normalizeCellText(song.displayTitle)}|${normalizeCellText(song.displayArtist)}`,
+    `${normalizeCellText(song.sourceTitle)}|${normalizeCellText(song.sourceArtist)}`,
+  ].filter(key => key && key !== "|");
+}
+
+function songLookupKeys(song) {
+  return [favoriteKeyForSong(song), ...legacyKeysForSong(song)];
+}
+
+function findSongByStoredKey(key) {
+  const normalizedKey = normalizeCellText(key);
+  return songs.find(song => songLookupKeys(song).includes(normalizedKey));
+}
+
+function migrateFavoriteKeys() {
+  const migrated = new Set();
+  let changed = false;
+
+  favoriteKeys.forEach(key => {
+    const song = findSongByStoredKey(key);
+    if (song) {
+      const newKey = favoriteKeyForSong(song);
+      migrated.add(newKey);
+      changed = changed || newKey !== key;
+    } else {
+      migrated.add(key);
+    }
+  });
+
+  if (changed || migrated.size !== favoriteKeys.size) {
+    favoriteKeys = migrated;
+    saveFavoriteKeys();
+  }
 }
 
 function loadFavoriteKeys() {
@@ -216,103 +264,34 @@ function setReloadButtonState(state) {
   els.reload.textContent = RELOAD_BUTTON_DEFAULT_TEXT;
 }
 
-// Google Visualization APIを使ってシートを読み込む。レスポンスはJSONP形式で返されるため、コールバック関数を動的に生成して対応する。
-function loadSheet({ showReloadFeedback = false } = {}) {
+// musiclist.jsonを読み込み、画面表示用の曲データを更新する。
+async function loadSheet({ showReloadFeedback = false } = {}) {
   if (showReloadFeedback) {
     setReloadButtonState("loading");
   } else {
     els.reload.disabled = true;
   }
-  let loadSucceeded = false;
 
-  const musiclistPromise = loadMusiclist()
-    .then(items => ({ items }))
-    .catch(error => ({ error }));
-  const callbackName = "handleSheetResponse_" + Date.now();
-  const script = document.createElement("script");
-  const query = encodeURIComponent("select *");
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${GID}&tq=${query}&tqx=out:json;responseHandler:${callbackName}`;
-
-  window[callbackName] = async (response) => {
-    try {
-      if (response.status !== "ok") {
-        throw new Error(response.errors?.[0]?.detailed_message || "Google Sheetsの読み込みに失敗しました。");
-      }
-
-      const musiclistResult = await musiclistPromise;
-      if (musiclistResult.error) throw musiclistResult.error;
-
-      musiclistItems = musiclistResult.items;
-      songs = parseGvizResponse(response).map(enrichSongWithMusiclist);
-      setupGenreOptions(songs);
-      pickHomeRecommendations();
-      render({ syncSearchGuide: true, forceSearchGuideSync: true });
-      renderHome();
-      loadSucceeded = true;
-    } catch (error) {
-      console.error(error);
-    } finally {
-      if (showReloadFeedback) {
-        setReloadButtonState(loadSucceeded ? "complete" : "error");
-      } else {
-        els.reload.disabled = false;
-      }
-      script.remove();
-      delete window[callbackName];
+  try {
+    songs = await loadMusiclist();
+    migrateFavoriteKeys();
+    setupGenreOptions(songs);
+    pickHomeRecommendations();
+    render({ syncSearchGuide: true, forceSearchGuideSync: true });
+    renderHome();
+    if (showReloadFeedback) {
+      setReloadButtonState("complete");
+    } else {
+      els.reload.disabled = false;
     }
-  };
-
-  script.onerror = () => {
+  } catch (error) {
+    console.error(error);
     if (showReloadFeedback) {
       setReloadButtonState("error");
     } else {
       els.reload.disabled = false;
     }
-    script.remove();
-    delete window[callbackName];
-  };
-
-  script.src = url;
-  document.body.appendChild(script);
-}
-
-// Google Visualization APIのレスポンスから曲データを抽出して整形
-function parseGvizResponse(response) {
-  const table = response.table || {};
-  const rows = table.rows || [];
-  const cols = table.cols || [];
-  if (rows.length === 0) return [];
-
-  let headers = cols.map((col, index) => normalizeHeader(col.label || col.id || `col${index + 1}`));
-  let dataRows = rows;
-
-  const knownHeaders = ["No", "弾ける曲", "曲名", "アーティスト", "ジャンル", "補足"];
-  const hasKnownHeader = headers.some(header => knownHeaders.includes(header));
-  if (!hasKnownHeader) {
-    const firstRowValues = rows[0].c.map(cell => normalizeHeader(cellValue(cell)));
-    if (firstRowValues.some(value => knownHeaders.includes(value))) {
-      headers = firstRowValues;
-      dataRows = rows.slice(1);
-    }
   }
-
-  return dataRows
-    .map(row => {
-      const item = {};
-      headers.forEach((header, index) => {
-        item[header || `col${index + 1}`] = cellValue(row.c[index]);
-      });
-      return {
-        no: item["No"] || item["no"] || "",
-        playable: item["弾ける曲"] || item["playable"] || "",
-        title: normalizeCellText(item["曲名"] || item["title"] || ""),
-        artist: normalizeCellText(item["アーティスト"] || item["artist"] || ""),
-        genre: normalizeCellText(item["ジャンル"] || item["genre"] || ""),
-        note: normalizeCellText(item["補足"] || item["note"] || ""),
-        raw: item,
-      };
-    })
-    .filter(song => song.title || song.artist || song.genre);
 }
 
 // セルの値を正規化して返す（nullやundefinedを空文字に、複数スペースを単一スペースに置換、前後のスペースを削除）
@@ -378,8 +357,16 @@ function updateSearchPlaceholder(scope = getSearchScope()) {
 }
 
 function searchTargetsForScope(song, scope) {
-  const titleTargets = [song.title, ...normalizeStringArray(song.searchWords)];
-  const artistTargets = [song.artist, ...normalizeStringArray(song.artistAliases)];
+  const titleTargets = [
+    song.title,
+    song.sourceTitle,
+    ...normalizeStringArray(song.titleSearchWords),
+  ];
+  const artistTargets = [
+    song.artist,
+    song.sourceArtist,
+    ...normalizeStringArray(song.artistSearchWords),
+  ];
 
   if (scope === "title") return titleTargets;
   if (scope === "artist") return artistTargets;
@@ -468,7 +455,7 @@ function applyColumnLayout() {
 function renderSongCards(items) {
   return items.map(song => `
     <div class="col">
-      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""}" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
+      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""}" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" data-song-key="${escapeHtml(favoriteKeyForSong(song))}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
         <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
           <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
             <div class="song-card-text min-w-0">
@@ -533,11 +520,12 @@ function getCopyHistorySongs() {
     if (!key || seen.has(key)) continue;
     seen.add(key);
 
-    const matchedSong = songs.find(song => favoriteKeyForSong(song) === key);
+    const matchedSong = findSongByStoredKey(key);
     items.push(matchedSong || {
       no: entry?.no || "",
       title: entry?.title || "",
       artist: entry?.artist || "",
+      songKey: key,
       playable: "",
       genre: "",
     });
@@ -605,11 +593,12 @@ async function handleCardCopy(card) {
   const no = card.dataset.copyNo || "";
   const title = card.dataset.copySong || "";
   const artist = card.dataset.copyArtist || "";
+  const songKey = card.dataset.songKey || "";
   const text = requestText({ no, title, artist });
 
   try {
     await copyToClipboard(text);
-    recordCopyHistory({ no, title, artist, text });
+    recordCopyHistory({ key: songKey, no, title, artist, text });
     showCopyToast("クリップボードにコピーしました！", text);
   } catch (error) {
     console.error(error);
@@ -617,8 +606,8 @@ async function handleCardCopy(card) {
   }
 }
 
-function recordCopyHistory({ no, title, artist, text }) {
-  const key = favoriteKeyForSong({ title, artist });
+function recordCopyHistory({ key, no, title, artist, text }) {
+  key = normalizeCellText(key) || createSongKey(title, artist);
   const savedCounts = readJsonStorage(COPY_COUNTS_KEY, {});
   const counts = savedCounts && !Array.isArray(savedCounts) && typeof savedCounts === "object" ? savedCounts : {};
   counts[key] = (Number(counts[key]) || 0) + 1;
@@ -644,7 +633,7 @@ function recordCopyHistory({ no, title, artist, text }) {
 function toggleFavoriteFromCard(card) {
   const title = card.dataset.copySong || "";
   const artist = card.dataset.copyArtist || "";
-  const key = favoriteKeyForSong({ title, artist });
+  const key = normalizeCellText(card.dataset.songKey) || createSongKey(title, artist);
   const willFavorite = !favoriteKeys.has(key);
 
   if (willFavorite) {
