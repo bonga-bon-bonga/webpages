@@ -99,9 +99,9 @@
   },
   {
     "no": 5,
-    "displayTitle": "点描のうた",
+    "displayTitle": "点描の唄",
     "displayArtist": "Mrs. GREEN APPLE",
-    "songKey": "点描のうた|mrsgreenapple",
+    "songKey": "点描の唄|mrsgreenapple",
     "titleSearchWords": [
       "点描の唄",
       "点描の歌",
@@ -301,7 +301,7 @@
   {
     "no": 13,
     "displayTitle": "Rain",
-    "displayArtist": "秦 基博",
+    "displayArtist": "秦基博",
     "songKey": "rain|秦基博",
     "titleSearchWords": [
       "れいん",
@@ -686,7 +686,7 @@
   },
   {
     "no": 29,
-    "displayTitle": "３月９日",
+    "displayTitle": "3月9日",
     "displayArtist": "レミオロメン",
     "songKey": "3月9日|レミオロメン",
     "titleSearchWords": [
@@ -855,7 +855,7 @@
   {
     "no": 36,
     "displayTitle": "CHA-LA HEAD-CHA-LA",
-    "displayArtist": "影山 ヒロノブ",
+    "displayArtist": "影山ヒロノブ",
     "songKey": "cha-lahead-cha-la|影山ヒロノブ",
     "titleSearchWords": [
       "ちゃらへっちゃら",
@@ -877,7 +877,7 @@
   {
     "no": 37,
     "displayTitle": "残酷な天使のテーゼ",
-    "displayArtist": "高橋 洋子",
+    "displayArtist": "高橋洋子",
     "songKey": "残酷な天使のテーゼ|高橋洋子",
     "titleSearchWords": [
       "ざんこくなてんしのてーぜ",
@@ -1018,7 +1018,7 @@
   {
     "no": 43,
     "displayTitle": "丸の内サディスティック",
-    "displayArtist": "椎名 林檎",
+    "displayArtist": "椎名林檎",
     "songKey": "丸の内サディスティック|椎名林檎",
     "titleSearchWords": [
       "まるのうちさでぃすてぃっく",
@@ -1143,7 +1143,7 @@
   {
     "no": 48,
     "displayTitle": "虹",
-    "displayArtist": "菅田 将暉",
+    "displayArtist": "菅田将暉",
     "songKey": "虹|菅田将暉",
     "titleSearchWords": [
       "にじ",
@@ -1539,8 +1539,8 @@
   {
     "no": 64,
     "displayTitle": "いつかのメリークリスマス",
-    "displayArtist": "B’z",
-    "songKey": "いつかのメリークリスマス|b’z",
+    "displayArtist": "B'z",
+    "songKey": "いつかのメリークリスマス|bz",
     "titleSearchWords": [
       "いつかのめりーくりすます",
       "イツカノメリークリスマス",
@@ -2370,8 +2370,8 @@
   {
     "no": 98,
     "displayTitle": "愛にできることはまだあるかい",
-    "displayArtist": "RADWINPS",
-    "songKey": "愛にできることはまだあるかい|radwinps",
+    "displayArtist": "RADWIMPS",
+    "songKey": "愛にできることはまだあるかい|radwimps",
     "titleSearchWords": [
       "あいにできることはまだあるかい",
       "アイニデキルコトハマダアルカイ",
@@ -2512,8 +2512,8 @@
   {
     "no": 104,
     "displayTitle": "なんでもないや",
-    "displayArtist": "RADWINPS",
-    "songKey": "なんでもないや|radwinps",
+    "displayArtist": "RADWIMPS",
+    "songKey": "なんでもないや|radwimps",
     "titleSearchWords": [
       "ナンデモナイヤ",
       "nandemonaiya",
@@ -2819,7 +2819,7 @@
   {
     "no": 117,
     "displayTitle": "君の知らない物語",
-    "displayArtist": "supercell",
+    "displayArtist": "Supercell",
     "songKey": "君の知らない物語|supercell",
     "titleSearchWords": [
       "きみのしらないものがたり",
@@ -3205,7 +3205,7 @@
   },
   {
     "no": 133,
-    "displayTitle": "secret base〜君がくれたもの〜",
+    "displayTitle": "secret base～君がくれたもの～",
     "displayArtist": "ZONE",
     "songKey": "secretbase~君がくれたもの~|zone",
     "titleSearchWords": [
@@ -3215,7 +3215,10 @@
       "しーくれっとべーす",
       "きみがくれたもの",
       "シークレットベース",
-      "キミガクレタモノ"
+      "キミガクレタモノ",
+      "しーくれっときごうべーす~きみがくれたものから",
+      "シークレットキゴウベース~キミガクレタモノカラ",
+      "シークレット BASE~君が呉れるた物~"
     ],
     "artistSearchWords": [
       "ぞーん",
@@ -3224,7 +3227,7 @@
     "tags": [
       "J-POP"
     ],
-    "sourceTitle": "secret base〜君がくれたもの〜",
+    "sourceTitle": "secret base～君がくれたもの～",
     "sourceArtist": "ZONE",
     "playable": "〇",
     "genre": "J-POP",
@@ -5704,7 +5707,7 @@
   },
   {
     "no": 238,
-    "displayTitle": "翔べ! ガンダム",
+    "displayTitle": "翔べ！ガンダム",
     "displayArtist": "池田鴻",
     "songKey": "翔べガンダム|池田鴻",
     "titleSearchWords": [
@@ -5799,7 +5802,7 @@
   },
   {
     "no": 242,
-    "displayTitle": "渡月橋 〜君 想ふ〜",
+    "displayTitle": "渡月橋 ～君 想ふ～",
     "displayArtist": "倉木麻衣",
     "songKey": "渡月橋~君想ふ~|倉木麻衣",
     "titleSearchWords": [
@@ -5809,7 +5812,10 @@
       "とげつきょう",
       "きみおもふ",
       "トゲツキョウ",
-      "キミオモフ"
+      "キミオモフ",
+      "とげつきょうきごう~くんきごうおもふ~",
+      "トゲツキョウキゴウ~クンキゴウオモフ~",
+      "渡月橋 ~君 思う~"
     ],
     "artistSearchWords": [
       "くらきまい",
@@ -5818,7 +5824,7 @@
     "tags": [
       "J-POP"
     ],
-    "sourceTitle": "渡月橋 〜君 想ふ〜",
+    "sourceTitle": "渡月橋 ～君 想ふ～",
     "sourceArtist": "倉木麻衣",
     "playable": "",
     "genre": "J-POP",
@@ -7512,7 +7518,7 @@
   {
     "no": 315,
     "displayTitle": "うたかた花火",
-    "displayArtist": "supercell",
+    "displayArtist": "Supercell",
     "songKey": "うたかた花火|supercell",
     "titleSearchWords": [
       "うたかたはなび",
@@ -7952,7 +7958,7 @@
   {
     "no": 335,
     "displayTitle": "Driver's High",
-    "displayArtist": "L'Arc〜en〜Ciel",
+    "displayArtist": "L'Arc～en～Ciel",
     "songKey": "drivershigh|larc~en~ciel",
     "titleSearchWords": [
       "どらいばーずはい",
@@ -7960,11 +7966,14 @@
     ],
     "artistSearchWords": [
       "らるくあんしえる",
-      "ラルクアンシエル"
+      "ラルクアンシエル",
+      "りっとるきごうあーく~en~ciel",
+      "リットルキゴウアーク~en~ciel",
+      "l＇arc~en~ciel"
     ],
     "tags": [],
     "sourceTitle": "Driver's High",
-    "sourceArtist": "L'Arc〜en〜Ciel",
+    "sourceArtist": "L'Arc～en～Ciel",
     "playable": "",
     "genre": "",
     "note": ""
@@ -9909,7 +9918,7 @@
   },
   {
     "no": 425,
-    "displayTitle": "Hello, Again 〜昔からある場所〜",
+    "displayTitle": "Hello, Again ～昔からある場所～",
     "displayArtist": "MY LITTLE LOVER",
     "songKey": "helloagain~昔からある場所~|mylittlelover",
     "titleSearchWords": [
@@ -9919,7 +9928,10 @@
       "はろーあげいん",
       "むかしからあるばしょ",
       "ハローアゲイン",
-      "ムカシカラアルバショ"
+      "ムカシカラアルバショ",
+      "はろー,きごうあげいんきごう~むかしからあるばしょ~",
+      "ハロー,キゴウアゲインキゴウ~ムカシカラアルバショ~",
+      "ハロー, アゲイン ~昔から或る場所~"
     ],
     "artistSearchWords": [
       "まいりとるらばー",
@@ -9928,7 +9940,7 @@
       "マイラバ"
     ],
     "tags": [],
-    "sourceTitle": "Hello, Again 〜昔からある場所〜",
+    "sourceTitle": "Hello, Again ～昔からある場所～",
     "sourceArtist": "MY LITTLE LOVER",
     "playable": "",
     "genre": "",
@@ -10494,7 +10506,7 @@
   {
     "no": 452,
     "displayTitle": "銀色飛行船",
-    "displayArtist": "supercell",
+    "displayArtist": "Supercell",
     "songKey": "銀色飛行船|supercell",
     "titleSearchWords": [
       "ぎんいろひこうせん",
@@ -12629,7 +12641,7 @@
   },
   {
     "no": 549,
-    "displayTitle": "Crazy Party Night 〜ぱんぷきんの逆襲〜",
+    "displayTitle": "Crazy Party Night ～ぱんぷきんの逆襲～",
     "displayArtist": "きゃりーぱみゅぱみゅ",
     "songKey": "crazypartynight~ぱんぷきんの逆襲~|きゃりーぱみゅぱみゅ",
     "titleSearchWords": [
@@ -12638,14 +12650,17 @@
       "Crazy Party Night panpukinnogyakushuu",
       "Crazy Party Night 〜ぱんぷきんのぎゃくしゅう〜",
       "Crazy Party Night 〜パンプキンノギャクシュウ〜",
-      "Crazy Party Night ~panpukinnogyakushuu~"
+      "Crazy Party Night ~panpukinnogyakushuu~",
+      "くれいじーきごうぱーてぃーきごうないときごう~ぱんぷきんのぎゃくしゅう~",
+      "クレイジーキゴウパーティーキゴウナイトキゴウ~パンプキンノギャクシュウ~",
+      "クレイジー パーティー ナイト ~ぱんぷきんの逆襲~"
     ],
     "artistSearchWords": [
       "きゃりーぱみゅぱみゅ",
       "キャリーパミュパミュ"
     ],
     "tags": [],
-    "sourceTitle": "Crazy Party Night 〜ぱんぷきんの逆襲〜",
+    "sourceTitle": "Crazy Party Night ～ぱんぷきんの逆襲～",
     "sourceArtist": "きゃりーぱみゅぱみゅ",
     "playable": "",
     "genre": "",
@@ -14893,7 +14908,7 @@
   },
   {
     "no": 651,
-    "displayTitle": "あなたに出会わなければ〜夏雪冬花〜",
+    "displayTitle": "あなたに出会わなければ～夏雪冬花～",
     "displayArtist": "Aimer",
     "songKey": "あなたに出会わなければ~夏雪冬花~|aimer",
     "titleSearchWords": [
@@ -14905,14 +14920,17 @@
       "カセツトウカ",
       "あなたにであいわなければ〜なつゆきふゆはな〜",
       "アナタニデアイワナケレバ〜ナツユキフユハナ〜",
-      "anatanideaiwanakereba~natsuyukifuyuhana~"
+      "anatanideaiwanakereba~natsuyukifuyuhana~",
+      "あなたにであわなければ~なつゆきふゆはなから",
+      "アナタニデアワナケレバ~ナツユキフユハナカラ",
+      "貴方に出会うないば~夏雪冬花~"
     ],
     "artistSearchWords": [
       "えめ",
       "エメ"
     ],
     "tags": [],
-    "sourceTitle": "あなたに出会わなければ〜夏雪冬花〜",
+    "sourceTitle": "あなたに出会わなければ～夏雪冬花～",
     "sourceArtist": "Aimer",
     "playable": "",
     "genre": "",
@@ -15037,7 +15055,7 @@
   },
   {
     "no": 657,
-    "displayTitle": "友 〜旅立ちの時〜",
+    "displayTitle": "友 ～旅立ちの時～",
     "displayArtist": "ゆず",
     "songKey": "友~旅立ちの時~|ゆず",
     "titleSearchWords": [
@@ -15047,14 +15065,17 @@
       "タビダチノトキ",
       "とも 〜たびだちのとき〜",
       "トモ 〜タビダチノトキ〜",
-      "tomo ~tabidachinotoki~"
+      "tomo ~tabidachinotoki~",
+      "ともきごう~たびだちのときから",
+      "トモキゴウ~タビダチノトキカラ",
+      "友 ~旅立ちの時~"
     ],
     "artistSearchWords": [
       "ゆず",
       "ユズ"
     ],
     "tags": [],
-    "sourceTitle": "友 〜旅立ちの時〜",
+    "sourceTitle": "友 ～旅立ちの時～",
     "sourceArtist": "ゆず",
     "playable": "",
     "genre": "",
@@ -15209,7 +15230,7 @@
   },
   {
     "no": 665,
-    "displayTitle": "１９９１",
+    "displayTitle": "1991",
     "displayArtist": "米津玄師",
     "songKey": "1991|米津玄師",
     "titleSearchWords": [
@@ -15992,7 +16013,7 @@
   },
   {
     "no": 700,
-    "displayTitle": "愛の言霊 〜Spiritual Message〜",
+    "displayTitle": "愛の言霊 ～Spiritual Message～",
     "displayArtist": "サザンオールスターズ",
     "songKey": "愛の言霊~spiritualmessage~|サザンオールスターズ",
     "titleSearchWords": [
@@ -16004,14 +16025,17 @@
       "Spiritual Message",
       "あいのことだま 〜Spiritual Message〜",
       "アイノコトダマ 〜Spiritual Message〜",
-      "ainokotodama ~Spiritual Message~"
+      "ainokotodama ~Spiritual Message~",
+      "あいのことだまきごう~すぴりちゅあるきごうめっせーじ~",
+      "アイノコトダマキゴウ~スピリチュアルキゴウメッセージ~",
+      "愛の言霊 ~スピリチュアル メッセージ~"
     ],
     "artistSearchWords": [
       "さざんおーるすたーず",
       "サザンオールスターズ"
     ],
     "tags": [],
-    "sourceTitle": "愛の言霊 〜Spiritual Message〜",
+    "sourceTitle": "愛の言霊 ～Spiritual Message～",
     "sourceArtist": "サザンオールスターズ",
     "playable": "",
     "genre": "",
@@ -16602,7 +16626,7 @@
   },
   {
     "no": 728,
-    "displayTitle": "愛♡スクリ〜ム！",
+    "displayTitle": "愛♡スクリ～ム！",
     "displayArtist": "AiScReam",
     "songKey": "愛♡スクリ~ム|aiscream",
     "titleSearchWords": [
@@ -16615,14 +16639,17 @@
       "アイ♡スクリ〜ム！",
       "ai♡sukuri~mu!",
       "あいすくり～む",
-      "アイスクリ～ム"
+      "アイスクリ～ム",
+      "あいきごうすくり~む!",
+      "アイキゴウスクリ~ム!",
+      "愛♡スクリ~む!"
     ],
     "artistSearchWords": [
       "あいすくりーむ",
       "アイスクリーム"
     ],
     "tags": [],
-    "sourceTitle": "愛♡スクリ〜ム！",
+    "sourceTitle": "愛♡スクリ～ム！",
     "sourceArtist": "AiScReam",
     "playable": "",
     "genre": "",
@@ -16932,7 +16959,7 @@
   },
   {
     "no": 743,
-    "displayTitle": "Swallowtail Butterfly 〜あいのうた〜",
+    "displayTitle": "Swallowtail Butterfly ～あいのうた～",
     "displayArtist": "YEN TOWN BAND",
     "songKey": "swallowtailbutterfly~あいのうた~|yentownband",
     "titleSearchWords": [
@@ -16941,7 +16968,10 @@
       "あいのうた",
       "アイノウタ",
       "Swallowtail Butterfly 〜アイノウタ〜",
-      "Swallowtail Butterfly ~ainouta~"
+      "Swallowtail Butterfly ~ainouta~",
+      "すわろーてーるきごうばたふらいきごう~あいのうたから",
+      "スワローテールキゴウバタフライキゴウ~アイノウタカラ",
+      "スワローテール butterfly ~あいの歌~"
     ],
     "artistSearchWords": [
       "えんたうんばんど",
@@ -16950,7 +16980,7 @@
       "イェンタウンバンド"
     ],
     "tags": [],
-    "sourceTitle": "Swallowtail Butterfly 〜あいのうた〜",
+    "sourceTitle": "Swallowtail Butterfly ～あいのうた～",
     "sourceArtist": "YEN TOWN BAND",
     "playable": "",
     "genre": "",
@@ -17490,7 +17520,7 @@
   },
   {
     "no": 768,
-    "displayTitle": "あなたに逢いたくて〜Missing You〜",
+    "displayTitle": "あなたに逢いたくて～Missing You～",
     "displayArtist": "松田聖子",
     "songKey": "あなたに逢いたくて~missingyou~|松田聖子",
     "titleSearchWords": [
@@ -17500,14 +17530,17 @@
       "ミッシングユー",
       "あなたにあいたくて〜Missing You〜",
       "アナタニアイタクテ〜Missing You〜",
-      "anataniaitakute~Missing You~"
+      "anataniaitakute~Missing You~",
+      "あなたにあいたくて~missingきごうゆー~",
+      "アナタニアイタクテ~missingキゴウユー~",
+      "貴方に会うたいて~missing YOU~"
     ],
     "artistSearchWords": [
       "まつだせいこ",
       "マツダセイコ"
     ],
     "tags": [],
-    "sourceTitle": "あなたに逢いたくて〜Missing You〜",
+    "sourceTitle": "あなたに逢いたくて～Missing You～",
     "sourceArtist": "松田聖子",
     "playable": "",
     "genre": "",
@@ -19765,9 +19798,9 @@
   },
   {
     "no": 870,
-    "displayTitle": "1/6夢旅人2002",
+    "displayTitle": "1/6の夢旅人2002",
     "displayArtist": "樋口了一",
-    "songKey": "1/6夢旅人2002|樋口了一",
+    "songKey": "1/6の夢旅人2002|樋口了一",
     "titleSearchWords": [
       "ろくぶんのいちのゆめたびびとにせんに",
       "ロクブンノイチノユメタビビトニセンニ",
@@ -19816,7 +19849,7 @@
   },
   {
     "no": 872,
-    "displayTitle": "AXIA〜ダイスキでダイキライ〜",
+    "displayTitle": "AXIA～ダイスキでダイキライ～",
     "displayArtist": "ワルキューレ",
     "songKey": "axia~ダイスキでダイキライ~|ワルキューレ",
     "titleSearchWords": [
@@ -19828,14 +19861,17 @@
       "daisukidedaikirai",
       "AXIA〜だいすきでだいきらい〜",
       "AXIA〜ダイスキデダイキライ〜",
-      "AXIA~daisukidedaikirai~"
+      "AXIA~daisukidedaikirai~",
+      "axia~だいすきでだいきらい~",
+      "axia~ダイスキデダイキライ~",
+      "axia~大好きだ大嫌い~"
     ],
     "artistSearchWords": [
       "わるきゅーれ",
       "ワルキューレ"
     ],
     "tags": [],
-    "sourceTitle": "AXIA〜ダイスキでダイキライ〜",
+    "sourceTitle": "AXIA～ダイスキでダイキライ～",
     "sourceArtist": "ワルキューレ",
     "playable": "",
     "genre": "",
