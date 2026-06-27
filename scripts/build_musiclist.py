@@ -3,6 +3,8 @@ import os
 import re
 import unicodedata
 
+from sheet_hash import calculate_table_hash, has_unchanged_input, save_hash
+
 try:
     import requests  # type: ignore
 except ModuleNotFoundError:  # pragma: no cover
@@ -19,6 +21,10 @@ OUTPUT_JSON_PATH = (
 SEARCH_ENHANCEMENTS_PATH = (
     os.environ.get("SEARCH_ENHANCEMENTS_PATH")
     or "nemupipiano-musiclist-search/data/dictionary/search-enhancements.json"
+)
+HASH_PATH = (
+    os.environ.get("MUSICLIST_HASH_PATH")
+    or "nemupipiano-musiclist-search/data/hash/musiclist"
 )
 
 GOOGLE_SHEET_URL = (
@@ -198,7 +204,7 @@ def load_sheet():
         ]
         rows.append(dict(zip(headers, values)))
 
-    return rows
+    return rows, calculate_table_hash(table)
 
 
 def load_existing_entries():
@@ -320,11 +326,16 @@ def save_json(data):
 
 ''' メイン関数。Google Sheetsから音楽リストを取得し、既存のエントリと検索補正を適用して結果を出力する。'''
 def main():
-    sheet_rows = load_sheet()
+    sheet_rows, sheet_hash = load_sheet()
+    if has_unchanged_input(HASH_PATH, sheet_hash, OUTPUT_JSON_PATH):
+        print("Music list spreadsheet is unchanged. Skipping update.")
+        return
+
     existing_entries = load_existing_entries()
     search_enhancements = load_search_enhancements()
     musiclist = build_musiclist(sheet_rows, existing_entries, search_enhancements)
     save_json(musiclist)
+    save_hash(HASH_PATH, sheet_hash)
     print(f"Updated {len(musiclist)} records.")
 
 
