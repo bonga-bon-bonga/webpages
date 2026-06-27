@@ -23,6 +23,7 @@ REQUEST_INTERVAL_SECONDS = 1.0
 MAX_RETRIES = 4
 RETRYABLE_HTTP_STATUSES = {429, 500, 502, 503, 504}
 REFRESH_STATUSES = ("not_found", "needs_review")
+MANUAL_MATCH_STATUS = "manual"
 JST = timezone(timedelta(hours=9))
 
 FEATURE_CLAUSE_PATTERN = re.compile(
@@ -517,7 +518,9 @@ def update_metadata(
             and isinstance(existing_record.get("metadata"), dict)
             else None
         )
-        if refresh_status:
+        if existing_status == MANUAL_MATCH_STATUS:
+            should_fetch = False
+        elif refresh_status:
             should_fetch = existing_position is not None and existing_status == refresh_status
         else:
             should_fetch = refresh or existing_position is None

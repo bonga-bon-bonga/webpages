@@ -317,6 +317,40 @@ class CacheAndRefreshTests(unittest.TestCase):
         )
         self.assertEqual((requested, skipped), (0, 1))
 
+    def test_refresh_does_not_overwrite_manual_record(self):
+        self.existing["metadata"]["matchStatus"] = "manual"
+        self.existing["metadata"]["manualValue"] = "keep"
+        self.metadata_path.write_text(
+            json.dumps([self.existing], ensure_ascii=False), encoding="utf-8"
+        )
+        client = FakeClient([])
+        requested, skipped = update_metadata(
+            [("ナイショの話", "ClariS")],
+            str(self.metadata_path),
+            client,
+            refresh=True,
+        )
+        saved = json.loads(self.metadata_path.read_text(encoding="utf-8"))[0]
+        self.assertEqual((requested, skipped), (0, 1))
+        self.assertEqual(client.calls, [])
+        self.assertEqual(saved["metadata"]["matchStatus"], "manual")
+        self.assertEqual(saved["metadata"]["manualValue"], "keep")
+
+    def test_refresh_status_does_not_overwrite_manual_record(self):
+        self.existing["metadata"]["matchStatus"] = "manual"
+        self.metadata_path.write_text(
+            json.dumps([self.existing], ensure_ascii=False), encoding="utf-8"
+        )
+        client = FakeClient([])
+        requested, skipped = update_metadata(
+            [("ナイショの話", "ClariS")],
+            str(self.metadata_path),
+            client,
+            refresh_status="not_found",
+        )
+        self.assertEqual((requested, skipped), (0, 1))
+        self.assertEqual(client.calls, [])
+
     def test_refresh_preserves_manual_tags_and_unknown_fields(self):
         self.existing["tags"] = {
             "themeTags": ["冬"],
