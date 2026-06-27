@@ -13,11 +13,11 @@ OUTPUT_JSON_PATH = (
 )
 ARTIST_ALIAS_DICTIONARY_PATH = (
     os.environ.get("ARTIST_ALIAS_DICTIONARY_PATH")
-    or "nemupipiano-musiclist-search/data/artist_alias_dictionary.json"
+    or "nemupipiano-musiclist-search/data/dictionary/artist_alias_dictionary.json"
 )
 MUSIC_ALIAS_DICTIONARY_PATH = (
     os.environ.get("MUSIC_ALIAS_DICTIONARY_PATH")
-    or "nemupipiano-musiclist-search/data/music_alias_dictionary.json"
+    or "nemupipiano-musiclist-search/data/dictionary/music_alias_dictionary.json"
 )
 
 ''' ユニークな値のリストを作成する関数'''

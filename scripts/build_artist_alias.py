@@ -6,6 +6,8 @@ import json
 import os
 import re
 
+from sheet_hash import calculate_table_hash, has_unchanged_input, save_hash
+
 try:
     import requests  # type: ignore
 except ModuleNotFoundError:  # pragma: no cover
@@ -21,7 +23,11 @@ if not ALIAS_GID_ARTISTLIST:
 
 OUTPUT_JSON_PATH = (
     os.environ.get("ARTIST_ALIAS_DICTIONARY_PATH")
-    or "nemupipiano-musiclist-search/data/artist_alias_dictionary.json"
+    or "nemupipiano-musiclist-search/data/dictionary/artist_alias_dictionary.json"
+)
+HASH_PATH = (
+    os.environ.get("ARTIST_ALIAS_HASH_PATH")
+    or "nemupipiano-musiclist-search/data/hash/artist_alias_dictionary"
 )
 
 GOOGLE_SHEET_URL = (
@@ -181,7 +187,7 @@ def load_sheet():
         values = row_values(row, len(headers))
         rows.append(dict(zip(headers, values)))
 
-    return headers, rows
+    return headers, rows, calculate_table_hash(table)
 
 
 def build_alias_dictionary(headers, rows):
@@ -218,9 +224,14 @@ def save_json(data):
 
 
 def main():
-    headers, rows = load_sheet()
+    headers, rows, sheet_hash = load_sheet()
+    if has_unchanged_input(HASH_PATH, sheet_hash, OUTPUT_JSON_PATH):
+        print("Artist alias spreadsheet is unchanged. Skipping update.")
+        return
+
     alias_dictionary = build_alias_dictionary(headers, rows)
     save_json(alias_dictionary)
+    save_hash(HASH_PATH, sheet_hash)
     print(f"Updated {len(alias_dictionary)} artist aliases.")
 
 
