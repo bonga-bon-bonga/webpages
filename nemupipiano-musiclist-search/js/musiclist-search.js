@@ -462,7 +462,7 @@ function renderSongCards(items) {
               <h2 class="song-title h5 fw-bold mb-1">${escapeHtml(song.title)}</h2>
               <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
             </div>
-            <span class="song-number text-secondary small flex-shrink-0">#${escapeHtml(song.no || "-")}</span>
+            <span class="song-number text-secondary small flex-shrink-0">${escapeHtml(displaySongNumber(song.no))}</span>
           </div>
 
           <div class="song-card-meta d-flex flex-wrap gap-2 mt-auto">
@@ -473,6 +473,12 @@ function renderSongCards(items) {
       </article>
     </div>
   `).join("");
+}
+
+function displaySongNumber(no) {
+  const value = String(no || "").trim();
+  if (!value) return "-";
+  return value.includes("#") ? value : `#${value}`;
 }
 
 function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
@@ -546,7 +552,13 @@ function requestText(song) {
   const no = String(song.no || "").trim();
   const title = String(song.title || "").trim();
   const artist = String(song.artist || "").trim();
-  const noPrefix = no ? `${no}.` : "";
+  const listNumberMatch = no.match(/^list#(.+)$/i);
+  const copyNumber = listNumberMatch
+    ? listNumberMatch[1]
+    : /^(?:disney|ghibli)#/i.test(no)
+      ? ""
+      : no;
+  const noPrefix = copyNumber ? `${copyNumber}.` : "";
   return `【ぴぴりく】${noPrefix}${title}／${artist || "アーティスト未設定"}`;
 }
 

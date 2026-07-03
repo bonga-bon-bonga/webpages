@@ -14,6 +14,29 @@ SPREADSHEET_ID = os.environ.get("NEMUPIPIANO_SPREADSHEET_ID")
 if not SPREADSHEET_ID:
     raise SystemExit("Missing env var: NEMUPIPIANO_SPREADSHEET_ID")
 
+
+def required_env(name):
+    value = os.environ.get(name)
+    if value is None or not value.strip():
+        raise SystemExit(f"Missing env var: {name}")
+    return value.strip()
+
+
+SHEET_SOURCES = (
+    {
+        "gid": required_env("NEMUPIPIANO_GID_POPS"),
+        "numberPrefix": "list",
+    },
+    {
+        "gid": required_env("NEMUPIPIANO_GID_DISNEY"),
+        "numberPrefix": "disney",
+    },
+    {
+        "gid": required_env("NEMUPIPIANO_GID_GHIBLI"),
+        "numberPrefix": "ghibli",
+    },
+)
+
 OUTPUT_JSON_PATH = (
     os.environ.get("OUTPUT_JSON_PATH")
     or "nemupipiano-musiclist-search/data/musiclist.json"
@@ -27,12 +50,8 @@ HASH_PATH = (
     or "nemupipiano-musiclist-search/data/hash/musiclist"
 )
 
-GOOGLE_SHEET_URL = (
-    f"https://docs.google.com/spreadsheets/d/"
-    f"{SPREADSHEET_ID}/gviz/tq?tqx=out:json"
-)
-
 KNOWN_HEADERS = {"No", "弾ける曲", "曲名", "アーティスト", "ジャンル", "補足"}
+REQUIRED_HEADERS = {"No", "曲名", "アーティスト"}
 ROMAN_NUMERAL_MAP = str.maketrans(
     {
         "Ⅰ": "1",
@@ -90,7 +109,7 @@ def pick_value(row, japanese_key, english_key):
 
 
 ''' 番号をフォーマットする関数 '''
-def format_no(value):
+def format_source_no(value, prefix):
     text = normalize_cell_text(value)
     if not text:
         return ""
@@ -98,9 +117,11 @@ def format_no(value):
     try:
         number = float(text)
     except ValueError:
-        return text
+        formatted = text
+    else:
+        formatted = str(int(number)) if number.is_integer() else str(number)
 
-    return int(number) if number.is_integer() else number
+    return f"{prefix}#{formatted}"
 
 
 ''' ユニークな値のリストを作成する関数'''
@@ -151,17 +172,24 @@ def normalize_entry(value):
         "tags": unique(value.get("tags") if isinstance(value.get("tags"), list) else []),
     }
 
-''' SudachiPyの読みを取得する関数。'''
-def load_sheet():
+def google_sheet_url(gid):
+    return (
+        f"https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/gviz/tq"
+        f"?gid={gid}&tqx=out:json"
+    )
+
+
+def fetch_sheet_table(gid):
+    url = google_sheet_url(gid)
 
     # Google SheetsからJSONデータを取得
     if requests is None:
         from urllib.request import urlopen
 
-        with urlopen(GOOGLE_SHEET_URL, timeout=30) as response:
+        with urlopen(url, timeout=30) as response:
             text = response.read().decode("utf-8")
     else:
-        response = requests.get(GOOGLE_SHEET_URL, timeout=30)
+        response = requests.get(url, timeout=30)
         response.raise_for_status()
         text = response.text
 
@@ -172,7 +200,10 @@ def load_sheet():
         raise ValueError("Unexpected Google Sheets response format")
 
     data = json.loads(text[start : end + 1])
-    table = data.get("table", {})
+    return data.get("table", {})
+
+
+def parse_sheet_table(table, number_prefix):
     cols = table.get("cols", [])
     raw_rows = table.get("rows", [])
 
@@ -194,6 +225,11 @@ def load_sheet():
             headers = inferred
             data_rows = raw_rows[1:]
 
+    missing_headers = REQUIRED_HEADERS - set(headers)
+    if missing_headers:
+        missing = ", ".join(sorted(missing_headers))
+        raise ValueError(f"Missing required columns for {number_prefix}: {missing}")
+
     # データ行を辞書形式に変換する
     rows = []
     for row in data_rows:
@@ -202,9 +238,22 @@ def load_sheet():
             cell_value(cells[i]) if i < len(cells) else ""
             for i in range(len(headers))
         ]
-        rows.append(dict(zip(headers, values)))
+        parsed_row = dict(zip(headers, values))
+        parsed_row["_numberPrefix"] = number_prefix
+        rows.append(parsed_row)
 
-    return rows, calculate_table_hash(table)
+    return rows
+
+
+def load_sheets():
+    rows = []
+    hash_sources = []
+    for source in SHEET_SOURCES:
+        table = fetch_sheet_table(source["gid"])
+        rows.extend(parse_sheet_table(table, source["numberPrefix"]))
+        hash_sources.append({"gid": source["gid"], "table": table})
+
+    return rows, calculate_table_hash({"sheets": hash_sources})
 
 
 def load_existing_entries():
@@ -300,7 +349,10 @@ def build_musiclist(sheet_rows, existing_entries, search_enhancements):
 
         output_items.append(
             {
-                "no": format_no(pick_value(row, "No", "no")),
+                "no": format_source_no(
+                    pick_value(row, "No", "no"),
+                    row["_numberPrefix"],
+                ),
                 "displayTitle": display_title,
                 "displayArtist": display_artist,
                 "songKey": key,
@@ -326,7 +378,7 @@ def save_json(data):
 
 ''' メイン関数。Google Sheetsから音楽リストを取得し、既存のエントリと検索補正を適用して結果を出力する。'''
 def main():
-    sheet_rows, sheet_hash = load_sheet()
+    sheet_rows, sheet_hash = load_sheets()
     if has_unchanged_input(HASH_PATH, sheet_hash, OUTPUT_JSON_PATH):
         print("Music list spreadsheet is unchanged. Skipping update.")
         return
