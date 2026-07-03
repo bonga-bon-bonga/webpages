@@ -12,6 +12,7 @@ from scripts.fetch_music_metadata import (
     empty_metadata,
     load_search_overrides,
     match_candidates,
+    migrate_record_schema,
     parse_args,
     search_song,
     update_metadata,
@@ -290,10 +291,10 @@ class CacheAndRefreshTests(unittest.TestCase):
         )
         self.assertEqual((requested, skipped), (1, 0))
         saved = json.loads(self.metadata_path.read_text(encoding="utf-8"))[0]
-        self.assertEqual(saved["metadata"]["matchStatus"], "auto_matched")
+        self.assertEqual(saved["status"], "auto_matched")
 
     def test_refresh_status_needs_review_only_refreshes_needs_review(self):
-        self.existing["metadata"]["matchStatus"] = "needs_review"
+        self.existing["status"] = "needs_review"
         self.metadata_path.write_text(
             json.dumps([self.existing], ensure_ascii=False), encoding="utf-8"
         )
@@ -318,7 +319,7 @@ class CacheAndRefreshTests(unittest.TestCase):
         self.assertEqual((requested, skipped), (0, 1))
 
     def test_refresh_does_not_overwrite_manual_record(self):
-        self.existing["metadata"]["matchStatus"] = "manual"
+        self.existing["status"] = "manual"
         self.existing["metadata"]["manualValue"] = "keep"
         self.metadata_path.write_text(
             json.dumps([self.existing], ensure_ascii=False), encoding="utf-8"
@@ -333,11 +334,11 @@ class CacheAndRefreshTests(unittest.TestCase):
         saved = json.loads(self.metadata_path.read_text(encoding="utf-8"))[0]
         self.assertEqual((requested, skipped), (0, 1))
         self.assertEqual(client.calls, [])
-        self.assertEqual(saved["metadata"]["matchStatus"], "manual")
+        self.assertEqual(saved["status"], "manual")
         self.assertEqual(saved["metadata"]["manualValue"], "keep")
 
     def test_refresh_status_does_not_overwrite_manual_record(self):
-        self.existing["metadata"]["matchStatus"] = "manual"
+        self.existing["status"] = "manual"
         self.metadata_path.write_text(
             json.dumps([self.existing], ensure_ascii=False), encoding="utf-8"
         )
@@ -355,9 +356,10 @@ class CacheAndRefreshTests(unittest.TestCase):
         self.existing["tags"] = {
             "themeTags": ["冬"],
             "moodTags": ["明るい"],
-            "tieUps": ["アニメ"],
+            "sceneTags": ["配信向き"],
             "customTags": ["手動"],
         }
+        self.existing["tieUps"] = [{"workTitle": "アニメ", "role": "ED"}]
         self.existing["manualNote"] = "keep"
         self.existing["metadata"]["manualReleaseMemo"] = "keep"
         self.metadata_path.write_text(
@@ -372,7 +374,14 @@ class CacheAndRefreshTests(unittest.TestCase):
             now=FIXED_NOW,
         )
         saved = json.loads(self.metadata_path.read_text(encoding="utf-8"))[0]
-        self.assertEqual(saved["tags"], self.existing["tags"])
+        self.assertEqual(saved["tags"]["themeTags"], ["冬"])
+        self.assertEqual(saved["tags"]["moodTags"], ["明るい"])
+        self.assertEqual(saved["tags"]["sceneTags"], ["配信向き"])
+        self.assertEqual(saved["tags"]["customTags"], ["手動"])
+        self.assertEqual(
+            saved["tieUps"],
+            [{"workTitle": "アニメ", "role": "ED"}],
+        )
         self.assertEqual(saved["manualNote"], "keep")
         self.assertEqual(saved["metadata"]["manualReleaseMemo"], "keep")
         self.assertEqual(saved["title"], "ナイショの話")
@@ -411,7 +420,91 @@ class CacheAndRefreshTests(unittest.TestCase):
         saved = json.loads(self.metadata_path.read_text(encoding="utf-8"))[0]
         self.assertEqual(saved["title"], "再会")
         self.assertEqual(saved["artist"], "LiSA×Uru")
-        self.assertEqual(saved["metadata"]["matchStrategy"], "override_exact")
+        self.assertEqual(saved["status"], "needs_review")
+
+
+class MetadataSchemaTests(unittest.TestCase):
+    def test_migrates_legacy_record_to_new_schema(self):
+        legacy = {
+            "title": "ナイショの話",
+            "artist": "ClariS",
+            "metadata": {
+                "releaseDate": "2012-02-01",
+                "releaseYear": 2012,
+                "decade": "2010年代",
+                "genre": "アニメ",
+                "durationSeconds": 261,
+                "collectionName": "偽物語 劇伴音楽集",
+                "itunesTrackId": 1535798069,
+                "matchStatus": "auto_matched",
+                "source": "itunes",
+                "matchStrategy": "legacy_exact",
+            },
+            "tags": {
+                "themeTags": ["恋愛"],
+                "moodTags": ["明るい"],
+                "tieUps": ["偽物語"],
+            },
+            "generatedAt": "2026-06-27T19:36:24+09:00",
+        }
+
+        migrated = migrate_record_schema(legacy)
+
+        self.assertEqual(
+            migrated["metadata"],
+            {
+                "releaseDate": "2012-02-01",
+                "releaseDecade": "2010年代",
+                "durationSeconds": 261,
+                "collectionName": "偽物語 劇伴音楽集",
+            },
+        )
+        self.assertEqual(migrated["classification"]["genres"], [])
+        self.assertEqual(
+            migrated["classification"]["sourceCategories"],
+            ["アニメ"],
+        )
+        self.assertEqual(migrated["classification"]["subgenres"], [])
+        self.assertEqual(migrated["tags"]["sceneTags"], [])
+        self.assertNotIn("tieUps", migrated["tags"])
+        self.assertEqual(
+            migrated["tieUps"],
+            [{"workTitle": "偽物語", "role": ""}],
+        )
+        self.assertEqual(
+            migrated["source"],
+            {"provider": "itunes", "trackId": 1535798069},
+        )
+        self.assertEqual(migrated["status"], "auto_matched")
+
+    def test_preserves_new_manual_classification_and_tie_ups(self):
+        record = {
+            "title": "ナイショの話",
+            "artist": "ClariS",
+            "metadata": {},
+            "classification": {
+                "genres": ["J-Pop"],
+                "subgenres": ["アニソンポップ"],
+                "sourceCategories": ["アニメ"],
+                "vocalTypes": ["女性ボーカル", "デュオ"],
+                "cultureTags": [],
+            },
+            "tags": {
+                "themeTags": ["恋愛"],
+                "moodTags": ["明るい"],
+                "sceneTags": ["配信向き"],
+            },
+            "tieUps": [{"workTitle": "偽物語", "role": "ED"}],
+            "source": {"provider": "itunes", "trackId": 1535798069},
+            "status": "manual",
+        }
+
+        migrated = migrate_record_schema(record)
+
+        self.assertEqual(migrated["classification"], record["classification"])
+        self.assertEqual(migrated["tags"], record["tags"])
+        self.assertEqual(migrated["tieUps"], record["tieUps"])
+        self.assertEqual(migrated["status"], "manual")
 
 
 class ArgumentTests(unittest.TestCase):
