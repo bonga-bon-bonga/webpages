@@ -13,6 +13,7 @@ TAG_DICTIONARY = {
     "tags": {
         "themeTags": ["恋愛"],
         "moodTags": ["明るい"],
+        "motifTags": ["星"],
     },
 }
 
@@ -27,7 +28,11 @@ def record():
             "sourceCategories": ["アニメ"],
             "vocalTypes": [],
         },
-        "tags": {"themeTags": ["恋愛"], "moodTags": ["明るい"]},
+        "tags": {
+            "themeTags": ["恋愛"],
+            "moodTags": ["明るい"],
+            "motifTags": ["星"],
+        },
         "tieUps": [
             {"series": "シリーズ", "workTitle": "作品", "role": "主題歌"}
         ],
@@ -49,6 +54,12 @@ class TagValidationTests(unittest.TestCase):
         value["tags"]["themeTags"] = ["辞書外"]
         errors = validate_records([value], TAG_DICTIONARY)
         self.assertTrue(any("existing dictionary value" in error for error in errors))
+
+    def test_rejects_undefined_motif_tag(self):
+        value = record()
+        value["tags"]["motifTags"] = ["辞書外"]
+        errors = validate_records([value], TAG_DICTIONARY)
+        self.assertTrue(any("tags.motifTags" in error for error in errors))
 
     def test_rejects_culture_tags(self):
         value = record()
