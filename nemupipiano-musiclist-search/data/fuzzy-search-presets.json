@@ -39,7 +39,6 @@
       { "label": "秋の曲", "match": { "motifTags": ["秋"] } },
       { "label": "冬の曲", "match": { "motifTags": ["冬"] } },
       { "label": "朝に聴きたい曲", "match": { "motifTags": ["朝"] } },
-      { "label": "昼に聴きたい曲", "match": { "motifTags": ["昼"] } },
       { "label": "夜に聴きたい曲", "match": { "motifTags": ["夜", "深夜"] } }
     ]
   },
