@@ -9,20 +9,23 @@
       "collectionName": "偽物語 劇伴音楽集"
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [
-        "アニメ"
+        "genres": ["J-Pop"],
+        "subgenres": ["エレクトロポップ", "アイドルポップ"],
+        "sourceCategories": ["アニメ"],
+        "vocalTypes": ["女性ボーカル", "デュエット"]
+      },
+      "tags": {
+        "themeTags": ["恋愛", "片想い", "青春", "秘密"],
+        "moodTags": ["明るい", "かわいい", "楽しい", "切ない"]
+      },
+      "tieUps": [
+        {
+          "series": "物語シリーズ",
+          "workTitle": "偽物語",
+          "role": "ED"
+        }
       ],
-      "vocalTypes": [],
-      "cultureTags": []
-    },
-    "tags": {
-      "themeTags": [],
-      "moodTags": []
-    },
-    "tieUps": [],
-    "source": {
+      "source": {
       "provider": "itunes",
       "trackId": 1535798069
     },
@@ -33,23 +36,28 @@
     "title": "ルパン3世のテーマ",
     "artist": "大野雄二",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "1977-10-25",
+      "releaseDecade": "1970年代",
       "durationSeconds": null,
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [],
-      "cultureTags": []
+      "genres": ["アニメ"],
+      "subgenres": ["ジャズ", "フュージョン"],
+      "sourceCategories": ["アニメ"],
+      "vocalTypes": ["インスト"]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": ["冒険", "スリル"],
+      "moodTags": ["熱い", "疾走感", "楽しい"]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ルパン三世",
+        "workTitle": "ルパン三世",
+        "role": "テーマ曲"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -67,19 +75,22 @@
       "collectionName": "いままでのA面、B面ですと!?"
     },
     "classification": {
-      "genres": [
-        "J-Pop"
-      ],
+      "genres": ["J-Pop"],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [],
-      "cultureTags": []
+      "sourceCategories": ["ドラマ"],
+      "vocalTypes": ["男性ボーカル"]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": ["恋愛", "希望", "青春"],
+      "moodTags": ["爽やか", "明るい", "泣ける", "穏やか"]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ROOKIES",
+        "workTitle": "ROOKIES",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1440746936
