@@ -9479,16 +9479,35 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "サウンドトラック"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "冒険",
+        "戦い"
+      ],
+      "moodTags": [
+        "荘厳",
+        "熱い",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "暴れん坊将軍",
+        "workTitle": "暴れん坊将軍",
+        "role": "メインテーマ"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -9507,15 +9526,29 @@
     },
     "classification": {
       "genres": [
-        "ロック"
+        "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "絆",
+        "希望"
+      ],
+      "moodTags": [
+        "優しい",
+        "明るい",
+        "泣ける"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -9538,13 +9571,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "旅立ち",
+        "記憶",
+        "希望"
+      ],
+      "moodTags": [
+        "爽やか",
+        "優しい",
+        "ノスタルジック"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -9567,13 +9614,28 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "旅立ち",
+        "夢",
+        "友情",
+        "成長"
+      ],
+      "moodTags": [
+        "爽やか",
+        "疾走感",
+        "ノスタルジック"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -9593,16 +9655,30 @@
       "collectionName": "パワード・ワード・ワールド"
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [
-        "アニメ"
+      "genres": [
+        "ロック"
       ],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "ボカロ"
+      ],
+      "vocalTypes": [
+        "VOCALOID"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "旅立ち",
+        "自由",
+        "葛藤"
+      ],
+      "moodTags": [
+        "かっこいい",
+        "疾走感",
+        "壮大"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -9622,16 +9698,38 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "ポップス"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "記憶",
+        "希望"
+      ],
+      "moodTags": [
+        "明るい",
+        "ノスタルジック",
+        "優しい"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "セブン-イレブン",
+        "workTitle": "セブン-イレブン",
+        "role": "CMソング"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -9650,17 +9748,37 @@
     },
     "classification": {
       "genres": [
-        "J-Pop"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "エレクトロポップ"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "戦い",
+        "成長",
+        "希望"
+      ],
+      "moodTags": [
+        "熱い",
+        "疾走感",
+        "かっこいい"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "機動戦士ガンダムSEED",
+        "workTitle": "機動戦士ガンダムSEED",
+        "role": "OP"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1611160767
@@ -9681,13 +9799,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "希望",
+        "祈り",
+        "絆"
+      ],
+      "moodTags": [
+        "壮大",
+        "優しい",
+        "透明感"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -9710,13 +9842,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "絆",
+        "希望"
+      ],
+      "moodTags": [
+        "優しい",
+        "穏やか",
+        "泣ける"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -9736,16 +9882,38 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "アニソン"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "成長",
+        "秘密",
+        "恋愛"
+      ],
+      "moodTags": [
+        "かっこいい",
+        "疾走感",
+        "ミステリアス"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "薬屋のひとりごと",
+        "workTitle": "薬屋のひとりごと",
+        "role": "OP"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -9766,15 +9934,36 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "家族",
+        "喪失",
+        "記憶",
+        "絆"
+      ],
+      "moodTags": [
+        "優しい",
+        "泣ける",
+        "切ない"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "連続テレビ小説",
+        "workTitle": "とと姉ちゃん",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1428767877
@@ -9792,14 +9981,30 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "J-Pop"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "希望",
+        "祈り",
+        "絆"
+      ],
+      "moodTags": [
+        "優しい",
+        "壮大",
+        "泣ける"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -9822,15 +10027,37 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "喪失",
+        "再会",
+        "絆"
+      ],
+      "moodTags": [
+        "切ない",
+        "泣ける",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "いま、会いにゆきます",
+        "workTitle": "いま、会いにゆきます",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1537418568
@@ -9849,17 +10076,37 @@
     },
     "classification": {
       "genres": [
-        "ロック"
+        "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "葛藤",
+        "希望"
+      ],
+      "moodTags": [
+        "爽やか",
+        "疾走感",
+        "明るい"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ボクの殺意が恋をした",
+        "workTitle": "ボクの殺意が恋をした",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1706829372
@@ -9877,16 +10124,38 @@
       "collectionName": "The Four Seasons -spring- 約束 - EP"
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "キッズ"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "日常",
+        "夢",
+        "希望"
+      ],
+      "moodTags": [
+        "優しい",
+        "穏やか",
+        "かわいい"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ピアノランド",
+        "workTitle": "ピアノランド",
+        "role": "教材曲"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1757563911
@@ -9907,15 +10176,35 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "絆",
+        "希望"
+      ],
+      "moodTags": [
+        "優しい",
+        "泣ける",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ALWAYS 三丁目の夕日",
+        "workTitle": "ALWAYS 続・三丁目の夕日",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1461735360
@@ -9934,17 +10223,38 @@
     },
     "classification": {
       "genres": [
-        "ロック"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "友情",
+        "絆",
+        "戦い",
+        "希望"
+      ],
+      "moodTags": [
+        "疾走感",
+        "切ない",
+        "かっこいい"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "リコリス・リコイル",
+        "workTitle": "リコリス・リコイル",
+        "role": "ED"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1630061094
@@ -9965,15 +10275,35 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "別れ",
+        "記憶"
+      ],
+      "moodTags": [
+        "切ない",
+        "優しい",
+        "ノスタルジック"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "未来日記",
+        "workTitle": "ウンナンのホントコ！ 未来日記V",
+        "role": "テーマソング"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1443062753
@@ -9994,15 +10324,35 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "希望",
+        "記憶"
+      ],
+      "moodTags": [
+        "優しい",
+        "穏やか",
+        "泣ける"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "てるてる家族",
+        "workTitle": "てるてる家族",
+        "role": "挿入歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1445039760
@@ -10023,13 +10373,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "喪失",
+        "自由",
+        "祈り"
+      ],
+      "moodTags": [
+        "優しい",
+        "穏やか",
+        "泣ける"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10050,17 +10414,38 @@
     },
     "classification": {
       "genres": [
-        "ロック"
+        "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "希望",
+        "成長",
+        "葛藤",
+        "応援"
+      ],
+      "moodTags": [
+        "明るい",
+        "泣ける",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "日曜の夜ぐらいは…",
+        "workTitle": "日曜の夜ぐらいは…",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1681600508
@@ -10082,12 +10467,23 @@
         "ワールド"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "日常"
+      ],
+      "moodTags": [
+        "楽しい",
+        "おしゃれ",
+        "疾走感"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10108,15 +10504,29 @@
     },
     "classification": {
       "genres": [
-        "ロック"
+        "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "日常",
+        "葛藤",
+        "成長"
+      ],
+      "moodTags": [
+        "切ない",
+        "疾走感",
+        "熱い"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10136,14 +10546,30 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "歌謡曲"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "デュエット"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "日常",
+        "希望"
+      ],
+      "moodTags": [
+        "明るい",
+        "優しい",
+        "ノスタルジック"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10163,18 +10589,38 @@
       "collectionName": "Imaginary ENOZ featuring HARUHI - EP"
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "アニソン"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [
         "アニメ"
       ],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "葛藤",
+        "希望"
+      ],
+      "moodTags": [
+        "熱い",
+        "疾走感",
+        "かっこいい"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "涼宮ハルヒシリーズ",
+        "workTitle": "涼宮ハルヒの憂鬱",
+        "role": "劇中歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1880587625
@@ -10195,13 +10641,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "日常",
+        "記憶"
+      ],
+      "moodTags": [
+        "優しい",
+        "切ない",
+        "ノスタルジック"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10224,13 +10684,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "日常",
+        "孤独",
+        "記憶"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "優しい",
+        "切ない"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10253,13 +10727,27 @@
       "genres": [
         "歌謡曲"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "日常",
+        "記憶"
+      ],
+      "moodTags": [
+        "優しい",
+        "ノスタルジック",
+        "穏やか"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10280,15 +10768,29 @@
     },
     "classification": {
       "genres": [
-        "ロック"
+        "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "日常",
+        "記憶"
+      ],
+      "moodTags": [
+        "優しい",
+        "穏やか",
+        "ノスタルジック"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10311,13 +10813,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "青春",
+        "記憶"
+      ],
+      "moodTags": [
+        "明るい",
+        "爽やか",
+        "ノスタルジック"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10340,13 +10856,28 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "成長",
+        "希望",
+        "再会",
+        "旅立ち"
+      ],
+      "moodTags": [
+        "壮大",
+        "泣ける",
+        "優しい"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10367,17 +10898,39 @@
     },
     "classification": {
       "genres": [
-        "J-Pop"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "エレクトロポップ"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "自由",
+        "夢",
+        "戦い",
+        "希望"
+      ],
+      "moodTags": [
+        "熱い",
+        "疾走感",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ONE PIECE",
+        "workTitle": "ONE PIECE FILM RED",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1636446946
@@ -10398,15 +10951,35 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "青春",
+        "記憶",
+        "日常"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "優しい",
+        "穏やか"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "少年時代",
+        "workTitle": "少年時代",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 284457304
@@ -10427,13 +11000,27 @@
       "genres": [
         "歌謡曲"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "旅立ち",
+        "成長",
+        "希望"
+      ],
+      "moodTags": [
+        "壮大",
+        "泣ける",
+        "穏やか"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10453,14 +11040,30 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "歌謡曲"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "日常",
+        "記憶"
+      ],
+      "moodTags": [
+        "切ない",
+        "ノスタルジック",
+        "優しい"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10481,15 +11084,29 @@
     },
     "classification": {
       "genres": [
-        "エレクトロニック"
+        "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "エレクトロポップ"
+      ],
+      "sourceCategories": [
+        "ボカロ"
+      ],
+      "vocalTypes": [
+        "VOCALOID"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "自由",
+        "葛藤",
+        "秘密"
+      ],
+      "moodTags": [
+        "ダーク",
+        "コミカル",
+        "疾走感"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10512,15 +11129,35 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "希望",
+        "絆"
+      ],
+      "moodTags": [
+        "優しい",
+        "透明感",
+        "泣ける"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "推しの王子様",
+        "workTitle": "推しの王子様",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1577551340
@@ -10539,17 +11176,37 @@
     },
     "classification": {
       "genres": [
-        "J-Pop"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "戦い",
+        "希望",
+        "祈り"
+      ],
+      "moodTags": [
+        "壮大",
+        "切ない",
+        "透明感"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "機動戦士Zガンダム",
+        "workTitle": "機動戦士Zガンダム",
+        "role": "OP"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1688399963
@@ -10567,18 +11224,38 @@
       "collectionName": "翔べ!ガンダム/永遠にアムロ - Single"
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "アニソン"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [
         "アニメ"
       ],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "戦い",
+        "冒険",
+        "希望"
+      ],
+      "moodTags": [
+        "熱い",
+        "壮大",
+        "疾走感"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "機動戦士ガンダム",
+        "workTitle": "機動戦士ガンダム",
+        "role": "OP"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1244019603
@@ -10596,18 +11273,39 @@
       "collectionName": "哀 戦士/風にひとりで - Single"
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [
-        "アニメ"
+      "genres": [
+        "アニソン"
       ],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "戦い",
+        "喪失",
+        "希望"
+      ],
+      "moodTags": [
+        "熱い",
+        "切ない",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "機動戦士ガンダム",
+        "workTitle": "機動戦士ガンダムII 哀・戦士編",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1244019088
@@ -10626,17 +11324,37 @@
     },
     "classification": {
       "genres": [
-        "J-Pop"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "エレクトロポップ"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "戦い",
+        "成長",
+        "葛藤"
+      ],
+      "moodTags": [
+        "疾走感",
+        "かっこいい",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "機動戦士Gundam GQuuuuuuX",
+        "workTitle": "機動戦士Gundam GQuuuuuuX",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1789465887
@@ -10655,17 +11373,38 @@
     },
     "classification": {
       "genres": [
-        "J-Pop"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "記憶",
+        "約束"
+      ],
+      "moodTags": [
+        "切ない",
+        "優しい",
+        "幻想的"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "名探偵コナン",
+        "workTitle": "名探偵コナン から紅の恋歌",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1226258283
@@ -10686,15 +11425,35 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "希望",
+        "葛藤"
+      ],
+      "moodTags": [
+        "熱い",
+        "壮大",
+        "泣ける"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ピュア",
+        "workTitle": "ピュア",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1374910673
@@ -10715,15 +11474,36 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "夢",
+        "成長",
+        "希望",
+        "応援"
+      ],
+      "moodTags": [
+        "熱い",
+        "壮大",
+        "泣ける"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "殴る女",
+        "workTitle": "殴る女",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1374906674
@@ -10744,15 +11524,36 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "家族",
+        "絆",
+        "約束"
+      ],
+      "moodTags": [
+        "切ない",
+        "泣ける",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "14才の母",
+        "workTitle": "14才の母",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1374876230
@@ -10773,13 +11574,26 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "エレクトロポップ"
+      ],
+      "sourceCategories": [
+        "ボカロ"
+      ],
+      "vocalTypes": [
+        "VOCALOID"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "日常",
+        "自由"
+      ],
+      "moodTags": [
+        "コミカル",
+        "かわいい",
+        "楽しい"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10802,13 +11616,27 @@
       "genres": [
         "J-Pop"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "オリジナル"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "孤独",
+        "希望"
+      ],
+      "moodTags": [
+        "優しい",
+        "切ない",
+        "透明感"
+      ]
     },
     "tieUps": [],
     "source": {
@@ -10829,17 +11657,39 @@
     },
     "classification": {
       "genres": [
-        "J-Pop"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル",
+        "デュエット"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "友情",
+        "冒険",
+        "絆"
+      ],
+      "moodTags": [
+        "爽やか",
+        "疾走感",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "名探偵コナン",
+        "workTitle": "名探偵コナン 紺碧の棺",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 276284384
@@ -10857,18 +11707,40 @@
       "collectionName": "炎 - EP"
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [
-        "アニメ"
+      "genres": [
+        "アニソン"
       ],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "喪失",
+        "絆",
+        "祈り",
+        "戦い"
+      ],
+      "moodTags": [
+        "切ない",
+        "泣ける",
+        "壮大"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "鬼滅の刃",
+        "workTitle": "劇場版 鬼滅の刃 無限列車編",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1531847485
@@ -10887,17 +11759,37 @@
     },
     "classification": {
       "genres": [
-        "J-Pop"
+        "アニソン"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": []
+      "themeTags": [
+        "恋愛",
+        "秘密",
+        "葛藤"
+      ],
+      "moodTags": [
+        "ミステリアス",
+        "疾走感",
+        "かっこいい"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "名探偵コナン",
+        "workTitle": "名探偵コナン",
+        "role": "ED"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 463446005
