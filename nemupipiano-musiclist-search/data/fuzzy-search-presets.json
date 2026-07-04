@@ -1,0 +1,49 @@
+[
+  {
+    "category": "気分で探す",
+    "description": "いまどんな気分？気分に合わせて曲を探してみよう！",
+    "icon": "music",
+    "items": [
+      { "label": "元気になれる曲", "match": { "moodTags": ["元気"] } },
+      { "label": "泣ける曲", "match": { "moodTags": ["泣ける"] } },
+      { "label": "切ない恋の曲", "match": { "themeTags": ["恋愛"], "moodTags": ["切ない"] } },
+      { "label": "希望を感じる曲", "match": { "themeTags": ["希望"] } },
+      { "label": "優しい気持ちになれる曲", "match": { "moodTags": ["優しい"] } }
+    ]
+  },
+  {
+    "category": "景色で探す",
+    "description": "曲を聴いていると、どんな景色が思い浮かぶ？景色のイメージから曲を探してみよう！",
+    "icon": "landscape",
+    "items": [
+      { "label": "夜に聴きたい曲", "match": { "motifTags": ["夜"] } },
+      { "label": "月が似合う曲", "match": { "motifTags": ["月"] } },
+      { "label": "空を見上げたくなる曲", "match": { "motifTags": ["空"] } },
+      { "label": "海辺で聴きたい曲", "match": { "motifTags": ["海"] } },
+      { "label": "雨の日に聴きたい曲", "match": { "motifTags": ["雨"] } },
+      { "label": "雪の日に聴きたい曲", "match": { "motifTags": ["雪"] } }
+    ]
+  },
+  {
+    "category": "季節で探す",
+    "description": "季節のイメージから曲を探してみよう！",
+    "icon": "season",
+    "items": [
+      { "label": "桜・春の曲", "match": { "motifTags": ["桜", "春"]} },
+      { "label": "夏に聴きたい曲", "match": { "motifTags": ["夏"] } },
+      { "label": "秋に聴きたい曲", "match": { "motifTags": ["秋"] } },
+      { "label": "冬に聴きたい曲", "match": { "motifTags": ["冬"] } }
+    ]
+  },
+  {
+    "category": "曲の雰囲気・イメージで探す",
+    "description": "かわいい・かっこいい・疾走感のある曲など、曲の雰囲気やイメージから曲を探してみよう！",
+    "icon": "mood",
+    "items": [
+      { "label": "かわいい曲", "match": { "moodTags": ["かわいい"] } },
+      { "label": "かっこいい曲", "match": { "moodTags": ["かっこいい"] } },
+      { "label": "疾走感のある曲", "match": { "moodTags": ["疾走感"] } },
+      { "label": "透明感のある曲", "match": { "moodTags": ["透明感"] } }
+    ]
+  }
+]
