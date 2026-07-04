@@ -2,7 +2,8 @@ const MUSICLIST_JSON_PATH = "./data/musiclist.json";
 const FUZZY_SEARCH_PRESETS_JSON_PATH = "./data/fuzzy-search-presets.json";
 const HOME_RECOMMEND_COUNT = 5;
 const FUZZY_RESULT_INITIAL_COUNT = 5;
-const FUZZY_RESULT_EXPANDED_COUNT = 10;
+const FUZZY_RESULT_STEP = 5;
+const FUZZY_RESULT_MAX_COUNT = 30;
 const THEME_KEY = "nemupipiano:theme";
 const APP_PANEL_FONT_SIZE_KEY = "nemupipiano:appPanelFontSize";
 const ACTIVE_TAB_KEY = "nemupipiano:activeTab";
@@ -126,7 +127,10 @@ function normalizeMusiclistSong(item) {
   const sourceArtist = normalizeCellText(item?.sourceArtist ?? displayArtist);
   const tags = Array.isArray(item?.tags) ? normalizeStringArray(item.tags) : [];
   const metadataTags = item?.tags && !Array.isArray(item.tags) ? item.tags : {};
-  const classificationGenres = normalizeStringArray(item?.classification?.genres);
+  const classification = item?.classification && typeof item.classification === "object"
+    ? item.classification
+    : {};
+  const classificationGenres = normalizeStringArray(classification.genres);
   const genre = normalizeCellText(item?.genre) || classificationGenres[0] || tags[0] || "";
 
   return {
@@ -142,6 +146,8 @@ function normalizeMusiclistSong(item) {
     artistSearchWords: normalizeStringArray(item?.artistSearchWords ?? item?.artistAliases),
     tags,
     metadataTags,
+    classification,
+    releaseDecade: normalizeCellText(item?.releaseDecade),
     playable: normalizeCellText(item?.playable),
     genre,
     note: normalizeCellText(item?.note),
@@ -492,13 +498,23 @@ function applyColumnLayout() {
 }
 
 function fuzzyPresetIcon(icon) {
-  const name = ["music", "landscape", "season", "mood"].includes(icon) ? icon : "music";
+  const name = ["music", "landscape", "season", "mood", "calendar"].includes(icon) ? icon : "music";
   return `
     <span class="theme-icon section-heading-icon" aria-hidden="true">
       <img class="theme-icon-light" src="../lib/icon/${name}_white.svg" alt="">
       <img class="theme-icon-dark" src="../lib/icon/${name}_black.svg" alt="">
     </span>
   `;
+}
+
+function fuzzySearchValues(song, group) {
+  if (group === "sourceCategories") {
+    return normalizeStringArray(song.classification?.sourceCategories);
+  }
+  if (group === "releaseDecade") {
+    return normalizeStringArray([song.releaseDecade]);
+  }
+  return normalizeStringArray(song.metadataTags?.[group]);
 }
 
 function matchesFuzzyPreset(song, match) {
@@ -508,7 +524,7 @@ function matchesFuzzyPreset(song, match) {
 
   return conditions.every(([group, expectedValues]) => {
     const expected = normalizeStringArray(expectedValues);
-    const actual = normalizeStringArray(song.metadataTags?.[group]);
+    const actual = fuzzySearchValues(song, group);
     return expected.length > 0 && expected.some(value => actual.includes(value));
   });
 }
@@ -591,8 +607,8 @@ function renderFuzzySearch() {
     ? "条件に合う曲が見つかりませんでした。"
     : "気になる条件を選んでみてください。";
   els.fuzzyMore.hidden = !selectedItem
-    || matched.length <= FUZZY_RESULT_INITIAL_COUNT
-    || fuzzyResultLimit >= FUZZY_RESULT_EXPANDED_COUNT;
+    || matched.length <= fuzzyResultLimit
+    || fuzzyResultLimit >= FUZZY_RESULT_MAX_COUNT;
 }
 
 function setFuzzySearchMode(active) {
@@ -930,7 +946,10 @@ els.fuzzyCategoryContent.addEventListener("click", event => {
   renderFuzzySearch();
 });
 els.fuzzyMore.addEventListener("click", () => {
-  fuzzyResultLimit = FUZZY_RESULT_EXPANDED_COUNT;
+  fuzzyResultLimit = Math.min(
+    fuzzyResultLimit + FUZZY_RESULT_STEP,
+    FUZZY_RESULT_MAX_COUNT
+  );
   renderFuzzySearch();
 });
 els.searchScopes.forEach(scope => scope.addEventListener("change", () => {

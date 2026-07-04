@@ -249,6 +249,7 @@ html[data-theme="dark"] .theme-icon-light {
 
 .fuzzy-mode-toggle-wrapper {
     line-height: 1;
+    text-align: left;
 }
 
 .fuzzy-mode-toggle {

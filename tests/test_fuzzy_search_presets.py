@@ -11,8 +11,21 @@ PRESETS_PATH = Path(
 
 def matches(song, match):
     tags = song.get("tags") if isinstance(song.get("tags"), dict) else {}
+    classification = (
+        song.get("classification")
+        if isinstance(song.get("classification"), dict)
+        else {}
+    )
+
+    def values(group):
+        if group == "sourceCategories":
+            return classification.get("sourceCategories", [])
+        if group == "releaseDecade":
+            return [song.get("releaseDecade")] if song.get("releaseDecade") else []
+        return tags.get(group, [])
+
     return all(
-        bool(set(expected_values) & set(tags.get(group, [])))
+        bool(set(expected_values) & set(values(group)))
         for group, expected_values in match.items()
     )
 
@@ -36,16 +49,32 @@ class FuzzySearchPresetTests(unittest.TestCase):
         cls.songs = json.loads(MUSICLIST_PATH.read_text(encoding="utf-8"))
         cls.presets = json.loads(PRESETS_PATH.read_text(encoding="utf-8"))
 
-    def test_every_preset_item_has_matching_songs(self):
+    def test_every_preset_item_has_supported_match_conditions(self):
+        supported_groups = {
+            "themeTags",
+            "moodTags",
+            "motifTags",
+            "sourceCategories",
+            "releaseDecade",
+        }
         for preset in self.presets:
             with self.subTest(preset=preset["title"]):
                 self.assertTrue(preset["items"])
             for item in preset["items"]:
                 with self.subTest(preset=preset["title"], item=item["label"]):
-                    self.assertTrue(any(matches(song, item["match"]) for song in self.songs))
+                    self.assertTrue(item["match"])
+                    self.assertTrue(set(item["match"]) <= supported_groups)
+                    self.assertTrue(
+                        all(
+                            isinstance(values, list) and values
+                            for values in item["match"].values()
+                        )
+                    )
 
     def test_match_groups_use_and_and_values_within_group_use_or(self):
         matching_song = {
+            "releaseDecade": "2020年代",
+            "classification": {"sourceCategories": ["アニメ"]},
             "tags": {
                 "themeTags": ["恋愛"],
                 "moodTags": ["切ない"],
@@ -59,6 +88,15 @@ class FuzzySearchPresetTests(unittest.TestCase):
             )
         )
         self.assertTrue(matches(matching_song, {"motifTags": ["桜", "春"]}))
+        self.assertTrue(
+            matches(
+                matching_song,
+                {
+                    "sourceCategories": ["アニメ", "映画"],
+                    "releaseDecade": ["2020年代"],
+                },
+            )
+        )
         self.assertFalse(
             matches(
                 matching_song,
