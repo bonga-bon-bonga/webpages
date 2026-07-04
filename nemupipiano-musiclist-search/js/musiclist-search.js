@@ -1,5 +1,8 @@
 const MUSICLIST_JSON_PATH = "./data/musiclist.json";
+const FUZZY_SEARCH_PRESETS_JSON_PATH = "./data/fuzzy-search-presets.json";
 const HOME_RECOMMEND_COUNT = 5;
+const FUZZY_RESULT_INITIAL_COUNT = 5;
+const FUZZY_RESULT_EXPANDED_COUNT = 10;
 const THEME_KEY = "nemupipiano:theme";
 const APP_PANEL_FONT_SIZE_KEY = "nemupipiano:appPanelFontSize";
 const ACTIVE_TAB_KEY = "nemupipiano:activeTab";
@@ -27,6 +30,15 @@ const els = {
   searchDetails: document.getElementById("searchDetails"),
   searchGuideToggle: document.getElementById("searchGuideToggle"),
   searchGuide: document.getElementById("searchGuide"),
+  fuzzySearchModeToggle: document.getElementById("fuzzySearchModeToggle"),
+  normalSearchPanel: document.getElementById("normalSearchPanel"),
+  fuzzySearchPanel: document.getElementById("fuzzySearchPanel"),
+  fuzzyCategoryTabs: document.getElementById("fuzzyCategoryTabs"),
+  fuzzyCategoryContent: document.getElementById("fuzzyCategoryContent"),
+  fuzzyResultSummary: document.getElementById("fuzzyResultSummary"),
+  fuzzySongs: document.getElementById("fuzzySongs"),
+  fuzzyEmpty: document.getElementById("fuzzyEmpty"),
+  fuzzyMore: document.getElementById("fuzzyMore"),
   playableFilter: document.getElementById("playableFilter"),
   stats: document.getElementById("stats"),
   songs: document.getElementById("songs"),
@@ -60,6 +72,11 @@ let longPressSuppressTimer = null;
 let longPressStartX = 0;
 let longPressStartY = 0;
 let lastSearchGuideHasKeyword = null;
+let fuzzySearchPresets = [];
+let fuzzySearchMode = false;
+let activeFuzzyCategoryIndex = 0;
+let activeFuzzyItemIndex = null;
+let fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
 function escapeHtml(value) {
@@ -139,6 +156,20 @@ async function loadMusiclist() {
   }
 
   return normalizeMusiclistItems(await response.json());
+}
+
+async function loadFuzzySearchPresets() {
+  const response = await fetch(FUZZY_SEARCH_PRESETS_JSON_PATH, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error("fuzzy-search-presets.jsonの読み込みに失敗しました。");
+  }
+
+  const data = await response.json();
+  if (!Array.isArray(data)) return [];
+
+  return data.filter(preset => (
+    normalizeCellText(preset?.title) && Array.isArray(preset?.items)
+  ));
 }
 
 function createSongKey(title, artist) {
@@ -236,6 +267,7 @@ function clearAllFavorites() {
   render();
   pickHomeRecommendations();
   renderHome();
+  if (fuzzySearchMode) renderFuzzySearch();
   showCopyToast("お気に入りをすべて解除しました");
 }
 
@@ -276,12 +308,16 @@ async function loadSheet({ showReloadFeedback = false } = {}) {
   }
 
   try {
-    songs = await loadMusiclist();
+    [songs, fuzzySearchPresets] = await Promise.all([
+      loadMusiclist(),
+      loadFuzzySearchPresets(),
+    ]);
     migrateFavoriteKeys();
     setupGenreOptions(songs);
     pickHomeRecommendations();
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
     renderHome();
+    renderFuzzySearch();
     if (showReloadFeedback) {
       setReloadButtonState("complete");
     } else {
@@ -448,11 +484,96 @@ function gridClassesForColumns(columns) {
 function applyColumnLayout() {
   const gridClassName = gridClassesForColumns(displayColumnCount);
 
-  [els.homeRecommendations, els.copyHistorySongs, els.songs].forEach(grid => {
+  [els.homeRecommendations, els.copyHistorySongs, els.songs, els.fuzzySongs].forEach(grid => {
     if (!grid) return;
     grid.className = gridClassName;
     grid.dataset.columns = displayColumnCount;
   });
+}
+
+function fuzzyPresetIcon(icon) {
+  const name = ["music", "landscape", "season", "mood"].includes(icon) ? icon : "music";
+  return `
+    <span class="theme-icon section-heading-icon" aria-hidden="true">
+      <img class="theme-icon-light" src="../lib/icon/${name}_white.svg" alt="">
+      <img class="theme-icon-dark" src="../lib/icon/${name}_black.svg" alt="">
+    </span>
+  `;
+}
+
+function matchesFuzzyPreset(song, match) {
+  if (!match || typeof match !== "object" || Array.isArray(match)) return false;
+  const conditions = Object.entries(match);
+  if (conditions.length === 0) return false;
+
+  return conditions.every(([group, expectedValues]) => {
+    const expected = normalizeStringArray(expectedValues);
+    const actual = normalizeStringArray(song.metadataTags?.[group]);
+    return expected.length > 0 && expected.some(value => actual.includes(value));
+  });
+}
+
+function fuzzyMatchedSongs() {
+  const preset = fuzzySearchPresets[activeFuzzyCategoryIndex];
+  const item = preset?.items?.[activeFuzzyItemIndex];
+  if (!item) return [];
+  return songs.filter(song => matchesFuzzyPreset(song, item.match));
+}
+
+function renderFuzzySearch() {
+  const preset = fuzzySearchPresets[activeFuzzyCategoryIndex];
+  els.fuzzyCategoryTabs.innerHTML = fuzzySearchPresets.map((item, index) => `
+    <button class="btn fuzzy-category-tab ${index === activeFuzzyCategoryIndex ? "active" : ""}" type="button" role="tab" data-fuzzy-category="${index}" aria-selected="${index === activeFuzzyCategoryIndex}">${escapeHtml(item.title)}</button>
+  `).join("");
+
+  if (!preset) {
+    els.fuzzyCategoryContent.innerHTML = "";
+    els.fuzzyResultSummary.innerHTML = "";
+    els.fuzzySongs.innerHTML = "";
+    els.fuzzyEmpty.hidden = false;
+    els.fuzzyEmpty.textContent = "ふわっと検索の条件を読み込めませんでした。";
+    els.fuzzyMore.hidden = true;
+    return;
+  }
+
+  els.fuzzyCategoryContent.innerHTML = `
+    <h2 class="h5 fw-bold mb-1 section-heading-with-icon">
+      ${fuzzyPresetIcon(preset.icon)}
+      ${escapeHtml(preset.category || preset.title)}
+    </h2>
+    <p class="fuzzy-category-description mb-3">${escapeHtml(preset.description)}</p>
+    <div class="fuzzy-preset-options">
+      ${preset.items.map((item, index) => `
+        <button class="btn fuzzy-preset-button ${index === activeFuzzyItemIndex ? "active" : ""}" type="button" data-fuzzy-item="${index}" aria-pressed="${index === activeFuzzyItemIndex}">${escapeHtml(item.label)}</button>
+      `).join("")}
+    </div>
+  `;
+
+  const selectedItem = preset.items[activeFuzzyItemIndex];
+  const matched = fuzzyMatchedSongs();
+  const visible = matched.slice(0, fuzzyResultLimit);
+  els.fuzzyResultSummary.innerHTML = selectedItem
+    ? `<strong>${escapeHtml(selectedItem.label)}</strong>：${matched.length}曲`
+    : "";
+  els.fuzzySongs.innerHTML = renderSongCards(visible);
+  els.fuzzyEmpty.hidden = Boolean(selectedItem) && matched.length > 0;
+  els.fuzzyEmpty.textContent = selectedItem
+    ? "条件に合う曲が見つかりませんでした。"
+    : "気になる条件を選んでみてください。";
+  els.fuzzyMore.hidden = !selectedItem
+    || matched.length <= FUZZY_RESULT_INITIAL_COUNT
+    || fuzzyResultLimit >= FUZZY_RESULT_EXPANDED_COUNT;
+}
+
+function setFuzzySearchMode(active) {
+  fuzzySearchMode = Boolean(active);
+  els.normalSearchPanel.hidden = fuzzySearchMode;
+  els.fuzzySearchPanel.hidden = !fuzzySearchMode;
+  els.fuzzySearchModeToggle.setAttribute("aria-pressed", String(fuzzySearchMode));
+  els.fuzzySearchModeToggle.textContent = fuzzySearchMode
+    ? "通常検索に戻る"
+    : "🌙ふわっと検索してみる";
+  if (fuzzySearchMode) renderFuzzySearch();
 }
 
 function renderSongCards(items) {
@@ -760,6 +881,28 @@ function setSearchGuideOpen(open) {
 }
 
 els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
+els.fuzzySearchModeToggle.addEventListener("click", () => {
+  setFuzzySearchMode(!fuzzySearchMode);
+});
+els.fuzzyCategoryTabs.addEventListener("click", event => {
+  const button = event.target.closest("[data-fuzzy-category]");
+  if (!button) return;
+  activeFuzzyCategoryIndex = Number(button.dataset.fuzzyCategory) || 0;
+  activeFuzzyItemIndex = null;
+  fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
+  renderFuzzySearch();
+});
+els.fuzzyCategoryContent.addEventListener("click", event => {
+  const button = event.target.closest("[data-fuzzy-item]");
+  if (!button) return;
+  activeFuzzyItemIndex = Number(button.dataset.fuzzyItem);
+  fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
+  renderFuzzySearch();
+});
+els.fuzzyMore.addEventListener("click", () => {
+  fuzzyResultLimit = FUZZY_RESULT_EXPANDED_COUNT;
+  renderFuzzySearch();
+});
 els.searchScopes.forEach(scope => scope.addEventListener("change", () => {
   localStorage.setItem(SEARCH_SCOPE_KEY, scope.value);
   updateSearchPlaceholder(scope.value);
@@ -901,6 +1044,7 @@ homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem
 favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
 loadFavoriteKeys();
 setSearchDetailsOpen(false);
+setFuzzySearchMode(false);
 applyColumnLayout();
 switchTab(localStorage.getItem(ACTIVE_TAB_KEY));
 updateBackToTopVisibility();

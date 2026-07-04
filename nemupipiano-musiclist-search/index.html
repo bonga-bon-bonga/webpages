@@ -87,6 +87,9 @@
       </section>
 
       <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search" hidden>
+        <button id="fuzzySearchModeToggle" class="btn fuzzy-mode-toggle mb-3" type="button" aria-pressed="false" aria-controls="normalSearchPanel fuzzySearchPanel">🌙ふわっと検索してみる</button>
+
+        <div id="normalSearchPanel">
         <div class="row g-2 g-md-3 align-items-stretch">
           <div class="col-8 col-md-10">
             <label class="visually-hidden" for="search">検索キーワード</label>
@@ -188,6 +191,18 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="songs" data-columns="3"></div>
         <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
+        </div>
+
+        <div class="fuzzy-search-panel" id="fuzzySearchPanel" hidden>
+          <div class="fuzzy-category-tabs" id="fuzzyCategoryTabs" role="tablist" aria-label="ふわっと検索のカテゴリ"></div>
+          <section class="fuzzy-category-content mt-3" id="fuzzyCategoryContent" aria-live="polite"></section>
+          <div class="fuzzy-result-summary mt-4" id="fuzzyResultSummary" aria-live="polite"></div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="fuzzySongs" data-columns="3"></div>
+          <div class="empty-box text-center p-4 mt-3" id="fuzzyEmpty">気になる条件を選んでみてください。</div>
+          <div class="text-end mt-3">
+            <button id="fuzzyMore" class="btn fuzzy-more-button" type="button" hidden>もっと見る ⇒</button>
+          </div>
+        </div>
       </section>
     </section>
   </main>
