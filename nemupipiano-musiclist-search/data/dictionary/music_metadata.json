@@ -7056,7 +7056,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "ポップロック"
@@ -7289,7 +7289,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "ポップロック"
@@ -7339,7 +7339,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "バラード"
@@ -7564,14 +7564,14 @@
     "title": "コロブチカ/テトリス",
     "artist": "作曲者不詳/柊マグネタイト",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "2024-11-08",
+      "releaseDecade": "2020年代",
       "durationSeconds": null,
       "collectionName": null
     },
     "classification": {
       "genres": [
-        "ワールド"
+        "J-Pop"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -7580,7 +7580,7 @@
         "ゲーム"
       ],
       "vocalTypes": [
-        "インスト"
+        "VOCALOID"
       ]
     },
     "tags": {
@@ -7619,7 +7619,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "ポップロック"
@@ -8170,7 +8170,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "バラード"
@@ -8214,14 +8214,14 @@
     "title": "勇気100%",
     "artist": "光GENJI",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "1993-05-13",
+      "releaseDecade": "1990年代",
       "durationSeconds": null,
       "collectionName": null
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "アイドルポップ"
@@ -8451,7 +8451,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -8721,8 +8721,8 @@
     "title": "ENDLESS RAIN",
     "artist": "X JAPAN",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "1989-12-01",
+      "releaseDecade": "1980年代",
       "durationSeconds": null,
       "collectionName": null
     },
@@ -8963,7 +8963,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-Pop"
       ],
       "subgenres": [
         "ポップロック"
@@ -9006,8 +9006,8 @@
     "title": "Yesterday Once More",
     "artist": "カーペンターズ",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "1973-07-10",
+      "releaseDecade": "1970年代",
       "durationSeconds": null,
       "collectionName": null
     },
@@ -9335,8 +9335,8 @@
     "title": "レイニーブルー",
     "artist": "徳永英明",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "1986-01-21",
+      "releaseDecade": "1980年代",
       "durationSeconds": null,
       "collectionName": null
     },
@@ -9427,14 +9427,14 @@
     "title": "帝国のマーチ(The Imperial March)",
     "artist": "ジョン・ウィリアムズ",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "1980-06-26",
+      "releaseDecade": "1980年代",
       "durationSeconds": null,
       "collectionName": null
     },
     "classification": {
       "genres": [
-        "サウンドトラック"
+        "劇半音楽"
       ],
       "subgenres": [],
       "sourceCategories": [
@@ -9473,8 +9473,8 @@
     "title": "暴れん坊将軍のテーマ",
     "artist": "菊池俊輔",
     "metadata": {
-      "releaseDate": null,
-      "releaseDecade": null,
+      "releaseDate": "1978-01-07",
+      "releaseDecade": "1970年代",
       "durationSeconds": null,
       "collectionName": null
     },
