@@ -356,6 +356,7 @@ class CacheAndRefreshTests(unittest.TestCase):
         self.existing["tags"] = {
             "themeTags": ["冬"],
             "moodTags": ["明るい"],
+            "motifTags": ["雪"],
             "customTags": ["手動"],
         }
         self.existing["tieUps"] = [
@@ -377,6 +378,7 @@ class CacheAndRefreshTests(unittest.TestCase):
         saved = json.loads(self.metadata_path.read_text(encoding="utf-8"))[0]
         self.assertEqual(saved["tags"]["themeTags"], ["冬"])
         self.assertEqual(saved["tags"]["moodTags"], ["明るい"])
+        self.assertEqual(saved["tags"]["motifTags"], ["雪"])
         self.assertNotIn("sceneTags", saved["tags"])
         self.assertEqual(saved["tags"]["customTags"], ["手動"])
         self.assertEqual(
@@ -496,6 +498,7 @@ class MetadataSchemaTests(unittest.TestCase):
             "tags": {
                 "themeTags": ["恋愛"],
                 "moodTags": ["明るい"],
+                "motifTags": ["月"],
             },
             "tieUps": [
                 {"series": "物語シリーズ", "workTitle": "偽物語", "role": "ED"}
