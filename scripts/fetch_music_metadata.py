@@ -26,6 +26,22 @@ REFRESH_STATUSES = ("not_found", "needs_review")
 MANUAL_MATCH_STATUS = "manual"
 JST = timezone(timedelta(hours=9))
 
+GENRE_ALIASES = {
+    "pop": "ポップス",
+    "ポップ": "ポップス",
+    "anime": "アニソン",
+    "アニメ": "アニソン",
+    "tv soundtrack": "サウンドトラック",
+    "tv サウンドトラック": "サウンドトラック",
+    "チルドレン・ミュージック": "キッズ",
+}
+IGNORED_PROVIDER_GENRES = {
+    "ミュージック",
+    "ヴォーカル",
+    "インストゥルメンタル",
+    "テレビゲーム",
+}
+
 FEATURE_CLAUSE_PATTERN = re.compile(
     r"\s*[\(\[（【]\s*(?:feat(?:uring)?\.?|with)\b.*?[\)\]）】]\s*$",
     re.IGNORECASE,
@@ -438,7 +454,179 @@ def load_metadata_records(path):
     data = load_json(path, [])
     if not isinstance(data, list):
         raise ValueError(f"Metadata file must contain a JSON array: {path}")
-    return [record for record in data if isinstance(record, dict)]
+    return [
+        migrate_record_schema(record)
+        for record in data
+        if isinstance(record, dict)
+    ]
+
+
+def _string_list(value):
+    if not isinstance(value, list):
+        return []
+    return [str(item).strip() for item in value if str(item).strip()]
+
+
+def _migrate_tie_ups(value):
+    if not isinstance(value, list):
+        return []
+    tie_ups = []
+    for item in value:
+        if isinstance(item, dict):
+            series = str(item.get("series") or "").strip()
+            work_title = str(item.get("workTitle") or "").strip()
+            role = str(item.get("role") or "").strip()
+        else:
+            series = ""
+            work_title = str(item or "").strip()
+            role = ""
+        if work_title:
+            tie_ups.append(
+                {"series": series, "workTitle": work_title, "role": role}
+            )
+    return tie_ups
+
+
+def _provider_genre_classification(value):
+    genre = str(value or "").strip()
+    normalized = normalize_match_text(genre)
+    source_category_map = {
+        "anime": "アニメ",
+        "アニメ": "アニメ",
+        "game": "ゲーム",
+        "games": "ゲーム",
+        "ゲーム": "ゲーム",
+    }
+    source_categories = (
+        [source_category_map[normalized]] if normalized in source_category_map else []
+    )
+    canonical_genre = GENRE_ALIASES.get(normalized, genre)
+    if genre in IGNORED_PROVIDER_GENRES:
+        canonical_genre = ""
+    return ([canonical_genre] if canonical_genre else []), source_categories
+
+
+def migrate_record_schema(record):
+    """Convert legacy metadata records while preserving manual extensions."""
+    record = record if isinstance(record, dict) else {}
+    legacy_metadata = record.get("metadata")
+    legacy_metadata = legacy_metadata if isinstance(legacy_metadata, dict) else {}
+    existing_classification = record.get("classification")
+    existing_classification = (
+        existing_classification if isinstance(existing_classification, dict) else {}
+    )
+    existing_tags = record.get("tags")
+    existing_tags = existing_tags if isinstance(existing_tags, dict) else {}
+    existing_source = record.get("source")
+    existing_source = existing_source if isinstance(existing_source, dict) else {}
+
+    legacy_metadata_keys = {
+        "releaseDate",
+        "releaseYear",
+        "releaseDecade",
+        "decade",
+        "genre",
+        "durationSeconds",
+        "collectionName",
+        "itunesTrackId",
+        "matchStatus",
+        "matchStrategy",
+        "candidateCount",
+        "candidateReleaseDates",
+        "reviewReason",
+        "source",
+    }
+    metadata_extensions = {
+        key: value
+        for key, value in legacy_metadata.items()
+        if key not in legacy_metadata_keys
+    }
+
+    legacy_genre = str(legacy_metadata.get("genre") or "").strip()
+    generated_genres, generated_source_categories = _provider_genre_classification(
+        legacy_genre
+    )
+    existing_genres = _string_list(existing_classification.get("genres"))
+    genres = []
+    for existing_genre in existing_genres:
+        canonical_genres, _ = _provider_genre_classification(existing_genre)
+        if canonical_genres:
+            genres = canonical_genres[:1]
+            break
+    if not genres and legacy_genre:
+        genres = generated_genres
+    source_categories = _string_list(
+        existing_classification.get("sourceCategories")
+    ) or generated_source_categories
+
+    legacy_tie_ups = existing_tags.get("tieUps")
+    tie_ups = record.get("tieUps")
+    if not isinstance(tie_ups, list):
+        tie_ups = legacy_tie_ups
+
+    known_top_level_keys = {
+        "title",
+        "artist",
+        "metadata",
+        "classification",
+        "tags",
+        "tieUps",
+        "source",
+        "status",
+        "generatedAt",
+    }
+    top_level_extensions = {
+        key: value for key, value in record.items() if key not in known_top_level_keys
+    }
+
+    return {
+        "title": str(record.get("title") or "").strip(),
+        "artist": str(record.get("artist") or "").strip(),
+        "metadata": {
+            **metadata_extensions,
+            "releaseDate": legacy_metadata.get("releaseDate"),
+            "releaseDecade": legacy_metadata.get("releaseDecade")
+            or legacy_metadata.get("decade"),
+            "durationSeconds": legacy_metadata.get("durationSeconds"),
+            "collectionName": legacy_metadata.get("collectionName"),
+        },
+        "classification": {
+            **{
+                key: value
+                for key, value in existing_classification.items()
+                if key != "cultureTags"
+            },
+            "genres": genres,
+            "subgenres": _string_list(existing_classification.get("subgenres")),
+            "sourceCategories": source_categories,
+            "vocalTypes": _string_list(existing_classification.get("vocalTypes"))
+            or (["インスト"] if legacy_genre == "インストゥルメンタル" else []),
+        },
+        "tags": {
+            **{
+                key: value
+                for key, value in existing_tags.items()
+                if key not in {"tieUps", "sceneTags"}
+            },
+            "themeTags": _string_list(existing_tags.get("themeTags")),
+            "moodTags": _string_list(existing_tags.get("moodTags")),
+        },
+        "tieUps": _migrate_tie_ups(tie_ups),
+        "source": {
+            **existing_source,
+            "provider": existing_source.get("provider")
+            or legacy_metadata.get("source")
+            or "itunes",
+            "trackId": existing_source.get("trackId")
+            if "trackId" in existing_source
+            else legacy_metadata.get("itunesTrackId"),
+        },
+        "status": record.get("status")
+        or legacy_metadata.get("matchStatus")
+        or "not_found",
+        "generatedAt": record.get("generatedAt"),
+        **top_level_extensions,
+    }
 
 
 def musiclist_pairs(path):
@@ -468,24 +656,40 @@ def musiclist_pairs(path):
 
 
 def build_record(title, artist, metadata, existing_record=None, now=None):
-    existing_record = existing_record if isinstance(existing_record, dict) else {}
-    existing_metadata = existing_record.get("metadata")
-    existing_metadata = existing_metadata if isinstance(existing_metadata, dict) else {}
-    existing_tags = existing_record.get("tags")
-    tags = existing_tags if isinstance(existing_tags, dict) else {}
-    tags = {
-        **tags,
-        "themeTags": tags.get("themeTags", []),
-        "moodTags": tags.get("moodTags", []),
-        "tieUps": tags.get("tieUps", []),
-    }
+    existing_record = migrate_record_schema(existing_record or {})
+    existing_metadata = existing_record["metadata"]
+    existing_classification = existing_record["classification"]
+    generated_genre = str(metadata.get("genre") or "").strip()
+    generated_genres, generated_source_categories = _provider_genre_classification(
+        generated_genre
+    )
+    genres = existing_classification["genres"] or generated_genres
+    source_categories = (
+        existing_classification["sourceCategories"] or generated_source_categories
+    )
     generated_at = (now or datetime.now(JST)).astimezone(JST).isoformat(timespec="seconds")
     return {
         **existing_record,
         "title": title,
         "artist": artist,
-        "metadata": {**existing_metadata, **metadata},
-        "tags": tags,
+        "metadata": {
+            **existing_metadata,
+            "releaseDate": metadata.get("releaseDate"),
+            "releaseDecade": metadata.get("decade"),
+            "durationSeconds": metadata.get("durationSeconds"),
+            "collectionName": metadata.get("collectionName"),
+        },
+        "classification": {
+            **existing_classification,
+            "genres": genres,
+            "sourceCategories": source_categories,
+        },
+        "source": {
+            **existing_record["source"],
+            "provider": metadata.get("source") or "itunes",
+            "trackId": metadata.get("itunesTrackId"),
+        },
+        "status": metadata.get("matchStatus") or "not_found",
         "generatedAt": generated_at,
     }
 
@@ -512,12 +716,7 @@ def update_metadata(
         key = metadata_key(title, artist)
         existing_position = index.get(key)
         existing_record = records[existing_position] if existing_position is not None else None
-        existing_status = (
-            existing_record.get("metadata", {}).get("matchStatus")
-            if isinstance(existing_record, dict)
-            and isinstance(existing_record.get("metadata"), dict)
-            else None
-        )
+        existing_status = existing_record.get("status") if existing_record else None
         if existing_status == MANUAL_MATCH_STATUS:
             should_fetch = False
         elif refresh_status:
@@ -556,7 +755,7 @@ def parse_args(argv=None):
     refresh_group.add_argument(
         "--refresh-status",
         choices=REFRESH_STATUSES,
-        help="Fetch cached records again only when matchStatus has this value.",
+        help="Fetch cached records again only when status has this value.",
     )
     args = parser.parse_args(argv)
     if bool(args.title) != bool(args.artist):
