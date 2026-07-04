@@ -107,8 +107,10 @@ function normalizeMusiclistSong(item) {
   const displayArtist = normalizeCellText(item?.displayArtist ?? item?.artist ?? "");
   const sourceTitle = normalizeCellText(item?.sourceTitle ?? displayTitle);
   const sourceArtist = normalizeCellText(item?.sourceArtist ?? displayArtist);
-  const tags = normalizeStringArray(item?.tags);
-  const genre = normalizeCellText(item?.genre) || tags[0] || "";
+  const tags = Array.isArray(item?.tags) ? normalizeStringArray(item.tags) : [];
+  const metadataTags = item?.tags && !Array.isArray(item.tags) ? item.tags : {};
+  const classificationGenres = normalizeStringArray(item?.classification?.genres);
+  const genre = normalizeCellText(item?.genre) || classificationGenres[0] || tags[0] || "";
 
   return {
     no: normalizeCellText(item?.no),
@@ -122,6 +124,7 @@ function normalizeMusiclistSong(item) {
     titleSearchWords: normalizeStringArray(item?.titleSearchWords ?? item?.searchWords),
     artistSearchWords: normalizeStringArray(item?.artistSearchWords ?? item?.artistAliases),
     tags,
+    metadataTags,
     playable: normalizeCellText(item?.playable),
     genre,
     note: normalizeCellText(item?.note),
