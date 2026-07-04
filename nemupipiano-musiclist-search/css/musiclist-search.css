@@ -247,20 +247,28 @@ html[data-theme="dark"] .theme-icon-light {
     padding-inline: .7rem;
 }
 
+.fuzzy-mode-toggle-wrapper {
+    line-height: 1;
+}
+
 .fuzzy-mode-toggle {
-    width: 100%;
-    min-height: 2.75rem;
-    border: 1px solid var(--page-filter-active-border);
-    color: var(--page-filter-active-text);
-    background: var(--page-filter-active-bg);
-    font-weight: 800;
+    width: auto;
+    min-height: 0;
+    padding: .3rem .8rem;
+    border: 1px solid var(--page-line);
+    border-radius: 999px;
+    color: var(--page-muted);
+    background: var(--page-button-soft);
+    font-size: .85rem;
+    font-weight: 700;
+    line-height: 1.35;
 }
 
 .fuzzy-mode-toggle:hover,
 .fuzzy-mode-toggle:focus {
     border-color: var(--page-accent);
-    color: var(--page-text);
-    background: var(--page-accent-soft);
+    color: var(--page-accent);
+    background: var(--page-button-soft);
 }
 
 .fuzzy-category-tabs {

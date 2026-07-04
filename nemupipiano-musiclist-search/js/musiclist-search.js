@@ -513,11 +513,41 @@ function matchesFuzzyPreset(song, match) {
   });
 }
 
+function localDateSeedKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}${month}${day}`;
+}
+
+function stableStringHash(value) {
+  let hash = 2166136261;
+  for (const character of String(value ?? "")) {
+    hash ^= character.codePointAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function dailyFuzzyOrder(items, preset, item, date = new Date()) {
+  const dateSeed = stableStringHash(localDateSeedKey(date));
+  const presetKey = `${preset?.title || ""}|${item?.label || ""}`;
+
+  return [...items].sort((left, right) => {
+    const leftKey = favoriteKeyForSong(left);
+    const rightKey = favoriteKeyForSong(right);
+    const leftScore = stableStringHash(`${dateSeed}|${presetKey}|${leftKey}`);
+    const rightScore = stableStringHash(`${dateSeed}|${presetKey}|${rightKey}`);
+    return leftScore - rightScore || leftKey.localeCompare(rightKey, "ja");
+  });
+}
+
 function fuzzyMatchedSongs() {
   const preset = fuzzySearchPresets[activeFuzzyCategoryIndex];
   const item = preset?.items?.[activeFuzzyItemIndex];
   if (!item) return [];
-  return songs.filter(song => matchesFuzzyPreset(song, item.match));
+  const matched = songs.filter(song => matchesFuzzyPreset(song, item.match));
+  return dailyFuzzyOrder(matched, preset, item);
 }
 
 function renderFuzzySearch() {

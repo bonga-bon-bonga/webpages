@@ -17,6 +17,19 @@ def matches(song, match):
     )
 
 
+def stable_hash(value):
+    result = 2166136261
+    for character in str(value):
+        result ^= ord(character)
+        result = (result * 16777619) & 0xFFFFFFFF
+    return result
+
+
+def daily_order(keys, date_key, preset_key):
+    seed = stable_hash(date_key)
+    return sorted(keys, key=lambda key: (stable_hash(f"{seed}|{preset_key}|{key}"), key))
+
+
 class FuzzySearchPresetTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -51,6 +64,18 @@ class FuzzySearchPresetTests(unittest.TestCase):
                 matching_song,
                 {"themeTags": ["恋愛"], "moodTags": ["明るい"]},
             )
+        )
+
+    def test_daily_order_is_stable_and_changes_with_date(self):
+        keys = [f"song-{index}" for index in range(20)]
+        today = daily_order(keys, "20260705", "気分|元気になれる曲")
+        self.assertEqual(
+            today,
+            daily_order(keys, "20260705", "気分|元気になれる曲"),
+        )
+        self.assertNotEqual(
+            today,
+            daily_order(keys, "20260706", "気分|元気になれる曲"),
         )
 
 
