@@ -462,7 +462,7 @@ class MetadataSchemaTests(unittest.TestCase):
         )
         self.assertEqual(
             migrated["classification"]["genres"],
-            ["アニメ"],
+            ["アニソン"],
         )
         self.assertEqual(
             migrated["classification"]["sourceCategories"],
