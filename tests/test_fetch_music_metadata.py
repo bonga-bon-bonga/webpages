@@ -358,7 +358,9 @@ class CacheAndRefreshTests(unittest.TestCase):
             "moodTags": ["明るい"],
             "customTags": ["手動"],
         }
-        self.existing["tieUps"] = [{"workTitle": "アニメ", "role": "ED"}]
+        self.existing["tieUps"] = [
+            {"series": "シリーズ", "workTitle": "アニメ", "role": "ED"}
+        ]
         self.existing["manualNote"] = "keep"
         self.existing["metadata"]["manualReleaseMemo"] = "keep"
         self.metadata_path.write_text(
@@ -379,7 +381,7 @@ class CacheAndRefreshTests(unittest.TestCase):
         self.assertEqual(saved["tags"]["customTags"], ["手動"])
         self.assertEqual(
             saved["tieUps"],
-            [{"workTitle": "アニメ", "role": "ED"}],
+            [{"series": "シリーズ", "workTitle": "アニメ", "role": "ED"}],
         )
         self.assertEqual(saved["manualNote"], "keep")
         self.assertEqual(saved["metadata"]["manualReleaseMemo"], "keep")
@@ -458,17 +460,21 @@ class MetadataSchemaTests(unittest.TestCase):
                 "collectionName": "偽物語 劇伴音楽集",
             },
         )
-        self.assertEqual(migrated["classification"]["genres"], [])
+        self.assertEqual(
+            migrated["classification"]["genres"],
+            ["アニメソング"],
+        )
         self.assertEqual(
             migrated["classification"]["sourceCategories"],
             ["アニメ"],
         )
         self.assertEqual(migrated["classification"]["subgenres"], [])
+        self.assertNotIn("cultureTags", migrated["classification"])
         self.assertNotIn("sceneTags", migrated["tags"])
         self.assertNotIn("tieUps", migrated["tags"])
         self.assertEqual(
             migrated["tieUps"],
-            [{"workTitle": "偽物語", "role": ""}],
+            [{"series": "", "workTitle": "偽物語", "role": ""}],
         )
         self.assertEqual(
             migrated["source"],
@@ -486,13 +492,14 @@ class MetadataSchemaTests(unittest.TestCase):
                 "subgenres": ["アニソンポップ"],
                 "sourceCategories": ["アニメ"],
                 "vocalTypes": ["女性ボーカル", "デュオ"],
-                "cultureTags": [],
             },
             "tags": {
                 "themeTags": ["恋愛"],
                 "moodTags": ["明るい"],
             },
-            "tieUps": [{"workTitle": "偽物語", "role": "ED"}],
+            "tieUps": [
+                {"series": "物語シリーズ", "workTitle": "偽物語", "role": "ED"}
+            ],
             "source": {"provider": "itunes", "trackId": 1535798069},
             "status": "manual",
         }

@@ -26,6 +26,22 @@ REFRESH_STATUSES = ("not_found", "needs_review")
 MANUAL_MATCH_STATUS = "manual"
 JST = timezone(timedelta(hours=9))
 
+GENRE_ALIASES = {
+    "pop": "ポップス",
+    "ポップ": "ポップス",
+    "anime": "アニメソング",
+    "アニメ": "アニメソング",
+    "tv soundtrack": "サウンドトラック",
+    "tv サウンドトラック": "サウンドトラック",
+    "チルドレン・ミュージック": "キッズ",
+}
+IGNORED_PROVIDER_GENRES = {
+    "ミュージック",
+    "ヴォーカル",
+    "インストゥルメンタル",
+    "テレビゲーム",
+}
+
 FEATURE_CLAUSE_PATTERN = re.compile(
     r"\s*[\(\[（【]\s*(?:feat(?:uring)?\.?|with)\b.*?[\)\]）】]\s*$",
     re.IGNORECASE,
@@ -457,13 +473,17 @@ def _migrate_tie_ups(value):
     tie_ups = []
     for item in value:
         if isinstance(item, dict):
+            series = str(item.get("series") or "").strip()
             work_title = str(item.get("workTitle") or "").strip()
             role = str(item.get("role") or "").strip()
         else:
+            series = ""
             work_title = str(item or "").strip()
             role = ""
         if work_title:
-            tie_ups.append({"workTitle": work_title, "role": role})
+            tie_ups.append(
+                {"series": series, "workTitle": work_title, "role": role}
+            )
     return tie_ups
 
 
@@ -477,9 +497,13 @@ def _provider_genre_classification(value):
         "games": "ゲーム",
         "ゲーム": "ゲーム",
     }
-    if normalized in source_category_map:
-        return [], [source_category_map[normalized]]
-    return ([genre] if genre else []), []
+    source_categories = (
+        [source_category_map[normalized]] if normalized in source_category_map else []
+    )
+    canonical_genre = GENRE_ALIASES.get(normalized, genre)
+    if genre in IGNORED_PROVIDER_GENRES:
+        canonical_genre = ""
+    return ([canonical_genre] if canonical_genre else []), source_categories
 
 
 def migrate_record_schema(record):
@@ -522,7 +546,13 @@ def migrate_record_schema(record):
     generated_genres, generated_source_categories = _provider_genre_classification(
         legacy_genre
     )
-    genres = _string_list(existing_classification.get("genres"))
+    existing_genres = _string_list(existing_classification.get("genres"))
+    genres = []
+    for existing_genre in existing_genres:
+        canonical_genres, _ = _provider_genre_classification(existing_genre)
+        if canonical_genres:
+            genres = canonical_genres[:1]
+            break
     if not genres and legacy_genre:
         genres = generated_genres
     source_categories = _string_list(
@@ -561,12 +591,16 @@ def migrate_record_schema(record):
             "collectionName": legacy_metadata.get("collectionName"),
         },
         "classification": {
-            **existing_classification,
+            **{
+                key: value
+                for key, value in existing_classification.items()
+                if key != "cultureTags"
+            },
             "genres": genres,
             "subgenres": _string_list(existing_classification.get("subgenres")),
             "sourceCategories": source_categories,
-            "vocalTypes": _string_list(existing_classification.get("vocalTypes")),
-            "cultureTags": _string_list(existing_classification.get("cultureTags")),
+            "vocalTypes": _string_list(existing_classification.get("vocalTypes"))
+            or (["インスト"] if legacy_genre == "インストゥルメンタル" else []),
         },
         "tags": {
             **{
