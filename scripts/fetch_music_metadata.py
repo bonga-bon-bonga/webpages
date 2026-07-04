@@ -569,10 +569,13 @@ def migrate_record_schema(record):
             "cultureTags": _string_list(existing_classification.get("cultureTags")),
         },
         "tags": {
-            **{key: value for key, value in existing_tags.items() if key != "tieUps"},
+            **{
+                key: value
+                for key, value in existing_tags.items()
+                if key not in {"tieUps", "sceneTags"}
+            },
             "themeTags": _string_list(existing_tags.get("themeTags")),
             "moodTags": _string_list(existing_tags.get("moodTags")),
-            "sceneTags": _string_list(existing_tags.get("sceneTags")),
         },
         "tieUps": _migrate_tie_ups(tie_ups),
         "source": {

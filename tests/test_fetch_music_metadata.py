@@ -356,7 +356,6 @@ class CacheAndRefreshTests(unittest.TestCase):
         self.existing["tags"] = {
             "themeTags": ["冬"],
             "moodTags": ["明るい"],
-            "sceneTags": ["配信向き"],
             "customTags": ["手動"],
         }
         self.existing["tieUps"] = [{"workTitle": "アニメ", "role": "ED"}]
@@ -376,7 +375,7 @@ class CacheAndRefreshTests(unittest.TestCase):
         saved = json.loads(self.metadata_path.read_text(encoding="utf-8"))[0]
         self.assertEqual(saved["tags"]["themeTags"], ["冬"])
         self.assertEqual(saved["tags"]["moodTags"], ["明るい"])
-        self.assertEqual(saved["tags"]["sceneTags"], ["配信向き"])
+        self.assertNotIn("sceneTags", saved["tags"])
         self.assertEqual(saved["tags"]["customTags"], ["手動"])
         self.assertEqual(
             saved["tieUps"],
@@ -465,7 +464,7 @@ class MetadataSchemaTests(unittest.TestCase):
             ["アニメ"],
         )
         self.assertEqual(migrated["classification"]["subgenres"], [])
-        self.assertEqual(migrated["tags"]["sceneTags"], [])
+        self.assertNotIn("sceneTags", migrated["tags"])
         self.assertNotIn("tieUps", migrated["tags"])
         self.assertEqual(
             migrated["tieUps"],
@@ -492,7 +491,6 @@ class MetadataSchemaTests(unittest.TestCase):
             "tags": {
                 "themeTags": ["恋愛"],
                 "moodTags": ["明るい"],
-                "sceneTags": ["配信向き"],
             },
             "tieUps": [{"workTitle": "偽物語", "role": "ED"}],
             "source": {"provider": "itunes", "trackId": 1535798069},
