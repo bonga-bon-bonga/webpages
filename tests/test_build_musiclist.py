@@ -76,6 +76,99 @@ class BuildMusiclistTests(unittest.TestCase):
             ["list#1", "disney#2", "ghibli#3"],
         )
 
+    def test_merges_music_metadata_into_existing_record(self):
+        rows = [
+            {
+                "No": 1,
+                "曲名": "Song",
+                "アーティスト": "Artist",
+                "ジャンル": "Sheet Genre",
+                "_numberPrefix": "list",
+            }
+        ]
+        key = self.module.song_key("Song", "Artist")
+        musiclist = self.module.build_musiclist(
+            rows,
+            existing_entries={
+                key: {
+                    "titleSearchWords": ["song"],
+                    "artistSearchWords": ["artist"],
+                    "releaseDecade": "1990年代",
+                    "classification": {"custom": ["keep"], "genres": ["旧"]},
+                    "tags": {"customTags": ["keep"], "themeTags": ["旧"]},
+                }
+            },
+            search_enhancements={"titleCorrections": {}, "artistCorrections": {}},
+            metadata_entries={
+                key: {
+                    "releaseDecade": "2020年代",
+                    "classification": {"genres": ["J-Pop"], "vocalTypes": []},
+                    "tags": {"themeTags": ["希望"], "moodTags": ["明るい"]},
+                }
+            },
+        )
+
+        self.assertEqual(musiclist[0]["releaseDecade"], "2020年代")
+        self.assertEqual(
+            musiclist[0]["classification"],
+            {"custom": ["keep"], "genres": ["J-Pop"], "vocalTypes": []},
+        )
+        self.assertEqual(
+            musiclist[0]["tags"],
+            {
+                "customTags": ["keep"],
+                "themeTags": ["希望"],
+                "moodTags": ["明るい"],
+            },
+        )
+
+    def test_preserves_existing_metadata_when_source_value_is_missing(self):
+        rows = [
+            {"No": 1, "曲名": "Song", "アーティスト": "Artist", "_numberPrefix": "list"}
+        ]
+        key = self.module.song_key("Song", "Artist")
+        musiclist = self.module.build_musiclist(
+            rows,
+            existing_entries={
+                key: {
+                    "releaseDecade": "2000年代",
+                    "classification": {"genres": ["ロック"]},
+                    "tags": {"themeTags": ["青春"]},
+                }
+            },
+            search_enhancements={"titleCorrections": {}, "artistCorrections": {}},
+            metadata_entries={key: {"classification": {}, "tags": {}}},
+        )
+
+        self.assertEqual(musiclist[0]["releaseDecade"], "2000年代")
+        self.assertEqual(musiclist[0]["classification"], {"genres": ["ロック"]})
+        self.assertEqual(musiclist[0]["tags"], {"themeTags": ["青春"]})
+
+    def test_metadata_changes_affect_input_hash(self):
+        sheet_hash = "sheet-hash"
+        first = self.module.build_input_hash(
+            sheet_hash, [{"metadata": {"releaseDecade": "2010年代"}}]
+        )
+        second = self.module.build_input_hash(
+            sheet_hash, [{"metadata": {"releaseDecade": "2020年代"}}]
+        )
+        self.assertNotEqual(first, second)
+
+    def test_normalize_entry_keeps_metadata_when_called_repeatedly(self):
+        entry = {
+            "releaseDecade": "2010年代",
+            "classification": {"genres": ["J-Pop"]},
+            "tags": {"themeTags": ["恋愛"]},
+        }
+        normalized = self.module.normalize_entry(entry)
+        normalized_again = self.module.normalize_entry(normalized)
+
+        self.assertEqual(normalized_again["releaseDecade"], "2010年代")
+        self.assertEqual(normalized_again["classification"], {"genres": ["J-Pop"]})
+        self.assertEqual(
+            normalized_again["metadataTags"], {"themeTags": ["恋愛"]}
+        )
+
     def test_loads_three_sheets_and_combines_hash_input(self):
         tables = {
             "0": table(["No", "曲名", "アーティスト"], [[1, "POPS", "Artist"]]),

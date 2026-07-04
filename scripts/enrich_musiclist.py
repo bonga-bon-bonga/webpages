@@ -40,6 +40,21 @@ def unique(values):
 
     return result
 
+
+def normalize_tags(value):
+    if isinstance(value, dict):
+        return {
+            str(key): unique(tag_values)
+            if isinstance(tag_values, list)
+            else tag_values
+            for key, tag_values in value.items()
+        }
+
+    if isinstance(value, list):
+        return unique(value)
+
+    return {}
+
 ''' キーを分割する関数'''
 def split_key(key):
     parts = key.split("|", 1)
@@ -227,7 +242,7 @@ def main():
             ]
             entry["artistSearchWords"] = unique(artist_search_words + generated_artist_words)
 
-        entry["tags"] = unique(entry.get("tags") or [])
+        entry["tags"] = normalize_tags(entry.get("tags"))
 
         # 不要なフィールドを削除する
         entry.pop("searchWords", None)

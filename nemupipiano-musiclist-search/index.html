@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=1.8.1" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.0.0" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -87,6 +87,11 @@
       </section>
 
       <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search" hidden>
+        <div class="fuzzy-mode-toggle-wrapper mb-3">
+          <button id="fuzzySearchModeToggle" class="btn fuzzy-mode-toggle" type="button" aria-pressed="false" aria-controls="normalSearchPanel fuzzySearchPanel">🌙ふわっと検索してみる</button>
+        </div>
+
+        <div id="normalSearchPanel">
         <div class="row g-2 g-md-3 align-items-stretch">
           <div class="col-8 col-md-10">
             <label class="visually-hidden" for="search">検索キーワード</label>
@@ -188,6 +193,18 @@
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="songs" data-columns="3"></div>
         <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
+        </div>
+
+        <div class="fuzzy-search-panel" id="fuzzySearchPanel" hidden>
+          <div class="fuzzy-category-tabs" id="fuzzyCategoryTabs" role="tablist" aria-label="ふわっと検索のカテゴリ"></div>
+          <section class="fuzzy-category-content mt-3" id="fuzzyCategoryContent" aria-live="polite"></section>
+          <div class="fuzzy-result-summary mt-4" id="fuzzyResultSummary" aria-live="polite"></div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="fuzzySongs" data-columns="3"></div>
+          <div class="empty-box text-center p-4 mt-3" id="fuzzyEmpty">気になる条件を選んでみてください。</div>
+          <div class="text-end mt-3">
+            <button id="fuzzyMore" class="btn fuzzy-more-button" type="button" hidden>もっと見る ⇒</button>
+          </div>
+        </div>
       </section>
     </section>
   </main>
@@ -309,7 +326,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.1.8.1 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.0.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -326,7 +343,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=1.8.1"></script>
+  <script src="./js/musiclist-search.js?v=2.0.0"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 </body>

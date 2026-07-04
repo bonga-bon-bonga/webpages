@@ -45,6 +45,10 @@ SEARCH_ENHANCEMENTS_PATH = (
     os.environ.get("SEARCH_ENHANCEMENTS_PATH")
     or "nemupipiano-musiclist-search/data/dictionary/search-enhancements.json"
 )
+MUSIC_METADATA_PATH = (
+    os.environ.get("MUSIC_METADATA_PATH")
+    or "nemupipiano-musiclist-search/data/dictionary/music_metadata.json"
+)
 HASH_PATH = (
     os.environ.get("MUSICLIST_HASH_PATH")
     or "nemupipiano-musiclist-search/data/hash/musiclist"
@@ -151,7 +155,20 @@ def song_key(title, artist):
 def normalize_entry(value):
     # インスタンスが辞書でない場合は空の検索ワードを返す
     if not isinstance(value, dict):
-        return {"titleSearchWords": [], "artistSearchWords": [], "tags": []}
+        return {
+            "titleSearchWords": [],
+            "artistSearchWords": [],
+            "releaseDecade": None,
+            "classification": {},
+            "metadataTags": {},
+        }
+
+    metadata_tags = value.get("metadataTags")
+    if not isinstance(metadata_tags, dict):
+        metadata_tags = value.get("tags")
+    metadata_tags = metadata_tags if isinstance(metadata_tags, dict) else {}
+    classification = value.get("classification")
+    classification = classification if isinstance(classification, dict) else {}
 
     # タイトルとアーティスト名の検索ワードをユニークにして返す
     return {
@@ -169,8 +186,24 @@ def normalize_entry(value):
             if isinstance(value.get("artistAliases"), list)
             else []
         ),
-        "tags": unique(value.get("tags") if isinstance(value.get("tags"), list) else []),
+        "releaseDecade": value.get("releaseDecade"),
+        "classification": classification,
+        "metadataTags": metadata_tags,
     }
+
+
+def merge_mapping(existing, incoming):
+    result = dict(existing) if isinstance(existing, dict) else {}
+    if not isinstance(incoming, dict):
+        return result
+
+    for key, value in incoming.items():
+        if isinstance(value, dict) and isinstance(result.get(key), dict):
+            result[key] = merge_mapping(result[key], value)
+        else:
+            result[key] = value
+
+    return result
 
 def google_sheet_url(gid):
     return (
@@ -309,6 +342,47 @@ def load_search_enhancements():
         "artistCorrections": normalize_corrections(data.get("artistCorrections")),
     }
 
+
+def load_music_metadata():
+    if not os.path.exists(MUSIC_METADATA_PATH):
+        return {}, []
+
+    with open(MUSIC_METADATA_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    if not isinstance(data, list):
+        raise ValueError("music_metadata.json must contain a JSON array")
+
+    entries = {}
+    for record in data:
+        if not isinstance(record, dict):
+            continue
+
+        title = normalize_cell_text(record.get("title"))
+        artist = normalize_cell_text(record.get("artist"))
+        if not title and not artist:
+            continue
+
+        metadata = record.get("metadata")
+        metadata = metadata if isinstance(metadata, dict) else {}
+        classification = record.get("classification")
+        classification = classification if isinstance(classification, dict) else {}
+        tags = record.get("tags")
+        tags = tags if isinstance(tags, dict) else {}
+        entries[song_key(title, artist)] = {
+            "releaseDecade": metadata.get("releaseDecade"),
+            "classification": classification,
+            "tags": tags,
+        }
+
+    return entries, data
+
+
+def build_input_hash(sheet_hash, metadata_records):
+    return calculate_table_hash(
+        {"spreadsheetHash": sheet_hash, "musicMetadata": metadata_records}
+    )
+
 ''' 検索補正を正規化する関数。 '''
 def normalize_corrections(value):
     if not isinstance(value, dict):
@@ -325,10 +399,16 @@ def corrected_value(source_value, corrections):
     return corrections.get(create_search_key(source_value)) or source_value
 
 ''' musiclistを構築する関数。Google Sheetsから音楽リストを取得し、既存のエントリと検索補正を適用して結果を出力する。 '''
-def build_musiclist(sheet_rows, existing_entries, search_enhancements):
+def build_musiclist(
+    sheet_rows,
+    existing_entries,
+    search_enhancements,
+    metadata_entries=None,
+):
     output_items = []
     title_corrections = search_enhancements["titleCorrections"]
     artist_corrections = search_enhancements["artistCorrections"]
+    metadata_entries = metadata_entries or {}
 
     for row in sheet_rows:
         source_title = pick_value(row, "曲名", "title").replace("〜", "～")
@@ -345,6 +425,20 @@ def build_musiclist(sheet_rows, existing_entries, search_enhancements):
             or existing_entries.get(legacy_key)
             or existing_entries.get(f"{display_title}|{display_artist}")
         )
+        metadata = (
+            metadata_entries.get(key)
+            or metadata_entries.get(song_key(source_title, source_artist))
+            or {}
+        )
+        release_decade = metadata.get("releaseDecade")
+        if release_decade is None:
+            release_decade = existing["releaseDecade"]
+        classification = merge_mapping(
+            existing["classification"], metadata.get("classification")
+        )
+        metadata_tags = merge_mapping(
+            existing["metadataTags"], metadata.get("tags")
+        )
         genre = pick_value(row, "ジャンル", "genre")
 
         output_items.append(
@@ -358,7 +452,9 @@ def build_musiclist(sheet_rows, existing_entries, search_enhancements):
                 "songKey": key,
                 "titleSearchWords": existing["titleSearchWords"],
                 "artistSearchWords": existing["artistSearchWords"],
-                "tags": unique(existing["tags"] + ([genre] if genre else [])),
+                "releaseDecade": release_decade,
+                "classification": classification,
+                "tags": metadata_tags,
                 "sourceTitle": source_title,
                 "sourceArtist": source_artist,
                 "playable": pick_value(row, "弾ける曲", "playable"),
@@ -379,15 +475,22 @@ def save_json(data):
 ''' メイン関数。Google Sheetsから音楽リストを取得し、既存のエントリと検索補正を適用して結果を出力する。'''
 def main():
     sheet_rows, sheet_hash = load_sheets()
-    if has_unchanged_input(HASH_PATH, sheet_hash, OUTPUT_JSON_PATH):
-        print("Music list spreadsheet is unchanged. Skipping update.")
+    metadata_entries, metadata_records = load_music_metadata()
+    input_hash = build_input_hash(sheet_hash, metadata_records)
+    if has_unchanged_input(HASH_PATH, input_hash, OUTPUT_JSON_PATH):
+        print("Music list inputs are unchanged. Skipping update.")
         return
 
     existing_entries = load_existing_entries()
     search_enhancements = load_search_enhancements()
-    musiclist = build_musiclist(sheet_rows, existing_entries, search_enhancements)
+    musiclist = build_musiclist(
+        sheet_rows,
+        existing_entries,
+        search_enhancements,
+        metadata_entries,
+    )
     save_json(musiclist)
-    save_hash(HASH_PATH, sheet_hash)
+    save_hash(HASH_PATH, input_hash)
     print(f"Updated {len(musiclist)} records.")
 
 
