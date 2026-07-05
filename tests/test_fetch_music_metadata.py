@@ -499,6 +499,7 @@ class MetadataSchemaTests(unittest.TestCase):
                 "themeTags": ["恋愛"],
                 "moodTags": ["明るい"],
                 "motifTags": ["月"],
+                "eventTags": ["クリスマス"],
             },
             "tieUps": [
                 {"series": "物語シリーズ", "workTitle": "偽物語", "role": "ED"}

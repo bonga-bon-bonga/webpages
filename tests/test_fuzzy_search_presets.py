@@ -54,6 +54,7 @@ class FuzzySearchPresetTests(unittest.TestCase):
             "themeTags",
             "moodTags",
             "motifTags",
+            "eventTags",
             "sourceCategories",
             "releaseDecade",
         }
@@ -79,6 +80,7 @@ class FuzzySearchPresetTests(unittest.TestCase):
                 "themeTags": ["恋愛"],
                 "moodTags": ["切ない"],
                 "motifTags": ["春"],
+                "eventTags": ["卒業"],
             }
         }
         self.assertTrue(
@@ -88,6 +90,7 @@ class FuzzySearchPresetTests(unittest.TestCase):
             )
         )
         self.assertTrue(matches(matching_song, {"motifTags": ["桜", "春"]}))
+        self.assertTrue(matches(matching_song, {"eventTags": ["卒業"]}))
         self.assertTrue(
             matches(
                 matching_song,

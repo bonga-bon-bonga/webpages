@@ -14,6 +14,7 @@ TAG_DICTIONARY = {
         "themeTags": ["恋愛"],
         "moodTags": ["明るい"],
         "motifTags": ["星"],
+        "eventTags": ["クリスマス"],
     },
 }
 
@@ -32,6 +33,7 @@ def record():
             "themeTags": ["恋愛"],
             "moodTags": ["明るい"],
             "motifTags": ["星"],
+            "eventTags": ["クリスマス"],
         },
         "tieUps": [
             {"series": "シリーズ", "workTitle": "作品", "role": "主題歌"}
