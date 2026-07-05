@@ -8,7 +8,11 @@
       { "label": "元気になれる曲", "match": { "moodTags": ["元気", "明るい", "楽しい"] } },
       { "label": "前を向きたい時の曲", "match": { "themeTags": ["希望", "成長", "旅立ち"] } },
       { "label": "勇気をもらえる曲", "match": { "themeTags": ["応援", "希望"], "moodTags": ["熱い"] } },
-      { "label": "ほっとしたい時の曲", "match": { "moodTags": ["優しい", "穏やか", "癒し"] } },
+      { "label": "思い切り気持ちを高めたい曲", "match": { "moodTags": ["熱い", "壮大"] } },
+      { "label": "自分らしく進みたい曲", "match": { "themeTags": ["自由", "成長"] } },
+      { "label": "ほっとしたい時の曲", "match": { "moodTags": ["穏やか", "癒し"] } },
+      { "label": "そっと寄り添ってほしい曲", "match": { "moodTags": ["優しい"], "themeTags": ["孤独", "祈り"] } },
+      { "label": "気持ちを切り替えたい曲", "match": { "themeTags": ["旅立ち", "再会", "希望"] } },
       { "label": "泣きたい時の曲", "match": { "moodTags": ["泣ける", "切ない"], "themeTags": ["喪失", "別れ"] } },
       { "label": "懐かしい気持ちになる曲", "match": { "moodTags": ["ノスタルジック"], "themeTags": ["記憶"] } },
       { "label": "ひとりで聴きたい曲", "match": { "themeTags": ["孤独", "記憶"], "moodTags": ["切ない", "ノスタルジック"] } }
@@ -21,11 +25,17 @@
     "icon": "mood",
     "items": [
       { "label": "かわいい曲", "match": { "moodTags": ["かわいい"] } },
-      { "label": "かっこいい曲", "match": { "moodTags": ["かっこいい", "熱い"] } },
-      { "label": "疾走感のある曲", "match": { "moodTags": ["疾走感", "爽やか"] } },
-      { "label": "透明感のある曲", "match": { "moodTags": ["透明感", "儚い"] } },
-      { "label": "壮大な曲", "match": { "moodTags": ["壮大", "荘厳"] } },
+      { "label": "かっこいい曲", "match": { "moodTags": ["かっこいい"] } },
+      { "label": "コミカルで楽しい曲", "match": { "moodTags": ["コミカル", "楽しい"] } },
+      { "label": "疾走感のある曲", "match": { "moodTags": ["疾走感"] } },
+      { "label": "透明感のある曲", "match": { "moodTags": ["透明感"] } },
+      { "label": "爽やかな曲", "match": { "moodTags": ["爽やか"] } },
       { "label": "おしゃれな曲", "match": { "moodTags": ["おしゃれ"] } },
+      { "label": "緊張感のある曲", "match": { "moodTags": ["緊張感"] } },
+      { "label": "壮大な曲", "match": { "moodTags": ["壮大", "荘厳"] } },
+      { "label": "幻想的な曲", "match": { "moodTags": ["幻想的"] } },
+      { "label": "ミステリアスな曲", "match": { "moodTags": ["ミステリアス"] } },
+      { "label": "ダークで不穏な曲", "match": { "moodTags": ["ダーク", "不穏"] } },
       { "label": "しっとり聴きたい曲", "match": { "moodTags": ["穏やか", "優しい", "切ない"] } },
       { "label": "静かに沁みる曲", "match": { "moodTags": ["切ない", "儚い", "透明感", "穏やか"] } }
     ]
@@ -40,16 +50,34 @@
       { "label": "夏に聴きたい曲", "match": { "motifTags": ["夏"] } },
       { "label": "秋に聴きたい曲", "match": { "motifTags": ["秋"] } },
       { "label": "冬に聴きたい曲", "match": { "motifTags": ["冬"] } },
-      { "label": "夜に聴きたい曲", "match": { "motifTags": ["夜", "夜空", "深夜"] } },
+      { "label": "夜に聴きたい曲", "match": { "motifTags": ["夜"] } },
       { "label": "空を見上げたくなる曲", "match": { "motifTags": ["空", "光", "太陽", "虹"] } },
       { "label": "雨の日に聴きたい曲", "match": { "motifTags": ["雨"] } },
       { "label": "海辺で聴きたい曲", "match": { "motifTags": ["海"] } },
       { "label": "花が似合う曲", "match": { "motifTags": ["花", "桜"] } },
       { "label": "コーヒーを飲みながら聴きたい曲", "match": { "motifTags": ["コーヒー"] } },
       { "label": "街を歩きながら聴きたい曲", "match": { "motifTags": ["街", "帰り道", "道"] } },
+      { "label": "風を感じる曲", "match": { "motifTags": ["風", "空"] } },
+      { "label": "旅に出たくなる曲", "match": { "motifTags": ["旅路", "船"], "themeTags": ["冒険", "旅立ち"] } },
       { "label": "光を感じる曲", "match": { "motifTags": ["光", "太陽"], "themeTags": ["希望"] } },
       { "label": "星を眺めながら聴きたい曲", "match": { "motifTags": ["星", "月"] } }
 
+    ]
+  },
+  {
+    "title": "イベント",
+    "category": "季節のイベントで探す",
+    "description": "季節の行事や、大切な節目に合う曲を探してみよう！",
+    "icon": "calendar",
+    "items": [
+      { "label": "卒業の季節に聴きたい曲", "match": { "eventTags": ["卒業"], "themeTags": ["旅立ち", "友情", "記憶"] } },
+      { "label": "七夕の夜に聴きたい曲", "match": { "eventTags": ["七夕"], "motifTags": ["星", "月", "夜"] } },
+      { "label": "夏休みの思い出を感じる曲", "match": { "eventTags": ["夏休み"], "themeTags": ["青春", "記憶", "日常"] } },
+      { "label": "夏祭りで聴きたい曲", "match": { "eventTags": ["夏祭り"], "motifTags": ["夏", "花火", "夜"] } },
+      { "label": "ハロウィンに聴きたい曲", "match": { "eventTags": ["ハロウィン"] } },
+      { "label": "クリスマスに聴きたい曲", "match": { "eventTags": ["クリスマス"] } },
+      { "label": "誕生日を祝いたい時の曲", "match": { "eventTags": ["誕生日"] } },
+      { "label": "結婚のお祝いに聴きたい曲", "match": { "eventTags": ["結婚"] } }
     ]
   },
   {
@@ -67,7 +95,10 @@
       { "label": "大切な人を想う曲", "match": { "themeTags": ["恋愛", "家族", "絆", "記憶"] } },
       { "label": "夢に向かう曲", "match": { "themeTags": ["夢", "希望", "成長"] } },
       { "label": "再会を願う曲", "match": { "themeTags": ["再会", "約束", "記憶"] } },
-      { "label": "失ったものを想う曲", "match": { "themeTags": ["喪失", "別れ", "記憶"] } }
+      { "label": "失ったものを想う曲", "match": { "themeTags": ["喪失", "別れ", "記憶"] } },
+      { "label": "家族を想う曲", "match": { "themeTags": ["家族"] } },
+      { "label": "友情を感じる曲", "match": { "themeTags": ["友情"] } },
+      { "label": "何気ない日常を描いた曲", "match": { "themeTags": ["日常"] } }
     ]
   }
 ]

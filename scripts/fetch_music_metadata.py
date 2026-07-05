@@ -611,6 +611,7 @@ def migrate_record_schema(record):
             "themeTags": _string_list(existing_tags.get("themeTags")),
             "moodTags": _string_list(existing_tags.get("moodTags")),
             "motifTags": _string_list(existing_tags.get("motifTags")),
+            "eventTags": _string_list(existing_tags.get("eventTags")),
         },
         "tieUps": _migrate_tie_ups(tie_ups),
         "source": {
