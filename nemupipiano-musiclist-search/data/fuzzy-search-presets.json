@@ -40,7 +40,7 @@
       { "label": "夏に聴きたい曲", "match": { "motifTags": ["夏"] } },
       { "label": "秋に聴きたい曲", "match": { "motifTags": ["秋"] } },
       { "label": "冬に聴きたい曲", "match": { "motifTags": ["冬"] } },
-      { "label": "夜に聴きたい曲", "match": { "motifTags": ["夜", "夜空", "深夜"] } },
+      { "label": "夜に聴きたい曲", "match": { "motifTags": ["夜"] } },
       { "label": "空を見上げたくなる曲", "match": { "motifTags": ["空", "光", "太陽", "虹"] } },
       { "label": "雨の日に聴きたい曲", "match": { "motifTags": ["雨"] } },
       { "label": "海辺で聴きたい曲", "match": { "motifTags": ["海"] } },
