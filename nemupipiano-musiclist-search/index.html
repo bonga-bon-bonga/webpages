@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.0.0" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.0.1" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -49,7 +49,8 @@
           </h2>
           <p class="recommend-desc text-secondary mb-0">
             「ねむぴぴあの」で何をリクエストしよう…。曲を探すのが大変！という時のための検索・探索補助サイトとなっています。<br>
-            はじめて使う方は、画面のヘッダ部にある「使い方」を参照ください。
+            はじめて使う方は、画面のヘッダ部にある「使い方」を参照ください。<br>
+            (7/5 Update) 検索タブに「ふわっと検索」を追加しました！曲の雰囲気やテーマなどから、気になる曲を探してみましょう。
           </p>
         </section>
 
@@ -60,7 +61,10 @@
                 <img class="section-heading-icon" src="../lib/icon/kirakira.svg" alt="" aria-hidden="true">
                 今日のおすすめ
               </h2>
-              <p class="recommend-desc text-secondary mb-0">下の条件を選ぶ毎に、おすすめ曲を5件ランダム表示します。気になった曲はリクエストしてみましょう！</p>
+              <p class="recommend-desc text-secondary mb-0">
+                下の条件を選ぶ毎に、おすすめ曲を5件ランダム表示します。気になった曲はリクエストしてみましょう！<br>
+                ※「弾ける曲」は、曲リストの「弾ける」欄にチェックが入っている曲のみを対象としています。
+              </p>
             </div>
           </div>
           <div class="recommend-source-options" role="radiogroup" aria-label="今日のおすすめの選出方法">
@@ -326,7 +330,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.0.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.0.1 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -343,7 +347,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.0.0"></script>
+  <script src="./js/musiclist-search.js?v=2.0.1"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 </body>
