@@ -8,7 +8,11 @@
       { "label": "元気になれる曲", "match": { "moodTags": ["元気", "明るい", "楽しい"] } },
       { "label": "前を向きたい時の曲", "match": { "themeTags": ["希望", "成長", "旅立ち"] } },
       { "label": "勇気をもらえる曲", "match": { "themeTags": ["応援", "希望"], "moodTags": ["熱い"] } },
-      { "label": "ほっとしたい時の曲", "match": { "moodTags": ["優しい", "穏やか", "癒し"] } },
+      { "label": "思い切り気持ちを高めたい曲", "match": { "moodTags": ["熱い", "壮大"] } },
+      { "label": "自分らしく進みたい曲", "match": { "themeTags": ["自由", "成長"] } },
+      { "label": "ほっとしたい時の曲", "match": { "moodTags": ["穏やか", "癒し"] } },
+      { "label": "そっと寄り添ってほしい曲", "match": { "moodTags": ["優しい"], "themeTags": ["孤独", "祈り"] } },
+      { "label": "気持ちを切り替えたい曲", "match": { "themeTags": ["旅立ち", "再会", "希望"] } },
       { "label": "泣きたい時の曲", "match": { "moodTags": ["泣ける", "切ない"], "themeTags": ["喪失", "別れ"] } },
       { "label": "懐かしい気持ちになる曲", "match": { "moodTags": ["ノスタルジック"], "themeTags": ["記憶"] } },
       { "label": "ひとりで聴きたい曲", "match": { "themeTags": ["孤独", "記憶"], "moodTags": ["切ない", "ノスタルジック"] } }
@@ -26,6 +30,12 @@
       { "label": "透明感のある曲", "match": { "moodTags": ["透明感", "儚い"] } },
       { "label": "壮大な曲", "match": { "moodTags": ["壮大", "荘厳"] } },
       { "label": "おしゃれな曲", "match": { "moodTags": ["おしゃれ"] } },
+      { "label": "幻想的な曲", "match": { "moodTags": ["幻想的"] } },
+      { "label": "ミステリアスな曲", "match": { "moodTags": ["ミステリアス"] } },
+      { "label": "ダークで不穏な曲", "match": { "moodTags": ["ダーク", "不穏"] } },
+      { "label": "緊張感のある曲", "match": { "moodTags": ["緊張感"] } },
+      { "label": "コミカルで楽しい曲", "match": { "moodTags": ["コミカル", "楽しい"] } },
+      { "label": "爽やかな曲", "match": { "moodTags": ["爽やか"] } },
       { "label": "しっとり聴きたい曲", "match": { "moodTags": ["穏やか", "優しい", "切ない"] } },
       { "label": "静かに沁みる曲", "match": { "moodTags": ["切ない", "儚い", "透明感", "穏やか"] } }
     ]
@@ -47,6 +57,8 @@
       { "label": "花が似合う曲", "match": { "motifTags": ["花", "桜"] } },
       { "label": "コーヒーを飲みながら聴きたい曲", "match": { "motifTags": ["コーヒー"] } },
       { "label": "街を歩きながら聴きたい曲", "match": { "motifTags": ["街", "帰り道", "道"] } },
+      { "label": "風を感じる曲", "match": { "motifTags": ["風", "空"] } },
+      { "label": "旅に出たくなる曲", "match": { "motifTags": ["旅路", "船"], "themeTags": ["冒険", "旅立ち"] } },
       { "label": "光を感じる曲", "match": { "motifTags": ["光", "太陽"], "themeTags": ["希望"] } },
       { "label": "星を眺めながら聴きたい曲", "match": { "motifTags": ["星", "月"] } }
 
@@ -67,7 +79,10 @@
       { "label": "大切な人を想う曲", "match": { "themeTags": ["恋愛", "家族", "絆", "記憶"] } },
       { "label": "夢に向かう曲", "match": { "themeTags": ["夢", "希望", "成長"] } },
       { "label": "再会を願う曲", "match": { "themeTags": ["再会", "約束", "記憶"] } },
-      { "label": "失ったものを想う曲", "match": { "themeTags": ["喪失", "別れ", "記憶"] } }
+      { "label": "失ったものを想う曲", "match": { "themeTags": ["喪失", "別れ", "記憶"] } },
+      { "label": "家族を想う曲", "match": { "themeTags": ["家族"] } },
+      { "label": "友情を感じる曲", "match": { "themeTags": ["友情"] } },
+      { "label": "何気ない日常を描いた曲", "match": { "themeTags": ["日常"] } }
     ]
   }
 ]
