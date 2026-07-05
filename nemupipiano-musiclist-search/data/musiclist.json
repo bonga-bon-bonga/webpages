@@ -20453,15 +20453,33 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "記憶",
+        "成長",
+        "希望"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "切ない",
+        "優しい"
+      ],
+      "motifTags": [
+        "夜",
+        "空"
+      ],
       "eventTags": []
     },
     "sourceTitle": "夜空ノムコウ",
@@ -20489,14 +20507,31 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル",
+        "デュエット"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "青春",
+        "成長",
+        "記憶"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "優しい",
+        "明るい"
+      ],
+      "motifTags": [
+        "教室"
+      ],
       "eventTags": []
     },
     "sourceTitle": "想い出がいっぱい",
@@ -20523,14 +20558,30 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "友情",
+        "約束",
+        "再会"
+      ],
+      "moodTags": [
+        "優しい",
+        "透明感",
+        "泣ける"
+      ],
+      "motifTags": [
+        "声"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Your Best Friend",
@@ -20555,17 +20606,33 @@
     ],
     "releaseDecade": "1990年代",
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [
         "アニメ"
       ],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "冒険",
+        "夢",
+        "成長"
+      ],
+      "moodTags": [
+        "元気",
+        "熱い",
+        "疾走感"
+      ],
+      "motifTags": [
+        "旅路"
+      ],
       "eventTags": []
     },
     "sourceTitle": "めざせポケモンマスター",
@@ -20597,14 +20664,30 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "青春",
+        "恋愛",
+        "成長"
+      ],
+      "moodTags": [
+        "元気",
+        "かわいい",
+        "疾走感"
+      ],
+      "motifTags": [
+        "教室"
+      ],
       "eventTags": []
     },
     "sourceTitle": "乙女どもよ。",
@@ -20629,15 +20712,30 @@
     ],
     "releaseDecade": "2000年代",
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "戦い",
+        "記憶",
+        "喪失"
+      ],
+      "moodTags": [
+        "荘厳",
+        "壮大",
+        "緊張感"
+      ],
+      "motifTags": [
+        "炎",
+        "影"
+      ],
       "eventTags": []
     },
     "sourceTitle": "パリは燃えているか",
@@ -20664,15 +20762,31 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "喪失",
+        "記憶"
+      ],
+      "moodTags": [
+        "泣ける",
+        "優しい",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "花"
+      ],
       "eventTags": []
     },
     "sourceTitle": "木蘭の涙",
@@ -20700,15 +20814,33 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
-      "eventTags": []
+      "themeTags": [
+        "青春",
+        "自由",
+        "日常"
+      ],
+      "moodTags": [
+        "楽しい",
+        "爽やか",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夏",
+        "海",
+        "太陽"
+      ],
+      "eventTags": [
+        "夏休み"
+      ]
     },
     "sourceTitle": "夏の決心",
     "sourceArtist": "大江千里",
@@ -20735,14 +20867,28 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "家族",
+        "成長",
+        "希望"
+      ],
+      "moodTags": [
+        "泣ける",
+        "優しい",
+        "壮大"
+      ],
+      "motifTags": [
+        "道"
+      ],
       "eventTags": []
     },
     "sourceTitle": "未来へ",
@@ -20769,16 +20915,31 @@
     "releaseDecade": "1990年代",
     "classification": {
       "genres": [
-        "J-POP"
+        "ロック"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "青春",
+        "恋愛",
+        "日常"
+      ],
+      "moodTags": [
+        "元気",
+        "疾走感",
+        "爽やか"
+      ],
+      "motifTags": [
+        "夏",
+        "太陽"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Sunny Day Sunday",
@@ -20805,16 +20966,31 @@
     "releaseDecade": "1990年代",
     "classification": {
       "genres": [
-        "J-POP"
+        "ロック"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "青春",
+        "自由"
+      ],
+      "moodTags": [
+        "元気",
+        "疾走感",
+        "爽やか"
+      ],
+      "motifTags": [
+        "風",
+        "空"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Over Drive",
@@ -20841,16 +21017,31 @@
     "releaseDecade": "2000年代",
     "classification": {
       "genres": [
-        "J-POP"
+        "ロック"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "恋愛",
+        "自由"
+      ],
+      "moodTags": [
+        "楽しい",
+        "おしゃれ",
+        "爽やか"
+      ],
+      "motifTags": [
+        "夏",
+        "音楽"
+      ],
       "eventTags": []
     },
     "sourceTitle": "ミュージック・アワー",
@@ -20877,16 +21068,32 @@
     "releaseDecade": "1990年代",
     "classification": {
       "genres": [
-        "J-POP"
+        "ロック"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "自由",
+        "葛藤"
+      ],
+      "moodTags": [
+        "熱い",
+        "疾走感",
+        "かっこいい"
+      ],
+      "motifTags": [
+        "夏",
+        "太陽",
+        "炎"
+      ],
       "eventTags": []
     },
     "sourceTitle": "HOT LIMIT",
@@ -20912,16 +21119,29 @@
     "releaseDecade": "2010年代",
     "classification": {
       "genres": [
-        "ロック"
+        "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "日常"
+      ],
+      "moodTags": [
+        "コミカル",
+        "優しい",
+        "おしゃれ"
+      ],
+      "motifTags": [
+        "街"
+      ],
       "eventTags": []
     },
     "sourceTitle": "奥寺先輩のテーマ",
@@ -20951,13 +21171,27 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "秘密",
+        "日常"
+      ],
+      "moodTags": [
+        "ミステリアス",
+        "不穏",
+        "緊張感"
+      ],
+      "motifTags": [
+        "影",
+        "夜"
+      ],
       "eventTags": []
     },
     "sourceTitle": "ガラモン・ソング",
@@ -20986,14 +21220,30 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "青春",
+        "恋愛",
+        "成長"
+      ],
+      "moodTags": [
+        "爽やか",
+        "疾走感",
+        "明るい"
+      ],
+      "motifTags": [
+        "空"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Same Blue",
@@ -21019,16 +21269,29 @@
     "releaseDecade": "1990年代",
     "classification": {
       "genres": [
-        "ポップス"
+        "キッズ"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "家族",
+        "日常"
+      ],
+      "moodTags": [
+        "楽しい",
+        "優しい",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "笑顔"
+      ],
       "eventTags": []
     },
     "sourceTitle": "サザエさん一家",
@@ -21056,16 +21319,29 @@
     "releaseDecade": "1990年代",
     "classification": {
       "genres": [
-        "ポップス"
+        "キッズ"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "家族",
+        "日常"
+      ],
+      "moodTags": [
+        "楽しい",
+        "優しい",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "笑顔"
+      ],
       "eventTags": []
     },
     "sourceTitle": "サザエさん",
@@ -21094,14 +21370,29 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "青春",
+        "恋愛",
+        "記憶"
+      ],
+      "moodTags": [
+        "元気",
+        "爽やか",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夏",
+        "海"
+      ],
       "eventTags": []
     },
     "sourceTitle": "サマータイム ブルース",
@@ -21130,14 +21421,29 @@
       "genres": [
         "ロック"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "孤独",
+        "葛藤",
+        "喪失"
+      ],
+      "moodTags": [
+        "ダーク",
+        "切ない",
+        "不穏"
+      ],
+      "motifTags": [
+        "夜",
+        "影"
+      ],
       "eventTags": []
     },
     "sourceTitle": "I'm a mess",
@@ -21163,16 +21469,30 @@
     "releaseDecade": "1980年代",
     "classification": {
       "genres": [
-        "ロック"
+        "歌謡曲"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "秘密",
+        "葛藤"
+      ],
+      "moodTags": [
+        "おしゃれ",
+        "切ない",
+        "ミステリアス"
+      ],
+      "motifTags": [
+        "夜"
+      ],
       "eventTags": []
     },
     "sourceTitle": "ワインレッドの心",
@@ -21200,14 +21520,30 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "夢",
+        "希望",
+        "成長"
+      ],
+      "moodTags": [
+        "壮大",
+        "泣ける",
+        "爽やか"
+      ],
+      "motifTags": [
+        "空",
+        "風"
+      ],
       "eventTags": []
     },
     "sourceTitle": "カイト",
@@ -21232,15 +21568,32 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "J-POP"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "男性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "自由",
+        "希望",
+        "成長"
+      ],
+      "moodTags": [
+        "明るい",
+        "優しい",
+        "泣ける"
+      ],
+      "motifTags": [
+        "花"
+      ],
       "eventTags": []
     },
     "sourceTitle": "世界に一つだけの花",
@@ -21277,14 +21630,30 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "記憶",
+        "恋愛",
+        "再会"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "切ない",
+        "爽やか"
+      ],
+      "motifTags": [
+        "街"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Hello, Again ～昔からある場所～",
@@ -21309,17 +21678,35 @@
     ],
     "releaseDecade": "2020年代",
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "ロック"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [
         "アニメ"
       ],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "友情",
+        "夢",
+        "孤独"
+      ],
+      "moodTags": [
+        "壮大",
+        "切ない",
+        "熱い"
+      ],
+      "motifTags": [
+        "星",
+        "夜",
+        "空"
+      ],
       "eventTags": []
     },
     "sourceTitle": "星座になれたら",
@@ -21345,15 +21732,31 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "ポップス"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "応援",
+        "希望",
+        "絆"
+      ],
+      "moodTags": [
+        "壮大",
+        "優しい",
+        "泣ける"
+      ],
+      "motifTags": [
+        "光"
+      ],
       "eventTags": []
     },
     "sourceTitle": "You Raise Me Up",
@@ -21383,12 +21786,25 @@
       ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "片想い",
+        "青春",
+        "記憶"
+      ],
+      "moodTags": [
+        "切ない",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夏",
+        "花火",
+        "夜"
+      ],
       "eventTags": [
         "夏祭り"
       ]
@@ -21415,16 +21831,28 @@
     "releaseDecade": "1970年代",
     "classification": {
       "genres": [
-        "劇伴音楽"
+        "ポップス"
       ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "希望",
+        "自由",
+        "日常"
+      ],
+      "moodTags": [
+        "明るい",
+        "優しい",
+        "爽やか"
+      ],
+      "motifTags": [
+        "空"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Top of the World",
@@ -21453,15 +21881,31 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "ポップス"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "孤独",
+        "憧れ"
+      ],
+      "moodTags": [
+        "切ない",
+        "優しい",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夜"
+      ],
       "eventTags": []
     },
     "sourceTitle": "青春の輝き(I Need to Be in Love)",
@@ -21485,15 +21929,30 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "ポップス"
+      ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "希望",
+        "友情"
+      ],
+      "moodTags": [
+        "楽しい",
+        "優しい"
+      ],
+      "motifTags": [
+        "音楽",
+        "声"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Sing",
@@ -21523,14 +21982,32 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "アイドルポップ"
+      ],
+      "sourceCategories": [
+        "ドラマ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "成長",
+        "希望",
+        "日常"
+      ],
+      "moodTags": [
+        "優しい",
+        "明るい",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "空",
+        "道"
+      ],
       "eventTags": []
     },
     "sourceTitle": "365日の紙飛行機",
@@ -21557,14 +22034,28 @@
       "genres": [
         "ロック"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "喪失",
+        "祈り"
+      ],
+      "moodTags": [
+        "泣ける",
+        "壮大",
+        "ダーク"
+      ],
+      "motifTags": [
+        "夜"
+      ],
       "eventTags": []
     },
     "sourceTitle": "CRUCIFY MY LOVE",
@@ -21589,15 +22080,29 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "メタル"
+      ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "葛藤",
+        "戦い",
+        "喪失"
+      ],
+      "moodTags": [
+        "熱い",
+        "ダーク",
+        "疾走感"
+      ],
+      "motifTags": [
+        "炎"
+      ],
       "eventTags": []
     },
     "sourceTitle": "紅",
@@ -21625,14 +22130,29 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "記憶",
+        "青春"
+      ],
+      "moodTags": [
+        "儚い",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夏",
+        "夜",
+        "花火"
+      ],
       "eventTags": [
         "夏祭り"
       ]
@@ -21661,16 +22181,32 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "イージーリスニング"
+      ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
-      "eventTags": []
+      "themeTags": [
+        "祈り",
+        "希望"
+      ],
+      "moodTags": [
+        "荘厳",
+        "癒し",
+        "壮大"
+      ],
+      "motifTags": [
+        "光",
+        "雪"
+      ],
+      "eventTags": [
+        "クリスマス"
+      ]
     },
     "sourceTitle": "天使のくれた奇跡",
     "sourceArtist": "Libera",
@@ -21697,15 +22233,31 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "エレクトロポップ"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
-      "eventTags": []
+      "themeTags": [
+        "自由",
+        "日常"
+      ],
+      "moodTags": [
+        "かっこいい",
+        "疾走感",
+        "熱い"
+      ],
+      "motifTags": [
+        "舞台",
+        "夜"
+      ],
+      "eventTags": [
+        "ハロウィン"
+      ]
     },
     "sourceTitle": "唱",
     "sourceArtist": "Ado",
@@ -21732,14 +22284,28 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "ポップロック"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "葛藤",
+        "自由",
+        "戦い"
+      ],
+      "moodTags": [
+        "ダーク",
+        "熱い",
+        "疾走感"
+      ],
+      "motifTags": [
+        "声"
+      ],
       "eventTags": []
     },
     "sourceTitle": "うっせぇわ",
@@ -21764,15 +22330,31 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "キッズ"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "冒険",
+        "友情",
+        "日常"
+      ],
+      "moodTags": [
+        "楽しい",
+        "優しい"
+      ],
+      "motifTags": [
+        "空",
+        "扉"
+      ],
       "eventTags": []
     },
     "sourceTitle": "ドラえもんのうた",
@@ -21802,14 +22384,29 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "アイドルポップ"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "応援",
+        "成長",
+        "希望"
+      ],
+      "moodTags": [
+        "元気",
+        "熱い",
+        "かわいい"
+      ],
+      "motifTags": [
+        "笑顔"
+      ],
       "eventTags": []
     },
     "sourceTitle": "倍倍FIGHT!",
@@ -21834,15 +22431,28 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "メタル"
+      ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "葛藤"
+      ],
+      "moodTags": [
+        "熱い",
+        "疾走感",
+        "コミカル"
+      ],
+      "motifTags": [
+        "夏"
+      ],
       "eventTags": []
     },
     "sourceTitle": "恋のメガラバ",
@@ -21870,14 +22480,31 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "成長",
+        "希望",
+        "戦い"
+      ],
+      "moodTags": [
+        "泣ける",
+        "熱い",
+        "壮大"
+      ],
+      "motifTags": [
+        "朝",
+        "道"
+      ],
       "eventTags": []
     },
     "sourceTitle": "決意の朝に",
@@ -21901,17 +22528,34 @@
     ],
     "releaseDecade": "2020年代",
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [
         "アニメ"
       ],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "喪失",
+        "記憶"
+      ],
+      "moodTags": [
+        "儚い",
+        "透明感",
+        "優しい"
+      ],
+      "motifTags": [
+        "雪",
+        "夜"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Violet Snow",
@@ -21936,17 +22580,34 @@
     ],
     "releaseDecade": "2010年代",
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [
         "アニメ"
       ],
-      "vocalTypes": []
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "祈り",
+        "絆"
+      ],
+      "moodTags": [
+        "泣ける",
+        "優しい",
+        "透明感"
+      ],
+      "motifTags": [
+        "手紙",
+        "道"
+      ],
       "eventTags": []
     },
     "sourceTitle": "みちしるべ",
@@ -21972,17 +22633,34 @@
     ],
     "releaseDecade": "2020年代",
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [
-        "アニメ"
+      "genres": [
+        "J-POP"
       ],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "絆",
+        "記憶"
+      ],
+      "moodTags": [
+        "壮大",
+        "泣ける",
+        "優しい"
+      ],
+      "motifTags": [
+        "光"
+      ],
       "eventTags": []
     },
     "sourceTitle": "WILL",
@@ -22009,14 +22687,30 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "記憶",
+        "青春"
+      ],
+      "moodTags": [
+        "切ない",
+        "優しい",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夏"
+      ],
       "eventTags": []
     },
     "sourceTitle": "KissHug",
@@ -22044,14 +22738,31 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "再会",
+        "記憶"
+      ],
+      "moodTags": [
+        "爽やか",
+        "泣ける",
+        "壮大"
+      ],
+      "motifTags": [
+        "星"
+      ],
       "eventTags": []
     },
     "sourceTitle": "相思相愛",
@@ -22077,15 +22788,31 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "戦い",
+        "冒険"
+      ],
+      "moodTags": [
+        "緊張感",
+        "壮大",
+        "ダーク"
+      ],
+      "motifTags": [
+        "炎",
+        "影"
+      ],
       "eventTags": []
     },
     "sourceTitle": "Zoltraak",
@@ -22112,15 +22839,30 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
+      "genres": [
+        "キッズ"
+      ],
       "subgenres": [],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "孤独",
+        "自由",
+        "冒険"
+      ],
+      "moodTags": [
+        "壮大",
+        "楽しい",
+        "コミカル"
+      ],
+      "motifTags": [
+        "怪獣",
+        "海"
+      ],
       "eventTags": []
     },
     "sourceTitle": "怪獣のバラード",
@@ -22146,16 +22888,30 @@
     "releaseDecade": "1980年代",
     "classification": {
       "genres": [
-        "ポップス"
+        "歌謡曲"
       ],
-      "subgenres": [],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "記憶",
+        "憧れ"
+      ],
+      "moodTags": [
+        "壮大",
+        "泣ける",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "光"
+      ],
       "eventTags": []
     },
     "sourceTitle": "愛のメモリー",
@@ -22181,15 +22937,33 @@
     ],
     "releaseDecade": null,
     "classification": {
-      "genres": [],
-      "subgenres": [],
+      "genres": [
+        "ジャズ"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
       "sourceCategories": [],
-      "vocalTypes": []
+      "vocalTypes": [
+        "男性ボーカル",
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "祈り",
+        "戦い"
+      ],
+      "moodTags": [
+        "優しい",
+        "ミステリアス",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "炎",
+        "夜"
+      ],
       "eventTags": []
     },
     "sourceTitle": "I Don't Want to Set the World on Fire",
