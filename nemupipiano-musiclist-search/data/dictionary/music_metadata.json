@@ -64,10 +64,9 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ジャズ"
       ],
       "subgenres": [
-        "ジャズ",
         "フュージョン"
       ],
       "sourceCategories": [
@@ -79,13 +78,13 @@
     },
     "tags": {
       "themeTags": [
-        "冒険",
-        "スリル"
+        "冒険"
       ],
       "moodTags": [
         "熱い",
         "疾走感",
-        "楽しい"
+        "楽しい",
+        "緊張感"
       ],
       "motifTags": [
         "夜",
@@ -169,7 +168,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ",
@@ -1116,11 +1115,9 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
-      ],
-      "subgenres": [
         "ジャズ"
       ],
+      "subgenres": [],
       "sourceCategories": [
         "アニメ"
       ],
@@ -1130,8 +1127,7 @@
     },
     "tags": {
       "themeTags": [
-        "冒険",
-        "スリル"
+        "冒険"
       ],
       "moodTags": [
         "かっこいい",
@@ -1519,7 +1515,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -1625,7 +1621,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -1729,7 +1725,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -1782,7 +1778,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -1833,7 +1829,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -1885,7 +1881,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -2043,7 +2039,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "キッズ"
       ],
       "subgenres": [
         "ポップロック"
@@ -2094,7 +2090,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -2147,7 +2143,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -2203,9 +2199,7 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [
-        "ジャズ"
-      ],
+      "subgenres": [],
       "sourceCategories": [
         "オリジナル"
       ],
@@ -2247,7 +2241,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "劇伴音楽"
       ],
       "subgenres": [
         "バラード"
@@ -2612,7 +2606,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -2713,7 +2707,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -3173,7 +3167,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -3630,7 +3624,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "キッズ"
       ],
       "subgenres": [
         "アイドルポップ"
@@ -5958,7 +5952,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -6642,7 +6636,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "キッズ"
       ],
       "subgenres": [
         "ポップロック"
@@ -6791,7 +6785,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -6945,7 +6939,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -8243,7 +8237,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -8586,7 +8580,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -8925,7 +8919,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -9084,7 +9078,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -9371,7 +9365,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -9422,7 +9416,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -9626,7 +9620,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -9680,7 +9674,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -10034,8 +10028,7 @@
     },
     "tags": {
       "themeTags": [
-        "戦い",
-        "スリル"
+        "戦い"
       ],
       "moodTags": [
         "荘厳",
@@ -10359,7 +10352,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -10506,7 +10499,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -10868,7 +10861,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -11262,7 +11255,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -11592,7 +11585,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -11885,7 +11878,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -11938,7 +11931,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ポップス"
       ],
       "subgenres": [
         "ポップロック"
@@ -11990,7 +11983,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -12041,7 +12034,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -12093,7 +12086,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -12392,7 +12385,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -12447,7 +12440,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -12501,7 +12494,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -12606,7 +12599,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -12799,7 +12792,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -14042,7 +14035,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -14426,7 +14419,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -14627,7 +14620,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -14734,7 +14727,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -14784,7 +14777,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -15034,7 +15027,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -15185,7 +15178,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -15238,7 +15231,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "アイドルポップ"
@@ -15488,7 +15481,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -15631,7 +15624,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -15871,7 +15864,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ポップス"
       ],
       "subgenres": [
         "ポップロック"
@@ -15925,7 +15918,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -15979,7 +15972,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "キッズ"
       ],
       "subgenres": [
         "アイドルポップ"
@@ -16234,7 +16227,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -16631,7 +16624,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -16684,7 +16677,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -16737,7 +16730,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "シティポップ"
@@ -16790,7 +16783,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "エレクトロポップ"
@@ -17893,7 +17886,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -17948,7 +17941,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "アイドルポップ"
@@ -18007,7 +18000,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -18061,7 +18054,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -18121,7 +18114,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "キッズ"
       ],
       "subgenres": [],
       "sourceCategories": [
@@ -18173,7 +18166,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "バラード"
@@ -18436,9 +18429,7 @@
       "genres": [
         "劇伴音楽"
       ],
-      "subgenres": [
-        "ジャズ"
-      ],
+      "subgenres": [],
       "sourceCategories": [
         "ドラマ",
         "映画"
@@ -18449,7 +18440,6 @@
     },
     "tags": {
       "themeTags": [
-        "スリル",
         "戦い",
         "秘密"
       ],
@@ -18608,8 +18598,7 @@
     "tags": {
       "themeTags": [
         "戦い",
-        "友情",
-        "スリル"
+        "友情"
       ],
       "moodTags": [
         "楽しい",
@@ -19627,7 +19616,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -19777,7 +19766,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "ロック"
       ],
       "subgenres": [
         "ポップロック"
@@ -19831,7 +19820,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
@@ -20035,7 +20024,7 @@
     },
     "classification": {
       "genres": [
-        "アニソン"
+        "J-POP"
       ],
       "subgenres": [
         "ポップロック"
