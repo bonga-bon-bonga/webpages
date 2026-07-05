@@ -24,6 +24,10 @@ const els = {
   searchScopes: document.querySelectorAll("[name='searchScope']"),
   displayColumns: document.querySelectorAll("[name='displayColumns']"),
   genre: document.getElementById("genre"),
+  subgenre: document.getElementById("subgenre"),
+  sourceCategory: document.getElementById("sourceCategory"),
+  vocalType: document.getElementById("vocalType"),
+  releaseDecade: document.getElementById("releaseDecade"),
   reload: document.getElementById("reload"),
   clearFavorites: document.getElementById("clearFavorites"),
   favoriteFilter: document.getElementById("favoriteFilter"),
@@ -319,7 +323,7 @@ async function loadSheet({ showReloadFeedback = false } = {}) {
       loadFuzzySearchPresets(),
     ]);
     migrateFavoriteKeys();
-    setupGenreOptions(songs);
+    setupSearchDetailOptions(songs);
     pickHomeRecommendations();
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
     renderHome();
@@ -346,15 +350,42 @@ function normalizeCellText(value) {
     .trim();
 }
 
-// 曲データからジャンルの選択肢を生成
-function setupGenreOptions(items) {
-  const current = els.genre.value;
-  const genres = [...new Set(items.map(item => item.genre).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ja"));
+function setupSelectOptions(select, values, emptyLabel) {
+  const current = select.value;
+  const options = [...new Set(values.filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "ja"));
+  select.innerHTML = `<option value="">${escapeHtml(emptyLabel)}</option>` +
+    options.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("");
+  if (options.includes(current)) select.value = current;
+}
 
-  els.genre.innerHTML = '<option value="">すべてのジャンル</option>' +
-    genres.map(genre => `<option value="${escapeHtml(genre)}">${escapeHtml(genre)}</option>`).join("");
-
-  if (genres.includes(current)) els.genre.value = current;
+// 曲データから詳細検索の選択肢を生成
+function setupSearchDetailOptions(items) {
+  setupSelectOptions(
+    els.genre,
+    items.map(item => item.genre),
+    "すべてのジャンル"
+  );
+  setupSelectOptions(
+    els.subgenre,
+    items.flatMap(item => normalizeStringArray(item.classification?.subgenres)),
+    "すべてのサブジャンル"
+  );
+  setupSelectOptions(
+    els.sourceCategory,
+    items.flatMap(item => normalizeStringArray(item.classification?.sourceCategories)),
+    "すべての出典カテゴリ"
+  );
+  setupSelectOptions(
+    els.vocalType,
+    items.flatMap(item => normalizeStringArray(item.classification?.vocalTypes)),
+    "すべてのボーカルタイプ"
+  );
+  setupSelectOptions(
+    els.releaseDecade,
+    items.map(item => item.releaseDecade),
+    "すべての年代"
+  );
 }
 
 // テキストを正規化して検索キーを作成する。全角半角を統一し、小文字に変換。
@@ -430,8 +461,18 @@ function hasSearchKeyword() {
   return createSearchKey(els.search.value) !== "";
 }
 
+function hasSearchDetailFilter() {
+  return Boolean(
+    els.genre.value
+    || els.subgenre.value
+    || els.sourceCategory.value
+    || els.vocalType.value
+    || els.releaseDecade.value
+  );
+}
+
 function isSearchGuideDefaultState() {
-  return !hasSearchKeyword() && !favoriteOnly;
+  return !hasSearchKeyword() && !favoriteOnly && !hasSearchDetailFilter();
 }
 
 function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
@@ -447,15 +488,33 @@ function filteredSongs() {
   const keyword = createSearchKey(els.search.value);
   const searchScope = getSearchScope();
   const genre = els.genre.value;
+  const subgenre = els.subgenre.value;
+  const sourceCategory = els.sourceCategory.value;
+  const vocalType = els.vocalType.value;
+  const releaseDecade = els.releaseDecade.value;
 
-  if (!keyword && !favoriteOnly) return [];
+  if (!keyword && !favoriteOnly && !hasSearchDetailFilter()) return [];
 
   return songs.filter(song => {
     const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
     const genreOk = !genre || song.genre === genre;
+    const subgenreOk = !subgenre
+      || normalizeStringArray(song.classification?.subgenres).includes(subgenre);
+    const sourceCategoryOk = !sourceCategory
+      || normalizeStringArray(song.classification?.sourceCategories).includes(sourceCategory);
+    const vocalTypeOk = !vocalType
+      || normalizeStringArray(song.classification?.vocalTypes).includes(vocalType);
+    const releaseDecadeOk = !releaseDecade || song.releaseDecade === releaseDecade;
     const playableOk = !playableOnly || isPlayable(song);
     const favoriteOk = !favoriteOnly || isFavorite(song);
-    return keywordOk && genreOk && playableOk && favoriteOk;
+    return keywordOk
+      && genreOk
+      && subgenreOk
+      && sourceCategoryOk
+      && vocalTypeOk
+      && releaseDecadeOk
+      && playableOk
+      && favoriteOk;
   });
 }
 
@@ -965,6 +1024,9 @@ els.displayColumns.forEach(column => {
   });
 });
 els.genre.addEventListener("change", render);
+[els.subgenre, els.sourceCategory, els.vocalType, els.releaseDecade].forEach(select => {
+  select.addEventListener("change", render);
+});
 els.playableFilter.addEventListener("click", () => {
   playableOnly = !playableOnly;
   localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
