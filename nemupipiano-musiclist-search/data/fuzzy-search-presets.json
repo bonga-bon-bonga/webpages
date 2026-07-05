@@ -65,6 +65,22 @@
     ]
   },
   {
+    "title": "イベント",
+    "category": "季節のイベントで探す",
+    "description": "季節の行事や、大切な節目に合う曲を探してみよう！",
+    "icon": "calendar",
+    "items": [
+      { "label": "卒業の季節に聴きたい曲", "match": { "eventTags": ["卒業"], "themeTags": ["旅立ち", "友情", "記憶"] } },
+      { "label": "七夕の夜に聴きたい曲", "match": { "eventTags": ["七夕"], "motifTags": ["星", "月", "夜"] } },
+      { "label": "夏休みの思い出を感じる曲", "match": { "eventTags": ["夏休み"], "themeTags": ["青春", "記憶", "日常"] } },
+      { "label": "夏祭りで聴きたい曲", "match": { "eventTags": ["夏祭り"], "motifTags": ["夏", "花火", "夜"] } },
+      { "label": "ハロウィンに聴きたい曲", "match": { "eventTags": ["ハロウィン"] } },
+      { "label": "クリスマスに聴きたい曲", "match": { "eventTags": ["クリスマス"] } },
+      { "label": "誕生日を祝いたい時の曲", "match": { "eventTags": ["誕生日"] } },
+      { "label": "結婚のお祝いに聴きたい曲", "match": { "eventTags": ["結婚"] } }
+    ]
+  },
+  {
     "title": "物語",
     "category": "テーマで探す",
     "description": "恋、青春、旅立ちなど、曲の物語やテーマから探してみよう！",
