@@ -93,6 +93,7 @@ let fuzzySearchMode = false;
 let activeFuzzyCategoryIndex = 0;
 let activeFuzzyItemIndex = null;
 let fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
+let pendingAnimeDramaValue = "";
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
 function escapeHtml(value) {
@@ -110,6 +111,19 @@ function normalizeStringArray(values) {
   return values
     .map(value => normalizeCellText(value))
     .filter(Boolean);
+}
+
+function normalizeTieUps(values) {
+  if (!Array.isArray(values)) return [];
+
+  return values
+    .filter(value => value && typeof value === "object" && !Array.isArray(value))
+    .map(value => ({
+      series: normalizeCellText(value.series),
+      workTitle: normalizeCellText(value.workTitle),
+      role: normalizeCellText(value.role),
+    }))
+    .filter(value => value.series || value.workTitle || value.role);
 }
 
 function normalizeMusiclistItems(data) {
@@ -162,6 +176,7 @@ function normalizeMusiclistSong(item) {
     tags,
     metadataTags,
     classification,
+    tieUps: normalizeTieUps(item?.tieUps),
     releaseDecade: normalizeCellText(item?.releaseDecade),
     playable: normalizeCellText(item?.playable),
     genre,
@@ -373,6 +388,65 @@ function setupSelectOptions(select, values, emptyLabel) {
   if (options.includes(current)) select.value = current;
 }
 
+function animeDramaValue(category, series) {
+  return `${category}|${series}`;
+}
+
+function parseAnimeDramaValue(value) {
+  const [category = "", ...seriesParts] = String(value || "").split("|");
+  return {
+    category,
+    series: seriesParts.join("|"),
+  };
+}
+
+function animeDramaOptions(items) {
+  const options = [];
+  const seen = new Set();
+
+  items.forEach(item => {
+    const sourceCategories = sourceCategoriesFor(item);
+    const categories = ["アニメ", "ドラマ"].filter(category => sourceCategories.includes(category));
+    if (categories.length === 0) return;
+
+    (item.tieUps || []).forEach(tieUp => {
+      const series = normalizeCellText(tieUp.series);
+      if (!series) return;
+
+      categories.forEach(category => {
+        const value = animeDramaValue(category, series);
+        if (seen.has(value)) return;
+        seen.add(value);
+        options.push({
+          category,
+          series,
+          value,
+          label: `[${category}] ${series}`,
+        });
+      });
+    });
+  });
+
+  return options.sort((left, right) => {
+    const categoryOrder = { "アニメ": 0, "ドラマ": 1 };
+    return (categoryOrder[left.category] ?? 9) - (categoryOrder[right.category] ?? 9)
+      || left.series.localeCompare(right.series, "ja");
+  });
+}
+
+function setupAnimeDramaOptions(items) {
+  const current = els.animeDrama.value || pendingAnimeDramaValue;
+  const options = animeDramaOptions(items);
+  els.animeDrama.innerHTML = '<option value="">すべて</option>' +
+    options.map(option => (
+      `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`
+    )).join("");
+  if (options.some(option => option.value === current)) {
+    els.animeDrama.value = current;
+  }
+  pendingAnimeDramaValue = "";
+}
+
 // 曲データから詳細検索の選択肢を生成
 function setupSearchDetailOptions(items) {
   setupSelectOptions(
@@ -390,6 +464,7 @@ function setupSearchDetailOptions(items) {
     items.flatMap(item => normalizeStringArray(item.classification?.sourceCategories)),
     "すべての出典カテゴリ"
   );
+  setupAnimeDramaOptions(items);
   setupSelectOptions(
     els.vocalType,
     items.flatMap(item => normalizeStringArray(item.classification?.vocalTypes)),
@@ -504,6 +579,12 @@ function sourceCategoriesFor(song) {
 
 function matchesAnimeDramaFilter(song, filter) {
   if (!filter) return true;
+  const { category, series } = parseAnimeDramaValue(filter);
+  if (category && series) {
+    return sourceCategoriesFor(song).includes(category)
+      && (song.tieUps || []).some(tieUp => normalizeCellText(tieUp.series) === series);
+  }
+
   const sourceCategories = sourceCategoriesFor(song);
   if (filter === "animeOrDrama") {
     return sourceCategories.includes("アニメ") || sourceCategories.includes("ドラマ");
@@ -1385,9 +1466,7 @@ els.sortOrder.value = ["playable", "no", "title", "artist", "favorite", "copyCou
   ? savedSortOrder
   : "playable";
 const savedAnimeDrama = localStorage.getItem(ANIME_DRAMA_KEY);
-els.animeDrama.value = ["", "animeOrDrama", "アニメ", "ドラマ"].includes(savedAnimeDrama)
-  ? savedAnimeDrama
-  : "";
+pendingAnimeDramaValue = savedAnimeDrama || "";
 homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
   ? localStorage.getItem(HOME_RANDOM_SOURCE_KEY)
   : "all";

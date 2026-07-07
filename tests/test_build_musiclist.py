@@ -96,6 +96,7 @@ class BuildMusiclistTests(unittest.TestCase):
                     "releaseDecade": "1990年代",
                     "classification": {"custom": ["keep"], "genres": ["旧"]},
                     "tags": {"customTags": ["keep"], "themeTags": ["旧"]},
+                    "tieUps": [{"series": "Old", "workTitle": "Old Work", "role": "旧"}],
                 }
             },
             search_enhancements={"titleCorrections": {}, "artistCorrections": {}},
@@ -104,6 +105,7 @@ class BuildMusiclistTests(unittest.TestCase):
                     "releaseDecade": "2020年代",
                     "classification": {"genres": ["J-Pop"], "vocalTypes": []},
                     "tags": {"themeTags": ["希望"], "moodTags": ["明るい"]},
+                    "tieUps": [{"series": "Series", "workTitle": "Work", "role": "主題歌"}],
                 }
             },
         )
@@ -121,6 +123,10 @@ class BuildMusiclistTests(unittest.TestCase):
                 "moodTags": ["明るい"],
             },
         )
+        self.assertEqual(
+            musiclist[0]["tieUps"],
+            [{"series": "Series", "workTitle": "Work", "role": "主題歌"}],
+        )
 
     def test_preserves_existing_metadata_when_source_value_is_missing(self):
         rows = [
@@ -134,6 +140,7 @@ class BuildMusiclistTests(unittest.TestCase):
                     "releaseDecade": "2000年代",
                     "classification": {"genres": ["ロック"]},
                     "tags": {"themeTags": ["青春"]},
+                    "tieUps": [{"series": "Existing", "workTitle": "Existing Work", "role": "OP"}],
                 }
             },
             search_enhancements={"titleCorrections": {}, "artistCorrections": {}},
@@ -143,6 +150,10 @@ class BuildMusiclistTests(unittest.TestCase):
         self.assertEqual(musiclist[0]["releaseDecade"], "2000年代")
         self.assertEqual(musiclist[0]["classification"], {"genres": ["ロック"]})
         self.assertEqual(musiclist[0]["tags"], {"themeTags": ["青春"]})
+        self.assertEqual(
+            musiclist[0]["tieUps"],
+            [{"series": "Existing", "workTitle": "Existing Work", "role": "OP"}],
+        )
 
     def test_metadata_changes_affect_input_hash(self):
         sheet_hash = "sheet-hash"
@@ -159,6 +170,7 @@ class BuildMusiclistTests(unittest.TestCase):
             "releaseDecade": "2010年代",
             "classification": {"genres": ["J-Pop"]},
             "tags": {"themeTags": ["恋愛"]},
+            "tieUps": [{"series": "Series", "workTitle": "Work", "role": "OP"}],
         }
         normalized = self.module.normalize_entry(entry)
         normalized_again = self.module.normalize_entry(normalized)
@@ -167,6 +179,10 @@ class BuildMusiclistTests(unittest.TestCase):
         self.assertEqual(normalized_again["classification"], {"genres": ["J-Pop"]})
         self.assertEqual(
             normalized_again["metadataTags"], {"themeTags": ["恋愛"]}
+        )
+        self.assertEqual(
+            normalized_again["tieUps"],
+            [{"series": "Series", "workTitle": "Work", "role": "OP"}],
         )
 
     def test_loads_three_sheets_and_combines_hash_input(self):

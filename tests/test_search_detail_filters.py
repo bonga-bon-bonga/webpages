@@ -18,6 +18,17 @@ def detail_matches(song, filters):
         selected = filters.get(field)
         if selected and selected not in classification.get(field, []):
             return False
+    anime_drama = filters.get("animeDrama")
+    if anime_drama:
+        category, series = anime_drama.split("|", 1)
+        if category not in classification.get("sourceCategories", []):
+            return False
+        if not any(
+            tie_up.get("series") == series
+            for tie_up in song.get("tieUps", [])
+            if isinstance(tie_up, dict)
+        ):
+            return False
     return not filters.get("releaseDecade") or (
         song.get("releaseDecade") == filters["releaseDecade"]
     )
@@ -64,6 +75,31 @@ class SearchDetailFilterTests(unittest.TestCase):
                 for song in self.songs
             )
         )
+
+    def test_anime_drama_filter_uses_tie_up_series(self):
+        options = [
+            (
+                category,
+                tie_up.get("series"),
+            )
+            for song in self.songs
+            for category in ("アニメ", "ドラマ")
+            if category in song.get("classification", {}).get("sourceCategories", [])
+            for tie_up in song.get("tieUps", [])
+            if isinstance(tie_up, dict) and tie_up.get("series")
+        ]
+        self.assertTrue(options)
+
+        category, series = options[0]
+        matched = [
+            song
+            for song in self.songs
+            if detail_matches(song, {"animeDrama": f"{category}|{series}"})
+        ]
+        self.assertTrue(matched)
+        for song in matched:
+            self.assertIn(category, song["classification"]["sourceCategories"])
+            self.assertTrue(any(tie_up.get("series") == series for tie_up in song["tieUps"]))
 
 
 if __name__ == "__main__":

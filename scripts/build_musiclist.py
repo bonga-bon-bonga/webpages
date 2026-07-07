@@ -161,6 +161,7 @@ def normalize_entry(value):
             "releaseDecade": None,
             "classification": {},
             "metadataTags": {},
+            "tieUps": [],
         }
 
     metadata_tags = value.get("metadataTags")
@@ -169,6 +170,8 @@ def normalize_entry(value):
     metadata_tags = metadata_tags if isinstance(metadata_tags, dict) else {}
     classification = value.get("classification")
     classification = classification if isinstance(classification, dict) else {}
+    tie_ups = value.get("tieUps")
+    tie_ups = tie_ups if isinstance(tie_ups, list) else []
 
     # タイトルとアーティスト名の検索ワードをユニークにして返す
     return {
@@ -189,6 +192,7 @@ def normalize_entry(value):
         "releaseDecade": value.get("releaseDecade"),
         "classification": classification,
         "metadataTags": metadata_tags,
+        "tieUps": tie_ups,
     }
 
 
@@ -369,10 +373,13 @@ def load_music_metadata():
         classification = classification if isinstance(classification, dict) else {}
         tags = record.get("tags")
         tags = tags if isinstance(tags, dict) else {}
+        tie_ups = record.get("tieUps")
+        tie_ups = tie_ups if isinstance(tie_ups, list) else []
         entries[song_key(title, artist)] = {
             "releaseDecade": metadata.get("releaseDecade"),
             "classification": classification,
             "tags": tags,
+            "tieUps": tie_ups,
         }
 
     return entries, data
@@ -439,6 +446,9 @@ def build_musiclist(
         metadata_tags = merge_mapping(
             existing["metadataTags"], metadata.get("tags")
         )
+        tie_ups = metadata.get("tieUps")
+        if not isinstance(tie_ups, list):
+            tie_ups = existing["tieUps"]
         genre = pick_value(row, "ジャンル", "genre")
 
         output_items.append(
@@ -455,6 +465,7 @@ def build_musiclist(
                 "releaseDecade": release_decade,
                 "classification": classification,
                 "tags": metadata_tags,
+                "tieUps": tie_ups,
                 "sourceTitle": source_title,
                 "sourceArtist": source_artist,
                 "playable": pick_value(row, "弾ける曲", "playable"),
