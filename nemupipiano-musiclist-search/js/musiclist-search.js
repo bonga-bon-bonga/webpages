@@ -1,6 +1,7 @@
 const MUSICLIST_JSON_PATH = "./data/musiclist.json";
 const FUZZY_SEARCH_PRESETS_JSON_PATH = "./data/fuzzy-search-presets.json";
 const HOME_RECOMMEND_COUNT = 5;
+const HOME_MOOD_RESULT_COUNT = 3;
 const FUZZY_RESULT_INITIAL_COUNT = 5;
 const FUZZY_RESULT_STEP = 5;
 const FUZZY_RESULT_MAX_COUNT = 30;
@@ -51,6 +52,10 @@ const els = {
   homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
   homeRecommendations: document.getElementById("homeRecommendations"),
   homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
+  homeMoodOptions: document.getElementById("homeMoodOptions"),
+  homeMoodSongs: document.getElementById("homeMoodSongs"),
+  homeMoodEmpty: document.getElementById("homeMoodEmpty"),
+  homeFuzzyLink: document.getElementById("homeFuzzyLink"),
   copyHistorySongs: document.getElementById("copyHistorySongs"),
   copyHistoryEmpty: document.getElementById("copyHistoryEmpty"),
   tabs: document.querySelectorAll("[data-tab]"),
@@ -65,6 +70,8 @@ const els = {
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 let songs = [];
 let homeRecommendedSongs = [];
+let homeMoodSuggestions = [];
+let activeHomeMoodIndex = null;
 let playableOnly = false;
 let homeRandomSource = "all";
 let favoriteOnly = false;
@@ -325,6 +332,7 @@ async function loadSheet({ showReloadFeedback = false } = {}) {
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
     pickHomeRecommendations();
+    pickHomeMoodSuggestions();
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
     renderHome();
     renderFuzzySearch();
@@ -540,6 +548,82 @@ function pickHomeRecommendations() {
   homeRecommendedSongs = source.slice(0, HOME_RECOMMEND_COUNT);
 }
 
+function fuzzyPresetByTitle(title) {
+  return fuzzySearchPresets.find(preset => preset?.title === title);
+}
+
+function randomItem(items) {
+  if (!Array.isArray(items) || items.length === 0) return null;
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+function daysFromToday(month, day, date = new Date()) {
+  const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const currentYearEvent = new Date(date.getFullYear(), month - 1, day);
+  const nextYearEvent = new Date(date.getFullYear() + 1, month - 1, day);
+  const currentDiff = Math.round((currentYearEvent - today) / 86400000);
+  const nextDiff = Math.round((nextYearEvent - today) / 86400000);
+  return Math.abs(currentDiff) <= Math.abs(nextDiff) ? currentDiff : nextDiff;
+}
+
+function nearSeasonEventTags(date = new Date()) {
+  const eventDates = [
+    { tag: "正月", month: 1, day: 1 },
+    { tag: "バレンタインデー", month: 2, day: 14 },
+    { tag: "ホワイトデー", month: 3, day: 14 },
+    { tag: "卒業", month: 3, day: 20 },
+    { tag: "入学", month: 4, day: 7 },
+    { tag: "七夕", month: 7, day: 7 },
+    { tag: "夏休み", month: 7, day: 20 },
+    { tag: "夏祭り", month: 8, day: 10 },
+    { tag: "ハロウィン", month: 10, day: 31 },
+    { tag: "クリスマス", month: 12, day: 25 },
+  ];
+
+  return eventDates
+    .map(item => ({ ...item, distance: daysFromToday(item.month, item.day, date) }))
+    .filter(item => item.distance >= -3 && item.distance <= 21)
+    .sort((left, right) => Math.abs(left.distance) - Math.abs(right.distance))
+    .map(item => item.tag);
+}
+
+function presetItemEventTags(item) {
+  return normalizeStringArray(item?.match?.eventTags);
+}
+
+function pickHomeMoodSuggestions() {
+  const titles = ["きもち", "雰囲気", "情景"];
+  const suggestions = titles
+    .map(title => {
+      const preset = fuzzyPresetByTitle(title);
+      const item = randomItem(preset?.items);
+      return preset && item ? { preset, item } : null;
+    })
+    .filter(Boolean);
+
+  const eventPreset = fuzzyPresetByTitle("イベント");
+  const nearTags = nearSeasonEventTags();
+  const eventItems = eventPreset?.items?.filter(item => {
+    const eventTags = presetItemEventTags(item);
+    return eventTags.some(tag => nearTags.includes(tag));
+  }) || [];
+  const eventItem = randomItem(eventItems);
+  if (eventPreset && eventItem) {
+    suggestions.push({ preset: eventPreset, item: eventItem });
+  }
+
+  homeMoodSuggestions = suggestions;
+  activeHomeMoodIndex = null;
+}
+
+function homeMoodMatchedSongs(index) {
+  const suggestion = homeMoodSuggestions[index];
+  if (!suggestion) return [];
+  const matched = songs.filter(song => matchesFuzzyPreset(song, suggestion.item.match));
+  return dailyFuzzyOrder(matched, suggestion.preset, suggestion.item)
+    .slice(0, HOME_MOOD_RESULT_COUNT);
+}
+
 function gridClassesForColumns(columns) {
   if (columns === "1") return "row row-cols-1 g-3 mt-1 song-grid";
   if (columns === "2") return "row row-cols-1 row-cols-md-2 g-3 mt-1 song-grid";
@@ -549,7 +633,7 @@ function gridClassesForColumns(columns) {
 function applyColumnLayout() {
   const gridClassName = gridClassesForColumns(displayColumnCount);
 
-  [els.homeRecommendations, els.copyHistorySongs, els.songs, els.fuzzySongs].forEach(grid => {
+  [els.homeRecommendations, els.homeMoodSongs, els.copyHistorySongs, els.songs, els.fuzzySongs].forEach(grid => {
     if (!grid) return;
     grid.className = gridClassName;
     grid.dataset.columns = displayColumnCount;
@@ -733,6 +817,7 @@ function renderHome() {
   updateHomeRandomSourceButtons();
   els.homeRecommendEmpty.hidden = homeRecommendedSongs.length !== 0;
   els.homeRecommendations.innerHTML = renderSongCards(homeRecommendedSongs);
+  renderHomeMood();
   renderCopyHistory();
 }
 
@@ -742,6 +827,23 @@ function updateHomeRandomSourceButtons() {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
+}
+
+function renderHomeMood() {
+  els.homeMoodOptions.innerHTML = homeMoodSuggestions.map((suggestion, index) => `
+    <button class="btn fuzzy-preset-button ${index === activeHomeMoodIndex ? "active" : ""}" type="button" data-home-mood="${index}" aria-pressed="${index === activeHomeMoodIndex}">
+      ${escapeHtml(suggestion.item.label)}
+    </button>
+  `).join("");
+
+  const items = activeHomeMoodIndex === null ? [] : homeMoodMatchedSongs(activeHomeMoodIndex);
+  els.homeMoodSongs.innerHTML = renderSongCards(items);
+  els.homeMoodEmpty.hidden = homeMoodSuggestions.length !== 0 && activeHomeMoodIndex !== null && items.length !== 0;
+  els.homeMoodEmpty.textContent = homeMoodSuggestions.length === 0
+    ? "ふわっと検索の候補を読み込めませんでした。"
+    : activeHomeMoodIndex === null
+      ? "気になる項目を選んでみてください。"
+      : "条件に合う曲が見つかりませんでした。";
 }
 
 function getCopyHistorySongs() {
@@ -1047,6 +1149,17 @@ els.homeRandomOptions.forEach(button => {
     pickHomeRecommendations();
     renderHome();
   });
+});
+els.homeMoodOptions.addEventListener("click", event => {
+  const button = event.target.closest("[data-home-mood]");
+  if (!button) return;
+  activeHomeMoodIndex = Number(button.dataset.homeMood);
+  renderHomeMood();
+});
+els.homeFuzzyLink.addEventListener("click", () => {
+  switchTab("search");
+  setFuzzySearchMode(true);
+  els.fuzzySearchModeToggle.focus();
 });
 els.searchDetailToggle.addEventListener("click", () => {
   setSearchDetailsOpen(els.searchDetails.hidden);

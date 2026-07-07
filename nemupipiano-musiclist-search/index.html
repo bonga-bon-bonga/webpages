@@ -79,6 +79,23 @@
         <section class="home-section mt-4">
           <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
             <span class="theme-icon section-heading-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/moon_white.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/moon_black.svg" alt="">
+            </span>
+            今日の気分から曲を探してみる
+          </h2>
+          <p class="recommend-desc text-secondary mb-0">いまの気分や雰囲気に合いそうな入口を、ふわっと検索からピックアップしました。</p>
+          <div class="home-mood-options mt-3" id="homeMoodOptions" aria-label="今日の気分から探す"></div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="homeMoodSongs" data-columns="3"></div>
+          <div class="empty-box text-center p-4 mt-3" id="homeMoodEmpty" hidden>気になる項目を選んでみてください。</div>
+          <div class="text-end mt-3">
+            <button id="homeFuzzyLink" class="btn fuzzy-more-button" type="button">ふわっと検索で他の項目を探す</button>
+          </div>
+        </section>
+
+        <section class="home-section mt-4">
+          <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
+            <span class="theme-icon section-heading-icon" aria-hidden="true">
               <img class="theme-icon-light" src="../lib/icon/files_white.svg" alt="">
               <img class="theme-icon-dark" src="../lib/icon/files_black.svg" alt="">
             </span>

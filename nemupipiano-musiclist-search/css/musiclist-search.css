@@ -238,6 +238,12 @@ html[data-theme="dark"] .theme-icon-light {
     background: var(--page-button-active);
 }
 
+.home-mood-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
 .detail-toggle-button {
     font-size: 1rem;
     white-space: nowrap;
