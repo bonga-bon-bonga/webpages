@@ -131,6 +131,18 @@
               </select>
             </div>
             <div class="col-12 col-md-6">
+              <label class="form-label fw-bold" for="sortOrder">並び順</label>
+              <select id="sortOrder" class="form-select form-select-lg">
+                <option value="playable">弾ける曲を優先する</option>
+                <option value="no">No順</option>
+                <option value="title">曲名毎に並べる</option>
+                <option value="artist">アーティスト毎に並べる</option>
+                <option value="favorite">お気に入りを優先する</option>
+                <option value="copyCount">コピー回数が多い順</option>
+                <option value="random">ランダム表示</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
               <label class="form-label fw-bold" for="subgenre">サブジャンル</label>
               <select id="subgenre" class="form-select form-select-lg">
                 <option value="">すべてのサブジャンル</option>
@@ -140,6 +152,15 @@
               <label class="form-label fw-bold" for="sourceCategory">出典カテゴリ</label>
               <select id="sourceCategory" class="form-select form-select-lg">
                 <option value="">すべての出典カテゴリ</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold" for="animeDrama">アニメ・ドラマ</label>
+              <select id="animeDrama" class="form-select form-select-lg">
+                <option value="">すべて</option>
+                <option value="animeOrDrama">アニメ・ドラマ</option>
+                <option value="アニメ">アニメ</option>
+                <option value="ドラマ">ドラマ</option>
               </select>
             </div>
             <div class="col-12 col-md-6">

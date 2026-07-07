@@ -11,6 +11,8 @@ const ACTIVE_TAB_KEY = "nemupipiano:activeTab";
 const SEARCH_SCOPE_KEY = "nemupipiano:searchScope";
 const DISPLAY_COLUMNS_KEY = "nemupipiano:displayColumns";
 const PLAYABLE_ONLY_KEY = "nemupipiano:playableOnly";
+const SORT_ORDER_KEY = "nemupipiano:sortOrder";
+const ANIME_DRAMA_KEY = "nemupipiano:animeDrama";
 const HOME_RANDOM_SOURCE_KEY = "nemupipiano:homeRandomSource";
 const FAVORITES_KEY = "nemupipiano:favorites";
 const FAVORITES_ONLY_KEY = "nemupipiano:favoritesOnly";
@@ -25,8 +27,10 @@ const els = {
   searchScopes: document.querySelectorAll("[name='searchScope']"),
   displayColumns: document.querySelectorAll("[name='displayColumns']"),
   genre: document.getElementById("genre"),
+  sortOrder: document.getElementById("sortOrder"),
   subgenre: document.getElementById("subgenre"),
   sourceCategory: document.getElementById("sourceCategory"),
+  animeDrama: document.getElementById("animeDrama"),
   vocalType: document.getElementById("vocalType"),
   releaseDecade: document.getElementById("releaseDecade"),
   reload: document.getElementById("reload"),
@@ -325,10 +329,12 @@ async function loadSheet({ showReloadFeedback = false } = {}) {
   }
 
   try {
-    [songs, fuzzySearchPresets] = await Promise.all([
+    const [loadedSongs, loadedFuzzySearchPresets] = await Promise.all([
       loadMusiclist(),
       loadFuzzySearchPresets(),
     ]);
+    songs = loadedSongs.map((song, index) => ({ ...song, originalIndex: index }));
+    fuzzySearchPresets = loadedFuzzySearchPresets;
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
     pickHomeRecommendations();
@@ -474,6 +480,7 @@ function hasSearchDetailFilter() {
     els.genre.value
     || els.subgenre.value
     || els.sourceCategory.value
+    || els.animeDrama.value
     || els.vocalType.value
     || els.releaseDecade.value
   );
@@ -491,6 +498,101 @@ function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
   setSearchGuideOpen(!currentHasKeyword && !favoriteOnly);
 }
 
+function sourceCategoriesFor(song) {
+  return normalizeStringArray(song.classification?.sourceCategories);
+}
+
+function matchesAnimeDramaFilter(song, filter) {
+  if (!filter) return true;
+  const sourceCategories = sourceCategoriesFor(song);
+  if (filter === "animeOrDrama") {
+    return sourceCategories.includes("アニメ") || sourceCategories.includes("ドラマ");
+  }
+  return sourceCategories.includes(filter);
+}
+
+function numericSongNumber(song) {
+  const value = String(song.no || "");
+  const match = value.match(/#?(\d+(?:\.\d+)?)$/);
+  return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+}
+
+function sourceOrder(song) {
+  const value = String(song.no || "").toLowerCase();
+  if (value.startsWith("list#")) return 0;
+  if (value.startsWith("disney#")) return 1;
+  if (value.startsWith("ghibli#")) return 2;
+  return 3;
+}
+
+function compareSongNo(left, right) {
+  return sourceOrder(left) - sourceOrder(right)
+    || numericSongNumber(left) - numericSongNumber(right)
+    || (left.originalIndex ?? 0) - (right.originalIndex ?? 0);
+}
+
+function compareSongText(leftValue, rightValue) {
+  return normalizeCellText(leftValue).localeCompare(normalizeCellText(rightValue), "ja");
+}
+
+function copyCountForSong(song, counts) {
+  return Number(counts?.[favoriteKeyForSong(song)] || 0);
+}
+
+function playablePriority(left, right) {
+  return Number(isPlayable(right)) - Number(isPlayable(left));
+}
+
+function favoritePriority(left, right) {
+  return Number(isFavorite(right)) - Number(isFavorite(left));
+}
+
+function sortPlayableFirst(items) {
+  return items
+    .map((song, index) => ({ song, index }))
+    .sort((left, right) => playablePriority(left.song, right.song) || left.index - right.index)
+    .map(item => item.song);
+}
+
+function sortedSearchSongs(items) {
+  const sortOrder = els.sortOrder.value || "playable";
+  const copyCounts = sortOrder === "copyCount" ? readJsonStorage(COPY_COUNTS_KEY, {}) : {};
+  const sortable = [...items];
+
+  if (sortOrder === "random") {
+    for (let i = sortable.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [sortable[i], sortable[j]] = [sortable[j], sortable[i]];
+    }
+    return sortable;
+  }
+
+  return sortable.sort((left, right) => {
+    if (sortOrder === "no") return compareSongNo(left, right);
+    if (sortOrder === "title") {
+      return compareSongText(left.title, right.title)
+        || compareSongText(left.artist, right.artist)
+        || compareSongNo(left, right);
+    }
+    if (sortOrder === "artist") {
+      return compareSongText(left.artist, right.artist)
+        || compareSongText(left.title, right.title)
+        || compareSongNo(left, right);
+    }
+    if (sortOrder === "favorite") {
+      return favoritePriority(left, right)
+        || playablePriority(left, right)
+        || compareSongNo(left, right);
+    }
+    if (sortOrder === "copyCount") {
+      return copyCountForSong(right, copyCounts) - copyCountForSong(left, copyCounts)
+        || playablePriority(left, right)
+        || compareSongNo(left, right);
+    }
+    return playablePriority(left, right) || compareSongNo(left, right);
+  });
+}
+
 // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
 function filteredSongs() {
   const keyword = createSearchKey(els.search.value);
@@ -498,18 +600,20 @@ function filteredSongs() {
   const genre = els.genre.value;
   const subgenre = els.subgenre.value;
   const sourceCategory = els.sourceCategory.value;
+  const animeDrama = els.animeDrama.value;
   const vocalType = els.vocalType.value;
   const releaseDecade = els.releaseDecade.value;
 
   if (!keyword && !favoriteOnly && !hasSearchDetailFilter()) return [];
 
-  return songs.filter(song => {
+  const filtered = songs.filter(song => {
     const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
     const genreOk = !genre || song.genre === genre;
     const subgenreOk = !subgenre
       || normalizeStringArray(song.classification?.subgenres).includes(subgenre);
     const sourceCategoryOk = !sourceCategory
-      || normalizeStringArray(song.classification?.sourceCategories).includes(sourceCategory);
+      || sourceCategoriesFor(song).includes(sourceCategory);
+    const animeDramaOk = matchesAnimeDramaFilter(song, animeDrama);
     const vocalTypeOk = !vocalType
       || normalizeStringArray(song.classification?.vocalTypes).includes(vocalType);
     const releaseDecadeOk = !releaseDecade || song.releaseDecade === releaseDecade;
@@ -519,11 +623,14 @@ function filteredSongs() {
       && genreOk
       && subgenreOk
       && sourceCategoryOk
+      && animeDramaOk
       && vocalTypeOk
       && releaseDecadeOk
       && playableOk
       && favoriteOk;
   });
+
+  return sortedSearchSongs(filtered);
 }
 
 // 曲が「弾ける曲」かどうかを判定する。セルの値に「〇」や「○」、または「yes」（大文字小文字問わず）が含まれていれば弾ける曲とみなす。
@@ -620,7 +727,7 @@ function homeMoodMatchedSongs(index) {
   const suggestion = homeMoodSuggestions[index];
   if (!suggestion) return [];
   const matched = songs.filter(song => matchesFuzzyPreset(song, suggestion.item.match));
-  return dailyFuzzyOrder(matched, suggestion.preset, suggestion.item)
+  return sortPlayableFirst(dailyFuzzyOrder(matched, suggestion.preset, suggestion.item))
     .slice(0, HOME_MOOD_RESULT_COUNT);
 }
 
@@ -706,7 +813,7 @@ function fuzzyMatchedSongs() {
   const item = preset?.items?.[activeFuzzyItemIndex];
   if (!item) return [];
   const matched = songs.filter(song => matchesFuzzyPreset(song, item.match));
-  return dailyFuzzyOrder(matched, preset, item);
+  return sortPlayableFirst(dailyFuzzyOrder(matched, preset, item));
 }
 
 function renderFuzzySearch() {
@@ -742,7 +849,10 @@ function renderFuzzySearch() {
   const matched = fuzzyMatchedSongs();
   const visible = matched.slice(0, fuzzyResultLimit);
   els.fuzzyResultSummary.innerHTML = selectedItem
-    ? `<strong>${escapeHtml(selectedItem.label)}</strong>：${matched.length}曲`
+    ? `
+      <strong>${escapeHtml(selectedItem.label)}</strong>：${matched.length}曲
+      ${selectedItem.description ? `<p class="mb-0 mt-1">${escapeHtml(selectedItem.description)}</p>` : ""}
+    `
     : "";
   els.fuzzySongs.innerHTML = renderSongCards(visible);
   els.fuzzyEmpty.hidden = Boolean(selectedItem) && matched.length > 0;
@@ -1126,6 +1236,14 @@ els.displayColumns.forEach(column => {
   });
 });
 els.genre.addEventListener("change", render);
+els.sortOrder.addEventListener("change", () => {
+  localStorage.setItem(SORT_ORDER_KEY, els.sortOrder.value || "playable");
+  render();
+});
+els.animeDrama.addEventListener("change", () => {
+  localStorage.setItem(ANIME_DRAMA_KEY, els.animeDrama.value || "");
+  render();
+});
 [els.subgenre, els.sourceCategory, els.vocalType, els.releaseDecade].forEach(select => {
   select.addEventListener("change", render);
 });
@@ -1262,6 +1380,14 @@ applyAppPanelFontSize(localStorage.getItem(APP_PANEL_FONT_SIZE_KEY));
 updateSearchPlaceholder(applyRadioValue(els.searchScopes, localStorage.getItem(SEARCH_SCOPE_KEY), "all"));
 displayColumnCount = applyRadioValue(els.displayColumns, localStorage.getItem(DISPLAY_COLUMNS_KEY), "3");
 playableOnly = loadSavedBoolean(PLAYABLE_ONLY_KEY, false);
+const savedSortOrder = localStorage.getItem(SORT_ORDER_KEY);
+els.sortOrder.value = ["playable", "no", "title", "artist", "favorite", "copyCount", "random"].includes(savedSortOrder)
+  ? savedSortOrder
+  : "playable";
+const savedAnimeDrama = localStorage.getItem(ANIME_DRAMA_KEY);
+els.animeDrama.value = ["", "animeOrDrama", "アニメ", "ドラマ"].includes(savedAnimeDrama)
+  ? savedAnimeDrama
+  : "";
 homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
   ? localStorage.getItem(HOME_RANDOM_SOURCE_KEY)
   : "all";
