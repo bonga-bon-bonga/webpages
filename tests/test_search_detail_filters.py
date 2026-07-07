@@ -21,6 +21,9 @@ def detail_matches(song, filters):
     anime_drama = filters.get("animeDrama")
     if anime_drama:
         category, series = anime_drama.split("|", 1)
+        if category == "special":
+            prefix = "ghibli#" if series == "ghibli" else "disney#"
+            return str(song.get("no", "")).lower().startswith(prefix)
         if category not in classification.get("sourceCategories", []):
             return False
         if not any(
@@ -100,6 +103,19 @@ class SearchDetailFilterTests(unittest.TestCase):
         for song in matched:
             self.assertIn(category, song["classification"]["sourceCategories"])
             self.assertTrue(any(tie_up.get("series") == series for tie_up in song["tieUps"]))
+
+    def test_anime_drama_special_filters_match_source_lists(self):
+        for kind in ("ghibli", "disney"):
+            with self.subTest(kind=kind):
+                matched = [
+                    song
+                    for song in self.songs
+                    if detail_matches(song, {"animeDrama": f"special|{kind}"})
+                ]
+                self.assertTrue(matched)
+                self.assertTrue(
+                    all(str(song.get("no", "")).lower().startswith(f"{kind}#") for song in matched)
+                )
 
 
 if __name__ == "__main__":

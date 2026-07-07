@@ -392,6 +392,10 @@ function animeDramaValue(category, series) {
   return `${category}|${series}`;
 }
 
+function specialAnimeDramaValue(kind) {
+  return `special|${kind}`;
+}
+
 function parseAnimeDramaValue(value) {
   const [category = "", ...seriesParts] = String(value || "").split("|");
   return {
@@ -401,8 +405,7 @@ function parseAnimeDramaValue(value) {
 }
 
 function animeDramaOptions(items) {
-  const options = [];
-  const seen = new Set();
+  const optionMap = new Map();
 
   items.forEach(item => {
     const sourceCategories = sourceCategoriesFor(item);
@@ -415,21 +418,38 @@ function animeDramaOptions(items) {
 
       categories.forEach(category => {
         const value = animeDramaValue(category, series);
-        if (seen.has(value)) return;
-        seen.add(value);
-        options.push({
+        const option = optionMap.get(value) || {
           category,
           series,
           value,
           label: `[${category}] ${series}`,
-        });
+          count: 0,
+          priority: category === "アニメ" ? 10 : 20,
+        };
+        option.count += 1;
+        optionMap.set(value, option);
       });
     });
   });
 
-  return options.sort((left, right) => {
-    const categoryOrder = { "アニメ": 0, "ドラマ": 1 };
-    return (categoryOrder[left.category] ?? 9) - (categoryOrder[right.category] ?? 9)
+  const specialOptions = [
+    {
+      value: specialAnimeDramaValue("ghibli"),
+      label: "ジブリの楽曲",
+      count: items.filter(item => String(item.no || "").toLowerCase().startsWith("ghibli#")).length,
+      priority: 0,
+    },
+    {
+      value: specialAnimeDramaValue("disney"),
+      label: "ディズニーの楽曲",
+      count: items.filter(item => String(item.no || "").toLowerCase().startsWith("disney#")).length,
+      priority: 1,
+    },
+  ].filter(option => option.count > 0);
+
+  return [...specialOptions, ...optionMap.values()].sort((left, right) => {
+    return left.priority - right.priority
+      || right.count - left.count
       || left.series.localeCompare(right.series, "ja");
   });
 }
@@ -580,6 +600,15 @@ function sourceCategoriesFor(song) {
 function matchesAnimeDramaFilter(song, filter) {
   if (!filter) return true;
   const { category, series } = parseAnimeDramaValue(filter);
+  if (category === "special") {
+    const no = String(song.no || "").toLowerCase();
+    return series === "disney"
+      ? no.startsWith("disney#")
+      : series === "ghibli"
+        ? no.startsWith("ghibli#")
+        : true;
+  }
+
   if (category && series) {
     return sourceCategoriesFor(song).includes(category)
       && (song.tieUps || []).some(tieUp => normalizeCellText(tieUp.series) === series);
