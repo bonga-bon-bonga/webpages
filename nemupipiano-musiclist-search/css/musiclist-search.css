@@ -944,10 +944,12 @@ html[data-theme="dark"] .text-secondary {
 
     .nav-pills.app-tabs {
     flex-wrap: nowrap;
+    gap: .25rem;
+    overflow-x: hidden;
     }
 
     .nav-pills.app-tabs .nav-item {
-    flex: 1 0 50%;
+    flex: 1 1 0;
     }
 
     .nav-pills.app-tabs .nav-link {
