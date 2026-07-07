@@ -46070,18 +46070,39 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "ポップス"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "希望"
+      ],
+      "moodTags": [
+        "明るい",
+        "楽しい"
+      ],
+      "motifTags": [
+        "晴れ",
+        "虹"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ディズニー",
+        "workTitle": "南部の唄",
+        "role": "劇中歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46099,18 +46120,40 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "ポップス"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "自由",
+        "憧れ",
+        "冒険"
+      ],
+      "moodTags": [
+        "明るい",
+        "爽やか"
+      ],
+      "motifTags": [
+        "光",
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ディズニー",
+        "workTitle": "塔の上のラプンツェル",
+        "role": "劇中歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46129,19 +46172,37 @@
     },
     "classification": {
       "genres": [
-        "劇伴音楽"
+        "ポップス"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "友情",
+        "絆"
+      ],
+      "moodTags": [
+        "優しい",
+        "楽しい"
+      ],
+      "motifTags": [
+        "手"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ディズニー",
+        "workTitle": "トイ・ストーリー",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1456073416
@@ -46163,16 +46224,36 @@
         "ポップス"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "成長",
+        "家族",
+        "希望"
+      ],
+      "moodTags": [
+        "壮大",
+        "荘厳"
+      ],
+      "motifTags": [
+        "太陽",
+        "光"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ディズニー",
+        "workTitle": "ライオン・キング",
+        "role": "劇中歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1445732940
@@ -46191,19 +46272,40 @@
     },
     "classification": {
       "genres": [
-        "劇伴音楽"
+        "ポップス"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "絆"
+      ],
+      "moodTags": [
+        "優しい",
+        "壮大"
+      ],
+      "motifTags": [
+        "夜",
+        "星"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ディズニー",
+        "workTitle": "ライオン・キング",
+        "role": "劇中歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1770152904
@@ -46221,18 +46323,40 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "ポップス"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "家族",
+        "友情",
+        "日常"
+      ],
+      "moodTags": [
+        "明るい",
+        "楽しい"
+      ],
+      "motifTags": [
+        "海",
+        "夏"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ディズニー",
+        "workTitle": "リロ・アンド・スティッチ",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46250,18 +46374,39 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "孤独"
+      ],
+      "moodTags": [
+        "幻想的",
+        "優しい"
+      ],
+      "motifTags": [
+        "星",
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ピクサー",
+        "workTitle": "ウォーリー",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46279,18 +46424,40 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "ポップス"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "友情",
+        "冒険"
+      ],
+      "moodTags": [
+        "コミカル",
+        "楽しい",
+        "元気"
+      ],
+      "motifTags": [
+        "幻",
+        "舞台"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ディズニー",
+        "workTitle": "アラジン",
+        "role": "劇中歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46308,18 +46475,42 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "劇伴音楽"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "約束",
+        "恋愛",
+        "祈り"
+      ],
+      "moodTags": [
+        "優しい",
+        "幻想的",
+        "切ない"
+      ],
+      "motifTags": [
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "ハウルの動く城",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46337,18 +46528,40 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "冒険",
+        "記憶"
+      ],
+      "moodTags": [
+        "幻想的",
+        "壮大",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "舞台"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "ハウルの動く城",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46366,18 +46579,39 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "冒険"
+      ],
+      "moodTags": [
+        "穏やか",
+        "幻想的"
+      ],
+      "motifTags": [
+        "風",
+        "道"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "となりのトトロ",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46399,16 +46633,37 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "旅立ち",
+        "日常",
+        "成長"
+      ],
+      "moodTags": [
+        "爽やか",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "海",
+        "街",
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "魔女の宅急便",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667779092
@@ -46430,16 +46685,37 @@
         "J-POP"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "冒険",
+        "日常",
+        "家族"
+      ],
+      "moodTags": [
+        "元気",
+        "明るい",
+        "楽しい"
+      ],
+      "motifTags": [
+        "道",
+        "風"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "となりのトトロ",
+        "role": "OP"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 299841835
@@ -46460,17 +46736,39 @@
       "genres": [
         "劇伴音楽"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "祈り",
+        "記憶",
+        "旅立ち"
+      ],
+      "moodTags": [
+        "優しい",
+        "幻想的",
+        "癒し"
+      ],
+      "motifTags": [
+        "声"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "千と千尋の神隠し",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 668520684
@@ -46488,18 +46786,40 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "家族",
+        "日常",
+        "冒険"
+      ],
+      "moodTags": [
+        "優しい",
+        "楽しい"
+      ],
+      "motifTags": [
+        "猫",
+        "風"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "となりのトトロ",
+        "role": "ED"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46521,16 +46841,35 @@
         "J-POP"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "合唱"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "家族",
+        "日常"
+      ],
+      "moodTags": [
+        "かわいい",
+        "楽しい",
+        "元気"
+      ],
+      "motifTags": [
+        "海"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "崖の上のポニョ",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 299841905
@@ -46552,16 +46891,38 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
-      "eventTags": []
+      "themeTags": [
+        "記憶",
+        "成長",
+        "冒険"
+      ],
+      "moodTags": [
+        "幻想的",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夏",
+        "川"
+      ],
+      "eventTags": [
+        "夏休み"
+      ]
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "千と千尋の神隠し",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 668520663
@@ -46583,16 +46944,36 @@
         "J-POP"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "自由",
+        "成長",
+        "恋愛"
+      ],
+      "moodTags": [
+        "爽やか",
+        "明るい"
+      ],
+      "motifTags": [
+        "風",
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "猫の恩返し",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 160599783
@@ -46611,19 +46992,39 @@
     },
     "classification": {
       "genres": [
-        "劇伴音楽"
+        "ポップス"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "旅立ち",
+        "憧れ",
+        "成長"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "優しい"
+      ],
+      "motifTags": [
+        "帰り道",
+        "街"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "耳をすませば",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667855313
@@ -46644,17 +47045,39 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "孤独",
+        "祈り",
+        "葛藤"
+      ],
+      "moodTags": [
+        "切ない",
+        "荘厳"
+      ],
+      "motifTags": [
+        "声",
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "ゲド戦記",
+        "role": "挿入歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 258494351
@@ -46672,18 +47095,42 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "劇伴音楽"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "冒険",
+        "希望",
+        "絆"
+      ],
+      "moodTags": [
+        "壮大",
+        "優しい"
+      ],
+      "motifTags": [
+        "空",
+        "光"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "天空の城ラピュタ",
+        "role": "ED"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46701,18 +47148,40 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "祈り",
+        "冒険"
+      ],
+      "moodTags": [
+        "荘厳",
+        "壮大"
+      ],
+      "motifTags": [
+        "空",
+        "翼",
+        "風"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "風の谷のナウシカ",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46734,16 +47203,35 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "成長"
+      ],
+      "moodTags": [
+        "明るい",
+        "爽やか"
+      ],
+      "motifTags": [
+        "街",
+        "朝"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "魔女の宅急便",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667779095
@@ -46765,16 +47253,36 @@
         "J-POP"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "希望",
+        "成長"
+      ],
+      "moodTags": [
+        "優しい",
+        "明るい"
+      ],
+      "motifTags": [
+        "光",
+        "朝"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "魔女の宅急便",
+        "role": "ED"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1436010457
@@ -46792,18 +47300,39 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "J-POP"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "恋愛",
+        "日常"
+      ],
+      "moodTags": [
+        "おしゃれ",
+        "明るい"
+      ],
+      "motifTags": [
+        "手紙",
+        "街"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "魔女の宅急便",
+        "role": "OP"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -46825,16 +47354,34 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "家族"
+      ],
+      "moodTags": [
+        "コミカル",
+        "穏やか"
+      ],
+      "motifTags": [
+        "風"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "平成狸合戦ぽんぽこ",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667831625
@@ -46855,17 +47402,39 @@
       "genres": [
         "歌謡曲"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "記憶",
+        "喪失",
+        "旅立ち"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "切ない"
+      ],
+      "motifTags": [
+        "空",
+        "旅路"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "紅の豚",
+        "role": "ED"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1443337669
@@ -46887,16 +47456,35 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "再会",
+        "記憶",
+        "祈り"
+      ],
+      "moodTags": [
+        "幻想的",
+        "泣ける"
+      ],
+      "motifTags": [
+        "光"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "千と千尋の神隠し",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 668520682
@@ -46918,16 +47506,35 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "記憶",
+        "喪失"
+      ],
+      "moodTags": [
+        "ノスタルジック",
+        "切ない"
+      ],
+      "motifTags": [
+        "街",
+        "夕暮れ"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "紅の豚",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667811546
@@ -46949,16 +47556,35 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "冒険",
+        "自由"
+      ],
+      "moodTags": [
+        "おしゃれ",
+        "爽やか"
+      ],
+      "motifTags": [
+        "空",
+        "海"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "紅の豚",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667811544
@@ -46979,17 +47605,39 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "旅立ち",
+        "記憶",
+        "喪失"
+      ],
+      "moodTags": [
+        "切ない",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "空",
+        "風"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "風立ちぬ",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1436009093
@@ -47011,16 +47659,35 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "冒険",
+        "日常"
+      ],
+      "moodTags": [
+        "楽しい",
+        "コミカル"
+      ],
+      "motifTags": [
+        "猫",
+        "道"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "となりのトトロ",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667366557
@@ -47038,18 +47705,40 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "劇伴音楽"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "家族",
+        "祈り"
+      ],
+      "moodTags": [
+        "優しい",
+        "幻想的"
+      ],
+      "motifTags": [
+        "海"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "崖の上のポニョ",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -47067,18 +47756,42 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "genres": [
+        "劇伴音楽"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "祈り",
+        "戦い",
+        "絆"
+      ],
+      "moodTags": [
+        "荘厳",
+        "幻想的"
+      ],
+      "motifTags": [
+        "影",
+        "風"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "もののけ姫",
+        "role": "主題歌"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -47100,16 +47813,34 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "冒険"
+      ],
+      "moodTags": [
+        "かわいい",
+        "ミステリアス"
+      ],
+      "motifTags": [
+        "影"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "となりのトトロ",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667366549
@@ -47131,16 +47862,34 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "日常",
+        "家族"
+      ],
+      "moodTags": [
+        "かわいい",
+        "コミカル"
+      ],
+      "motifTags": [
+        "道"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "となりのトトロ",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667366424
@@ -47162,16 +47911,37 @@
         "劇伴音楽"
       ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "戦い",
+        "祈り",
+        "冒険"
+      ],
+      "moodTags": [
+        "荘厳",
+        "壮大",
+        "緊張感"
+      ],
+      "motifTags": [
+        "風",
+        "影"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "もののけ姫",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 667870482
@@ -47192,17 +47962,39 @@
       "genres": [
         "J-POP"
       ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "祈り",
+        "希望",
+        "戦い"
+      ],
+      "moodTags": [
+        "幻想的",
+        "切ない"
+      ],
+      "motifTags": [
+        "風",
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "風の谷のナウシカ",
+        "role": "シンボルテーマ"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 257124398
@@ -47220,18 +48012,39 @@
       "collectionName": null
     },
     "classification": {
-      "genres": [],
+      "genres": [
+        "劇伴音楽"
+      ],
       "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": []
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "インスト"
+      ]
     },
     "tags": {
-      "themeTags": [],
-      "moodTags": [],
-      "motifTags": [],
+      "themeTags": [
+        "記憶",
+        "祈り"
+      ],
+      "moodTags": [
+        "幻想的",
+        "切ない"
+      ],
+      "motifTags": [
+        "風",
+        "空"
+      ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "ジブリ",
+        "workTitle": "風の谷のナウシカ",
+        "role": "劇伴"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
