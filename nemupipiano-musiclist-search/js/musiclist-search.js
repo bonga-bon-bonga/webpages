@@ -1,6 +1,7 @@
 const MUSICLIST_JSON_PATH = "./data/musiclist.json";
 const FUZZY_SEARCH_PRESETS_JSON_PATH = "./data/fuzzy-search-presets.json";
 const HOME_RECOMMEND_COUNT = 5;
+const HOME_MOOD_RESULT_COUNT = 3;
 const FUZZY_RESULT_INITIAL_COUNT = 5;
 const FUZZY_RESULT_STEP = 5;
 const FUZZY_RESULT_MAX_COUNT = 30;
@@ -10,6 +11,8 @@ const ACTIVE_TAB_KEY = "nemupipiano:activeTab";
 const SEARCH_SCOPE_KEY = "nemupipiano:searchScope";
 const DISPLAY_COLUMNS_KEY = "nemupipiano:displayColumns";
 const PLAYABLE_ONLY_KEY = "nemupipiano:playableOnly";
+const SORT_ORDER_KEY = "nemupipiano:sortOrder";
+const ANIME_DRAMA_KEY = "nemupipiano:animeDrama";
 const HOME_RANDOM_SOURCE_KEY = "nemupipiano:homeRandomSource";
 const FAVORITES_KEY = "nemupipiano:favorites";
 const FAVORITES_ONLY_KEY = "nemupipiano:favoritesOnly";
@@ -24,8 +27,10 @@ const els = {
   searchScopes: document.querySelectorAll("[name='searchScope']"),
   displayColumns: document.querySelectorAll("[name='displayColumns']"),
   genre: document.getElementById("genre"),
+  sortOrder: document.getElementById("sortOrder"),
   subgenre: document.getElementById("subgenre"),
   sourceCategory: document.getElementById("sourceCategory"),
+  animeDrama: document.getElementById("animeDrama"),
   vocalType: document.getElementById("vocalType"),
   releaseDecade: document.getElementById("releaseDecade"),
   reload: document.getElementById("reload"),
@@ -51,6 +56,10 @@ const els = {
   homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
   homeRecommendations: document.getElementById("homeRecommendations"),
   homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
+  homeMoodOptions: document.getElementById("homeMoodOptions"),
+  homeMoodSongs: document.getElementById("homeMoodSongs"),
+  homeMoodEmpty: document.getElementById("homeMoodEmpty"),
+  homeFuzzyLink: document.getElementById("homeFuzzyLink"),
   copyHistorySongs: document.getElementById("copyHistorySongs"),
   copyHistoryEmpty: document.getElementById("copyHistoryEmpty"),
   tabs: document.querySelectorAll("[data-tab]"),
@@ -65,6 +74,8 @@ const els = {
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 let songs = [];
 let homeRecommendedSongs = [];
+let homeMoodSuggestions = [];
+let activeHomeMoodIndex = null;
 let playableOnly = false;
 let homeRandomSource = "all";
 let favoriteOnly = false;
@@ -82,6 +93,7 @@ let fuzzySearchMode = false;
 let activeFuzzyCategoryIndex = 0;
 let activeFuzzyItemIndex = null;
 let fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
+let pendingAnimeDramaValue = "";
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
 function escapeHtml(value) {
@@ -99,6 +111,19 @@ function normalizeStringArray(values) {
   return values
     .map(value => normalizeCellText(value))
     .filter(Boolean);
+}
+
+function normalizeTieUps(values) {
+  if (!Array.isArray(values)) return [];
+
+  return values
+    .filter(value => value && typeof value === "object" && !Array.isArray(value))
+    .map(value => ({
+      series: normalizeCellText(value.series),
+      workTitle: normalizeCellText(value.workTitle),
+      role: normalizeCellText(value.role),
+    }))
+    .filter(value => value.series || value.workTitle || value.role);
 }
 
 function normalizeMusiclistItems(data) {
@@ -151,6 +176,7 @@ function normalizeMusiclistSong(item) {
     tags,
     metadataTags,
     classification,
+    tieUps: normalizeTieUps(item?.tieUps),
     releaseDecade: normalizeCellText(item?.releaseDecade),
     playable: normalizeCellText(item?.playable),
     genre,
@@ -318,13 +344,16 @@ async function loadSheet({ showReloadFeedback = false } = {}) {
   }
 
   try {
-    [songs, fuzzySearchPresets] = await Promise.all([
+    const [loadedSongs, loadedFuzzySearchPresets] = await Promise.all([
       loadMusiclist(),
       loadFuzzySearchPresets(),
     ]);
+    songs = loadedSongs.map((song, index) => ({ ...song, originalIndex: index }));
+    fuzzySearchPresets = loadedFuzzySearchPresets;
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
     pickHomeRecommendations();
+    pickHomeMoodSuggestions();
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
     renderHome();
     renderFuzzySearch();
@@ -359,6 +388,85 @@ function setupSelectOptions(select, values, emptyLabel) {
   if (options.includes(current)) select.value = current;
 }
 
+function animeDramaValue(category, series) {
+  return `${category}|${series}`;
+}
+
+function specialAnimeDramaValue(kind) {
+  return `special|${kind}`;
+}
+
+function parseAnimeDramaValue(value) {
+  const [category = "", ...seriesParts] = String(value || "").split("|");
+  return {
+    category,
+    series: seriesParts.join("|"),
+  };
+}
+
+function animeDramaOptions(items) {
+  const optionMap = new Map();
+
+  items.forEach(item => {
+    const sourceCategories = sourceCategoriesFor(item);
+    const categories = ["アニメ", "ドラマ"].filter(category => sourceCategories.includes(category));
+    if (categories.length === 0) return;
+
+    (item.tieUps || []).forEach(tieUp => {
+      const series = normalizeCellText(tieUp.series);
+      if (!series) return;
+
+      categories.forEach(category => {
+        const value = animeDramaValue(category, series);
+        const option = optionMap.get(value) || {
+          category,
+          series,
+          value,
+          label: `[${category}] ${series}`,
+          count: 0,
+          priority: category === "アニメ" ? 10 : 20,
+        };
+        option.count += 1;
+        optionMap.set(value, option);
+      });
+    });
+  });
+
+  const specialOptions = [
+    {
+      value: specialAnimeDramaValue("ghibli"),
+      label: "ジブリの楽曲",
+      count: items.filter(item => String(item.no || "").toLowerCase().startsWith("ghibli#")).length,
+      priority: 0,
+    },
+    {
+      value: specialAnimeDramaValue("disney"),
+      label: "ディズニーの楽曲",
+      count: items.filter(item => String(item.no || "").toLowerCase().startsWith("disney#")).length,
+      priority: 1,
+    },
+  ].filter(option => option.count > 0);
+
+  return [...specialOptions, ...optionMap.values()].sort((left, right) => {
+    return left.priority - right.priority
+      || right.count - left.count
+      || left.series.localeCompare(right.series, "ja");
+  });
+}
+
+function setupAnimeDramaOptions(items) {
+  const current = els.animeDrama.value || pendingAnimeDramaValue;
+  const options = animeDramaOptions(items);
+  els.animeDrama.innerHTML = '<option value="">すべて</option>' +
+    options.map(option => (
+      `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`
+    )).join("");
+  if (options.some(option => option.value === current)) {
+    els.animeDrama.value = current;
+  }
+  pendingAnimeDramaValue = "";
+}
+
 // 曲データから詳細検索の選択肢を生成
 function setupSearchDetailOptions(items) {
   setupSelectOptions(
@@ -376,6 +484,7 @@ function setupSearchDetailOptions(items) {
     items.flatMap(item => normalizeStringArray(item.classification?.sourceCategories)),
     "すべての出典カテゴリ"
   );
+  setupAnimeDramaOptions(items);
   setupSelectOptions(
     els.vocalType,
     items.flatMap(item => normalizeStringArray(item.classification?.vocalTypes)),
@@ -466,6 +575,7 @@ function hasSearchDetailFilter() {
     els.genre.value
     || els.subgenre.value
     || els.sourceCategory.value
+    || els.animeDrama.value
     || els.vocalType.value
     || els.releaseDecade.value
   );
@@ -483,6 +593,116 @@ function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
   setSearchGuideOpen(!currentHasKeyword && !favoriteOnly);
 }
 
+function sourceCategoriesFor(song) {
+  return normalizeStringArray(song.classification?.sourceCategories);
+}
+
+function matchesAnimeDramaFilter(song, filter) {
+  if (!filter) return true;
+  const { category, series } = parseAnimeDramaValue(filter);
+  if (category === "special") {
+    const no = String(song.no || "").toLowerCase();
+    return series === "disney"
+      ? no.startsWith("disney#")
+      : series === "ghibli"
+        ? no.startsWith("ghibli#")
+        : true;
+  }
+
+  if (category && series) {
+    return sourceCategoriesFor(song).includes(category)
+      && (song.tieUps || []).some(tieUp => normalizeCellText(tieUp.series) === series);
+  }
+
+  const sourceCategories = sourceCategoriesFor(song);
+  if (filter === "animeOrDrama") {
+    return sourceCategories.includes("アニメ") || sourceCategories.includes("ドラマ");
+  }
+  return sourceCategories.includes(filter);
+}
+
+function numericSongNumber(song) {
+  const value = String(song.no || "");
+  const match = value.match(/#?(\d+(?:\.\d+)?)$/);
+  return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+}
+
+function sourceOrder(song) {
+  const value = String(song.no || "").toLowerCase();
+  if (value.startsWith("list#")) return 0;
+  if (value.startsWith("disney#")) return 1;
+  if (value.startsWith("ghibli#")) return 2;
+  return 3;
+}
+
+function compareSongNo(left, right) {
+  return sourceOrder(left) - sourceOrder(right)
+    || numericSongNumber(left) - numericSongNumber(right)
+    || (left.originalIndex ?? 0) - (right.originalIndex ?? 0);
+}
+
+function compareSongText(leftValue, rightValue) {
+  return normalizeCellText(leftValue).localeCompare(normalizeCellText(rightValue), "ja");
+}
+
+function copyCountForSong(song, counts) {
+  return Number(counts?.[favoriteKeyForSong(song)] || 0);
+}
+
+function playablePriority(left, right) {
+  return Number(isPlayable(right)) - Number(isPlayable(left));
+}
+
+function favoritePriority(left, right) {
+  return Number(isFavorite(right)) - Number(isFavorite(left));
+}
+
+function sortPlayableFirst(items) {
+  return items
+    .map((song, index) => ({ song, index }))
+    .sort((left, right) => playablePriority(left.song, right.song) || left.index - right.index)
+    .map(item => item.song);
+}
+
+function sortedSearchSongs(items) {
+  const sortOrder = els.sortOrder.value || "playable";
+  const copyCounts = sortOrder === "copyCount" ? readJsonStorage(COPY_COUNTS_KEY, {}) : {};
+  const sortable = [...items];
+
+  if (sortOrder === "random") {
+    for (let i = sortable.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [sortable[i], sortable[j]] = [sortable[j], sortable[i]];
+    }
+    return sortable;
+  }
+
+  return sortable.sort((left, right) => {
+    if (sortOrder === "no") return compareSongNo(left, right);
+    if (sortOrder === "title") {
+      return compareSongText(left.title, right.title)
+        || compareSongText(left.artist, right.artist)
+        || compareSongNo(left, right);
+    }
+    if (sortOrder === "artist") {
+      return compareSongText(left.artist, right.artist)
+        || compareSongText(left.title, right.title)
+        || compareSongNo(left, right);
+    }
+    if (sortOrder === "favorite") {
+      return favoritePriority(left, right)
+        || playablePriority(left, right)
+        || compareSongNo(left, right);
+    }
+    if (sortOrder === "copyCount") {
+      return copyCountForSong(right, copyCounts) - copyCountForSong(left, copyCounts)
+        || playablePriority(left, right)
+        || compareSongNo(left, right);
+    }
+    return playablePriority(left, right) || compareSongNo(left, right);
+  });
+}
+
 // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
 function filteredSongs() {
   const keyword = createSearchKey(els.search.value);
@@ -490,18 +710,20 @@ function filteredSongs() {
   const genre = els.genre.value;
   const subgenre = els.subgenre.value;
   const sourceCategory = els.sourceCategory.value;
+  const animeDrama = els.animeDrama.value;
   const vocalType = els.vocalType.value;
   const releaseDecade = els.releaseDecade.value;
 
   if (!keyword && !favoriteOnly && !hasSearchDetailFilter()) return [];
 
-  return songs.filter(song => {
+  const filtered = songs.filter(song => {
     const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
     const genreOk = !genre || song.genre === genre;
     const subgenreOk = !subgenre
       || normalizeStringArray(song.classification?.subgenres).includes(subgenre);
     const sourceCategoryOk = !sourceCategory
-      || normalizeStringArray(song.classification?.sourceCategories).includes(sourceCategory);
+      || sourceCategoriesFor(song).includes(sourceCategory);
+    const animeDramaOk = matchesAnimeDramaFilter(song, animeDrama);
     const vocalTypeOk = !vocalType
       || normalizeStringArray(song.classification?.vocalTypes).includes(vocalType);
     const releaseDecadeOk = !releaseDecade || song.releaseDecade === releaseDecade;
@@ -511,11 +733,14 @@ function filteredSongs() {
       && genreOk
       && subgenreOk
       && sourceCategoryOk
+      && animeDramaOk
       && vocalTypeOk
       && releaseDecadeOk
       && playableOk
       && favoriteOk;
   });
+
+  return sortedSearchSongs(filtered);
 }
 
 // 曲が「弾ける曲」かどうかを判定する。セルの値に「〇」や「○」、または「yes」（大文字小文字問わず）が含まれていれば弾ける曲とみなす。
@@ -540,6 +765,82 @@ function pickHomeRecommendations() {
   homeRecommendedSongs = source.slice(0, HOME_RECOMMEND_COUNT);
 }
 
+function fuzzyPresetByTitle(title) {
+  return fuzzySearchPresets.find(preset => preset?.title === title);
+}
+
+function randomItem(items) {
+  if (!Array.isArray(items) || items.length === 0) return null;
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+function daysFromToday(month, day, date = new Date()) {
+  const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const currentYearEvent = new Date(date.getFullYear(), month - 1, day);
+  const nextYearEvent = new Date(date.getFullYear() + 1, month - 1, day);
+  const currentDiff = Math.round((currentYearEvent - today) / 86400000);
+  const nextDiff = Math.round((nextYearEvent - today) / 86400000);
+  return Math.abs(currentDiff) <= Math.abs(nextDiff) ? currentDiff : nextDiff;
+}
+
+function nearSeasonEventTags(date = new Date()) {
+  const eventDates = [
+    { tag: "正月", month: 1, day: 1 },
+    { tag: "バレンタインデー", month: 2, day: 14 },
+    { tag: "ホワイトデー", month: 3, day: 14 },
+    { tag: "卒業", month: 3, day: 20 },
+    { tag: "入学", month: 4, day: 7 },
+    { tag: "七夕", month: 7, day: 7 },
+    { tag: "夏休み", month: 7, day: 20 },
+    { tag: "夏祭り", month: 8, day: 10 },
+    { tag: "ハロウィン", month: 10, day: 31 },
+    { tag: "クリスマス", month: 12, day: 25 },
+  ];
+
+  return eventDates
+    .map(item => ({ ...item, distance: daysFromToday(item.month, item.day, date) }))
+    .filter(item => item.distance >= -3 && item.distance <= 21)
+    .sort((left, right) => Math.abs(left.distance) - Math.abs(right.distance))
+    .map(item => item.tag);
+}
+
+function presetItemEventTags(item) {
+  return normalizeStringArray(item?.match?.eventTags);
+}
+
+function pickHomeMoodSuggestions() {
+  const titles = ["きもち", "雰囲気", "情景"];
+  const suggestions = titles
+    .map(title => {
+      const preset = fuzzyPresetByTitle(title);
+      const item = randomItem(preset?.items);
+      return preset && item ? { preset, item } : null;
+    })
+    .filter(Boolean);
+
+  const eventPreset = fuzzyPresetByTitle("イベント");
+  const nearTags = nearSeasonEventTags();
+  const eventItems = eventPreset?.items?.filter(item => {
+    const eventTags = presetItemEventTags(item);
+    return eventTags.some(tag => nearTags.includes(tag));
+  }) || [];
+  const eventItem = randomItem(eventItems);
+  if (eventPreset && eventItem) {
+    suggestions.push({ preset: eventPreset, item: eventItem });
+  }
+
+  homeMoodSuggestions = suggestions;
+  activeHomeMoodIndex = null;
+}
+
+function homeMoodMatchedSongs(index) {
+  const suggestion = homeMoodSuggestions[index];
+  if (!suggestion) return [];
+  const matched = songs.filter(song => matchesFuzzyPreset(song, suggestion.item.match));
+  return sortPlayableFirst(dailyFuzzyOrder(matched, suggestion.preset, suggestion.item))
+    .slice(0, HOME_MOOD_RESULT_COUNT);
+}
+
 function gridClassesForColumns(columns) {
   if (columns === "1") return "row row-cols-1 g-3 mt-1 song-grid";
   if (columns === "2") return "row row-cols-1 row-cols-md-2 g-3 mt-1 song-grid";
@@ -549,7 +850,7 @@ function gridClassesForColumns(columns) {
 function applyColumnLayout() {
   const gridClassName = gridClassesForColumns(displayColumnCount);
 
-  [els.homeRecommendations, els.copyHistorySongs, els.songs, els.fuzzySongs].forEach(grid => {
+  [els.homeRecommendations, els.homeMoodSongs, els.copyHistorySongs, els.songs, els.fuzzySongs].forEach(grid => {
     if (!grid) return;
     grid.className = gridClassName;
     grid.dataset.columns = displayColumnCount;
@@ -622,7 +923,7 @@ function fuzzyMatchedSongs() {
   const item = preset?.items?.[activeFuzzyItemIndex];
   if (!item) return [];
   const matched = songs.filter(song => matchesFuzzyPreset(song, item.match));
-  return dailyFuzzyOrder(matched, preset, item);
+  return sortPlayableFirst(dailyFuzzyOrder(matched, preset, item));
 }
 
 function renderFuzzySearch() {
@@ -658,7 +959,10 @@ function renderFuzzySearch() {
   const matched = fuzzyMatchedSongs();
   const visible = matched.slice(0, fuzzyResultLimit);
   els.fuzzyResultSummary.innerHTML = selectedItem
-    ? `<strong>${escapeHtml(selectedItem.label)}</strong>：${matched.length}曲`
+    ? `
+      <strong>${escapeHtml(selectedItem.label)}</strong>：${matched.length}曲
+      ${selectedItem.description ? `<p class="mb-0 mt-1">${escapeHtml(selectedItem.description)}</p>` : ""}
+    `
     : "";
   els.fuzzySongs.innerHTML = renderSongCards(visible);
   els.fuzzyEmpty.hidden = Boolean(selectedItem) && matched.length > 0;
@@ -733,6 +1037,7 @@ function renderHome() {
   updateHomeRandomSourceButtons();
   els.homeRecommendEmpty.hidden = homeRecommendedSongs.length !== 0;
   els.homeRecommendations.innerHTML = renderSongCards(homeRecommendedSongs);
+  renderHomeMood();
   renderCopyHistory();
 }
 
@@ -742,6 +1047,23 @@ function updateHomeRandomSourceButtons() {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
+}
+
+function renderHomeMood() {
+  els.homeMoodOptions.innerHTML = homeMoodSuggestions.map((suggestion, index) => `
+    <button class="btn fuzzy-preset-button ${index === activeHomeMoodIndex ? "active" : ""}" type="button" data-home-mood="${index}" aria-pressed="${index === activeHomeMoodIndex}">
+      ${escapeHtml(suggestion.item.label)}
+    </button>
+  `).join("");
+
+  const items = activeHomeMoodIndex === null ? [] : homeMoodMatchedSongs(activeHomeMoodIndex);
+  els.homeMoodSongs.innerHTML = renderSongCards(items);
+  els.homeMoodEmpty.hidden = homeMoodSuggestions.length !== 0 && activeHomeMoodIndex !== null && items.length !== 0;
+  els.homeMoodEmpty.textContent = homeMoodSuggestions.length === 0
+    ? "ふわっと検索の候補を読み込めませんでした。"
+    : activeHomeMoodIndex === null
+      ? "気になる項目を選んでみてください。"
+      : "条件に合う曲が見つかりませんでした。";
 }
 
 function getCopyHistorySongs() {
@@ -1024,6 +1346,14 @@ els.displayColumns.forEach(column => {
   });
 });
 els.genre.addEventListener("change", render);
+els.sortOrder.addEventListener("change", () => {
+  localStorage.setItem(SORT_ORDER_KEY, els.sortOrder.value || "playable");
+  render();
+});
+els.animeDrama.addEventListener("change", () => {
+  localStorage.setItem(ANIME_DRAMA_KEY, els.animeDrama.value || "");
+  render();
+});
 [els.subgenre, els.sourceCategory, els.vocalType, els.releaseDecade].forEach(select => {
   select.addEventListener("change", render);
 });
@@ -1047,6 +1377,17 @@ els.homeRandomOptions.forEach(button => {
     pickHomeRecommendations();
     renderHome();
   });
+});
+els.homeMoodOptions.addEventListener("click", event => {
+  const button = event.target.closest("[data-home-mood]");
+  if (!button) return;
+  activeHomeMoodIndex = Number(button.dataset.homeMood);
+  renderHomeMood();
+});
+els.homeFuzzyLink.addEventListener("click", () => {
+  switchTab("search");
+  setFuzzySearchMode(true);
+  els.fuzzySearchModeToggle.focus();
 });
 els.searchDetailToggle.addEventListener("click", () => {
   setSearchDetailsOpen(els.searchDetails.hidden);
@@ -1149,6 +1490,12 @@ applyAppPanelFontSize(localStorage.getItem(APP_PANEL_FONT_SIZE_KEY));
 updateSearchPlaceholder(applyRadioValue(els.searchScopes, localStorage.getItem(SEARCH_SCOPE_KEY), "all"));
 displayColumnCount = applyRadioValue(els.displayColumns, localStorage.getItem(DISPLAY_COLUMNS_KEY), "3");
 playableOnly = loadSavedBoolean(PLAYABLE_ONLY_KEY, false);
+const savedSortOrder = localStorage.getItem(SORT_ORDER_KEY);
+els.sortOrder.value = ["playable", "no", "title", "artist", "favorite", "copyCount", "random"].includes(savedSortOrder)
+  ? savedSortOrder
+  : "playable";
+const savedAnimeDrama = localStorage.getItem(ANIME_DRAMA_KEY);
+pendingAnimeDramaValue = savedAnimeDrama || "";
 homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
   ? localStorage.getItem(HOME_RANDOM_SOURCE_KEY)
   : "all";

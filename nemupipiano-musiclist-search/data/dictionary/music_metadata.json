@@ -1896,7 +1896,7 @@
     },
     "tieUps": [
       {
-        "series": "エヴァンゲリオン",
+        "series": "新世紀エヴァンゲリオン",
         "workTitle": "新世紀エヴァンゲリオン",
         "role": "OP"
       }
@@ -3125,7 +3125,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム 鉄血のオルフェンズ",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダム 鉄血のオルフェンズ",
         "role": "ED"
       }
@@ -10293,7 +10293,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダムSEED",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダムSEED",
         "role": "OP"
       }
@@ -11803,7 +11803,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士Zガンダム",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士Zガンダム",
         "role": "OP"
       }
@@ -11856,7 +11856,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダム",
         "role": "OP"
       }
@@ -11908,7 +11908,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダムII 哀・戦士編",
         "role": "主題歌"
       }
@@ -11961,7 +11961,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士Gundam GQuuuuuuX",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士Gundam GQuuuuuuX",
         "role": "主題歌"
       }
@@ -14314,7 +14314,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム 水星の魔女",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダム 水星の魔女",
         "role": "OP"
       }
@@ -15520,7 +15520,7 @@
     },
     "tieUps": [
       {
-        "series": "NARUTO -ナルト- 疾風伝",
+        "series": "NARUTO",
         "workTitle": "NARUTO -ナルト- 疾風伝",
         "role": "ED"
       }
@@ -19448,7 +19448,7 @@
         "ポップロック"
       ],
       "sourceCategories": [
-        "アニメ"
+        "映画"
       ],
       "vocalTypes": [
         "男性ボーカル"
@@ -19473,8 +19473,8 @@
     },
     "tieUps": [
       {
-        "series": "フルメタル・パニック！",
-        "workTitle": "フルメタル・パニック！The Second Raid",
+        "series": "亀は意外と速く泳ぐ",
+        "workTitle": "亀は意外と速く泳ぐ",
         "role": "OP"
       }
     ],
@@ -23223,7 +23223,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダムIII めぐりあい宇宙編",
         "role": "主題歌"
       }
@@ -24291,7 +24291,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダムIII めぐりあい宇宙編",
         "role": "挿入歌"
       }
@@ -26749,7 +26749,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダムUC",
         "role": "劇伴"
       }
@@ -26776,7 +26776,7 @@
       ],
       "subgenres": [],
       "sourceCategories": [
-        "アニメ"
+        "ドラマ"
       ],
       "vocalTypes": [
         "インスト"
@@ -26799,8 +26799,8 @@
     },
     "tieUps": [
       {
-        "series": "BLUE DRAGON",
-        "workTitle": "BLUE DRAGON",
+        "series": "医龍",
+        "workTitle": "医龍 Team Medical Dragon",
         "role": "劇伴"
       }
     ],
@@ -27134,7 +27134,13 @@
       ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "チェンソーマン",
+        "workTitle": "劇場版 チェンソーマン レゼ篇",
+        "role": "OP"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": 1837658529
@@ -29780,7 +29786,13 @@
       ],
       "eventTags": []
     },
-    "tieUps": [],
+    "tieUps": [
+      {
+        "series": "チェンソーマン",
+        "workTitle": "劇場版 チェンソーマン レゼ篇",
+        "role": "ED"
+      }
+    ],
     "source": {
       "provider": "itunes",
       "trackId": null
@@ -37033,7 +37045,7 @@
     },
     "tieUps": [
       {
-        "series": "天気の子",
+        "series": "新海誠作品",
         "workTitle": "天気の子",
         "role": "劇中歌"
       }
@@ -43506,7 +43518,7 @@
     },
     "tieUps": [
       {
-        "series": "機動戦士ガンダム",
+        "series": "機動戦士ガンダムシリーズ",
         "workTitle": "機動戦士ガンダムUC",
         "role": "主題歌"
       }
@@ -44030,7 +44042,7 @@
     },
     "tieUps": [
       {
-        "series": "PSYCHO-PASS サイコパス",
+        "series": "PSYCHO-PASS",
         "workTitle": "劇場版 PSYCHO-PASS サイコパス",
         "role": "主題歌"
       }
@@ -45237,7 +45249,7 @@
     },
     "tieUps": [
       {
-        "series": "アナと雪の女王",
+        "series": "ディズニー",
         "workTitle": "アナと雪の女王",
         "role": "劇中歌"
       }
@@ -45344,7 +45356,7 @@
     },
     "tieUps": [
       {
-        "series": "アナと雪の女王",
+        "series": "ディズニー",
         "workTitle": "アナと雪の女王",
         "role": "劇中歌"
       }
@@ -45651,7 +45663,7 @@
     },
     "tieUps": [
       {
-        "series": "パイレーツ・オブ・カリビアン",
+        "series": "ディズニー",
         "workTitle": "パイレーツ・オブ・カリビアン",
         "role": "劇伴"
       }
@@ -45701,7 +45713,7 @@
     },
     "tieUps": [
       {
-        "series": "東京ディズニーリゾート",
+        "series": "ディズニー",
         "workTitle": "シンドバッド・ストーリーブック・ヴォヤッジ",
         "role": "テーマ曲"
       }
@@ -45842,7 +45854,7 @@
     },
     "tieUps": [
       {
-        "series": "東京ディズニーリゾート",
+        "series": "ディズニー",
         "workTitle": "ジャンボリミッキー!",
         "role": "テーマ曲"
       }
@@ -46402,7 +46414,7 @@
     },
     "tieUps": [
       {
-        "series": "ピクサー",
+        "series": "ディズニー",
         "workTitle": "ウォーリー",
         "role": "劇伴"
       }

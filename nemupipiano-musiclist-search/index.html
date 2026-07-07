@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.0.1" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.0.2" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -68,12 +68,29 @@
             </div>
           </div>
           <div class="recommend-source-options" role="radiogroup" aria-label="今日のおすすめの選出方法">
-            <button class="btn recommend-source-button active" type="button" data-home-random-source="all" aria-pressed="true">全曲</button>
+            <button class="btn recommend-source-button" type="button" data-home-random-source="playable" aria-pressed="true">弾ける曲</button>
+            <button class="btn recommend-source-button active" type="button" data-home-random-source="all" aria-pressed="false">全曲</button>
             <button class="btn recommend-source-button" type="button" data-home-random-source="favorite" aria-pressed="false">お気に入り</button>
-            <button class="btn recommend-source-button" type="button" data-home-random-source="playable" aria-pressed="false">弾ける曲</button>
           </div>
           <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="homeRecommendations" data-columns="3"></div>
           <div class="empty-box text-center p-4 mt-3" id="homeRecommendEmpty" hidden>おすすめできる曲がまだありません。</div>
+        </section>
+
+        <section class="home-section mt-4">
+          <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
+            <span class="theme-icon section-heading-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/moon_white.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/moon_black.svg" alt="">
+            </span>
+            今日の気分から曲を探してみる
+          </h2>
+          <p class="recommend-desc text-secondary mb-0">いまの気分や雰囲気に合いそうな入口を、ふわっと検索からピックアップしました。</p>
+          <div class="home-mood-options mt-3" id="homeMoodOptions" aria-label="今日の気分から探す"></div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="homeMoodSongs" data-columns="3"></div>
+          <div class="empty-box text-center p-4 mt-3" id="homeMoodEmpty" hidden>気になる項目を選んでみてください。</div>
+          <div class="text-end mt-3">
+            <button id="homeFuzzyLink" class="btn fuzzy-more-button" type="button">ふわっと検索で他の項目を探す</button>
+          </div>
         </section>
 
         <section class="home-section mt-4">
@@ -114,6 +131,18 @@
               </select>
             </div>
             <div class="col-12 col-md-6">
+              <label class="form-label fw-bold" for="sortOrder">並び順</label>
+              <select id="sortOrder" class="form-select form-select-lg">
+                <option value="playable">弾ける曲を優先する</option>
+                <option value="no">No順</option>
+                <option value="title">曲名毎に並べる</option>
+                <option value="artist">アーティスト毎に並べる</option>
+                <option value="favorite">お気に入りを優先する</option>
+                <option value="copyCount">コピー回数が多い順</option>
+                <option value="random">ランダム表示</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
               <label class="form-label fw-bold" for="subgenre">サブジャンル</label>
               <select id="subgenre" class="form-select form-select-lg">
                 <option value="">すべてのサブジャンル</option>
@@ -123,6 +152,12 @@
               <label class="form-label fw-bold" for="sourceCategory">出典カテゴリ</label>
               <select id="sourceCategory" class="form-select form-select-lg">
                 <option value="">すべての出典カテゴリ</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold" for="animeDrama">アニメ・ドラマ</label>
+              <select id="animeDrama" class="form-select form-select-lg">
+                <option value="">すべて</option>
               </select>
             </div>
             <div class="col-12 col-md-6">
@@ -190,6 +225,18 @@
                 <li>曲カードをクリックまたはタップすると、リクエスト用の文言がクリップボードにコピーされます。</li>
                 <li>コピーした文言は「ねむぴぴあの」でそのままリクエストできます。</li>
                 <li>直近でコピーした履歴は、ホームタブの「クリップボード履歴」で確認できます。</li>
+              </ul>
+            </section>
+            <section class="search-guide-section">
+              <h2 class="search-guide-heading section-heading-with-icon">
+                <span class="theme-icon section-heading-icon" aria-hidden="true">
+                  <img class="theme-icon-light" src="../lib/icon/moon_white.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/moon_black.svg" alt="">
+                </span>
+                それでも合う曲が見つからないときは「🌙ふわっと検索」を試してみよう！
+              </h2>
+              <ul class="mb-0">
+                <li>「🌙ふわっと検索」を使うと、その日の気持ちや曲のイメージに合わせて、曖昧なキーワードでも関連する曲を見つけやすくなります。</li>
               </ul>
             </section>
             <section class="search-guide-section">
@@ -354,7 +401,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.0.1 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.0.2 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -371,7 +418,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.0.1"></script>
+  <script src="./js/musiclist-search.js?v=2.0.2"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 </body>
