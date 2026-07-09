@@ -556,6 +556,23 @@ function sourceCategoriesFor(song) {
   return normalizeStringArray(song.classification?.sourceCategories);
 }
 
+function tieUpCategoryLabel(song) {
+  if (!Array.isArray(song.tieUps) || song.tieUps.length === 0) return "";
+  const sourceCategories = sourceCategoriesFor(song);
+  const priorityCategories = ["アニメ", "ドラマ", "映画"];
+  return priorityCategories.find(category => (
+    sourceCategories.some(sourceCategory => sourceCategory.includes(category))
+  )) || "";
+}
+
+function songGenreLabel(song) {
+  const genre = normalizeCellText(song.genre);
+  const tieUpCategory = tieUpCategoryLabel(song);
+  if (!genre) return tieUpCategory;
+  if (!tieUpCategory || genre === tieUpCategory || genre.includes(tieUpCategory)) return genre;
+  return `${genre}/${tieUpCategory}`;
+}
+
 function matchesAnimeDramaFilter(song, filter) {
   if (!filter) return true;
   const { category, series } = parseAnimeDramaValue(filter);
@@ -1026,7 +1043,7 @@ function renderSongCards(items) {
           </div>
           <div class="song-card-meta d-flex">
             ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
-            ${song.genre ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(song.genre)}</span>` : ""}
+            ${songGenreLabel(song) ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(songGenreLabel(song))}</span>` : ""}
           </div>
         </div>
       </article>
@@ -1280,7 +1297,7 @@ function relatedSongList(items) {
 }
 
 function renderSongDetail(song) {
-  const genreBadge = detailBadge(song.genre);
+  const genreBadge = detailBadge(songGenreLabel(song));
   const playableBadge = song.playable
     ? detailBadge(`${song.playable} 弾ける`, "badge-playable")
     : "";
