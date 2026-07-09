@@ -540,17 +540,22 @@ html[data-theme="dark"] .form-select {
 .song-card.has-accent::before {
     content: "";
     position: absolute;
-    top: .8rem;
-    bottom: .8rem;
+    top: 0;
+    bottom: 0;
     left: 0;
     width: .32rem;
-    border-radius: 999px;
+    border-radius: 1.25rem 0 0 1.25rem;
     background: var(--song-accent, #e5e7eb);
     opacity: .9;
 }
 
 .song-card.has-accent .song-card-body {
     padding-left: calc(1.5rem + .32rem) !important;
+}
+
+.song-card-body {
+    position: relative;
+    padding-right: 3.4rem !important;
 }
 
 .song-card.accent-anime {
@@ -678,6 +683,10 @@ html[data-theme="dark"] .song-card.accent-other {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
     width: 2rem;
     height: 2rem;
     padding: 0;
@@ -694,9 +703,35 @@ html[data-theme="dark"] .song-card.accent-other {
     outline: none;
 }
 
+.song-card-menu:active {
+    transform: translateY(-50%) scale(.96);
+}
+
 .song-card-menu-icon {
     width: 1.1rem;
     height: 1.1rem;
+}
+
+.song-accent-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    max-width: 7rem;
+    padding: .18rem .45rem;
+    color: var(--page-muted);
+    background: var(--page-control-soft);
+    border: 1px solid var(--page-line);
+    color: color-mix(in srgb, var(--song-accent, #9ca3af) 48%, var(--page-text));
+    background: color-mix(in srgb, var(--song-accent, #e5e7eb) 24%, transparent);
+    border: 1px solid color-mix(in srgb, var(--song-accent, #e5e7eb) 54%, var(--page-line));
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 800;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .stats-row {
@@ -714,8 +749,9 @@ html[data-theme="dark"] .song-card.accent-other {
 
 .song-grid[data-columns="1"] .song-card-body {
     display: grid !important;
-    grid-template-columns: minmax(12rem, 1.35fr) minmax(10rem, .95fr) 2.25rem;
+    grid-template-columns: minmax(12rem, 1.35fr) minmax(10rem, .95fr);
     align-items: center;
+    padding-right: 3.4rem !important;
     gap: .75rem !important;
 }
 
@@ -760,14 +796,13 @@ html[data-theme="dark"] .song-card.accent-other {
     grid-column: 2;
 }
 
-.song-grid[data-columns="1"] .song-card-menu {
-    grid-column: 3;
-    justify-self: end;
-    align-self: center;
+.song-grid[data-columns="1"] .song-accent-label {
+    display: none;
 }
 
 .song-grid[data-columns="2"] .song-card-body {
     gap: .45rem !important;
+    padding-right: 3.4rem !important;
 }
 
 .song-grid[data-columns="2"] .song-card-text {
@@ -783,6 +818,16 @@ html[data-theme="dark"] .song-card.accent-other {
 .song-grid[data-columns="2"] .song-artist {
     flex: 1 1 36%;
     font-size: .9rem;
+}
+
+.song-grid[data-columns="2"] .song-card-header,
+.song-grid[data-columns="3"] .song-card-header {
+    align-items: center !important;
+}
+
+.song-grid[data-columns="2"] .song-accent-label,
+.song-grid[data-columns="3"] .song-accent-label {
+    margin-left: auto;
 }
 
 .song-grid[data-columns="1"] .song-card.has-accent .song-card-body,
@@ -846,15 +891,41 @@ html[data-theme="dark"] .badge-playable {
     gap: .75rem;
 }
 
+.detail-favorite-button {
+    color: #3f2a00;
+    border-color: #f59e0b;
+    background: #fef3c7;
+    font-weight: 800;
+}
+
+.detail-favorite-button:hover,
+.detail-favorite-button:focus,
+.detail-favorite-button.active {
+    color: #1f1300;
+    background: #fbbf24;
+    border-color: #d97706;
+}
+
+html[data-theme="dark"] .detail-favorite-button {
+    color: #fef3c7;
+    background: #7c4a03;
+    border-color: #f59e0b;
+}
+
+html[data-theme="dark"] .detail-favorite-button:hover,
+html[data-theme="dark"] .detail-favorite-button:focus,
+html[data-theme="dark"] .detail-favorite-button.active {
+    color: #111827;
+    background: #fbbf24;
+    border-color: #fcd34d;
+}
+
 .song-detail-meta-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: .75rem;
-    padding: .75rem;
-    border: 1px solid var(--page-line);
-    border-radius: 1rem;
-    background: var(--page-control-soft);
+    padding: .2rem 0;
 }
 
 .song-detail-source,
@@ -874,6 +945,8 @@ html[data-theme="dark"] .badge-playable {
 
 .song-detail-field {
     display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: baseline;
     gap: .35rem;
 }
 
@@ -881,6 +954,12 @@ html[data-theme="dark"] .badge-playable {
     color: var(--page-muted);
     font-size: .82rem;
     font-weight: 700;
+}
+
+.detail-number {
+    color: var(--page-text);
+    font-size: .9rem;
+    font-weight: 800;
 }
 
 .song-detail-title {
@@ -896,6 +975,10 @@ html[data-theme="dark"] .badge-playable {
     font-size: 1rem;
     line-height: 1.4;
     overflow-wrap: anywhere;
+}
+
+.song-detail-field .detail-chip-row {
+    justify-content: flex-start;
 }
 
 .detail-related-list {
@@ -1193,7 +1276,7 @@ html[data-theme="dark"] .text-secondary {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start;
     gap: .2rem .5rem !important;
-    padding: .65rem .75rem !important;
+    padding: .65rem 3rem .65rem .75rem !important;
     position: relative;
     }
 
@@ -1202,9 +1285,8 @@ html[data-theme="dark"] .text-secondary {
     }
 
     .song-card.has-accent::before {
-    top: .65rem;
-    bottom: .65rem;
     width: .25rem;
+    border-radius: .9rem 0 0 .9rem;
     }
 
     .song-card-header,
@@ -1271,19 +1353,26 @@ html[data-theme="dark"] .text-secondary {
     align-self: center;
     }
 
-    .song-detail-actions {
-    grid-template-columns: 1fr;
+    .song-accent-label,
+    .song-grid[data-columns="1"] .song-accent-label,
+    .song-grid[data-columns="2"] .song-accent-label,
+    .song-grid[data-columns="3"] .song-accent-label {
+    display: none;
     }
 
     .song-detail-meta-row {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
     }
 
     .song-detail-badges {
-    justify-content: flex-start;
-    margin-left: 0;
-    width: 100%;
+    justify-content: flex-end;
+    margin-left: auto;
+    width: auto;
+    }
+
+    .song-detail-field {
+    grid-template-columns: 5.75rem minmax(0, 1fr);
     }
 
     .detail-related-item {

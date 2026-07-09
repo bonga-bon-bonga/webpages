@@ -987,6 +987,19 @@ function songAccentType(song) {
   return "other";
 }
 
+function songAccentLabel(song) {
+  const labels = {
+    anime: "アニメ",
+    game: "ゲーム",
+    vocaloid: "ボカロ",
+    screen: "映画・ドラマ",
+    studio: songSourceType(song) === "disney" ? "ディズニー" : "ジブリ",
+    event: "季節・イベント",
+    other: "その他",
+  };
+  return labels[songAccentType(song)] || labels.other;
+}
+
 function songAccentClass(song) {
   return accentColorEnabled ? `has-accent accent-${songAccentType(song)}` : "";
 }
@@ -1010,6 +1023,7 @@ function renderSongCards(items) {
               <h2 class="song-title h5 fw-bold mb-1">${escapeHtml(song.title)}</h2>
               <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
             </div>
+            ${accentColorEnabled ? `<span class="song-accent-label">${escapeHtml(songAccentLabel(song))}</span>` : ""}
             <button class="song-card-menu" type="button" data-card-menu data-song-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}の詳細を開く">
               ${menuIconHtml()}
             </button>
@@ -1239,6 +1253,18 @@ function sameArtistSongsFor(song) {
     .slice(0, 2);
 }
 
+function uniqueRelatedSongs(items, excludedKeys = new Set()) {
+  const seen = new Set(excludedKeys);
+  const unique = [];
+  items.forEach(item => {
+    const key = favoriteKeyForSong(item);
+    if (!key || seen.has(key)) return;
+    seen.add(key);
+    unique.push(item);
+  });
+  return unique;
+}
+
 function relatedSongList(items) {
   if (items.length === 0) return "";
   return `
@@ -1260,21 +1286,22 @@ function renderSongDetail(song) {
     : "";
   const number = songNumberValue(song.no);
   const tieUps = tieUpLabels(song);
-  const similarSongs = similarSongsFor(song);
-  const sameArtistSongs = sameArtistSongsFor(song);
+  const sameArtistSongs = uniqueRelatedSongs(sameArtistSongsFor(song));
+  const similarSongs = uniqueRelatedSongs(similarSongsFor(song), new Set(sameArtistSongs.map(favoriteKeyForSong)));
   const favoriteButtonText = isFavorite(song) ? "お気に入り解除" : "お気に入り登録";
+  const favoriteButtonClass = isFavorite(song) ? "btn btn-warning detail-favorite-button active" : "btn btn-warning detail-favorite-button";
 
   return `
     <div class="song-detail">
       <div class="song-detail-actions">
         <button class="btn btn-dark" type="button" data-detail-copy>ぴぴりくする</button>
-        <button class="btn btn-outline-warning" type="button" data-detail-favorite>${favoriteButtonText}</button>
+        <button class="${favoriteButtonClass}" type="button" data-detail-favorite>${favoriteButtonText}</button>
       </div>
       <div class="song-detail-meta-row">
         <div class="song-detail-source">
           <span class="detail-label">分類</span>
           ${detailBadge(songSourceLabel(song))}
-          ${number ? detailBadge(number) : ""}
+          ${number ? `<span class="detail-number">No. ${escapeHtml(number)}</span>` : ""}
         </div>
         <div class="song-detail-badges">
           ${genreBadge}
@@ -1282,22 +1309,22 @@ function renderSongDetail(song) {
         </div>
       </div>
       <div class="song-detail-field">
-        <span class="detail-label">曲名</span>
+        <span class="detail-label">曲名：</span>
         <div class="song-detail-title">${escapeHtml(song.title)}</div>
       </div>
       <div class="song-detail-field">
-        <span class="detail-label">アーティスト</span>
+        <span class="detail-label">アーティスト：</span>
         <div class="song-detail-artist">${escapeHtml(song.artist || "アーティスト未設定")}</div>
       </div>
       ${song.releaseDecade ? `
         <div class="song-detail-field">
-          <span class="detail-label">年代</span>
+          <span class="detail-label">年代：</span>
           <div class="detail-chip-row">${detailBadge(song.releaseDecade)}</div>
         </div>
       ` : ""}
       ${tieUps.length > 0 ? `
         <div class="song-detail-field">
-          <span class="detail-label">タイアップ</span>
+          <span class="detail-label">タイアップ：</span>
           <div class="detail-chip-row">${tieUps.map(label => detailBadge(label)).join("")}</div>
         </div>
       ` : ""}
