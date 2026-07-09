@@ -1028,6 +1028,10 @@ function renderSongCards(items) {
               ${menuIconHtml()}
             </button>
           </div>
+          <div class="song-card-meta d-flex">
+            ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
+            ${song.genre ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(song.genre)}</span>` : ""}
+          </div>
         </div>
       </article>
     </div>
