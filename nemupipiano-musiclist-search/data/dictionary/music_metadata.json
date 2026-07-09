@@ -48063,5 +48063,462 @@
     },
     "status": "not_found",
     "generatedAt": "2026-07-07T19:20:02+09:00"
+  },
+  {
+    "title": "クロノスタシス",
+    "artist": "BUMP OF CHICKEN",
+    "metadata": {
+      "releaseDate": "2022-04-11",
+      "releaseDecade": "2020年代",
+      "durationSeconds": 340,
+      "collectionName": "クロノスタシス - Single"
+    },
+    "classification": {
+      "genres": [
+        "J-Pop"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1617255367
+    },
+    "status": "auto_matched",
+    "generatedAt": "2026-07-10T02:46:43+09:00"
+  },
+  {
+    "title": "明日も",
+    "artist": "SHISHAMO",
+    "metadata": {
+      "releaseDate": "2017-02-22",
+      "releaseDecade": "2010年代",
+      "durationSeconds": 369,
+      "collectionName": "SHISHAMO 4"
+    },
+    "classification": {
+      "genres": [
+        "ロック"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1428790710
+    },
+    "status": "needs_review",
+    "generatedAt": "2026-07-10T02:46:44+09:00"
+  },
+  {
+    "title": "君が眩しいから僕は星が見えない",
+    "artist": "SIX LOUNGE",
+    "metadata": {
+      "releaseDate": "2024-03-27",
+      "releaseDecade": "2020年代",
+      "durationSeconds": 236,
+      "collectionName": "All Right - EP"
+    },
+    "classification": {
+      "genres": [
+        "ロック"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1735702871
+    },
+    "status": "auto_matched",
+    "generatedAt": "2026-07-10T02:46:45+09:00"
+  },
+  {
+    "title": "アイワナムチュー",
+    "artist": "MAISONdes",
+    "metadata": {
+      "releaseDate": "2023-01-06",
+      "releaseDecade": "2020年代",
+      "durationSeconds": 206,
+      "collectionName": "アイワナムチュー (feat. asmi & すりぃ) - Single"
+    },
+    "classification": {
+      "genres": [
+        "オルタナティブ"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1660846166
+    },
+    "status": "needs_review",
+    "generatedAt": "2026-07-10T02:46:46+09:00"
+  },
+  {
+    "title": "めぐり逢い",
+    "artist": "アンドレ・ギャニオン",
+    "metadata": {
+      "releaseDate": "2000-11-14",
+      "releaseDecade": "2000年代",
+      "durationSeconds": 232,
+      "collectionName": "impressions"
+    },
+    "classification": {
+      "genres": [
+        "クラシック"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 656557534
+    },
+    "status": "auto_matched",
+    "generatedAt": "2026-07-10T02:46:47+09:00"
+  },
+  {
+    "title": "スパイダー",
+    "artist": "スピッツ",
+    "metadata": {
+      "releaseDate": "1994-09-21",
+      "releaseDecade": "1990年代",
+      "durationSeconds": 225,
+      "collectionName": "空の飛び方"
+    },
+    "classification": {
+      "genres": [
+        "ロック"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1440778759
+    },
+    "status": "auto_matched",
+    "generatedAt": "2026-07-10T02:46:48+09:00"
+  },
+  {
+    "title": "ずっと作りかけのラブソング",
+    "artist": "秦基博",
+    "metadata": {
+      "releaseDate": "2025-02-26",
+      "releaseDecade": "2020年代",
+      "durationSeconds": 298,
+      "collectionName": "ずっと作りかけのラブソング - Single"
+    },
+    "classification": {
+      "genres": [
+        "J-Pop"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1795414072
+    },
+    "status": "needs_review",
+    "generatedAt": "2026-07-10T02:46:49+09:00"
+  },
+  {
+    "title": "ポケットに魔法を入れて",
+    "artist": "秦基博",
+    "metadata": {
+      "releaseDate": "2026-01-20",
+      "releaseDecade": "2020年代",
+      "durationSeconds": 289,
+      "collectionName": "ポケットに魔法を入れて - Single"
+    },
+    "classification": {
+      "genres": [
+        "J-Pop"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1867419908
+    },
+    "status": "needs_review",
+    "generatedAt": "2026-07-10T02:46:50+09:00"
+  },
+  {
+    "title": "青春アミーゴ",
+    "artist": "修二と彰",
+    "metadata": {
+      "releaseDate": null,
+      "releaseDecade": null,
+      "durationSeconds": null,
+      "collectionName": null
+    },
+    "classification": {
+      "genres": [],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": null
+    },
+    "status": "not_found",
+    "generatedAt": "2026-07-10T02:46:52+09:00"
+  },
+  {
+    "title": "烏",
+    "artist": "米津玄師",
+    "metadata": {
+      "releaseDate": null,
+      "releaseDecade": null,
+      "durationSeconds": null,
+      "collectionName": null
+    },
+    "classification": {
+      "genres": [],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": null
+    },
+    "status": "not_found",
+    "generatedAt": "2026-07-10T02:46:54+09:00"
+  },
+  {
+    "title": "桜色舞うころ",
+    "artist": "中島美嘉",
+    "metadata": {
+      "releaseDate": "2005-02-02",
+      "releaseDecade": "2000年代",
+      "durationSeconds": 296,
+      "collectionName": "BEST"
+    },
+    "classification": {
+      "genres": [
+        "J-Pop"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1535491599
+    },
+    "status": "needs_review",
+    "generatedAt": "2026-07-10T02:46:55+09:00"
+  },
+  {
+    "title": "ヘッドライト・テールライト",
+    "artist": "中島みゆき",
+    "metadata": {
+      "releaseDate": "2000-07-19",
+      "releaseDecade": "2000年代",
+      "durationSeconds": 299,
+      "collectionName": "地上の星 / ヘッドライト・テールライト - Single"
+    },
+    "classification": {
+      "genres": [
+        "J-Pop"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 107233414
+    },
+    "status": "auto_matched",
+    "generatedAt": "2026-07-10T02:46:57+09:00"
+  },
+  {
+    "title": "千の風になって",
+    "artist": "秋川雅史",
+    "metadata": {
+      "releaseDate": "2005-09-21",
+      "releaseDecade": "2000年代",
+      "durationSeconds": 283,
+      "collectionName": "威風堂々"
+    },
+    "classification": {
+      "genres": [],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1862902136
+    },
+    "status": "needs_review",
+    "generatedAt": "2026-07-10T02:46:58+09:00"
+  },
+  {
+    "title": "magnet",
+    "artist": "流星P",
+    "metadata": {
+      "releaseDate": null,
+      "releaseDecade": null,
+      "durationSeconds": null,
+      "collectionName": null
+    },
+    "classification": {
+      "genres": [],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": null
+    },
+    "status": "not_found",
+    "generatedAt": "2026-07-10T02:47:00+09:00"
+  },
+  {
+    "title": "プロポーズ",
+    "artist": "奥華子",
+    "metadata": {
+      "releaseDate": "2017-05-17",
+      "releaseDecade": "2010年代",
+      "durationSeconds": 277,
+      "collectionName": "遥か遠くに見えていた今日"
+    },
+    "classification": {
+      "genres": [
+        "J-Pop"
+      ],
+      "subgenres": [],
+      "sourceCategories": [],
+      "vocalTypes": []
+    },
+    "tags": {
+      "themeTags": [],
+      "moodTags": [],
+      "motifTags": [],
+      "eventTags": []
+    },
+    "tieUps": [],
+    "source": {
+      "provider": "itunes",
+      "trackId": 1226339435
+    },
+    "status": "needs_review",
+    "generatedAt": "2026-07-10T02:47:01+09:00"
   }
 ]
