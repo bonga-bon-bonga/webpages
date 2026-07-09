@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.0.2" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.0.3" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -21,8 +21,8 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" data-tab="home">
             <span class="theme-icon tab-icon" aria-hidden="true">
-              <img class="theme-icon-light" src="../lib/icon/home_white.svg" alt="">
-              <img class="theme-icon-dark" src="../lib/icon/home_black.svg" alt="">
+              <img class="theme-icon-light" src="../lib/icon/white/home.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/home.svg" alt="">
             </span>
             ホーム
           </button>
@@ -30,10 +30,20 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tab-search" type="button" role="tab" aria-selected="false" aria-controls="panel-search" data-tab="search">
             <span class="theme-icon tab-icon" aria-hidden="true">
-              <img class="theme-icon-light" src="../lib/icon/search_white.svg" alt="">
-              <img class="theme-icon-dark" src="../lib/icon/search_black.svg" alt="">
+              <img class="theme-icon-light" src="../lib/icon/white/search.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/search.svg" alt="">
             </span>
             検索
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="fuzzySearchModeToggle" type="button" role="tab" aria-selected="false" aria-controls="panel-search" data-tab="fuzzy">
+            <span class="theme-icon tab-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/white/moon.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/moon.svg" alt="">
+            </span>
+            <span class="tab-label-full">ふわっと検索</span>
+            <span class="tab-label-short">ふわっと</span>
           </button>
         </li>
       </ul>
@@ -42,14 +52,14 @@
         <section class="home-section">
           <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
             <span class="theme-icon section-heading-icon" aria-hidden="true">
-              <img class="theme-icon-light" src="../lib/icon/popper_white.svg" alt="">
-              <img class="theme-icon-dark" src="../lib/icon/popper_black.svg" alt="">
+              <img class="theme-icon-light" src="../lib/icon/white/popper.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/popper.svg" alt="">
             </span>
             ようこそ
           </h2>
           <p class="recommend-desc text-secondary mb-0">
-            「ねむぴぴあの」で何をリクエストしよう…。曲を探すのが大変！という時のための検索・探索補助サイトとなっています。<br>
-            はじめて使う方は、画面のヘッダ部にある「使い方」を参照ください。<br>
+            「ねむぴぴあの」で何をリクエストしようかな？そんな時のための、リクエスト探しのお手伝いサイトです。<br>
+            曲名や気分、ジャンルなどから、ぴったりの曲を探してみてください。<br>
             (7/5 Update) 検索タブに「ふわっと検索」を追加しました！曲の雰囲気やテーマなどから、気になる曲を探してみましょう。
           </p>
         </section>
@@ -79,8 +89,8 @@
         <section class="home-section mt-4">
           <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
             <span class="theme-icon section-heading-icon" aria-hidden="true">
-              <img class="theme-icon-light" src="../lib/icon/moon_white.svg" alt="">
-              <img class="theme-icon-dark" src="../lib/icon/moon_black.svg" alt="">
+              <img class="theme-icon-light" src="../lib/icon/white/moon.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/moon.svg" alt="">
             </span>
             今日の気分から曲を探してみる
           </h2>
@@ -96,8 +106,8 @@
         <section class="home-section mt-4">
           <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
             <span class="theme-icon section-heading-icon" aria-hidden="true">
-              <img class="theme-icon-light" src="../lib/icon/files_white.svg" alt="">
-              <img class="theme-icon-dark" src="../lib/icon/files_black.svg" alt="">
+              <img class="theme-icon-light" src="../lib/icon/white/files.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/files.svg" alt="">
             </span>
             クリップボード履歴
           </h2>
@@ -108,10 +118,6 @@
       </section>
 
       <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search" hidden>
-        <div class="fuzzy-mode-toggle-wrapper mb-3">
-          <button id="fuzzySearchModeToggle" class="btn fuzzy-mode-toggle" type="button" aria-pressed="false" aria-controls="normalSearchPanel fuzzySearchPanel">🌙ふわっと検索してみる</button>
-        </div>
-
         <div id="normalSearchPanel">
         <div class="row g-2 g-md-3 align-items-stretch">
           <div class="col-8 col-md-10">
@@ -201,8 +207,8 @@
             <section class="search-guide-section">
               <h2 class="search-guide-heading section-heading-with-icon">
                 <span class="theme-icon section-heading-icon" aria-hidden="true">
-                  <img class="theme-icon-light" src="../lib/icon/search_white.svg" alt="">
-                  <img class="theme-icon-dark" src="../lib/icon/search_black.svg" alt="">
+                  <img class="theme-icon-light" src="../lib/icon/white/search.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/black/search.svg" alt="">
                 </span>
                 どうやって検索する？
               </h2>
@@ -216,8 +222,8 @@
             <section class="search-guide-section">
               <h2 class="search-guide-heading section-heading-with-icon">
                 <span class="theme-icon section-heading-icon" aria-hidden="true">
-                  <img class="theme-icon-light" src="../lib/icon/hint_white.svg" alt="">
-                  <img class="theme-icon-dark" src="../lib/icon/hint_black.svg" alt="">
+                  <img class="theme-icon-light" src="../lib/icon/white/hint.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/black/hint.svg" alt="">
                 </span>
                 検索したあとは？
               </h2>
@@ -230,13 +236,13 @@
             <section class="search-guide-section">
               <h2 class="search-guide-heading section-heading-with-icon">
                 <span class="theme-icon section-heading-icon" aria-hidden="true">
-                  <img class="theme-icon-light" src="../lib/icon/moon_white.svg" alt="">
-                  <img class="theme-icon-dark" src="../lib/icon/moon_black.svg" alt="">
+                  <img class="theme-icon-light" src="../lib/icon/white/moon.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/black/moon.svg" alt="">
                 </span>
                 それでも合う曲が見つからないときは「🌙ふわっと検索」を試してみよう！
               </h2>
               <ul class="mb-0">
-                <li>「🌙ふわっと検索」を使うと、その日の気持ちや曲のイメージに合わせて、曖昧なキーワードでも関連する曲を見つけやすくなります。</li>
+                <li>「🌙ふわっと検索」を使うと、その日の気持ちや曲のイメージに合わせて関連する曲を見つけやすくなります。</li>
               </ul>
             </section>
             <section class="search-guide-section">
@@ -251,8 +257,8 @@
             <section class="search-guide-section">
               <h2 class="search-guide-heading section-heading-with-icon">
                 <span class="theme-icon section-heading-icon" aria-hidden="true">
-                  <img class="theme-icon-light" src="../lib/icon/coffie_white.svg" alt="">
-                  <img class="theme-icon-dark" src="../lib/icon/coffie_black.svg" alt="">
+                  <img class="theme-icon-light" src="../lib/icon/white/coffie.svg" alt="">
+                  <img class="theme-icon-dark" src="../lib/icon/black/coffie.svg" alt="">
                 </span>
                 見た目をカスタマイズしてみよう！
               </h2>
@@ -294,7 +300,7 @@
         </div>
         <div class="modal-body">
           <p>
-            本ページは更新済みの<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>データを読み取り、曲のフィルタ検索を行うことが出来ます。
+            本ページは更新済みの<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>データをもとに、曲の検索や探索を行うことが出来ます。
             リストに曲が無い時は、<a href="https://www.youtube.com/@nemupipi" target="_blank" rel="noopener noreferrer">ねむぴぴ</a>のピアノ配信「ねむぴぴあの」内でリクエスト！
           </p>
           <hr>
@@ -302,11 +308,13 @@
           <p class="mb-2"><strong>ホーム</strong>タブでは、曲選びのきっかけになる情報を確認できます。</p>
           <ul>
             <li>今日のおすすめ曲を確認できます。</li>
+            <li>今日の気分から、ふわっと検索の候補を確認できます。</li>
             <li>過去にコピーした曲の履歴を確認できます。</li>
           </ul>
           <p class="mb-2"><strong>検索</strong>タブでは、曲リストから目的の曲を探せます。</p>
           <ul class="mb-0">
             <li>曲名・アーティスト名でキーワード検索できます。</li>
+            <li>ふわっと検索に切り替えると、気分や雰囲気などのタグから曲を探せます。</li>
             <li>詳細を開くと、ジャンルなどの条件で絞り込めます。</li>
             <li>弾ける曲やお気に入りのみの表示に切り替えられます。</li>
           </ul>
@@ -314,12 +322,14 @@
           <h5>機能</h5>
           <ul>
             <li>今日のおすすめ曲の表示</li>
+            <li>ふわっと検索による気分・雰囲気・情景などからの曲探し</li>
             <li>直近のクリップボード履歴の表示</li>
             <li>検索タブによる曲名、アーティストのキーワード検索（ひらがな・カタカナでの検索にも対応）</li>
             <li>
               曲カードクリックによるリクエスト用テキストのコピー<br>
               <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span>
             </li>
+            <li>曲カードのメニューから、分類・年代・タイアップ・関連曲などの詳細情報を確認</li>
             <li>曲カードの長押しクリックによる「お気に入りの登録／解除」</li>
           </ul>
           <h6 class="fw-bold mt-3">設定</h6>
@@ -328,13 +338,16 @@
             <li>テーマの選択</li>
             <li>文字の大きさ</li>
             <li>曲カードの表示列</li>
+            <li>曲カードのアクセントカラー表示</li>
             <li>「お気に入り登録」の全解除</li>
-            <li>曲リストの再読み込み</li>
           </ul>
           <hr>
           <ul class="mb-0">
-            <li>シート側を更新すると、ページ再読み込み時に表示内容も更新されます。</li>
-            <li>本ページはねむぴぴさんの非公式応援ページとなります。<br>ご本人様の活動とは一切関係ございません。<br>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
+            <li>曲リストの内容は公開用データの更新後、ページ再読み込み時に反映されます。</li>
+            <li>本ページはねむぴぴさんの非公式応援ページとなります。<br>ご本人様の活動とは一切関係ございません。</li>
+            <li>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
+            <li>クリップボードへのコピーの履歴やお気に入り情報、及び設定情報の保存はブラウザ側のローカルストレージで管理されます。</li>
+            <li>無断複製・模倣・再配布を目的としたHTML取得、構造解析、メタデータ流用はご遠慮ください。<br>継続してそのような行為が見られる場合、必要に応じて経緯や差分を整理して公開することがあります。</li>
           </ul>
         </div>
       </div>
@@ -379,11 +392,31 @@
             <label class="btn display-columns-button" for="displayColumns3">3列</label>
           </div>
           <p class="setting-note mt-2 mb-0">※スマホ・タブレット表示の場合、設定した表示列より少なく表示される場合があります</p>
+          <hr>
+          <h5>曲カードのアクセントカラー</h5>
+          <div class="setting-options" role="radiogroup" aria-label="曲カードのアクセントカラー">
+            <input class="btn-check" type="radio" name="accentColor" id="accentColorOn" value="on" autocomplete="off" checked>
+            <label class="btn setting-option-button" for="accentColorOn">ON</label>
+            <input class="btn-check" type="radio" name="accentColor" id="accentColorOff" value="off" autocomplete="off">
+            <label class="btn setting-option-button" for="accentColorOff">OFF</label>
+          </div>
+          <p class="setting-note mt-2 mb-0">※ジャンルや雰囲気に応じて、曲カード左端に淡い色のラインを表示します</p>
           <div class="settings-actions d-grid gap-2">
             <button id="clearFavorites" class="btn btn-outline-danger settings-clear-favorites-button" type="button">お気に入りを全解除</button>
-            <button id="reload" class="btn btn-dark settings-reload-button" type="button">曲リストを再読み込みする</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="songDetailModal" tabindex="-1" aria-labelledby="songDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="songDetailModalLabel">曲の詳細</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="songDetailBody"></div>
       </div>
     </div>
   </div>
@@ -401,25 +434,31 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.0.2 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.0.3 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
     <span class="floating-button-icon" aria-hidden="true">
-      <img src="../lib/icon/up_white.svg" alt="">
+      <img src="../lib/icon/white/up.svg" alt="">
     </span>
   </button>
   <button id="settingsButton" class="settings-button" type="button" aria-label="設定" data-bs-toggle="modal" data-bs-target="#settingsModal">
     <span class="floating-button-icon" aria-hidden="true">
-      <img src="../lib/icon/settings_white.svg" alt="">
+      <img src="../lib/icon/white/settings.svg" alt="">
     </span>
   </button>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.0.2"></script>
+  <script src="./js/musiclist-search.js?v=2.0.3"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
+<!--
+  このサイトのUI構成・検索設計・メタデータ構造は、制作者が独自に整理・運用しています。
+  無断複製・模倣・再配布を目的としたHTML取得、構造解析、メタデータ流用はご遠慮ください。
+  更新履歴および公開差分は継続的に記録しています。
+  継続してそのような行為が見られる場合、必要に応じて経緯や差分を整理して公開することがあります。
+-->
 </body>
 </html>
