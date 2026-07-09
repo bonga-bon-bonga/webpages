@@ -989,14 +989,11 @@ function songAccentType(song) {
   const subgenres = normalizeStringArray(song.classification?.subgenres);
   const genres = normalizeStringArray(song.classification?.genres);
   const allClassifications = [...sourceCategories, ...subgenres, ...genres];
-  const eventTags = normalizeStringArray(song.metadataTags?.eventTags);
-  const motifTags = normalizeStringArray(song.metadataTags?.motifTags);
 
   if (allClassifications.some(value => /ボカロ|VOCALOID/i.test(value))) return "vocaloid";
   if (sourceCategories.includes("ゲーム")) return "game";
   if (sourceCategories.includes("アニメ") || allClassifications.some(value => value.includes("アニメ映画"))) return "anime";
   if (sourceCategories.includes("映画") || sourceCategories.includes("ドラマ")) return "screen";
-  if (eventTags.length > 0 || motifTags.some(value => ["春", "夏", "秋", "冬", "桜", "雪", "クリスマス", "夏休み"].includes(value))) return "event";
   return "other";
 }
 
@@ -1007,7 +1004,6 @@ function songAccentLabel(song) {
     vocaloid: "ボカロ",
     screen: "映画・ドラマ",
     studio: songSourceType(song) === "disney" ? "ディズニー" : "ジブリ",
-    event: "季節・イベント",
     other: "その他",
   };
   return labels[songAccentType(song)] || labels.other;

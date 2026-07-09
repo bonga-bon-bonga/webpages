@@ -557,10 +557,6 @@ html[data-theme="dark"] .form-select {
     --song-accent: #cdeccf;
 }
 
-.song-card.accent-event {
-    --song-accent: #fed7aa;
-}
-
 .song-card.accent-other {
     --song-accent: #d9dee5;
 }
@@ -583,10 +579,6 @@ html[data-theme="dark"] .song-card.accent-screen {
 
 html[data-theme="dark"] .song-card.accent-studio {
     --song-accent: #6f9f78;
-}
-
-html[data-theme="dark"] .song-card.accent-event {
-    --song-accent: #b77946;
 }
 
 html[data-theme="dark"] .song-card.accent-other {
