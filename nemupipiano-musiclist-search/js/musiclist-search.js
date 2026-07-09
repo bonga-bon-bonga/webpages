@@ -820,8 +820,8 @@ function fuzzyPresetIcon(icon) {
   const name = ["music", "landscape", "season", "mood", "calendar"].includes(icon) ? icon : "music";
   return `
     <span class="theme-icon section-heading-icon" aria-hidden="true">
-      <img class="theme-icon-light" src="../lib/icon/${name}_white.svg" alt="">
-      <img class="theme-icon-dark" src="../lib/icon/${name}_black.svg" alt="">
+      <img class="theme-icon-light" src="../lib/icon/white/${name}.svg" alt="">
+      <img class="theme-icon-dark" src="../lib/icon/black/${name}.svg" alt="">
     </span>
   `;
 }
@@ -937,10 +937,6 @@ function setFuzzySearchMode(active) {
   fuzzySearchMode = Boolean(active);
   els.normalSearchPanel.hidden = fuzzySearchMode;
   els.fuzzySearchPanel.hidden = !fuzzySearchMode;
-  els.fuzzySearchModeToggle.setAttribute("aria-pressed", String(fuzzySearchMode));
-  els.fuzzySearchModeToggle.textContent = fuzzySearchMode
-    ? "通常検索に戻る"
-    : "🌙ふわっと検索してみる";
   if (fuzzySearchMode) renderFuzzySearch();
 }
 
@@ -1435,17 +1431,19 @@ function clearLongPressTimer() {
 }
 
 function switchTab(tabName) {
-  const normalized = ["home", "search"].includes(tabName) ? tabName : "home";
+  const normalized = ["home", "search", "fuzzy"].includes(tabName) ? tabName : "home";
   els.tabs.forEach(tab => {
     const active = tab.dataset.tab === normalized;
     tab.classList.toggle("active", active);
     tab.setAttribute("aria-selected", String(active));
   });
 
+  const activePanelId = normalized === "fuzzy" ? "panel-search" : `panel-${normalized}`;
   els.panels.forEach(panel => {
-    const active = panel.id === `panel-${normalized}`;
+    const active = panel.id === activePanelId;
     panel.hidden = !active;
   });
+  setFuzzySearchMode(normalized === "fuzzy");
   localStorage.setItem(ACTIVE_TAB_KEY, normalized);
 }
 
@@ -1521,9 +1519,6 @@ function setSearchGuideOpen(open) {
 }
 
 els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
-els.fuzzySearchModeToggle.addEventListener("click", () => {
-  setFuzzySearchMode(!fuzzySearchMode);
-});
 els.fuzzyCategoryTabs.addEventListener("click", event => {
   const button = event.target.closest("[data-fuzzy-category]");
   if (!button) return;
@@ -1598,8 +1593,7 @@ els.homeMoodOptions.addEventListener("click", event => {
   renderHomeMood();
 });
 els.homeFuzzyLink.addEventListener("click", () => {
-  switchTab("search");
-  setFuzzySearchMode(true);
+  switchTab("fuzzy");
   els.fuzzySearchModeToggle.focus();
 });
 els.searchDetailToggle.addEventListener("click", () => {

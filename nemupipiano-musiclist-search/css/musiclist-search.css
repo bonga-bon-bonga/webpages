@@ -156,6 +156,10 @@ body {
     box-shadow: 0 8px 18px var(--page-shadow);
 }
 
+.tab-label-short {
+    display: none;
+}
+
 .theme-icon {
     display: inline-flex;
     align-items: center;
@@ -251,31 +255,6 @@ html[data-theme="dark"] .theme-icon-light {
 
 .detail-toggle-button.btn-lg {
     padding-inline: .7rem;
-}
-
-.fuzzy-mode-toggle-wrapper {
-    line-height: 1;
-    text-align: left;
-}
-
-.fuzzy-mode-toggle {
-    width: auto;
-    min-height: 0;
-    padding: .3rem .8rem;
-    border: 1px solid var(--page-line);
-    border-radius: 999px;
-    color: var(--page-muted);
-    background: var(--page-button-soft);
-    font-size: .85rem;
-    font-weight: 700;
-    line-height: 1.35;
-}
-
-.fuzzy-mode-toggle:hover,
-.fuzzy-mode-toggle:focus {
-    border-color: var(--page-accent);
-    color: var(--page-accent);
-    background: var(--page-button-soft);
 }
 
 .fuzzy-category-tabs {
@@ -1287,6 +1266,14 @@ html[data-theme="dark"] .text-secondary {
     .nav-pills.app-tabs .nav-link {
     font-size: .95rem;
     padding-inline: .5rem;
+    }
+
+    .tab-label-full {
+    display: none;
+    }
+
+    .tab-label-short {
+    display: inline;
     }
 
     body {

@@ -36,6 +36,16 @@
             検索
           </button>
         </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="fuzzySearchModeToggle" type="button" role="tab" aria-selected="false" aria-controls="panel-search" data-tab="fuzzy">
+            <span class="theme-icon tab-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/white/moon.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/moon.svg" alt="">
+            </span>
+            <span class="tab-label-full">ふわっと検索</span>
+            <span class="tab-label-short">ふわっと</span>
+          </button>
+        </li>
       </ul>
 
       <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
@@ -108,10 +118,6 @@
       </section>
 
       <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search" hidden>
-        <div class="fuzzy-mode-toggle-wrapper mb-3">
-          <button id="fuzzySearchModeToggle" class="btn fuzzy-mode-toggle" type="button" aria-pressed="false" aria-controls="normalSearchPanel fuzzySearchPanel">🌙ふわっと検索してみる</button>
-        </div>
-
         <div id="normalSearchPanel">
         <div class="row g-2 g-md-3 align-items-stretch">
           <div class="col-8 col-md-10">
