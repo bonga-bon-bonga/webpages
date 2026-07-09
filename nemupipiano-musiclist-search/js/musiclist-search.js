@@ -559,7 +559,7 @@ function sourceCategoriesFor(song) {
 function tieUpCategoryLabel(song) {
   if (!Array.isArray(song.tieUps) || song.tieUps.length === 0) return "";
   const sourceCategories = sourceCategoriesFor(song);
-  const priorityCategories = ["アニメ", "ドラマ", "映画"];
+  const priorityCategories = ["アニメ", "ドラマ", "映画", "ゲーム"];
   return priorityCategories.find(category => (
     sourceCategories.some(sourceCategory => sourceCategory.includes(category))
   )) || "";
