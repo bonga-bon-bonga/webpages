@@ -163,7 +163,7 @@ function normalizeMusiclistSong(item) {
     ? item.classification
     : {};
   const classificationGenres = normalizeStringArray(classification.genres);
-  const genre = normalizeCellText(item?.genre) || classificationGenres[0] || tags[0] || "";
+  const genre = classificationGenres[0] || normalizeCellText(item?.genre) || tags[0] || "";
 
   return {
     no: normalizeCellText(item?.no),
@@ -557,7 +557,6 @@ function sourceCategoriesFor(song) {
 }
 
 function tieUpCategoryLabel(song) {
-  if (!Array.isArray(song.tieUps) || song.tieUps.length === 0) return "";
   const sourceCategories = sourceCategoriesFor(song);
   const priorityCategories = ["アニメ", "ドラマ", "映画", "ゲーム", "ボカロ"];
   return priorityCategories.find(category => (
