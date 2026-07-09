@@ -1294,7 +1294,7 @@ function renderSongDetail(song) {
   return `
     <div class="song-detail">
       <div class="song-detail-actions">
-        <button class="btn btn-dark" type="button" data-detail-copy>ぴぴりくする</button>
+        <button class="btn btn-dark" type="button" data-detail-copy>クリップボードコピー</button>
         <button class="${favoriteButtonClass}" type="button" data-detail-favorite>${favoriteButtonText}</button>
       </div>
       <div class="song-detail-meta-row">
@@ -1329,13 +1329,13 @@ function renderSongDetail(song) {
         </div>
       ` : ""}
       ${similarSongs.length > 0 ? `
-        <div class="song-detail-field">
+        <div class="song-detail-field song-detail-related-field">
           <span class="detail-label">似た雰囲気の曲を探す</span>
           ${relatedSongList(similarSongs)}
         </div>
       ` : ""}
       ${sameArtistSongs.length > 0 ? `
-        <div class="song-detail-field">
+        <div class="song-detail-field song-detail-related-field">
           <span class="detail-label">同じアーティストの曲を探す</span>
           ${relatedSongList(sameArtistSongs)}
         </div>

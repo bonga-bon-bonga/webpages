@@ -945,9 +945,16 @@ html[data-theme="dark"] .detail-favorite-button.active {
 
 .song-detail-field {
     display: grid;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
+    grid-template-columns: 5.2rem minmax(0, 1fr);
     align-items: baseline;
-    gap: .35rem;
+    gap: .25rem;
+}
+
+.song-detail-related-field {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: .5rem;
 }
 
 .detail-label {
@@ -968,6 +975,7 @@ html[data-theme="dark"] .detail-favorite-button.active {
     font-weight: 700;
     line-height: 1.35;
     overflow-wrap: anywhere;
+    min-width: 0;
 }
 
 .song-detail-artist {
@@ -975,10 +983,19 @@ html[data-theme="dark"] .detail-favorite-button.active {
     font-size: 1rem;
     line-height: 1.4;
     overflow-wrap: anywhere;
+    min-width: 0;
 }
 
 .song-detail-field .detail-chip-row {
     justify-content: flex-start;
+    min-width: 0;
+}
+
+.song-detail-field .badge {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .detail-related-list {
@@ -1372,7 +1389,11 @@ html[data-theme="dark"] .text-secondary {
     }
 
     .song-detail-field {
-    grid-template-columns: 5.75rem minmax(0, 1fr);
+    grid-template-columns: 4.65rem minmax(0, 1fr);
+    }
+
+    .song-detail-related-field {
+    grid-template-columns: 1fr;
     }
 
     .detail-related-item {
