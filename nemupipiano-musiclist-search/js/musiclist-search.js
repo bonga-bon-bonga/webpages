@@ -18,7 +18,7 @@ const FAVORITES_KEY = "nemupipiano:favorites";
 const FAVORITES_ONLY_KEY = "nemupipiano:favoritesOnly";
 const COPY_COUNTS_KEY = "nemupipiano:copyCounts";
 const COPY_HISTORY_KEY = "nemupipiano:copyHistory";
-const RELOAD_BUTTON_DEFAULT_TEXT = "曲リストを再読み込みする";
+const ACCENT_COLOR_KEY = "nemupipiano:accentColor";
 const LONG_PRESS_MS = 1000;
 const COPY_HISTORY_LIMIT = 500;
 
@@ -33,7 +33,6 @@ const els = {
   animeDrama: document.getElementById("animeDrama"),
   vocalType: document.getElementById("vocalType"),
   releaseDecade: document.getElementById("releaseDecade"),
-  reload: document.getElementById("reload"),
   clearFavorites: document.getElementById("clearFavorites"),
   favoriteFilter: document.getElementById("favoriteFilter"),
   searchDetailToggle: document.getElementById("searchDetailToggle"),
@@ -69,6 +68,9 @@ const els = {
   appPanel: document.getElementById("appPanel"),
   themeModes: document.querySelectorAll("[name='themeMode']"),
   panelFontSizes: document.querySelectorAll("[name='panelFontSize']"),
+  accentColors: document.querySelectorAll("[name='accentColor']"),
+  songDetailModal: document.getElementById("songDetailModal"),
+  songDetailBody: document.getElementById("songDetailBody"),
 };
 
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -81,7 +83,8 @@ let homeRandomSource = "all";
 let favoriteOnly = false;
 let favoriteKeys = new Set();
 let displayColumnCount = "3";
-let reloadFeedbackTimer = null;
+let accentColorEnabled = true;
+let activeDetailSongKey = "";
 let longPressTimer = null;
 let longPressHandled = false;
 let longPressSuppressTimer = null;
@@ -307,42 +310,8 @@ function clearAllFavorites() {
   showCopyToast("お気に入りをすべて解除しました");
 }
 
-function setReloadButtonState(state) {
-  clearTimeout(reloadFeedbackTimer);
-  reloadFeedbackTimer = null;
-
-  if (state === "loading") {
-    els.reload.disabled = true;
-    els.reload.innerHTML = '<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span><span>読み込み中…</span>';
-    return;
-  }
-
-  if (state === "complete") {
-    els.reload.disabled = false;
-    els.reload.textContent = "読み込み完了しました！";
-    reloadFeedbackTimer = setTimeout(() => setReloadButtonState("default"), 2000);
-    return;
-  }
-
-  if (state === "error") {
-    els.reload.disabled = false;
-    els.reload.textContent = "読み込みに失敗しました";
-    reloadFeedbackTimer = setTimeout(() => setReloadButtonState("default"), 2000);
-    return;
-  }
-
-  els.reload.disabled = false;
-  els.reload.textContent = RELOAD_BUTTON_DEFAULT_TEXT;
-}
-
 // musiclist.jsonを読み込み、画面表示用の曲データを更新する。
-async function loadSheet({ showReloadFeedback = false } = {}) {
-  if (showReloadFeedback) {
-    setReloadButtonState("loading");
-  } else {
-    els.reload.disabled = true;
-  }
-
+async function loadSheet() {
   try {
     const [loadedSongs, loadedFuzzySearchPresets] = await Promise.all([
       loadMusiclist(),
@@ -357,18 +326,8 @@ async function loadSheet({ showReloadFeedback = false } = {}) {
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
     renderHome();
     renderFuzzySearch();
-    if (showReloadFeedback) {
-      setReloadButtonState("complete");
-    } else {
-      els.reload.disabled = false;
-    }
   } catch (error) {
     console.error(error);
-    if (showReloadFeedback) {
-      setReloadButtonState("error");
-    } else {
-      els.reload.disabled = false;
-    }
   }
 }
 
@@ -985,33 +944,80 @@ function setFuzzySearchMode(active) {
   if (fuzzySearchMode) renderFuzzySearch();
 }
 
+function songSourceType(song) {
+  const no = String(song?.no || "").toLowerCase();
+  if (no.startsWith("disney#")) return "disney";
+  if (no.startsWith("ghibli#")) return "ghibli";
+  if (no.startsWith("list#")) return "list";
+  return "other";
+}
+
+function songSourceLabel(song) {
+  const labels = {
+    list: "曲リスト",
+    disney: "ディズニー",
+    ghibli: "ジブリ",
+    other: "その他",
+  };
+  return labels[songSourceType(song)] || labels.other;
+}
+
+function songNumberValue(no) {
+  const value = normalizeCellText(no);
+  const match = value.match(/^[^#]+#(.+)$/);
+  return match ? match[1] : value.replace(/^#/, "");
+}
+
+function songAccentType(song) {
+  const sourceType = songSourceType(song);
+  if (sourceType === "disney" || sourceType === "ghibli") return "studio";
+
+  const sourceCategories = sourceCategoriesFor(song);
+  const subgenres = normalizeStringArray(song.classification?.subgenres);
+  const genres = normalizeStringArray(song.classification?.genres);
+  const allClassifications = [...sourceCategories, ...subgenres, ...genres];
+  const eventTags = normalizeStringArray(song.metadataTags?.eventTags);
+  const motifTags = normalizeStringArray(song.metadataTags?.motifTags);
+
+  if (allClassifications.some(value => /ボカロ|VOCALOID/i.test(value))) return "vocaloid";
+  if (sourceCategories.includes("ゲーム")) return "game";
+  if (sourceCategories.includes("アニメ") || allClassifications.some(value => value.includes("アニメ映画"))) return "anime";
+  if (sourceCategories.includes("映画") || sourceCategories.includes("ドラマ")) return "screen";
+  if (eventTags.length > 0 || motifTags.some(value => ["春", "夏", "秋", "冬", "桜", "雪", "クリスマス", "夏休み"].includes(value))) return "event";
+  return "other";
+}
+
+function songAccentClass(song) {
+  return accentColorEnabled ? `has-accent accent-${songAccentType(song)}` : "";
+}
+
+function menuIconHtml() {
+  return `
+    <span class="theme-icon song-card-menu-icon" aria-hidden="true">
+      <img class="theme-icon-light" src="../lib/icon/white/menu.svg" alt="">
+      <img class="theme-icon-dark" src="../lib/icon/black/menu.svg" alt="">
+    </span>
+  `;
+}
+
 function renderSongCards(items) {
   return items.map(song => `
     <div class="col">
-      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""}" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" data-song-key="${escapeHtml(favoriteKeyForSong(song))}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
+      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""} ${songAccentClass(song)}" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" data-song-key="${escapeHtml(favoriteKeyForSong(song))}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
         <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
           <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
             <div class="song-card-text min-w-0">
               <h2 class="song-title h5 fw-bold mb-1">${escapeHtml(song.title)}</h2>
               <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
             </div>
-            <span class="song-number text-secondary small flex-shrink-0">${escapeHtml(displaySongNumber(song.no))}</span>
-          </div>
-
-          <div class="song-card-meta d-flex flex-wrap gap-2 mt-auto">
-            ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
-            ${song.genre ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(song.genre)}</span>` : ""}
+            <button class="song-card-menu" type="button" data-card-menu data-song-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}の詳細を開く">
+              ${menuIconHtml()}
+            </button>
           </div>
         </div>
       </article>
     </div>
   `).join("");
-}
-
-function displaySongNumber(no) {
-  const value = String(no || "").trim();
-  if (!value) return "-";
-  return value.includes("#") ? value : `#${value}`;
 }
 
 function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
@@ -1153,10 +1159,20 @@ function showCopyToast(message = "クリップボードにコピーしました�
 }
 
 async function handleCardCopy(card) {
-  const no = card.dataset.copyNo || "";
-  const title = card.dataset.copySong || "";
-  const artist = card.dataset.copyArtist || "";
-  const songKey = card.dataset.songKey || "";
+  const song = findSongByStoredKey(card.dataset.songKey) || {
+    no: card.dataset.copyNo || "",
+    title: card.dataset.copySong || "",
+    artist: card.dataset.copyArtist || "",
+    songKey: card.dataset.songKey || "",
+  };
+  await copySongRequest(song);
+}
+
+async function copySongRequest(song) {
+  const no = song.no || "";
+  const title = song.title || "";
+  const artist = song.artist || "";
+  const songKey = favoriteKeyForSong(song);
   const text = requestText({ no, title, artist });
 
   try {
@@ -1166,6 +1182,146 @@ async function handleCardCopy(card) {
   } catch (error) {
     console.error(error);
     showCopyToast("コピーに失敗しました");
+  }
+}
+
+function detailBadge(text, className = "text-bg-light border") {
+  if (!normalizeCellText(text)) return "";
+  return `<span class="badge rounded-pill ${className}">${escapeHtml(text)}</span>`;
+}
+
+function tieUpLabels(song) {
+  return (song.tieUps || []).map(tieUp => {
+    const parts = [
+      normalizeCellText(tieUp.series),
+      normalizeCellText(tieUp.workTitle),
+      normalizeCellText(tieUp.role),
+    ].filter(Boolean);
+    return [...new Set(parts)].join(" / ");
+  }).filter(Boolean);
+}
+
+function comparableTagSet(song) {
+  const tagGroups = ["themeTags", "moodTags", "motifTags", "eventTags"];
+  const values = tagGroups.flatMap(group => normalizeStringArray(song.metadataTags?.[group]));
+  values.push(...sourceCategoriesFor(song));
+  values.push(...normalizeStringArray(song.classification?.subgenres));
+  if (song.releaseDecade) values.push(song.releaseDecade);
+  return new Set(values.filter(Boolean));
+}
+
+function similarSongsFor(song) {
+  const currentKey = favoriteKeyForSong(song);
+  const currentTags = comparableTagSet(song);
+  if (currentTags.size === 0) return [];
+
+  return songs
+    .filter(candidate => favoriteKeyForSong(candidate) !== currentKey)
+    .map(candidate => {
+      const candidateTags = comparableTagSet(candidate);
+      const score = [...currentTags].filter(tag => candidateTags.has(tag)).length;
+      return { song: candidate, score };
+    })
+    .filter(item => item.score > 0)
+    .sort((left, right) => right.score - left.score || playablePriority(left.song, right.song) || compareSongNo(left.song, right.song))
+    .slice(0, 2)
+    .map(item => item.song);
+}
+
+function sameArtistSongsFor(song) {
+  const currentKey = favoriteKeyForSong(song);
+  const artistKey = createSearchKey(song.artist);
+  if (!artistKey) return [];
+
+  return songs
+    .filter(candidate => favoriteKeyForSong(candidate) !== currentKey && createSearchKey(candidate.artist) === artistKey)
+    .sort(compareSongNo)
+    .slice(0, 2);
+}
+
+function relatedSongList(items) {
+  if (items.length === 0) return "";
+  return `
+    <div class="detail-related-list">
+      ${items.map(item => `
+        <button class="detail-related-item" type="button" data-detail-related-key="${escapeHtml(favoriteKeyForSong(item))}">
+          <span class="detail-related-title">${escapeHtml(item.title)}</span>
+          <span class="detail-related-artist">${escapeHtml(item.artist || "アーティスト未設定")}</span>
+        </button>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderSongDetail(song) {
+  const genreBadge = detailBadge(song.genre);
+  const playableBadge = song.playable
+    ? detailBadge(`${song.playable} 弾ける`, "badge-playable")
+    : "";
+  const number = songNumberValue(song.no);
+  const tieUps = tieUpLabels(song);
+  const similarSongs = similarSongsFor(song);
+  const sameArtistSongs = sameArtistSongsFor(song);
+  const favoriteButtonText = isFavorite(song) ? "お気に入り解除" : "お気に入り登録";
+
+  return `
+    <div class="song-detail">
+      <div class="song-detail-actions">
+        <button class="btn btn-dark" type="button" data-detail-copy>ぴぴりくする</button>
+        <button class="btn btn-outline-warning" type="button" data-detail-favorite>${favoriteButtonText}</button>
+      </div>
+      <div class="song-detail-meta-row">
+        <div class="song-detail-source">
+          <span class="detail-label">分類</span>
+          ${detailBadge(songSourceLabel(song))}
+          ${number ? detailBadge(number) : ""}
+        </div>
+        <div class="song-detail-badges">
+          ${genreBadge}
+          ${playableBadge}
+        </div>
+      </div>
+      <div class="song-detail-field">
+        <span class="detail-label">曲名</span>
+        <div class="song-detail-title">${escapeHtml(song.title)}</div>
+      </div>
+      <div class="song-detail-field">
+        <span class="detail-label">アーティスト</span>
+        <div class="song-detail-artist">${escapeHtml(song.artist || "アーティスト未設定")}</div>
+      </div>
+      ${song.releaseDecade ? `
+        <div class="song-detail-field">
+          <span class="detail-label">年代</span>
+          <div class="detail-chip-row">${detailBadge(song.releaseDecade)}</div>
+        </div>
+      ` : ""}
+      ${tieUps.length > 0 ? `
+        <div class="song-detail-field">
+          <span class="detail-label">タイアップ</span>
+          <div class="detail-chip-row">${tieUps.map(label => detailBadge(label)).join("")}</div>
+        </div>
+      ` : ""}
+      ${similarSongs.length > 0 ? `
+        <div class="song-detail-field">
+          <span class="detail-label">似た雰囲気の曲を探す</span>
+          ${relatedSongList(similarSongs)}
+        </div>
+      ` : ""}
+      ${sameArtistSongs.length > 0 ? `
+        <div class="song-detail-field">
+          <span class="detail-label">同じアーティストの曲を探す</span>
+          ${relatedSongList(sameArtistSongs)}
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+function openSongDetail(song) {
+  activeDetailSongKey = favoriteKeyForSong(song);
+  els.songDetailBody.innerHTML = renderSongDetail(song);
+  if (window.bootstrap && els.songDetailModal) {
+    bootstrap.Modal.getOrCreateInstance(els.songDetailModal).show();
   }
 }
 
@@ -1194,9 +1350,17 @@ function recordCopyHistory({ key, no, title, artist, text }) {
 }
 
 function toggleFavoriteFromCard(card) {
-  const title = card.dataset.copySong || "";
-  const artist = card.dataset.copyArtist || "";
-  const key = normalizeCellText(card.dataset.songKey) || createSongKey(title, artist);
+  const song = findSongByStoredKey(card.dataset.songKey) || {
+    title: card.dataset.copySong || "",
+    artist: card.dataset.copyArtist || "",
+    songKey: card.dataset.songKey || "",
+  };
+  toggleFavoriteForSong(song);
+}
+
+function toggleFavoriteForSong(song) {
+  const title = song.title || "";
+  const key = favoriteKeyForSong(song);
   const willFavorite = !favoriteKeys.has(key);
 
   if (willFavorite) {
@@ -1215,6 +1379,10 @@ function toggleFavoriteFromCard(card) {
     pickHomeRecommendations();
   }
   renderHome();
+  if (fuzzySearchMode) renderFuzzySearch();
+  if (activeDetailSongKey === key) {
+    els.songDetailBody.innerHTML = renderSongDetail(song);
+  }
   showCopyToast(
     willFavorite ? `${title}をお気に入りにしました！` : `${title}をお気に入りから解除しました`
   );
@@ -1277,6 +1445,20 @@ function applyAppPanelFontSize(size) {
     option.checked = option.value === normalized;
   });
   localStorage.setItem(APP_PANEL_FONT_SIZE_KEY, normalized);
+}
+
+function applyAccentColorSetting(value, { rerender = false } = {}) {
+  const normalized = value === "off" ? "off" : "on";
+  accentColorEnabled = normalized === "on";
+  els.accentColors.forEach(option => {
+    option.checked = option.value === normalized;
+  });
+  localStorage.setItem(ACCENT_COLOR_KEY, normalized);
+  if (!rerender) return;
+
+  render();
+  renderHome();
+  if (fuzzySearchMode) renderFuzzySearch();
 }
 
 function applyRadioValue(options, value, fallback) {
@@ -1395,12 +1577,14 @@ els.searchDetailToggle.addEventListener("click", () => {
 els.searchGuideToggle.addEventListener("click", () => {
   setSearchGuideOpen(els.searchGuide.hidden);
 });
-els.reload.addEventListener("click", () => loadSheet({ showReloadFeedback: true }));
 els.backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 els.panelFontSizes.forEach(option => {
   option.addEventListener("change", () => applyAppPanelFontSize(option.value));
+});
+els.accentColors.forEach(option => {
+  option.addEventListener("change", () => applyAccentColorSetting(option.value, { rerender: true }));
 });
 els.themeModes.forEach(option => {
   option.addEventListener("change", () => applyTheme(option.value));
@@ -1418,6 +1602,7 @@ if (systemThemeQuery.addEventListener) {
 window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
 
 document.addEventListener("pointerdown", (event) => {
+  if (event.target.closest("[data-card-menu]")) return;
   const card = event.target.closest("[data-copy-song]");
   if (!card) return;
 
@@ -1461,6 +1646,15 @@ document.addEventListener("contextmenu", (event) => {
 });
 
 document.addEventListener("click", (event) => {
+  const menuButton = event.target.closest("[data-card-menu]");
+  if (menuButton) {
+    event.preventDefault();
+    event.stopPropagation();
+    const song = findSongByStoredKey(menuButton.dataset.songKey);
+    if (song) openSongDetail(song);
+    return;
+  }
+
   const card = event.target.closest("[data-copy-song]");
   if (!card) return;
   if (longPressHandled) {
@@ -1475,10 +1669,32 @@ document.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Enter" && event.key !== " ") return;
+  if (event.target.closest("[data-card-menu]")) return;
   const card = event.target.closest("[data-copy-song]");
   if (!card) return;
   event.preventDefault();
   handleCardCopy(card);
+});
+
+els.songDetailBody.addEventListener("click", (event) => {
+  const currentSong = findSongByStoredKey(activeDetailSongKey);
+  if (!currentSong) return;
+
+  if (event.target.closest("[data-detail-copy]")) {
+    copySongRequest(currentSong);
+    return;
+  }
+
+  if (event.target.closest("[data-detail-favorite]")) {
+    toggleFavoriteForSong(currentSong);
+    return;
+  }
+
+  const relatedButton = event.target.closest("[data-detail-related-key]");
+  if (relatedButton) {
+    const relatedSong = findSongByStoredKey(relatedButton.dataset.detailRelatedKey);
+    if (relatedSong) openSongDetail(relatedSong);
+  }
 });
 
 els.tabs.forEach(tab => {
@@ -1487,6 +1703,7 @@ els.tabs.forEach(tab => {
 
 applyTheme(localStorage.getItem(THEME_KEY));
 applyAppPanelFontSize(localStorage.getItem(APP_PANEL_FONT_SIZE_KEY));
+applyAccentColorSetting(localStorage.getItem(ACCENT_COLOR_KEY));
 updateSearchPlaceholder(applyRadioValue(els.searchScopes, localStorage.getItem(SEARCH_SCOPE_KEY), "all"));
 displayColumnCount = applyRadioValue(els.displayColumns, localStorage.getItem(DISPLAY_COLUMNS_KEY), "3");
 playableOnly = loadSavedBoolean(PLAYABLE_ONLY_KEY, false);

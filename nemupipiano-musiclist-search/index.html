@@ -294,7 +294,7 @@
         </div>
         <div class="modal-body">
           <p>
-            本ページは更新済みの<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>データを読み取り、曲のフィルタ検索を行うことが出来ます。
+            本ページは更新済みの<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>データをもとに、曲の検索や探索を行うことが出来ます。
             リストに曲が無い時は、<a href="https://www.youtube.com/@nemupipi" target="_blank" rel="noopener noreferrer">ねむぴぴ</a>のピアノ配信「ねむぴぴあの」内でリクエスト！
           </p>
           <hr>
@@ -302,11 +302,13 @@
           <p class="mb-2"><strong>ホーム</strong>タブでは、曲選びのきっかけになる情報を確認できます。</p>
           <ul>
             <li>今日のおすすめ曲を確認できます。</li>
+            <li>今日の気分から、ふわっと検索の候補を確認できます。</li>
             <li>過去にコピーした曲の履歴を確認できます。</li>
           </ul>
           <p class="mb-2"><strong>検索</strong>タブでは、曲リストから目的の曲を探せます。</p>
           <ul class="mb-0">
             <li>曲名・アーティスト名でキーワード検索できます。</li>
+            <li>ふわっと検索に切り替えると、気分や雰囲気などのタグから曲を探せます。</li>
             <li>詳細を開くと、ジャンルなどの条件で絞り込めます。</li>
             <li>弾ける曲やお気に入りのみの表示に切り替えられます。</li>
           </ul>
@@ -314,12 +316,14 @@
           <h5>機能</h5>
           <ul>
             <li>今日のおすすめ曲の表示</li>
+            <li>ふわっと検索による気分・雰囲気・情景などからの曲探し</li>
             <li>直近のクリップボード履歴の表示</li>
             <li>検索タブによる曲名、アーティストのキーワード検索（ひらがな・カタカナでの検索にも対応）</li>
             <li>
               曲カードクリックによるリクエスト用テキストのコピー<br>
               <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span>
             </li>
+            <li>曲カードのメニューから、分類・年代・タイアップ・関連曲などの詳細情報を確認</li>
             <li>曲カードの長押しクリックによる「お気に入りの登録／解除」</li>
           </ul>
           <h6 class="fw-bold mt-3">設定</h6>
@@ -328,12 +332,12 @@
             <li>テーマの選択</li>
             <li>文字の大きさ</li>
             <li>曲カードの表示列</li>
+            <li>曲カードのアクセントカラー表示</li>
             <li>「お気に入り登録」の全解除</li>
-            <li>曲リストの再読み込み</li>
           </ul>
           <hr>
           <ul class="mb-0">
-            <li>シート側を更新すると、ページ再読み込み時に表示内容も更新されます。</li>
+            <li>曲リストの内容は公開用データの更新後、ページ再読み込み時に反映されます。</li>
             <li>本ページはねむぴぴさんの非公式応援ページとなります。<br>ご本人様の活動とは一切関係ございません。</li>
             <li>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
             <li>クリップボードへのコピーの履歴やお気に入り情報、及び設定情報の保存はブラウザ側のローカルストレージで管理されます。</li>
@@ -382,11 +386,31 @@
             <label class="btn display-columns-button" for="displayColumns3">3列</label>
           </div>
           <p class="setting-note mt-2 mb-0">※スマホ・タブレット表示の場合、設定した表示列より少なく表示される場合があります</p>
+          <hr>
+          <h5>曲カードのアクセントカラー</h5>
+          <div class="setting-options" role="radiogroup" aria-label="曲カードのアクセントカラー">
+            <input class="btn-check" type="radio" name="accentColor" id="accentColorOn" value="on" autocomplete="off" checked>
+            <label class="btn setting-option-button" for="accentColorOn">ON</label>
+            <input class="btn-check" type="radio" name="accentColor" id="accentColorOff" value="off" autocomplete="off">
+            <label class="btn setting-option-button" for="accentColorOff">OFF</label>
+          </div>
+          <p class="setting-note mt-2 mb-0">※ジャンルや雰囲気に応じて、曲カード左端に淡い色のラインを表示します</p>
           <div class="settings-actions d-grid gap-2">
             <button id="clearFavorites" class="btn btn-outline-danger settings-clear-favorites-button" type="button">お気に入りを全解除</button>
-            <button id="reload" class="btn btn-dark settings-reload-button" type="button">曲リストを再読み込みする</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="songDetailModal" tabindex="-1" aria-labelledby="songDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="songDetailModalLabel">曲の詳細</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="songDetailBody"></div>
       </div>
     </div>
   </div>
