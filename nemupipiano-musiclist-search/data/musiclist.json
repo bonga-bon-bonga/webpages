@@ -50761,7 +50761,8 @@
     "displayArtist": "BUMP OF CHICKEN",
     "songKey": "クロノスタシス|bumpofchicken",
     "titleSearchWords": [
-      "くろのすたしす"
+      "くろのすたしす",
+      "クロノスタシス"
     ],
     "artistSearchWords": [
       "ばんぷおぶちきん",
@@ -50784,9 +50785,14 @@
     "songKey": "明日も|shishamo",
     "titleSearchWords": [
       "あすも",
-      "アスモ"
+      "アスモ",
+      "あしたも",
+      "アシタモ"
     ],
-    "artistSearchWords": [],
+    "artistSearchWords": [
+      "ししゃも",
+      "シシャモ"
+    ],
     "releaseDecade": null,
     "classification": {},
     "tags": {},
@@ -50808,9 +50814,8 @@
       "君が眩しいから僕は星が見えるない"
     ],
     "artistSearchWords": [
-      "しっくすきごうらうんじ",
-      "シックスキゴウラウンジ",
-      "シックス ラウンジ"
+      "しっくすらうんじ",
+      "シックスラウンジ"
     ],
     "releaseDecade": null,
     "classification": {},
@@ -50828,7 +50833,8 @@
     "displayArtist": "MAISONdes",
     "songKey": "アイワナムチュー|maisondes",
     "titleSearchWords": [
-      "あいわなむちゅー"
+      "あいわなむちゅー",
+      "アイワナムチュー"
     ],
     "artistSearchWords": [
       "めぞんで",
@@ -50855,7 +50861,8 @@
       "巡り会う"
     ],
     "artistSearchWords": [
-      "あんどれ・ぎゃにおん"
+      "あんどれぎゃにおん",
+      "アンドレギャニオン"
     ],
     "releaseDecade": null,
     "classification": {},
@@ -50873,7 +50880,8 @@
     "displayArtist": "スピッツ",
     "songKey": "スパイダー|スピッツ",
     "titleSearchWords": [
-      "すぱいだー"
+      "すぱいだー",
+      "スパイダー"
     ],
     "artistSearchWords": [
       "すぴっつ",
@@ -50948,7 +50956,11 @@
     ],
     "artistSearchWords": [
       "しゅうじとあきら",
-      "シュウジトアキラ"
+      "かめなしかずや",
+      "やましたともひさ",
+      "シュウジトアキラ",
+      "カメナシカズヤ",
+      "ヤマシタトモヒサ"
     ],
     "releaseDecade": null,
     "classification": {},
@@ -51015,7 +51027,9 @@
     "displayArtist": "中島みゆき",
     "songKey": "ヘッドライトテールライト|中島みゆき",
     "titleSearchWords": [
-      "へっどらいと・てーるらいと"
+      "へっどらいと・てーるらいと",
+      "へっどらいとてーるらいと",
+      "ヘッドライトテールライト"
     ],
     "artistSearchWords": [
       "なかしまみゆき",
@@ -51044,8 +51058,8 @@
       "千の風に成るて"
     ],
     "artistSearchWords": [
-      "あきかわまさし",
-      "アキカワマサシ"
+      "あきかわまさふみ",
+      "アキカワマサフミ"
     ],
     "releaseDecade": null,
     "classification": {},
@@ -51067,8 +51081,10 @@
       "マグネット"
     ],
     "artistSearchWords": [
-      "りゅうせいp",
-      "リュウセイp"
+      "りゅうせいぴー",
+      "りゅうせいP",
+      "リュウセイピー",
+      "リュウセイP"
     ],
     "releaseDecade": null,
     "classification": {},
@@ -51086,7 +51102,8 @@
     "displayArtist": "奥華子",
     "songKey": "プロポーズ|奥華子",
     "titleSearchWords": [
-      "ぷろぽーず"
+      "ぷろぽーず",
+      "プロポーズ"
     ],
     "artistSearchWords": [
       "おくはなこ",
