@@ -9330,7 +9330,7 @@
     "tieUps": [],
     "sourceTitle": "ただ君に晴れ",
     "sourceArtist": "ヨルシカ",
-    "playable": "",
+    "playable": "〇",
     "genre": "ボカロ",
     "note": ""
   },
@@ -9381,7 +9381,7 @@
     "tieUps": [],
     "sourceTitle": "チェリー",
     "sourceArtist": "スピッツ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -9436,7 +9436,7 @@
     "tieUps": [],
     "sourceTitle": "回る空うさぎ",
     "sourceArtist": "Orangestar",
-    "playable": "",
+    "playable": "〇",
     "genre": "ボカロ",
     "note": ""
   },
@@ -9483,7 +9483,7 @@
     "tieUps": [],
     "sourceTitle": "会いたい",
     "sourceArtist": "いきものがかり",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -9539,7 +9539,7 @@
     ],
     "sourceTitle": "へび",
     "sourceArtist": "ヨルシカ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -9591,7 +9591,7 @@
     "tieUps": [],
     "sourceTitle": "真生活",
     "sourceArtist": "案山子",
-    "playable": "",
+    "playable": "〇",
     "genre": "ボカロ",
     "note": ""
   },
@@ -9647,7 +9647,7 @@
     ],
     "sourceTitle": "remember",
     "sourceArtist": "Uru",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -9707,7 +9707,7 @@
     ],
     "sourceTitle": "勇気100%",
     "sourceArtist": "光GENJI",
-    "playable": "",
+    "playable": "〇",
     "genre": "アニメ",
     "note": ""
   },
@@ -9758,7 +9758,7 @@
     "tieUps": [],
     "sourceTitle": "若者のすべて",
     "sourceArtist": "フジファブリック",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -9808,7 +9808,7 @@
     "tieUps": [],
     "sourceTitle": "はいよろこんで",
     "sourceArtist": "こっちのけんと",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -9859,7 +9859,7 @@
     "tieUps": [],
     "sourceTitle": "元気を出して",
     "sourceArtist": "竹内まりや",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -17519,7 +17519,7 @@
     "tieUps": [],
     "sourceTitle": "ロミオとシンデレラ",
     "sourceArtist": "doriko",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -50752,6 +50752,353 @@
     "sourceTitle": "メトロノーム",
     "sourceArtist": "米津玄師",
     "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#932",
+    "displayTitle": "クロノスタシス",
+    "displayArtist": "BUMP OF CHICKEN",
+    "songKey": "クロノスタシス|bumpofchicken",
+    "titleSearchWords": [
+      "くろのすたしす"
+    ],
+    "artistSearchWords": [
+      "ばんぷおぶちきん",
+      "バンプオブチキン"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "クロノスタシス",
+    "sourceArtist": "BUMP OF CHICKEN",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#933",
+    "displayTitle": "明日も",
+    "displayArtist": "SHISHAMO",
+    "songKey": "明日も|shishamo",
+    "titleSearchWords": [
+      "あすも",
+      "アスモ"
+    ],
+    "artistSearchWords": [],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "明日も",
+    "sourceArtist": "SHISHAMO",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#934",
+    "displayTitle": "君が眩しいから僕は星が見えない",
+    "displayArtist": "SIX LOUNGE",
+    "songKey": "君が眩しいから僕は星が見えない|sixlounge",
+    "titleSearchWords": [
+      "きみがまぶしいからぼくはほしがみえない",
+      "キミガマブシイカラボクハホシガミエナイ",
+      "君が眩しいから僕は星が見えるない"
+    ],
+    "artistSearchWords": [
+      "しっくすきごうらうんじ",
+      "シックスキゴウラウンジ",
+      "シックス ラウンジ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "君が眩しいから僕は星が見えない",
+    "sourceArtist": "SIX LOUNGE",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#935",
+    "displayTitle": "アイワナムチュー",
+    "displayArtist": "MAISONdes",
+    "songKey": "アイワナムチュー|maisondes",
+    "titleSearchWords": [
+      "あいわなむちゅー"
+    ],
+    "artistSearchWords": [
+      "めぞんで",
+      "メゾンデ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "アイワナムチュー",
+    "sourceArtist": "MAISONdes",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#936",
+    "displayTitle": "めぐり逢い",
+    "displayArtist": "アンドレ・ギャニオン",
+    "songKey": "めぐり逢い|アンドレギャニオン",
+    "titleSearchWords": [
+      "めぐりあい",
+      "メグリアイ",
+      "巡り会う"
+    ],
+    "artistSearchWords": [
+      "あんどれ・ぎゃにおん"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "めぐり逢い",
+    "sourceArtist": "アンドレ・ギャニオン",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#937",
+    "displayTitle": "スパイダー",
+    "displayArtist": "スピッツ",
+    "songKey": "スパイダー|スピッツ",
+    "titleSearchWords": [
+      "すぱいだー"
+    ],
+    "artistSearchWords": [
+      "すぴっつ",
+      "スピッツ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "スパイダー",
+    "sourceArtist": "スピッツ",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#938",
+    "displayTitle": "ずっと作りかけのラブソング",
+    "displayArtist": "秦基博",
+    "songKey": "ずっと作りかけのラブソング|秦基博",
+    "titleSearchWords": [
+      "ずっとつくりかけのらぶそんぐ",
+      "ズットツクリカケノラブソング",
+      "ずっと作り掛けのラブソング"
+    ],
+    "artistSearchWords": [
+      "はたもとひろ",
+      "ハタモトヒロ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "ずっと作りかけのラブソング",
+    "sourceArtist": "秦基博",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#939",
+    "displayTitle": "ポケットに魔法を入れて",
+    "displayArtist": "秦基博",
+    "songKey": "ポケットに魔法を入れて|秦基博",
+    "titleSearchWords": [
+      "ぽけっとにまほうをいれて",
+      "ポケットニマホウヲイレテ",
+      "ポケットに魔法を入れるて"
+    ],
+    "artistSearchWords": [
+      "はたもとひろ",
+      "ハタモトヒロ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "ポケットに魔法を入れて",
+    "sourceArtist": "秦基博",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#940",
+    "displayTitle": "青春アミーゴ",
+    "displayArtist": "修二と彰",
+    "songKey": "青春アミーゴ|修二と彰",
+    "titleSearchWords": [
+      "せいしゅんあみーご",
+      "セイシュンアミーゴ"
+    ],
+    "artistSearchWords": [
+      "しゅうじとあきら",
+      "シュウジトアキラ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "青春アミーゴ",
+    "sourceArtist": "修二と彰",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#941",
+    "displayTitle": "烏",
+    "displayArtist": "米津玄師",
+    "songKey": "烏|米津玄師",
+    "titleSearchWords": [
+      "からす",
+      "カラス"
+    ],
+    "artistSearchWords": [
+      "よねづけんし",
+      "ヨネヅケンシ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "烏",
+    "sourceArtist": "米津玄師",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#942",
+    "displayTitle": "桜色舞うころ",
+    "displayArtist": "中島美嘉",
+    "songKey": "桜色舞うころ|中島美嘉",
+    "titleSearchWords": [
+      "さくらいろまうころ",
+      "サクライロマウコロ",
+      "桜色舞う頃"
+    ],
+    "artistSearchWords": [
+      "なかしまみか",
+      "なかじまみか",
+      "ナカシマミカ",
+      "ナカジマミカ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "桜色舞うころ",
+    "sourceArtist": "中島美嘉",
+    "playable": "〇",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#943",
+    "displayTitle": "ヘッドライト・テールライト",
+    "displayArtist": "中島みゆき",
+    "songKey": "ヘッドライトテールライト|中島みゆき",
+    "titleSearchWords": [
+      "へっどらいと・てーるらいと"
+    ],
+    "artistSearchWords": [
+      "なかしまみゆき",
+      "なかじまみゆき",
+      "ナカシマミユキ",
+      "ナカジマミユキ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "ヘッドライト・テールライト",
+    "sourceArtist": "中島みゆき",
+    "playable": "〇",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#944",
+    "displayTitle": "千の風になって",
+    "displayArtist": "秋川雅史",
+    "songKey": "千の風になって|秋川雅史",
+    "titleSearchWords": [
+      "せんのかぜになって",
+      "センノカゼニナッテ",
+      "千の風に成るて"
+    ],
+    "artistSearchWords": [
+      "あきかわまさし",
+      "アキカワマサシ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "千の風になって",
+    "sourceArtist": "秋川雅史",
+    "playable": "〇",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#945",
+    "displayTitle": "magnet",
+    "displayArtist": "流星P",
+    "songKey": "magnet|流星p",
+    "titleSearchWords": [
+      "まぐねっと",
+      "マグネット"
+    ],
+    "artistSearchWords": [
+      "りゅうせいp",
+      "リュウセイp"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "magnet",
+    "sourceArtist": "流星P",
+    "playable": "〇",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#946",
+    "displayTitle": "プロポーズ",
+    "displayArtist": "奥華子",
+    "songKey": "プロポーズ|奥華子",
+    "titleSearchWords": [
+      "ぷろぽーず"
+    ],
+    "artistSearchWords": [
+      "おくはなこ",
+      "オクハナコ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "プロポーズ",
+    "sourceArtist": "奥華子",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
