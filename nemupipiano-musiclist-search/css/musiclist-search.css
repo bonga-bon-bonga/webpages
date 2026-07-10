@@ -1248,6 +1248,13 @@ html[data-theme="dark"] .text-secondary {
 
 }
 
+@media (max-width: 991.98px) {
+    .song-detail-field:not(.song-detail-related-field) {
+    grid-template-columns: 1fr;
+    gap: .25rem;
+    }
+}
+
 @media (max-width: 575.98px) {
     .app-panel {
     border-radius: 1.1rem;
@@ -1468,11 +1475,6 @@ html[data-theme="dark"] .text-secondary {
 
     .detail-copy-label-short {
     display: inline;
-    }
-
-    .song-detail-field:not(.song-detail-related-field) {
-    grid-template-columns: 1fr;
-    gap: .25rem;
     }
 
     .song-detail-related-field {
