@@ -1306,7 +1306,10 @@ function renderSongDetail(song) {
   return `
     <div class="song-detail">
       <div class="song-detail-actions">
-        <button class="btn btn-dark" type="button" data-detail-copy>クリップボードコピー</button>
+        <button class="btn btn-dark" type="button" data-detail-copy>
+          <span class="detail-copy-label-full">クリップボードコピー</span>
+          <span class="detail-copy-label-short">コピー</span>
+        </button>
         <button class="${favoriteButtonClass}" type="button" data-detail-favorite>${favoriteButtonText}</button>
       </div>
       <div class="song-detail-meta-row">
