@@ -1394,7 +1394,7 @@ html[data-theme="dark"] .text-secondary {
     .song-grid[data-columns="2"] .song-title,
     .song-grid[data-columns="3"] .song-title {
     display: -webkit-box;
-    grid-column: 1 / -1;
+    grid-column: 1;
     grid-row: 1;
     font-size: 1rem;
     line-height: 1.25;
@@ -1430,13 +1430,15 @@ html[data-theme="dark"] .text-secondary {
     .song-grid[data-columns="2"] .song-card-meta,
     .song-grid[data-columns="3"] .song-card-meta {
     display: flex !important;
-    flex-direction: column;
-    grid-column: 2;
-    grid-row: 2;
-    align-items: flex-end;
-    justify-content: flex-end;
-    gap: .2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-column: 1;
+    grid-row: 3;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .25rem;
     min-width: 0;
+    margin-top: .15rem;
     padding-right: 0;
     position: static;
     transform: none;
