@@ -733,7 +733,7 @@ html[data-theme="dark"] .song-card.accent-other {
 
 .song-grid[data-columns="1"] .song-card-body {
     display: grid !important;
-    grid-template-columns: minmax(12rem, 1.2fr) minmax(9rem, .75fr) minmax(9.5rem, auto);
+    grid-template-columns: minmax(12rem, 1fr) minmax(18rem, 18rem) minmax(9.5rem, auto);
     align-items: center;
     padding-right: 3.4rem !important;
     gap: .65rem !important;
@@ -793,28 +793,31 @@ html[data-theme="dark"] .song-card.accent-other {
 
 .song-grid[data-columns="2"] .song-card-body {
     display: grid !important;
-    grid-template-columns: minmax(9rem, 1.1fr) minmax(6.5rem, .75fr) minmax(8.5rem, auto);
+    grid-template-columns: minmax(0, 1fr) minmax(7rem, auto);
     align-items: center;
-    gap: .45rem !important;
-    padding-right: 3.4rem !important;
+    gap: .2rem .6rem !important;
+    padding-right: 3.6rem !important;
 }
 
 .song-grid[data-columns="2"] .song-card-header {
-    display: contents !important;
+    display: flex !important;
+    grid-column: 1;
+    min-width: 0;
 }
 
 .song-grid[data-columns="2"] .song-card-text {
-    display: contents;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
 }
 
 .song-grid[data-columns="2"] .song-title {
     font-size: 1rem;
-    grid-column: 1;
 }
 
 .song-grid[data-columns="2"] .song-artist {
     font-size: .9rem;
-    grid-column: 2;
 }
 
 .song-grid[data-columns="2"] .song-card-header,
@@ -832,9 +835,10 @@ html[data-theme="dark"] .song-card.accent-other {
 }
 
 .song-grid[data-columns="2"] .song-card-meta {
-    grid-column: 3;
+    flex-direction: column;
+    grid-column: 2;
     justify-content: flex-end;
-    flex-wrap: nowrap;
+    align-items: flex-end;
     padding-right: .25rem;
 }
 
