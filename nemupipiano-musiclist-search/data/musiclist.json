@@ -494,9 +494,9 @@
   },
   {
     "no": "list#10",
-    "displayTitle": "DANDAN心惹かれてく",
+    "displayTitle": "DAN DAN 心魅かれてく",
     "displayArtist": "FIELD OF VIEW",
-    "songKey": "dandan心惹かれてく|fieldofview",
+    "songKey": "dandan心魅かれてく|fieldofview",
     "titleSearchWords": [
       "だんだんこころひかれてく",
       "ダンダンココロヒカレテク",
@@ -504,7 +504,10 @@
       "DANDANこころひかれてく",
       "DANDANココロヒカレテク",
       "DANDANkokorohikareteku",
-      "dandan心引くれるてく"
+      "dandan心引くれるてく",
+      "danきごうdanきごうこころひかれてく",
+      "danキゴウdanキゴウココロヒカレテク",
+      "dan dan 心引くれるてく"
     ],
     "artistSearchWords": [
       "ふぃーるどおぶびゅー",
@@ -607,9 +610,9 @@
   },
   {
     "no": "list#12",
-    "displayTitle": "小さな恋の歌",
+    "displayTitle": "小さな恋のうた",
     "displayArtist": "MONGOL800",
-    "songKey": "小さな恋の歌|mongol800",
+    "songKey": "小さな恋のうた|mongol800",
     "titleSearchWords": [
       "ちいさなこいのうた",
       "チイサナコイノウタ",
