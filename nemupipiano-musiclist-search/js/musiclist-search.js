@@ -809,9 +809,17 @@ function easyMatchesAllCategories(song, selections = easySelections) {
   return EASY_CATEGORIES.every(category => easyMatchesCategory(song, category.key, selections));
 }
 
+function hasEasyActiveFilters(selections = easySelections) {
+  return hasEasySelections(selections) || playableOnly || favoriteOnly;
+}
+
 function easyFilteredSongsForSelections(selections = easySelections) {
-  if (!hasEasySelections(selections)) return [];
-  return songs.filter(song => easyMatchesAllCategories(song, selections));
+  if (!hasEasyActiveFilters(selections)) return [];
+  return songs.filter(song =>
+    easyMatchesAllCategories(song, selections)
+    && (!playableOnly || isPlayable(song))
+    && (!favoriteOnly || isFavorite(song))
+  );
 }
 
 function easyFilteredSongs() {
@@ -843,7 +851,7 @@ function easyGenreOptions() {
   return EASY_GENRE_OPTIONS
     .map(option => ({
       ...option,
-      count: option.value === "all" ? songs.length : easyOptionCount("genre", option.value),
+      count: option.value === "all" ? easyFilteredSongsForSelections({ ...easySelections, genre: new Set(["all"]) }).length : easyOptionCount("genre", option.value),
     }))
     .filter(option => option.value === "all" || option.count > 0);
 }
@@ -852,6 +860,8 @@ function easyArtistOptions() {
   const counts = new Map();
   songs.forEach(song => {
     if (!easyMatchesCategory(song, "genre") || !easyMatchesCategory(song, "mood")) return;
+    if (playableOnly && !isPlayable(song)) return;
+    if (favoriteOnly && !isFavorite(song)) return;
     const artist = normalizeCellText(song.artist);
     if (!artist) return;
     counts.set(artist, (counts.get(artist) || 0) + 1);
@@ -1403,6 +1413,17 @@ function renderSongCards(items) {
   `).join("");
 }
 
+function renderEasyStats(items) {
+  return `
+    <span class="badge rounded-pill stat-badge px-3 py-2">一致する曲：<strong>${items.length}</strong></span>
+    <span class="playable-filter easy-stat-filter" aria-label="弾ける曲フィルター">
+      <span class="playable-filter-label">弾ける曲</span>
+      <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-easy-playable-filter aria-pressed="${playableOnly}">${playableOnly ? "ON" : "OFF"}</button>
+    </span>
+    <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${favoriteOnly ? "active" : ""}" type="button" data-easy-favorite-filter aria-pressed="${favoriteOnly}" aria-label="${favoriteOnly ? "お気に入りのみ表示中" : "お気に入りのみ表示"}">${favoriteOnly ? "★お気に入りのみ" : "☆お気に入りのみ"}</button>
+  `;
+}
+
 function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
   const items = filteredSongs();
   const isDefaultSearchState = isSearchGuideDefaultState();
@@ -1412,9 +1433,7 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
     <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
   `;
   if (easySearchMode) {
-    els.stats.innerHTML = `
-      <span class="badge rounded-pill stat-badge px-3 py-2">一致する曲：<strong>${items.length}</strong></span>
-    `;
+    els.stats.innerHTML = renderEasyStats(items);
   }
   els.playableFilter.classList.toggle("active", playableOnly);
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
@@ -1426,7 +1445,7 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
 
   els.empty.hidden = isDefaultSearchState || items.length !== 0;
   if (easySearchMode) {
-    els.empty.textContent = hasEasySelections()
+    els.empty.textContent = hasEasyActiveFilters()
       ? "条件に合う曲が見つかりませんでした。条件を少し減らしてみてください。"
       : "条件を選んでみてください。";
     els.empty.hidden = items.length !== 0;
@@ -1985,6 +2004,22 @@ els.animeDrama.addEventListener("change", () => {
 });
 [els.subgenre, els.sourceCategory, els.vocalType, els.releaseDecade].forEach(select => {
   select.addEventListener("change", render);
+});
+els.stats.addEventListener("click", event => {
+  if (event.target.closest("[data-easy-playable-filter]")) {
+    playableOnly = !playableOnly;
+    localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
+    refreshEasyOptions();
+    render();
+    return;
+  }
+
+  if (event.target.closest("[data-easy-favorite-filter]")) {
+    favoriteOnly = !favoriteOnly;
+    localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+    refreshEasyOptions();
+    render({ syncSearchGuide: true, forceSearchGuideSync: true });
+  }
 });
 els.playableFilter.addEventListener("click", () => {
   playableOnly = !playableOnly;
