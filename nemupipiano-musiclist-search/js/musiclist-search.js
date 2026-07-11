@@ -7,6 +7,37 @@ const FUZZY_RESULT_INITIAL_COUNT = 5;
 const FUZZY_RESULT_STEP = 5;
 const FUZZY_RESULT_MAX_COUNT = 30;
 const FUZZY_MAX_TIER = 3;
+const EASY_OPTION_INITIAL_COUNT = 8;
+const EASY_OPTION_STEP = 8;
+const EASY_CATEGORIES = [
+  { key: "genre", label: "ジャンル" },
+  { key: "artist", label: "アーティスト" },
+  { key: "mood", label: "曲の雰囲気" },
+];
+const EASY_GENRE_OPTIONS = [
+  { value: "all", label: "すべて" },
+  { value: "J-POP", label: "J-POP" },
+  { value: "アニメ", label: "アニメ" },
+  { value: "ボカロ", label: "ボカロ" },
+  { value: "ジブリ", label: "ジブリ" },
+  { value: "ディズニー", label: "ディズニー" },
+  { value: "映画", label: "映画" },
+  { value: "ドラマ", label: "ドラマ" },
+  { value: "ゲーム", label: "ゲーム" },
+  { value: "ロック", label: "ロック" },
+];
+const EASY_MOOD_OPTIONS = [
+  { value: "かわいい", label: "かわいい", tags: ["かわいい"] },
+  { value: "かっこいい", label: "かっこいい", tags: ["かっこいい"] },
+  { value: "しっとり", label: "しっとり", tags: ["穏やか", "優しい", "癒し"] },
+  { value: "元気", label: "元気", tags: ["元気", "明るい"] },
+  { value: "切ない", label: "切ない", tags: ["切ない", "泣ける", "儚い"] },
+  { value: "楽しい", label: "楽しい", tags: ["楽しい"] },
+  { value: "爽やか", label: "爽やか", tags: ["爽やか"] },
+  { value: "疾走感", label: "疾走感", tags: ["疾走感"] },
+  { value: "ミステリアス", label: "ミステリアス", tags: ["ミステリアス"] },
+  { value: "ダーク", label: "ダーク", tags: ["ダーク", "不穏"] },
+];
 const THEME_KEY = "nemupipiano:theme";
 const APP_PANEL_FONT_SIZE_KEY = "nemupipiano:appPanelFontSize";
 const ACTIVE_TAB_KEY = "nemupipiano:activeTab";
@@ -50,6 +81,13 @@ const els = {
   fuzzySongs: document.getElementById("fuzzySongs"),
   fuzzyEmpty: document.getElementById("fuzzyEmpty"),
   fuzzyMore: document.getElementById("fuzzyMore"),
+  easyModeToggle: document.getElementById("easyModeToggle"),
+  easySearchPanel: document.getElementById("easySearchPanel"),
+  easySelectedConditions: document.getElementById("easySelectedConditions"),
+  easyRefresh: document.getElementById("easyRefresh"),
+  easyRefreshStatus: document.getElementById("easyRefreshStatus"),
+  easyCategoryList: document.getElementById("easyCategoryList"),
+  easyReset: document.getElementById("easyReset"),
   playableFilter: document.getElementById("playableFilter"),
   stats: document.getElementById("stats"),
   songs: document.getElementById("songs"),
@@ -101,6 +139,32 @@ let activeFuzzyItemIndex = null;
 let fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
 let fuzzyVisibleTier = 1;
 let pendingAnimeDramaValue = "";
+let easySearchMode = false;
+let easySelections = {
+  genre: new Set(),
+  artist: new Set(),
+  mood: new Set(),
+};
+let easyVisibleCounts = {
+  genre: EASY_OPTION_INITIAL_COUNT,
+  artist: EASY_OPTION_INITIAL_COUNT,
+  mood: EASY_OPTION_INITIAL_COUNT,
+};
+let easyOptionStale = {
+  genre: false,
+  artist: false,
+  mood: false,
+};
+let easyOptionSnapshots = {
+  genre: null,
+  artist: null,
+  mood: null,
+};
+let easyCategoryOpen = {
+  genre: true,
+  artist: true,
+  mood: true,
+};
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
 function escapeHtml(value) {
@@ -698,7 +762,283 @@ function sortedSearchSongs(items) {
 }
 
 // 検索キーワードとジャンルで曲をフィルタリングする。キーワードは曲名、アーティスト名、補助検索語に対して部分一致で検索する。
+function selectedEasyValues(categoryKey, selections = easySelections) {
+  return Array.from(selections[categoryKey] || []);
+}
+
+function hasEasySelections(selections = easySelections) {
+  return EASY_CATEGORIES.some(category => selectedEasyValues(category.key, selections).length > 0);
+}
+
+function cloneEasySelections() {
+  return Object.fromEntries(
+    EASY_CATEGORIES.map(category => [category.key, new Set(selectedEasyValues(category.key))])
+  );
+}
+
+function easyMoodTagsFor(song) {
+  return normalizeStringArray(song.metadataTags?.moodTags);
+}
+
+function easyGenreValuesFor(song) {
+  const values = new Set();
+  const genre = normalizeCellText(song.genre);
+  if (genre) values.add(genre);
+  normalizeStringArray(song.classification?.genres).forEach(value => values.add(value));
+  sourceCategoriesFor(song).forEach(value => values.add(value));
+  songGenreLabel(song).split("/").map(normalizeCellText).filter(Boolean).forEach(value => values.add(value));
+  const sourceType = songSourceType(song);
+  if (sourceType === "disney") values.add("ディズニー");
+  if (sourceType === "ghibli") values.add("ジブリ");
+  return values;
+}
+
+function easyMoodOptionByValue(value) {
+  return EASY_MOOD_OPTIONS.find(option => option.value === value);
+}
+
+function easyMatchesCategory(song, categoryKey, selections = easySelections) {
+  const selected = selectedEasyValues(categoryKey, selections);
+  if (selected.length === 0) return true;
+
+  if (categoryKey === "genre") {
+    if (selected.includes("all")) return true;
+    const values = easyGenreValuesFor(song);
+    return selected.some(value => values.has(value));
+  }
+
+  if (categoryKey === "artist") {
+    return selected.includes(song.artist);
+  }
+
+  if (categoryKey === "mood") {
+    const moodTags = easyMoodTagsFor(song);
+    return selected.some(value => {
+      const option = easyMoodOptionByValue(value);
+      return option && option.tags.some(tag => moodTags.includes(tag));
+    });
+  }
+
+  return true;
+}
+
+function easyMatchesAllCategories(song, selections = easySelections) {
+  return EASY_CATEGORIES.every(category => easyMatchesCategory(song, category.key, selections));
+}
+
+function hasEasyActiveFilters(selections = easySelections) {
+  return hasEasySelections(selections) || playableOnly || favoriteOnly;
+}
+
+function easyFilteredSongsForSelections(selections = easySelections) {
+  if (!hasEasyActiveFilters(selections)) return [];
+  return songs.filter(song =>
+    easyMatchesAllCategories(song, selections)
+    && (!playableOnly || isPlayable(song))
+    && (!favoriteOnly || isFavorite(song))
+  );
+}
+
+function easyFilteredSongs() {
+  return sortedSearchSongs(easyFilteredSongsForSelections());
+}
+
+function easySelectionsForOptionCount(categoryKey, optionValue) {
+  const next = cloneEasySelections();
+  if (categoryKey === "genre" && optionValue === "all") {
+    next.genre = new Set(["all"]);
+    return next;
+  }
+
+  if (categoryKey === "genre" && next.genre.has("all")) {
+    next.genre.delete("all");
+  }
+
+  next[categoryKey].add(optionValue);
+  return next;
+}
+
+function easyOptionCount(categoryKey, optionValue) {
+  return easyFilteredSongsForSelections(
+    easySelectionsForOptionCount(categoryKey, optionValue)
+  ).length;
+}
+
+function easyGenreOptions() {
+  return EASY_GENRE_OPTIONS
+    .map(option => ({
+      ...option,
+      count: option.value === "all" ? easyFilteredSongsForSelections({ ...easySelections, genre: new Set(["all"]) }).length : easyOptionCount("genre", option.value),
+    }))
+    .filter(option => option.value === "all" || option.count > 0);
+}
+
+function easyArtistOptions() {
+  const counts = new Map();
+  songs.forEach(song => {
+    if (!easyMatchesCategory(song, "genre") || !easyMatchesCategory(song, "mood")) return;
+    if (playableOnly && !isPlayable(song)) return;
+    if (favoriteOnly && !isFavorite(song)) return;
+    const artist = normalizeCellText(song.artist);
+    if (!artist) return;
+    counts.set(artist, (counts.get(artist) || 0) + 1);
+  });
+
+  return Array.from(counts.entries())
+    .map(([value, count]) => ({ value, label: `${value} (${count})`, count }))
+    .sort((left, right) => right.count - left.count || left.value.localeCompare(right.value, "ja"));
+}
+
+function easyMoodOptions() {
+  return EASY_MOOD_OPTIONS
+    .map(option => ({ ...option, count: easyOptionCount("mood", option.value) }))
+    .filter(option => option.count > 0);
+}
+
+function computeEasyOptionsForCategory(categoryKey) {
+  if (categoryKey === "genre") return easyGenreOptions();
+  if (categoryKey === "artist") return easyArtistOptions();
+  if (categoryKey === "mood") return easyMoodOptions();
+  return [];
+}
+
+function easyOptionsForCategory(categoryKey, { refresh = false } = {}) {
+  if (refresh || !easyOptionSnapshots[categoryKey]) {
+    easyOptionSnapshots[categoryKey] = computeEasyOptionsForCategory(categoryKey);
+  }
+  return easyOptionSnapshots[categoryKey];
+}
+
+function isEasyOptionStale() {
+  return EASY_CATEGORIES.some(category => easyOptionStale[category.key]);
+}
+
+function refreshEasyOptions() {
+  EASY_CATEGORIES.forEach(category => {
+    easyOptionStale[category.key] = false;
+    easyVisibleCounts[category.key] = EASY_OPTION_INITIAL_COUNT;
+    easyOptionsForCategory(category.key, { refresh: true });
+  });
+  renderEasySearch();
+}
+
+function easyOptionLabel(categoryKey, value) {
+  if (categoryKey === "genre") {
+    return EASY_GENRE_OPTIONS.find(option => option.value === value)?.label || value;
+  }
+  if (categoryKey === "mood") {
+    return easyMoodOptionByValue(value)?.label || value;
+  }
+  return value;
+}
+
+function toggleEasyOption(categoryKey, value) {
+  const selected = easySelections[categoryKey];
+  if (!selected) return;
+
+  if (categoryKey === "genre" && value === "all") {
+    selected.clear();
+    selected.add("all");
+  } else if (selected.has(value)) {
+    selected.delete(value);
+  } else {
+    if (categoryKey === "genre") selected.delete("all");
+    selected.add(value);
+  }
+
+  EASY_CATEGORIES.forEach(category => {
+    if (category.key !== categoryKey) easyOptionStale[category.key] = true;
+  });
+}
+
+function resetEasySearch() {
+  EASY_CATEGORIES.forEach(category => {
+    easySelections[category.key].clear();
+    easyVisibleCounts[category.key] = EASY_OPTION_INITIAL_COUNT;
+    easyOptionStale[category.key] = false;
+    easyOptionSnapshots[category.key] = null;
+  });
+  render();
+}
+
+function renderEasySelectedConditions() {
+  if (!hasEasySelections()) {
+    els.easySelectedConditions.innerHTML = `<span class="easy-selected-empty">条件はまだ選択されていません。</span>`;
+    return;
+  }
+
+  els.easySelectedConditions.innerHTML = EASY_CATEGORIES
+    .map(category => {
+      const values = selectedEasyValues(category.key);
+      if (values.length === 0) return "";
+      return `
+      <span class="easy-selected-chip">
+        <span class="easy-selected-category">${escapeHtml(category.label)}</span>
+        ${escapeHtml(values.map(value => easyOptionLabel(category.key, value)).join("、"))}
+      </span>
+    `;
+    })
+    .join("");
+}
+
+function renderEasyCategory(category) {
+  const options = easyOptionsForCategory(category.key);
+  const visibleCount = easyVisibleCounts[category.key];
+  const visibleOptions = options.slice(0, visibleCount);
+  const hasMore = options.length > visibleCount;
+  const open = easyCategoryOpen[category.key] !== false;
+
+  return `
+    <section class="easy-category-card">
+      <div class="easy-category-header">
+        <button class="btn easy-category-toggle" type="button" data-easy-toggle="${escapeHtml(category.key)}" aria-expanded="${open}" aria-controls="easy-category-${escapeHtml(category.key)}">
+          <span class="easy-category-title">${escapeHtml(category.label)}</span>
+          <span class="easy-category-icon" aria-hidden="true">${open ? "▲" : "▼"}</span>
+        </button>
+      </div>
+      <div class="easy-category-body" id="easy-category-${escapeHtml(category.key)}" ${open ? "" : "hidden"}>
+        <div class="easy-option-list">
+        ${visibleOptions.map(option => {
+          const active = easySelections[category.key].has(option.value);
+          return `
+            <button class="btn easy-option-button ${active ? "active" : ""}" type="button" data-easy-category="${escapeHtml(category.key)}" data-easy-option="${escapeHtml(option.value)}" aria-pressed="${active}">
+              ${escapeHtml(option.label)}
+            </button>
+          `;
+        }).join("")}
+        ${visibleOptions.length === 0 ? `<span class="easy-selected-empty">表示できる候補がありません。</span>` : ""}
+        </div>
+        ${hasMore ? `
+          <button class="btn fuzzy-more-button easy-more-button" type="button" data-easy-more="${escapeHtml(category.key)}">もっと見る ⇒</button>
+        ` : ""}
+      </div>
+    </section>
+  `;
+}
+
+function renderEasySearch() {
+  if (!els.easySearchPanel) return;
+  renderEasySelectedConditions();
+  const stale = isEasyOptionStale();
+  els.easyRefresh.disabled = !stale;
+  els.easyRefresh.classList.toggle("is-stale", stale);
+  els.easyRefreshStatus.hidden = stale;
+  els.easyCategoryList.innerHTML = EASY_CATEGORIES.map(renderEasyCategory).join("");
+}
+
+function setEasySearchMode(active) {
+  easySearchMode = Boolean(active);
+  els.normalSearchPanel.classList.toggle("easy-mode", easySearchMode);
+  els.easySearchPanel.hidden = !easySearchMode;
+  els.easyModeToggle.textContent = easySearchMode ? "通常検索" : "かんたんモード";
+  els.easyModeToggle.setAttribute("aria-pressed", String(easySearchMode));
+  if (easySearchMode) setSearchGuideOpen(false);
+  render({ syncSearchGuide: true, forceSearchGuideSync: true });
+}
+
 function filteredSongs() {
+  if (easySearchMode) return easyFilteredSongs();
+
   const keyword = createSearchKey(els.search.value);
   const searchScope = getSearchScope();
   const genre = els.genre.value;
@@ -1090,13 +1430,28 @@ function renderSongCards(items) {
   `).join("");
 }
 
+function renderEasyStats(items) {
+  return `
+    <span class="badge rounded-pill stat-badge px-3 py-2">一致する曲：<strong>${items.length}</strong></span>
+    <span class="playable-filter easy-stat-filter" aria-label="弾ける曲フィルター">
+      <span class="playable-filter-label">弾ける曲</span>
+      <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-easy-playable-filter aria-pressed="${playableOnly}">${playableOnly ? "ON" : "OFF"}</button>
+    </span>
+    <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${favoriteOnly ? "active" : ""}" type="button" data-easy-favorite-filter aria-pressed="${favoriteOnly}" aria-label="${favoriteOnly ? "お気に入りのみ表示中" : "お気に入りのみ表示"}">${favoriteOnly ? "★お気に入りのみ" : "☆お気に入りのみ"}</button>
+  `;
+}
+
 function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
   const items = filteredSongs();
   const isDefaultSearchState = isSearchGuideDefaultState();
 
+  if (easySearchMode) renderEasySearch();
   els.stats.innerHTML = `
     <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
   `;
+  if (easySearchMode) {
+    els.stats.innerHTML = renderEasyStats(items);
+  }
   els.playableFilter.classList.toggle("active", playableOnly);
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
@@ -1106,6 +1461,12 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
   }
 
   els.empty.hidden = isDefaultSearchState || items.length !== 0;
+  if (easySearchMode) {
+    els.empty.textContent = hasEasyActiveFilters()
+      ? "条件に合う曲が見つかりませんでした。条件を少し減らしてみてください。"
+      : "条件を選んでみてください。";
+    els.empty.hidden = items.length !== 0;
+  }
   els.songs.innerHTML = renderSongCards(items);
 }
 
@@ -1692,6 +2053,35 @@ function setSearchGuideOpen(open) {
 }
 
 els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
+els.easyModeToggle.addEventListener("click", () => {
+  setEasySearchMode(!easySearchMode);
+});
+els.easyRefresh.addEventListener("click", refreshEasyOptions);
+els.easyCategoryList.addEventListener("click", event => {
+  const toggleButton = event.target.closest("[data-easy-toggle]");
+  if (toggleButton) {
+    const categoryKey = toggleButton.dataset.easyToggle;
+    easyCategoryOpen[categoryKey] = easyCategoryOpen[categoryKey] === false;
+    renderEasySearch();
+    return;
+  }
+
+  const optionButton = event.target.closest("[data-easy-option]");
+  if (optionButton) {
+    toggleEasyOption(optionButton.dataset.easyCategory, optionButton.dataset.easyOption);
+    render();
+    return;
+  }
+
+  const moreButton = event.target.closest("[data-easy-more]");
+  if (moreButton) {
+    const categoryKey = moreButton.dataset.easyMore;
+    easyVisibleCounts[categoryKey] += EASY_OPTION_STEP;
+    renderEasySearch();
+    return;
+  }
+});
+els.easyReset.addEventListener("click", resetEasySearch);
 els.fuzzyCategoryTabs.addEventListener("click", event => {
   const button = event.target.closest("[data-fuzzy-category]");
   if (!button) return;
@@ -1745,6 +2135,22 @@ els.animeDrama.addEventListener("change", () => {
 });
 [els.subgenre, els.sourceCategory, els.vocalType, els.releaseDecade].forEach(select => {
   select.addEventListener("change", render);
+});
+els.stats.addEventListener("click", event => {
+  if (event.target.closest("[data-easy-playable-filter]")) {
+    playableOnly = !playableOnly;
+    localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
+    refreshEasyOptions();
+    render();
+    return;
+  }
+
+  if (event.target.closest("[data-easy-favorite-filter]")) {
+    favoriteOnly = !favoriteOnly;
+    localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+    refreshEasyOptions();
+    render({ syncSearchGuide: true, forceSearchGuideSync: true });
+  }
 });
 els.playableFilter.addEventListener("click", () => {
   playableOnly = !playableOnly;

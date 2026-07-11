@@ -125,12 +125,13 @@
               <img class="theme-icon-dark" src="../lib/icon/black/search.svg" alt="">
             </span>
             検索してみる
+            <button id="easyModeToggle" class="btn recommend-source-button search-mode-toggle" type="button" aria-pressed="false">かんたんモード</button>
           </h2>
           <p class="recommend-desc text-secondary mb-0">
             曲名やアーティスト名から、リクエストしたい曲を探せます。
           </p>
         </section>
-        <div class="row g-2 g-md-3 align-items-stretch">
+        <div class="row g-2 g-md-3 align-items-stretch search-form-row">
           <div class="col-8 col-md-10">
             <label class="visually-hidden" for="search">検索キーワード</label>
             <input id="search" class="form-control form-control-lg" type="search" placeholder="曲名・アーティストで検索" autocomplete="off" />
@@ -229,6 +230,11 @@
                 <li>「検索対象」「弾ける曲」「お気に入りのみ」を選ぶと、検索結果を絞り込めます。</li>
                 <li>「▼詳細」から、ジャンルなどの詳細な検索条件を設定できます。</li>
               </ul>
+              <h6 class="fw-bold mt-3">■かんたんモード</h6>
+              <ul class="mb-0">
+                <li>かんたんモードは、曲名・アーティスト名が分からなくても曲を探せるモードです。</li>
+                <li>かんたんモードでは、ジャンル・アーティスト・曲の雰囲気を選択すると、一致する曲カードが表示されます。</li>
+              </ul>
             </section>
             <section class="search-guide-section">
               <h2 class="search-guide-heading section-heading-with-icon">
@@ -280,6 +286,19 @@
               </ul>
             </section>
           </div>
+        </div>
+
+        <div class="easy-search-panel mt-3" id="easySearchPanel" hidden>
+          <p class="recommend-desc text-secondary mb-3">
+            ボタンを組み合わせて、リクエスト候補をかんたんに絞り込めます。気になる条件を選んで、少しずつ曲を探してみてください。
+          </p>
+          <div class="easy-selected-row" id="easySelectedConditions" aria-live="polite"></div>
+          <div class="easy-refresh-row">
+            <button id="easyRefresh" class="btn easy-refresh-button" type="button" disabled>絞り込み更新</button>
+            <span id="easyRefreshStatus" class="easy-refresh-status">最新の状態です</span>
+            <button id="easyReset" class="btn fuzzy-more-button easy-reset-button" type="button">条件をリセット</button>
+          </div>
+          <div class="easy-category-list" id="easyCategoryList"></div>
         </div>
 
         <div class="stats-row mt-3">
@@ -385,8 +404,7 @@
           <hr>
           <h6 class="fw-bold mt-3">お願いごと</h6>
           <ul class="mb-0">
-            <li>本ページはねむぴぴさんの非公式応援ページとなります。ご本人様の活動とは一切関係ございません。</li>
-            <li>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
+            <li>本ページはねむぴぴさんの非公式応援ページとなります。ご本人様の活動とは一切関係ございません。当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
             <li>無断複製・模倣・再配布を目的としたHTML取得、構造解析、メタデータ流用はご遠慮ください。継続してそのような行為が見られる場合、必要に応じて経緯や差分を整理して公開することがあります。</li>
           </ul>
         </div>
