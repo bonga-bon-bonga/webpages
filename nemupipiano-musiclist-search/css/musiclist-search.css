@@ -400,6 +400,7 @@ html[data-theme="dark"] .theme-icon-light {
 .easy-refresh-row {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: .75rem;
     margin-bottom: 1rem;
 }
@@ -498,10 +499,8 @@ html[data-theme="dark"] .theme-icon-light {
     margin-top: .75rem;
 }
 
-.easy-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1rem;
+.easy-reset-button {
+    margin-left: auto;
 }
 
 .settings-actions {
