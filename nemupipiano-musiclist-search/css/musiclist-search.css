@@ -107,6 +107,23 @@ body {
     border-radius: 1.5rem;
 }
 
+#normalSearchPanel {
+    display: flex;
+    flex-direction: column;
+}
+
+#songs {
+    order: 20;
+}
+
+#empty {
+    order: 30;
+}
+
+.search-guide-wrapper {
+    order: 40;
+}
+
 .app-panel.font-size-small {
     font-size: .9rem;
 }
