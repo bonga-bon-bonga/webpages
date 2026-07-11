@@ -943,9 +943,9 @@
       "total": 1
     }
   },
-  "なごり雪|イルカcover": {
+  "なごり雪|イルカ": {
     "title": "なごり雪",
-    "artist": "イルカ(Cover)",
+    "artist": "イルカ",
     "preview": null,
     "recentPerformances": [
       {
@@ -1059,13 +1059,19 @@
         "streamUrl": "FNkeW_Srz8g",
         "start": 6581,
         "end": null
+      },
+      {
+        "no": "326",
+        "streamUrl": "nWugqFcQB2M",
+        "start": 5621,
+        "end": null
       }
     ],
     "counts": {
-      "currentMonth": 2,
+      "currentMonth": 3,
       "previousMonth": 0,
       "twoMonthsAgo": 0,
-      "total": 2
+      "total": 3
     }
   },
   "ひとりごつ|ハチワレ": {
@@ -1073,12 +1079,6 @@
     "artist": "ハチワレ",
     "preview": null,
     "recentPerformances": [
-      {
-        "no": "326",
-        "streamUrl": "nWugqFcQB2M",
-        "start": 5621,
-        "end": null
-      },
       {
         "no": "325",
         "streamUrl": "PMfqZFAspQw",
@@ -1093,10 +1093,10 @@
       }
     ],
     "counts": {
-      "currentMonth": 3,
+      "currentMonth": 2,
       "previousMonth": 0,
       "twoMonthsAgo": 0,
-      "total": 3
+      "total": 2
     }
   },
   "ひとりごつ|ハチワレ⇒cパート": {
