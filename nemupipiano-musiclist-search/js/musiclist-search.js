@@ -83,6 +83,8 @@ const els = {
   easyModeToggle: document.getElementById("easyModeToggle"),
   easySearchPanel: document.getElementById("easySearchPanel"),
   easySelectedConditions: document.getElementById("easySelectedConditions"),
+  easyRefresh: document.getElementById("easyRefresh"),
+  easyRefreshStatus: document.getElementById("easyRefreshStatus"),
   easyCategoryList: document.getElementById("easyCategoryList"),
   easyReset: document.getElementById("easyReset"),
   playableFilter: document.getElementById("playableFilter"),
@@ -155,6 +157,11 @@ let easyOptionSnapshots = {
   genre: null,
   artist: null,
   mood: null,
+};
+let easyCategoryOpen = {
+  genre: true,
+  artist: true,
+  mood: true,
 };
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
@@ -875,6 +882,19 @@ function easyOptionsForCategory(categoryKey, { refresh = false } = {}) {
   return easyOptionSnapshots[categoryKey];
 }
 
+function isEasyOptionStale() {
+  return EASY_CATEGORIES.some(category => easyOptionStale[category.key]);
+}
+
+function refreshEasyOptions() {
+  EASY_CATEGORIES.forEach(category => {
+    easyOptionStale[category.key] = false;
+    easyVisibleCounts[category.key] = EASY_OPTION_INITIAL_COUNT;
+    easyOptionsForCategory(category.key, { refresh: true });
+  });
+  renderEasySearch();
+}
+
 function easyOptionLabel(categoryKey, value) {
   if (categoryKey === "genre") {
     return EASY_GENRE_OPTIONS.find(option => option.value === value)?.label || value;
@@ -939,16 +959,18 @@ function renderEasyCategory(category) {
   const visibleCount = easyVisibleCounts[category.key];
   const visibleOptions = options.slice(0, visibleCount);
   const hasMore = options.length > visibleCount;
+  const open = easyCategoryOpen[category.key] !== false;
 
   return `
     <section class="easy-category-card">
       <div class="easy-category-header">
-        <h3 class="easy-category-title">${escapeHtml(category.label)}</h3>
-        <button class="btn easy-refresh-button ${easyOptionStale[category.key] ? "is-stale" : ""}" type="button" data-easy-refresh="${escapeHtml(category.key)}" aria-label="${escapeHtml(category.label)}の候補を更新">
-          更新
+        <button class="btn easy-category-toggle" type="button" data-easy-toggle="${escapeHtml(category.key)}" aria-expanded="${open}" aria-controls="easy-category-${escapeHtml(category.key)}">
+          <span class="easy-category-title">${escapeHtml(category.label)}</span>
+          <span class="easy-category-icon" aria-hidden="true">${open ? "▲" : "▼"}</span>
         </button>
       </div>
-      <div class="easy-option-list">
+      <div class="easy-category-body" id="easy-category-${escapeHtml(category.key)}" ${open ? "" : "hidden"}>
+        <div class="easy-option-list">
         ${visibleOptions.map(option => {
           const active = easySelections[category.key].has(option.value);
           return `
@@ -958,10 +980,11 @@ function renderEasyCategory(category) {
           `;
         }).join("")}
         ${visibleOptions.length === 0 ? `<span class="easy-selected-empty">表示できる候補がありません。</span>` : ""}
+        </div>
+        ${hasMore ? `
+          <button class="btn fuzzy-more-button easy-more-button" type="button" data-easy-more="${escapeHtml(category.key)}">もっと見る ⇒</button>
+        ` : ""}
       </div>
-      ${hasMore ? `
-        <button class="btn fuzzy-more-button easy-more-button" type="button" data-easy-more="${escapeHtml(category.key)}">もっと見る ⇒</button>
-      ` : ""}
     </section>
   `;
 }
@@ -969,6 +992,10 @@ function renderEasyCategory(category) {
 function renderEasySearch() {
   if (!els.easySearchPanel) return;
   renderEasySelectedConditions();
+  const stale = isEasyOptionStale();
+  els.easyRefresh.disabled = !stale;
+  els.easyRefresh.classList.toggle("is-stale", stale);
+  els.easyRefreshStatus.hidden = stale;
   els.easyCategoryList.innerHTML = EASY_CATEGORIES.map(renderEasyCategory).join("");
 }
 
@@ -1879,7 +1906,16 @@ els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
 els.easyModeToggle.addEventListener("click", () => {
   setEasySearchMode(!easySearchMode);
 });
+els.easyRefresh.addEventListener("click", refreshEasyOptions);
 els.easyCategoryList.addEventListener("click", event => {
+  const toggleButton = event.target.closest("[data-easy-toggle]");
+  if (toggleButton) {
+    const categoryKey = toggleButton.dataset.easyToggle;
+    easyCategoryOpen[categoryKey] = easyCategoryOpen[categoryKey] === false;
+    renderEasySearch();
+    return;
+  }
+
   const optionButton = event.target.closest("[data-easy-option]");
   if (optionButton) {
     toggleEasyOption(optionButton.dataset.easyCategory, optionButton.dataset.easyOption);
@@ -1893,15 +1929,6 @@ els.easyCategoryList.addEventListener("click", event => {
     easyVisibleCounts[categoryKey] += EASY_OPTION_STEP;
     renderEasySearch();
     return;
-  }
-
-  const refreshButton = event.target.closest("[data-easy-refresh]");
-  if (refreshButton) {
-    const categoryKey = refreshButton.dataset.easyRefresh;
-    easyOptionStale[categoryKey] = false;
-    easyVisibleCounts[categoryKey] = EASY_OPTION_INITIAL_COUNT;
-    easyOptionsForCategory(categoryKey, { refresh: true });
-    renderEasySearch();
   }
 });
 els.easyReset.addEventListener("click", resetEasySearch);
