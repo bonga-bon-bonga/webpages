@@ -1420,7 +1420,7 @@ html[data-theme="dark"] .text-secondary {
     .song-grid[data-columns="2"] .song-card-menu,
     .song-grid[data-columns="3"] .song-card-menu {
     grid-column: 2;
-    grid-row: 1 / 3;
+    grid-row: 1 / 4;
     justify-self: end;
     align-self: center;
     }
