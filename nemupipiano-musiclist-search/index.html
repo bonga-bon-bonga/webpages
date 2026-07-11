@@ -127,7 +127,7 @@
             検索してみる
           </h2>
           <p class="recommend-desc text-secondary mb-0">
-            曲名やアーティスト名、よみがなから、いま聴きたい一曲をそっと探せます。思いついた言葉を入れて、気になる曲を見つけてみてください。
+            曲名やアーティスト名から、リクエストしたい曲を探せます。
           </p>
         </section>
         <div class="row g-2 g-md-3 align-items-stretch">
@@ -148,21 +148,15 @@
               </select>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label fw-bold" for="sortOrder">並び順</label>
-              <select id="sortOrder" class="form-select form-select-lg">
-                <option value="playable">弾ける曲を優先する</option>
-                <option value="no">No順</option>
-                <option value="title">曲名毎に並べる</option>
-                <option value="artist">アーティスト毎に並べる</option>
-                <option value="favorite">お気に入りを優先する</option>
-                <option value="copyCount">コピー回数が多い順</option>
-                <option value="random">ランダム表示</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-6">
               <label class="form-label fw-bold" for="subgenre">サブジャンル</label>
               <select id="subgenre" class="form-select form-select-lg">
                 <option value="">すべてのサブジャンル</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold" for="releaseDecade">年代</label>
+              <select id="releaseDecade" class="form-select form-select-lg">
+                <option value="">すべての年代</option>
               </select>
             </div>
             <div class="col-12 col-md-6">
@@ -184,9 +178,15 @@
               </select>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label fw-bold" for="releaseDecade">年代</label>
-              <select id="releaseDecade" class="form-select form-select-lg">
-                <option value="">すべての年代</option>
+              <label class="form-label fw-bold" for="sortOrder">並び順</label>
+              <select id="sortOrder" class="form-select form-select-lg">
+                <option value="playable">弾ける曲を優先する</option>
+                <option value="no">No順</option>
+                <option value="title">曲名毎に並べる</option>
+                <option value="artist">アーティスト毎に並べる</option>
+                <option value="favorite">お気に入りを優先する</option>
+                <option value="copyCount">コピー回数が多い順</option>
+                <option value="random">ランダム表示</option>
               </select>
             </div>
           </div>
@@ -299,7 +299,7 @@
               ふわっと探してみる
             </h2>
             <p class="recommend-desc text-secondary mb-0">
-              ことばにしきれない気分の日は、雰囲気や情景からゆるく探してみましょう。今日の気持ちに寄り添う曲が、ふっと見つかるかもしれません。
+              気分や情景、雰囲気からリクエストしたい曲を探してみよう！今日の気持ちにマッチする曲が見つかるかも？
             </p>
           </section>
           <div class="fuzzy-category-tabs" id="fuzzyCategoryTabs" role="tablist" aria-label="ふわっと検索のカテゴリ"></div>
@@ -371,6 +371,12 @@
             <li>「お気に入り登録」の全解除</li>
           </ul>
           <hr>
+          <h6 class="fw-bold mt-3">曲リストの情報取得について</h6>
+            <ul class="mb-0">
+            <li>本ページで使用している曲リストは、<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>から「①ポップス/ボカロ/アニメなど、②ジブリ、③ディズニー」を対象として取得しています。</li>
+            <li>「④ゲーム、⑤クラシック、⑥オフィシャルスコア、※耳コピ」シートは表示対象から外しています。(ポップス中心に弾きたい意図を尊重しています)</li>
+          </ul>
+          <hr>
           <h6 class="fw-bold mt-3">情報の保存について</h6>
             <ul class="mb-0">
             <li>クリップボードへのコピーの履歴やお気に入り情報、及び設定情報の保存はブラウザ側のローカルストレージで管理されます。</li>
@@ -379,9 +385,9 @@
           <hr>
           <h6 class="fw-bold mt-3">お願いごと</h6>
           <ul class="mb-0">
-            <li>本ページはねむぴぴさんの非公式応援ページとなります。<br>ご本人様の活動とは一切関係ございません。</li>
+            <li>本ページはねむぴぴさんの非公式応援ページとなります。ご本人様の活動とは一切関係ございません。</li>
             <li>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
-            <li>無断複製・模倣・再配布を目的としたHTML取得、構造解析、メタデータ流用はご遠慮ください。<br>継続してそのような行為が見られる場合、必要に応じて経緯や差分を整理して公開することがあります。</li>
+            <li>無断複製・模倣・再配布を目的としたHTML取得、構造解析、メタデータ流用はご遠慮ください。継続してそのような行為が見られる場合、必要に応じて経緯や差分を整理して公開することがあります。</li>
           </ul>
         </div>
       </div>
