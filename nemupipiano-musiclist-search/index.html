@@ -125,6 +125,7 @@
               <img class="theme-icon-dark" src="../lib/icon/black/search.svg" alt="">
             </span>
             検索してみる
+            <button id="easyModeToggle" class="btn recommend-source-button search-mode-toggle" type="button" aria-pressed="false">かんたんモード</button>
           </h2>
           <p class="recommend-desc text-secondary mb-0">
             曲名やアーティスト名から、リクエストしたい曲を探せます。
@@ -279,6 +280,17 @@
                 <li>画面右下の「設定」ボタンから、表示テーマや文字の大きさ、曲カードの表示列などを変更できます。</li>
               </ul>
             </section>
+          </div>
+        </div>
+
+        <div class="easy-search-panel mt-3" id="easySearchPanel" hidden>
+          <p class="recommend-desc text-secondary mb-3">
+            ボタンを組み合わせて、リクエスト候補をかんたんに絞り込めます。気になる条件を選んで、少しずつ曲を探してみてください。
+          </p>
+          <div class="easy-selected-row" id="easySelectedConditions" aria-live="polite"></div>
+          <div class="easy-category-list" id="easyCategoryList"></div>
+          <div class="easy-actions">
+            <button id="easyReset" class="btn fuzzy-more-button" type="button">条件をリセット</button>
           </div>
         </div>
 
