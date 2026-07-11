@@ -5,6 +5,7 @@ const HOME_MOOD_RESULT_COUNT = 3;
 const FUZZY_RESULT_INITIAL_COUNT = 5;
 const FUZZY_RESULT_STEP = 5;
 const FUZZY_RESULT_MAX_COUNT = 30;
+const FUZZY_MAX_TIER = 3;
 const THEME_KEY = "nemupipiano:theme";
 const APP_PANEL_FONT_SIZE_KEY = "nemupipiano:appPanelFontSize";
 const ACTIVE_TAB_KEY = "nemupipiano:activeTab";
@@ -96,6 +97,7 @@ let fuzzySearchMode = false;
 let activeFuzzyCategoryIndex = 0;
 let activeFuzzyItemIndex = null;
 let fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
+let fuzzyVisibleTier = 1;
 let pendingAnimeDramaValue = "";
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
@@ -901,6 +903,24 @@ function fuzzyMatchedSongs() {
   return sortPlayableFirst(dailyFuzzyOrder(matched, preset, item));
 }
 
+function fuzzyItemTier(item) {
+  const tier = Number(item?.tier);
+  if (!Number.isFinite(tier)) return 1;
+  return Math.min(Math.max(Math.trunc(tier), 1), FUZZY_MAX_TIER);
+}
+
+function maxFuzzyItemTier(preset) {
+  if (!Array.isArray(preset?.items) || preset.items.length === 0) return 1;
+  return Math.max(...preset.items.map(fuzzyItemTier));
+}
+
+function visibleFuzzyItems(preset) {
+  if (!Array.isArray(preset?.items)) return [];
+  return preset.items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => fuzzyItemTier(item) <= fuzzyVisibleTier);
+}
+
 function renderFuzzySearch() {
   const preset = fuzzySearchPresets[activeFuzzyCategoryIndex];
   els.fuzzyCategoryTabs.innerHTML = fuzzySearchPresets.map((item, index) => `
@@ -917,6 +937,8 @@ function renderFuzzySearch() {
     return;
   }
 
+  const visibleItems = visibleFuzzyItems(preset);
+  const hasMoreTiers = maxFuzzyItemTier(preset) > fuzzyVisibleTier;
   els.fuzzyCategoryContent.innerHTML = `
     <h2 class="h5 fw-bold mb-1 section-heading-with-icon">
       ${fuzzyPresetIcon(preset.icon)}
@@ -924,10 +946,15 @@ function renderFuzzySearch() {
     </h2>
     <p class="fuzzy-category-description mb-3">${escapeHtml(preset.description)}</p>
     <div class="fuzzy-preset-options">
-      ${preset.items.map((item, index) => `
+      ${visibleItems.map(({ item, index }) => `
         <button class="btn fuzzy-preset-button ${index === activeFuzzyItemIndex ? "active" : ""}" type="button" data-fuzzy-item="${index}" aria-pressed="${index === activeFuzzyItemIndex}">${escapeHtml(item.label)}</button>
       `).join("")}
     </div>
+    ${hasMoreTiers ? `
+      <div class="text-end mt-3">
+        <button class="btn fuzzy-more-button" type="button" data-fuzzy-tier-more>もっと探す ⇒</button>
+      </div>
+    ` : ""}
   `;
 
   const selectedItem = preset.items[activeFuzzyItemIndex];
@@ -1540,9 +1567,17 @@ els.fuzzyCategoryTabs.addEventListener("click", event => {
   activeFuzzyCategoryIndex = Number(button.dataset.fuzzyCategory) || 0;
   activeFuzzyItemIndex = null;
   fuzzyResultLimit = FUZZY_RESULT_INITIAL_COUNT;
+  fuzzyVisibleTier = 1;
   renderFuzzySearch();
 });
 els.fuzzyCategoryContent.addEventListener("click", event => {
+  const tierMoreButton = event.target.closest("[data-fuzzy-tier-more]");
+  if (tierMoreButton) {
+    fuzzyVisibleTier = Math.min(fuzzyVisibleTier + 1, FUZZY_MAX_TIER);
+    renderFuzzySearch();
+    return;
+  }
+
   const button = event.target.closest("[data-fuzzy-item]");
   if (!button) return;
   activeFuzzyItemIndex = Number(button.dataset.fuzzyItem);

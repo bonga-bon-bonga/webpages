@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.1.2" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.1.3" />
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -60,7 +60,6 @@
           <p class="recommend-desc text-secondary mb-0">
             「ねむぴぴあの」で何をリクエストしようかな？そんな時のための、リクエスト探しのお手伝いサイトです。<br>
             曲名や気分、ジャンルなどから、ぴったりの曲を探してみてください。<br>
-            (7/5 Update) 検索タブに「ふわっと検索」を追加しました！曲の雰囲気やテーマなどから、気になる曲を探してみましょう。
           </p>
         </section>
 
@@ -94,7 +93,7 @@
             </span>
             今日の気分から曲を探してみる
           </h2>
-          <p class="recommend-desc text-secondary mb-0">いまの気分や雰囲気に合いそうな入口を、ふわっと検索からピックアップしました。</p>
+          <p class="recommend-desc text-secondary mb-0">いまの気分はどんな感じ？曲選びのきっかけに「ふわっと検索」からピックアップしました。</p>
           <div class="home-mood-options mt-3" id="homeMoodOptions" aria-label="今日の気分から探す"></div>
           <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="homeMoodSongs" data-columns="3"></div>
           <div class="empty-box text-center p-4 mt-3" id="homeMoodEmpty" hidden>気になる項目を選んでみてください。</div>
@@ -119,6 +118,18 @@
 
       <section class="tab-panel" id="panel-search" role="tabpanel" aria-labelledby="tab-search" hidden>
         <div id="normalSearchPanel">
+        <section class="home-section mb-4">
+          <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
+            <span class="theme-icon section-heading-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/white/search.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/search.svg" alt="">
+            </span>
+            検索してみる
+          </h2>
+          <p class="recommend-desc text-secondary mb-0">
+            曲名やアーティスト名から、リクエストしたい曲を探せます。
+          </p>
+        </section>
         <div class="row g-2 g-md-3 align-items-stretch">
           <div class="col-8 col-md-10">
             <label class="visually-hidden" for="search">検索キーワード</label>
@@ -137,21 +148,15 @@
               </select>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label fw-bold" for="sortOrder">並び順</label>
-              <select id="sortOrder" class="form-select form-select-lg">
-                <option value="playable">弾ける曲を優先する</option>
-                <option value="no">No順</option>
-                <option value="title">曲名毎に並べる</option>
-                <option value="artist">アーティスト毎に並べる</option>
-                <option value="favorite">お気に入りを優先する</option>
-                <option value="copyCount">コピー回数が多い順</option>
-                <option value="random">ランダム表示</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-6">
               <label class="form-label fw-bold" for="subgenre">サブジャンル</label>
               <select id="subgenre" class="form-select form-select-lg">
                 <option value="">すべてのサブジャンル</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label fw-bold" for="releaseDecade">年代</label>
+              <select id="releaseDecade" class="form-select form-select-lg">
+                <option value="">すべての年代</option>
               </select>
             </div>
             <div class="col-12 col-md-6">
@@ -173,9 +178,15 @@
               </select>
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label fw-bold" for="releaseDecade">年代</label>
-              <select id="releaseDecade" class="form-select form-select-lg">
-                <option value="">すべての年代</option>
+              <label class="form-label fw-bold" for="sortOrder">並び順</label>
+              <select id="sortOrder" class="form-select form-select-lg">
+                <option value="playable">弾ける曲を優先する</option>
+                <option value="no">No順</option>
+                <option value="title">曲名毎に並べる</option>
+                <option value="artist">アーティスト毎に並べる</option>
+                <option value="favorite">お気に入りを優先する</option>
+                <option value="copyCount">コピー回数が多い順</option>
+                <option value="random">ランダム表示</option>
               </select>
             </div>
           </div>
@@ -231,6 +242,8 @@
                 <li>曲カードをクリックまたはタップすると、リクエスト用の文言がクリップボードにコピーされます。</li>
                 <li>コピーした文言は「ねむぴぴあの」でそのままリクエストできます。</li>
                 <li>直近でコピーした履歴は、ホームタブの「クリップボード履歴」で確認できます。</li>
+                <li>曲カード右部の「≡」をクリックまたはタップすると、その曲の詳細情報を見ることができます。</li>
+                <li>曲の詳細情報から、似た雰囲気の曲・同じアーティストの曲も探すことができます。</li>
               </ul>
             </section>
             <section class="search-guide-section">
@@ -277,6 +290,18 @@
         </div>
 
         <div class="fuzzy-search-panel" id="fuzzySearchPanel" hidden>
+          <section class="home-section mb-4">
+            <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
+              <span class="theme-icon section-heading-icon" aria-hidden="true">
+                <img class="theme-icon-light" src="../lib/icon/white/moon.svg" alt="">
+                <img class="theme-icon-dark" src="../lib/icon/black/moon.svg" alt="">
+              </span>
+              ふわっと探してみる
+            </h2>
+            <p class="recommend-desc text-secondary mb-0">
+              気分や情景、雰囲気からリクエストしたい曲を探してみよう！今日の気持ちにマッチする曲が見つかるかも？
+            </p>
+          </section>
           <div class="fuzzy-category-tabs" id="fuzzyCategoryTabs" role="tablist" aria-label="ふわっと検索のカテゴリ"></div>
           <section class="fuzzy-category-content mt-3" id="fuzzyCategoryContent" aria-live="polite"></section>
           <div class="fuzzy-result-summary mt-4" id="fuzzyResultSummary" aria-live="polite"></div>
@@ -314,26 +339,30 @@
           <p class="mb-2"><strong>検索</strong>タブでは、曲リストから目的の曲を探せます。</p>
           <ul class="mb-0">
             <li>曲名・アーティスト名でキーワード検索できます。</li>
-            <li>ふわっと検索に切り替えると、気分や雰囲気などのタグから曲を探せます。</li>
-            <li>詳細を開くと、ジャンルなどの条件で絞り込めます。</li>
-            <li>弾ける曲やお気に入りのみの表示に切り替えられます。</li>
+            <li>詳細を開くとジャンルなどの条件の絞り込み、また弾ける曲・お気に入りのみに絞った表示に切り替えられます。</li>
+          </ul>
+          <p class="mb-2"><strong>ふわっと検索</strong>タブでは、気分や雰囲気などにマッチする曲を探せます。</p>
+          <ul class="mb-0">
+            <li>「きもち、雰囲気」などの分類ごとに、そのイメージに合った曲を探せます。</li>
+            <li>5曲ピックアップされ、「もっと見る」をクリックするとさらに曲が表示されます（最大30曲）。</li>
+            <li>表示される曲は日替わり毎にランダムに選ばれます。</li>
           </ul>
           <hr>
           <h5>機能</h5>
           <ul>
             <li>今日のおすすめ曲の表示</li>
-            <li>ふわっと検索による気分・雰囲気・情景などからの曲探し</li>
             <li>直近のクリップボード履歴の表示</li>
             <li>検索タブによる曲名、アーティストのキーワード検索（ひらがな・カタカナでの検索にも対応）</li>
+            <li>ふわっと検索による気分・雰囲気・情景などからの曲探し</li>
             <li>
               曲カードクリックによるリクエスト用テキストのコピー<br>
               <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span>
             </li>
-            <li>曲カードのメニューから、分類・年代・タイアップ・関連曲などの詳細情報を確認</li>
             <li>曲カードの長押しクリックによる「お気に入りの登録／解除」</li>
+            <li>曲カードの「≡」から、分類・年代・タイアップ・関連曲などの詳細情報を確認</li>
           </ul>
           <h6 class="fw-bold mt-3">設定</h6>
-          <p class="mb-2">設定欄では下記の設定ができます。</p>
+          <p class="mb-2">画面左下部の歯車アイコンから下記の設定ができます。</p>
           <ul class="mb-0">
             <li>テーマの選択</li>
             <li>文字の大きさ</li>
@@ -342,12 +371,23 @@
             <li>「お気に入り登録」の全解除</li>
           </ul>
           <hr>
-          <ul class="mb-0">
-            <li>曲リストの内容は公開用データの更新後、ページ再読み込み時に反映されます。</li>
-            <li>本ページはねむぴぴさんの非公式応援ページとなります。<br>ご本人様の活動とは一切関係ございません。</li>
-            <li>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
+          <h6 class="fw-bold mt-3">曲リストの情報取得について</h6>
+            <ul class="mb-0">
+            <li>本ページで使用している曲リストは、<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>から「①ポップス/ボカロ/アニメなど、②ジブリ、③ディズニー」を対象として取得しています。</li>
+            <li>「④ゲーム、⑤クラシック、⑥オフィシャルスコア、※耳コピ」シートは表示対象から外しています。(ポップス中心に弾きたい意図を尊重しています)</li>
+          </ul>
+          <hr>
+          <h6 class="fw-bold mt-3">情報の保存について</h6>
+            <ul class="mb-0">
             <li>クリップボードへのコピーの履歴やお気に入り情報、及び設定情報の保存はブラウザ側のローカルストレージで管理されます。</li>
-            <li>無断複製・模倣・再配布を目的としたHTML取得、構造解析、メタデータ流用はご遠慮ください。<br>継続してそのような行為が見られる場合、必要に応じて経緯や差分を整理して公開することがあります。</li>
+            <li>保存された情報はブラウザ上での管理となり、外部に送信されることはありません。</li>
+          </ul>
+          <hr>
+          <h6 class="fw-bold mt-3">お願いごと</h6>
+          <ul class="mb-0">
+            <li>本ページはねむぴぴさんの非公式応援ページとなります。ご本人様の活動とは一切関係ございません。</li>
+            <li>当サイトで発生した不具合や問題について、ねむぴぴさんへ直接問い合わせることのないようお願いいたします。</li>
+            <li>無断複製・模倣・再配布を目的としたHTML取得、構造解析、メタデータ流用はご遠慮ください。継続してそのような行為が見られる場合、必要に応じて経緯や差分を整理して公開することがあります。</li>
           </ul>
         </div>
       </div>
@@ -434,7 +474,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.1.2 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.1.3 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -451,7 +491,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.1.2"></script>
+  <script src="./js/musiclist-search.js?v=2.1.3"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 <!--
