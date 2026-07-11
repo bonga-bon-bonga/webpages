@@ -1,5 +1,6 @@
 const MUSICLIST_JSON_PATH = "./data/musiclist.json";
 const FUZZY_SEARCH_PRESETS_JSON_PATH = "./data/fuzzy-search-presets.json";
+const PERFORMANCE_PREVIEW_JSON_PATH = "./data/performance_preview.json";
 const HOME_RECOMMEND_COUNT = 5;
 const HOME_MOOD_RESULT_COUNT = 3;
 const FUZZY_RESULT_INITIAL_COUNT = 5;
@@ -93,6 +94,7 @@ let longPressStartX = 0;
 let longPressStartY = 0;
 let lastSearchGuideHasKeyword = null;
 let fuzzySearchPresets = [];
+let performancePreviews = {};
 let fuzzySearchMode = false;
 let activeFuzzyCategoryIndex = 0;
 let activeFuzzyItemIndex = null;
@@ -213,6 +215,19 @@ async function loadFuzzySearchPresets() {
   ));
 }
 
+async function loadPerformancePreviews() {
+  try {
+    const response = await fetch(PERFORMANCE_PREVIEW_JSON_PATH, { cache: "no-store" });
+    if (!response.ok) return {};
+
+    const data = await response.json();
+    return data && typeof data === "object" && !Array.isArray(data) ? data : {};
+  } catch (error) {
+    console.warn("performance_preview.jsonの読み込みをスキップしました。", error);
+    return {};
+  }
+}
+
 function createSongKey(title, artist) {
   return `${createSearchKey(title)}|${createSearchKey(artist)}`;
 }
@@ -315,12 +330,14 @@ function clearAllFavorites() {
 // musiclist.jsonを読み込み、画面表示用の曲データを更新する。
 async function loadSheet() {
   try {
-    const [loadedSongs, loadedFuzzySearchPresets] = await Promise.all([
+    const [loadedSongs, loadedFuzzySearchPresets, loadedPerformancePreviews] = await Promise.all([
       loadMusiclist(),
       loadFuzzySearchPresets(),
+      loadPerformancePreviews(),
     ]);
     songs = loadedSongs.map((song, index) => ({ ...song, originalIndex: index }));
     fuzzySearchPresets = loadedFuzzySearchPresets;
+    performancePreviews = loadedPerformancePreviews;
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
     pickHomeRecommendations();
@@ -1318,6 +1335,101 @@ function relatedSongList(items) {
   `;
 }
 
+function performancePreviewFor(song) {
+  const keys = songLookupKeys(song);
+  for (const key of keys) {
+    if (performancePreviews?.[key]) return performancePreviews[key];
+  }
+  return null;
+}
+
+function youtubeVideoId(value) {
+  const text = normalizeCellText(value);
+  if (!text) return "";
+  if (/^[a-zA-Z0-9_-]{11}$/.test(text)) return text;
+
+  try {
+    const url = new URL(text);
+    if (url.hostname.includes("youtu.be")) {
+      return url.pathname.replace(/^\/+/, "").split("/")[0] || "";
+    }
+    if (url.hostname.includes("youtube.com")) {
+      if (url.pathname.startsWith("/embed/") || url.pathname.startsWith("/shorts/")) {
+        return url.pathname.split("/")[2] || "";
+      }
+      return url.searchParams.get("v") || "";
+    }
+  } catch (error) {
+    return "";
+  }
+
+  return "";
+}
+
+function performancePreviewEmbedUrl(preview) {
+  const embedUrl = normalizeCellText(preview?.embedUrl);
+  if (embedUrl) return embedUrl;
+
+  const videoId = youtubeVideoId(preview?.streamUrl);
+  const start = Number(preview?.start);
+  if (!videoId || !Number.isFinite(start)) return "";
+
+  const params = [
+    `start=${Math.max(0, Math.floor(start))}`,
+    "enablejsapi=1",
+    "autoplay=0",
+    "mute=0",
+    "controls=1",
+    "playsinline=1",
+    "fs=1",
+    "disablekb=0",
+    "cc_load_policy=0",
+    "rel=0",
+    `origin=${encodeURIComponent(window.location.origin || "http://localhost:8000")}`,
+  ];
+  return `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${params.join("&")}`;
+}
+
+function renderPerformancePreview(song) {
+  const record = performancePreviewFor(song);
+  const embedUrl = performancePreviewEmbedUrl(record?.preview);
+
+  return `
+    <div class="song-detail-field song-detail-preview-field">
+      <span class="detail-label">過去の演奏プレビュー</span>
+      ${embedUrl ? `
+        <div class="performance-preview-frame-wrap">
+          <iframe
+            class="performance-preview-frame"
+            src="${escapeHtml(embedUrl)}"
+            title="${escapeHtml(`${song.title} の過去の演奏プレビュー`)}"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      ` : `<div class="performance-preview-empty">準備中</div>`}
+    </div>
+  `;
+}
+
+function originalYoutubeSearchUrl(song) {
+  const query = [song.title, song.artist, "公式"]
+    .map(normalizeCellText)
+    .filter(Boolean)
+    .join(" ");
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`;
+}
+
+function renderOriginalYoutubeSearch(song) {
+  return `
+    <div class="song-detail-field song-detail-youtube-search-field">
+      <a class="btn btn-dark detail-youtube-search-button" href="${escapeHtml(originalYoutubeSearchUrl(song))}" target="_blank" rel="noopener noreferrer">
+        youtubeで原曲を探す
+      </a>
+    </div>
+  `;
+}
+
 function renderSongDetail(song) {
   const genreBadge = detailBadge(songGenreLabel(song));
   const playableBadge = song.playable
@@ -1370,6 +1482,8 @@ function renderSongDetail(song) {
           <div class="detail-chip-row">${tieUps.map(label => detailBadge(label)).join("")}</div>
         </div>
       ` : ""}
+      ${renderPerformancePreview(song)}
+      ${renderOriginalYoutubeSearch(song)}
       ${similarSongs.length > 0 ? `
         <div class="song-detail-field song-detail-related-field">
           <span class="detail-label">似た雰囲気の曲を探す</span>
