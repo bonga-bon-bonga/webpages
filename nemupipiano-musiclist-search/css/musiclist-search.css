@@ -1043,9 +1043,22 @@ html[data-theme="dark"] .detail-favorite-button.active {
     display: block;
 }
 
-.song-detail-preview-field .detail-label {
-    display: block;
+.performance-preview-heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: .1rem;
     margin-bottom: .45rem;
+}
+
+.performance-preview-heading .detail-label {
+    display: inline;
+}
+
+.performance-preview-separator {
+    color: var(--page-muted);
+    font-size: .82rem;
+    font-weight: 700;
 }
 
 .performance-preview-frame-wrap {
@@ -1068,7 +1081,6 @@ html[data-theme="dark"] .detail-favorite-button.active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: .45rem;
     color: var(--page-muted);
     font-size: .82rem;
     font-weight: 700;

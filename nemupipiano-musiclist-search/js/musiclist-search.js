@@ -1405,7 +1405,15 @@ function renderPerformancePreview(song) {
 
   return `
     <div class="song-detail-field song-detail-preview-field">
-      <span class="detail-label">過去の演奏プレビュー</span>
+      <div class="performance-preview-heading">
+        <span class="detail-label">過去の演奏プレビュー</span>
+        ${watchUrl ? `
+          <span class="performance-preview-separator">：</span>
+          <a class="performance-preview-open-link" href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener noreferrer">
+            YouTubeでプレビューを開く
+          </a>
+        ` : ""}
+      </div>
       ${embedUrl ? `
         <div class="performance-preview-frame-wrap">
           <iframe
@@ -1416,11 +1424,6 @@ function renderPerformancePreview(song) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
-        ${watchUrl ? `
-          <a class="performance-preview-open-link" href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener noreferrer">
-            YouTubeでプレビューを開く
-          </a>
-        ` : ""}
       ` : `<div class="performance-preview-empty">準備中</div>`}
     </div>
   `;
