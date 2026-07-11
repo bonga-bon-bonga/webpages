@@ -24,6 +24,7 @@ jobs:
       ALIAS_SPREADSHEET_ID: ${{ vars.ALIAS_SPREADSHEET_ID }}
       ALIAS_GID_ARTISTLIST: ${{ vars.ALIAS_GID_ARTISTLIST }}
       ALIAS_GID_MUSICLIST: ${{ vars.ALIAS_GID_MUSICLIST }}
+      ALIAS_GID_PERFORMANCE_PREVIEW: ${{ vars.ALIAS_GID_PERFORMANCE_PREVIEW }}
       OUTPUT_JSON_PATH: ${{ vars.OUTPUT_JSON_PATH }}
 
     steps:
@@ -49,6 +50,7 @@ jobs:
           python -m py_compile scripts/sheet_hash.py
           python -m py_compile scripts/build_artist_alias.py
           python -m py_compile scripts/build_music_alias.py
+          python -m py_compile scripts/build_performance_preview.py
           python -m py_compile scripts/build_musiclist.py
           python -m py_compile scripts/enrich_musiclist.py
 
@@ -57,6 +59,9 @@ jobs:
 
       - name: Build music alias dictionary
         run: python scripts/build_music_alias.py
+
+      - name: Build performance preview
+        run: python scripts/build_performance_preview.py
 
       - name: Build music list
         run: python scripts/build_musiclist.py
@@ -70,20 +75,26 @@ jobs:
           output_path="${OUTPUT_JSON_PATH:-nemupipiano-musiclist-search/data/musiclist.json}"
           artist_alias_path="${ARTIST_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/dictionary/artist_alias_dictionary.json}"
           music_alias_path="${MUSIC_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/dictionary/music_alias_dictionary.json}"
+          performance_preview_path="${PERFORMANCE_PREVIEW_PATH:-nemupipiano-musiclist-search/data/performance_preview.json}"
           artist_alias_hash_path="${ARTIST_ALIAS_HASH_PATH:-nemupipiano-musiclist-search/data/hash/artist_alias_dictionary}"
           music_alias_hash_path="${MUSIC_ALIAS_HASH_PATH:-nemupipiano-musiclist-search/data/hash/music_alias_dictionary}"
+          performance_preview_hash_path="${PERFORMANCE_PREVIEW_HASH_PATH:-nemupipiano-musiclist-search/data/hash/performance_preview}"
           musiclist_hash_path="${MUSICLIST_HASH_PATH:-nemupipiano-musiclist-search/data/hash/musiclist}"
           test -f "$artist_alias_path"
           test -f "$music_alias_path"
+          test -f "$performance_preview_path"
           test -f "$output_path"
           test -s "$artist_alias_hash_path"
           test -s "$music_alias_hash_path"
+          test -s "$performance_preview_hash_path"
           test -s "$musiclist_hash_path"
           python -m json.tool "$artist_alias_path" > /dev/null
           python -m json.tool "$music_alias_path" > /dev/null
+          python -m json.tool "$performance_preview_path" > /dev/null
           python -m json.tool "$output_path" > /dev/null
           grep -Eq '^[0-9a-f]{64}$' "$artist_alias_hash_path"
           grep -Eq '^[0-9a-f]{64}$' "$music_alias_hash_path"
+          grep -Eq '^[0-9a-f]{64}$' "$performance_preview_hash_path"
           grep -Eq '^[0-9a-f]{64}$' "$musiclist_hash_path"
 
       - name: Commit and push if changed
@@ -91,8 +102,10 @@ jobs:
           output_path="${OUTPUT_JSON_PATH:-nemupipiano-musiclist-search/data/musiclist.json}"
           artist_alias_path="${ARTIST_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/dictionary/artist_alias_dictionary.json}"
           music_alias_path="${MUSIC_ALIAS_DICTIONARY_PATH:-nemupipiano-musiclist-search/data/dictionary/music_alias_dictionary.json}"
+          performance_preview_path="${PERFORMANCE_PREVIEW_PATH:-nemupipiano-musiclist-search/data/performance_preview.json}"
           artist_alias_hash_path="${ARTIST_ALIAS_HASH_PATH:-nemupipiano-musiclist-search/data/hash/artist_alias_dictionary}"
           music_alias_hash_path="${MUSIC_ALIAS_HASH_PATH:-nemupipiano-musiclist-search/data/hash/music_alias_dictionary}"
+          performance_preview_hash_path="${PERFORMANCE_PREVIEW_HASH_PATH:-nemupipiano-musiclist-search/data/hash/performance_preview}"
           musiclist_hash_path="${MUSICLIST_HASH_PATH:-nemupipiano-musiclist-search/data/hash/musiclist}"
 
           git config user.name "github-actions[bot]"
@@ -100,9 +113,11 @@ jobs:
 
           git add "$artist_alias_path"
           git add "$music_alias_path"
+          git add "$performance_preview_path"
           git add "$output_path"
           git add "$artist_alias_hash_path"
           git add "$music_alias_hash_path"
+          git add "$performance_preview_hash_path"
           git add "$musiclist_hash_path"
 
           if git diff --cached --quiet; then
