@@ -1376,23 +1376,32 @@ function performancePreviewEmbedUrl(preview) {
 
   const params = [
     `start=${Math.max(0, Math.floor(start))}`,
-    "enablejsapi=1",
-    "autoplay=0",
-    "mute=0",
     "controls=1",
     "playsinline=1",
-    "fs=1",
-    "disablekb=0",
-    "cc_load_policy=0",
     "rel=0",
-    `origin=${encodeURIComponent(window.location.origin || "http://localhost:8000")}`,
   ];
+  const end = Number(preview?.end);
+  if (Number.isFinite(end) && end > start) {
+    params.splice(1, 0, `end=${Math.floor(end)}`);
+  }
   return `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${params.join("&")}`;
+}
+
+function performancePreviewWatchUrl(preview) {
+  const videoId = youtubeVideoId(preview?.streamUrl);
+  if (!videoId) return "";
+
+  const start = Number(preview?.start);
+  const params = new URLSearchParams({ v: videoId });
+  if (Number.isFinite(start)) params.set("t", `${Math.max(0, Math.floor(start))}s`);
+  return `https://www.youtube.com/watch?${params.toString()}`;
 }
 
 function renderPerformancePreview(song) {
   const record = performancePreviewFor(song);
-  const embedUrl = performancePreviewEmbedUrl(record?.preview);
+  const preview = record?.preview;
+  const embedUrl = performancePreviewEmbedUrl(preview);
+  const watchUrl = performancePreviewWatchUrl(preview);
 
   return `
     <div class="song-detail-field song-detail-preview-field">
@@ -1407,6 +1416,11 @@ function renderPerformancePreview(song) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
+        ${watchUrl ? `
+          <a class="performance-preview-open-link" href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener noreferrer">
+            YouTubeでプレビューを開く
+          </a>
+        ` : ""}
       ` : `<div class="performance-preview-empty">準備中</div>`}
     </div>
   `;

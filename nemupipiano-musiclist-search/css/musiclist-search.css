@@ -1064,6 +1064,23 @@ html[data-theme="dark"] .detail-favorite-button.active {
     border: 0;
 }
 
+.performance-preview-open-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: .45rem;
+    color: var(--page-muted);
+    font-size: .82rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: .2rem;
+}
+
+.performance-preview-open-link:hover,
+.performance-preview-open-link:focus {
+    color: var(--page-text);
+}
+
 .performance-preview-empty {
     padding: .85rem 1rem;
     color: var(--page-muted);
