@@ -1878,6 +1878,18 @@ function renderSongDetail(song) {
   `;
 }
 
+function stopPerformancePreviewPlayback() {
+  els.songDetailBody.querySelectorAll(".performance-preview-frame").forEach(frame => {
+    frame.src = "about:blank";
+  });
+}
+
+function clearSongDetail() {
+  stopPerformancePreviewPlayback();
+  activeDetailSongKey = "";
+  els.songDetailBody.innerHTML = "";
+}
+
 function openSongDetail(song) {
   activeDetailSongKey = favoriteKeyForSong(song);
   els.songDetailBody.innerHTML = renderSongDetail(song);
@@ -2308,6 +2320,11 @@ els.songDetailBody.addEventListener("click", (event) => {
     if (relatedSong) openSongDetail(relatedSong);
   }
 });
+
+if (els.songDetailModal) {
+  els.songDetailModal.addEventListener("hide.bs.modal", stopPerformancePreviewPlayback);
+  els.songDetailModal.addEventListener("hidden.bs.modal", clearSongDetail);
+}
 
 els.tabs.forEach(tab => {
   tab.addEventListener("click", () => switchTab(tab.dataset.tab));
