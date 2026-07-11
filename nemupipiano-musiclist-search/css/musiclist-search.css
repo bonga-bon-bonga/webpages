@@ -348,7 +348,7 @@ html[data-theme="dark"] .theme-icon-light {
     margin-left: auto;
 }
 
-#normalSearchPanel.easy-mode > .row,
+#normalSearchPanel.easy-mode > .search-form-row,
 #normalSearchPanel.easy-mode > .search-details,
 #normalSearchPanel.easy-mode > .result-controls,
 #normalSearchPanel.easy-mode > .search-guide-wrapper {

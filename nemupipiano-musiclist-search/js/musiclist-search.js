@@ -851,7 +851,7 @@ function easyArtistOptions() {
   });
 
   return Array.from(counts.entries())
-    .map(([value, count]) => ({ value, label: `${value}:${count}`, count }))
+    .map(([value, count]) => ({ value, label: `${value} (${count})`, count }))
     .sort((left, right) => right.count - left.count || left.value.localeCompare(right.value, "ja"));
 }
 
@@ -920,14 +920,18 @@ function renderEasySelectedConditions() {
     return;
   }
 
-  els.easySelectedConditions.innerHTML = EASY_CATEGORIES.flatMap(category =>
-    selectedEasyValues(category.key).map(value => `
+  els.easySelectedConditions.innerHTML = EASY_CATEGORIES
+    .map(category => {
+      const values = selectedEasyValues(category.key);
+      if (values.length === 0) return "";
+      return `
       <span class="easy-selected-chip">
         <span class="easy-selected-category">${escapeHtml(category.label)}</span>
-        ${escapeHtml(easyOptionLabel(category.key, value))}
+        ${escapeHtml(values.map(value => easyOptionLabel(category.key, value)).join("、"))}
       </span>
-    `)
-  ).join("");
+    `;
+    })
+    .join("");
 }
 
 function renderEasyCategory(category) {
