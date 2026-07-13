@@ -1253,6 +1253,13 @@ html[data-theme="dark"] .detail-favorite-button.active {
     border: 0;
 }
 
+.performance-preview-round-label {
+    margin-top: .35rem;
+    color: var(--page-muted);
+    font-size: .76rem;
+    font-weight: 700;
+}
+
 .performance-preview-open-link {
     display: inline-flex;
     align-items: center;
@@ -1455,6 +1462,11 @@ html[data-theme="dark"] .text-secondary {
 }
 
 .back-to-top[hidden] {
+    display: none;
+}
+
+body.floating-actions-suppressed .back-to-top,
+body.floating-actions-suppressed .settings-button {
     display: none;
 }
 

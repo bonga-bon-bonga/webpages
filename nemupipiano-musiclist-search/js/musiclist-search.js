@@ -105,10 +105,12 @@ const els = {
   panels: document.querySelectorAll(".tab-panel"),
   copyToast: document.getElementById("copyToast"),
   backToTop: document.getElementById("backToTop"),
+  settingsButton: document.getElementById("settingsButton"),
   appPanel: document.getElementById("appPanel"),
   themeModes: document.querySelectorAll("[name='themeMode']"),
   panelFontSizes: document.querySelectorAll("[name='panelFontSize']"),
   accentColors: document.querySelectorAll("[name='accentColor']"),
+  informationModal: document.getElementById("informationModal"),
   songDetailModal: document.getElementById("songDetailModal"),
   songDetailBody: document.getElementById("songDetailBody"),
 };
@@ -1758,11 +1760,17 @@ function performancePreviewWatchUrl(preview) {
   return `https://www.youtube.com/watch?${params.toString()}`;
 }
 
+function performancePreviewRoundLabel(preview) {
+  const no = normalizeCellText(preview?.no);
+  return no ? `採用回：No. ${no}` : "";
+}
+
 function renderPerformancePreview(song) {
   const record = performancePreviewFor(song);
   const preview = record?.preview;
   const embedUrl = performancePreviewEmbedUrl(preview);
   const watchUrl = performancePreviewWatchUrl(preview);
+  const roundLabel = performancePreviewRoundLabel(preview);
 
   return `
     <div class="song-detail-field song-detail-preview-field">
@@ -1785,6 +1793,7 @@ function renderPerformancePreview(song) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
         </div>
+        ${roundLabel ? `<div class="performance-preview-round-label">${escapeHtml(roundLabel)}</div>` : ""}
       ` : `<div class="performance-preview-empty">準備中</div>`}
     </div>
   `;
@@ -1888,6 +1897,10 @@ function clearSongDetail() {
   stopPerformancePreviewPlayback();
   activeDetailSongKey = "";
   els.songDetailBody.innerHTML = "";
+}
+
+function setFloatingActionsSuppressed(suppressed) {
+  document.body.classList.toggle("floating-actions-suppressed", suppressed);
 }
 
 function openSongDetail(song) {
@@ -2322,8 +2335,17 @@ els.songDetailBody.addEventListener("click", (event) => {
 });
 
 if (els.songDetailModal) {
+  els.songDetailModal.addEventListener("show.bs.modal", () => setFloatingActionsSuppressed(true));
   els.songDetailModal.addEventListener("hide.bs.modal", stopPerformancePreviewPlayback);
-  els.songDetailModal.addEventListener("hidden.bs.modal", clearSongDetail);
+  els.songDetailModal.addEventListener("hidden.bs.modal", () => {
+    clearSongDetail();
+    setFloatingActionsSuppressed(false);
+  });
+}
+
+if (els.informationModal) {
+  els.informationModal.addEventListener("show.bs.modal", () => setFloatingActionsSuppressed(true));
+  els.informationModal.addEventListener("hidden.bs.modal", () => setFloatingActionsSuppressed(false));
 }
 
 els.tabs.forEach(tab => {
