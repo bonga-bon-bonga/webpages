@@ -82,6 +82,7 @@ const els = {
   fuzzyEmpty: document.getElementById("fuzzyEmpty"),
   fuzzyMore: document.getElementById("fuzzyMore"),
   easyModeToggle: document.getElementById("easyModeToggle"),
+  searchModeDescription: document.getElementById("searchModeDescription"),
   easySearchPanel: document.getElementById("easySearchPanel"),
   easySelectedConditions: document.getElementById("easySelectedConditions"),
   easyRefresh: document.getElementById("easyRefresh"),
@@ -1034,6 +1035,9 @@ function setEasySearchMode(active) {
   els.easySearchPanel.hidden = !easySearchMode;
   els.easyModeToggle.textContent = easySearchMode ? "通常検索" : "かんたんモード";
   els.easyModeToggle.setAttribute("aria-pressed", String(easySearchMode));
+  els.searchModeDescription.textContent = easySearchMode
+    ? "ボタンを組み合わせて、リクエスト候補をかんたんに絞り込めます。気になる条件を選んで、少しずつ曲を探してみてください。"
+    : "曲名やアーティスト名から、リクエストしたい曲を探せます。";
   if (easySearchMode) setSearchGuideOpen(false);
   render({ syncSearchGuide: true, forceSearchGuideSync: true });
 }
@@ -1762,7 +1766,7 @@ function performancePreviewWatchUrl(preview) {
 
 function performancePreviewRoundLabel(preview) {
   const no = normalizeCellText(preview?.no);
-  return no ? `採用回：No. ${no}` : "";
+  return no ? `ピックアップ回：No. ${no}` : "";
 }
 
 function renderPerformancePreview(song) {
