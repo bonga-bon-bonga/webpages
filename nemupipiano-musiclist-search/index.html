@@ -322,9 +322,19 @@
             </p>
           </section>
           <div class="fuzzy-category-scroll" id="fuzzyCategoryScroll">
-            <button class="btn fuzzy-category-scroll-button" id="fuzzyCategoryScrollPrev" type="button" aria-label="前のカテゴリを表示">＜</button>
+            <button class="btn fuzzy-category-scroll-button" id="fuzzyCategoryScrollPrev" type="button" aria-label="前のカテゴリを表示">
+              <span class="theme-icon fuzzy-category-scroll-icon" aria-hidden="true">
+                <img class="theme-icon-light" src="../lib/icon/white/arrow_left.svg" alt="">
+                <img class="theme-icon-dark" src="../lib/icon/black/arrow_left.svg" alt="">
+              </span>
+            </button>
             <div class="fuzzy-category-tabs" id="fuzzyCategoryTabs" role="tablist" aria-label="ふわっと検索のカテゴリ"></div>
-            <button class="btn fuzzy-category-scroll-button" id="fuzzyCategoryScrollNext" type="button" aria-label="次のカテゴリを表示">＞</button>
+            <button class="btn fuzzy-category-scroll-button" id="fuzzyCategoryScrollNext" type="button" aria-label="次のカテゴリを表示">
+              <span class="theme-icon fuzzy-category-scroll-icon" aria-hidden="true">
+                <img class="theme-icon-light" src="../lib/icon/white/arrow_right.svg" alt="">
+                <img class="theme-icon-dark" src="../lib/icon/black/arrow_right.svg" alt="">
+              </span>
+            </button>
           </div>
           <section class="fuzzy-category-content mt-3" id="fuzzyCategoryContent" role="tabpanel" aria-live="polite"></section>
           <div class="fuzzy-result-summary mt-4" id="fuzzyResultSummary" aria-live="polite"></div>

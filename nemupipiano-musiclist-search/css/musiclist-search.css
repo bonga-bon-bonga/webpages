@@ -328,6 +328,11 @@ html[data-theme="dark"] .theme-icon-light {
     visibility: hidden;
 }
 
+.fuzzy-category-scroll-icon {
+    width: .8rem;
+    height: .8rem;
+}
+
 .fuzzy-category-tab {
     flex: 1 0 auto;
     min-height: 2.5rem;
