@@ -16,6 +16,13 @@ local_scripts/
 logs/
 *.log
 
+# Browser tests
+node_modules/
+.pnpm-store/
+playwright-report/
+test-results/
+blob-report/
+
 # Editors / OS
 .vscode/
 .idea/

@@ -1,0 +1,11 @@
+{
+  "name": "nemupipi-webpages",
+  "private": true,
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "test:ui": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1"
+  }
+}
