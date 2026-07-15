@@ -77,6 +77,24 @@ body {
     line-height: 1.35;
 }
 
+.skip-link {
+    position: fixed;
+    top: .5rem;
+    left: .5rem;
+    z-index: 2000;
+    padding: .65rem 1rem;
+    border-radius: .65rem;
+    color: #fff;
+    background: #111827;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .24);
+    transform: translateY(calc(-100% - 1rem));
+}
+
+.skip-link:focus {
+    color: #fff;
+    transform: translateY(0);
+}
+
 .site-footer {
     transition: transform .18s ease, opacity .18s ease;
     will-change: transform, opacity;
@@ -764,6 +782,26 @@ html[data-theme="dark"] .form-select {
     padding-right: 3.4rem !important;
 }
 
+.song-card-copy {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    cursor: pointer;
+}
+
+.song-card-copy:focus {
+    outline: none;
+}
+
+.song-card-copy:focus-visible {
+    outline: .2rem solid rgba(180, 83, 9, .55);
+    outline-offset: -.2rem;
+}
+
 .song-card.accent-anime {
     --song-accent: #f7c7d7;
 }
@@ -823,7 +861,7 @@ html[data-theme="dark"] .song-card.accent-other {
 }
 
 .song-card:hover,
-.song-card:focus {
+.song-card:focus-within {
     transform: translateY(-2px);
     border-color: rgba(180, 83, 9, .35);
     box-shadow: 0 .75rem 1.5rem var(--page-shadow);
@@ -882,6 +920,7 @@ html[data-theme="dark"] .song-card.accent-other {
     justify-content: center;
     flex: 0 0 auto;
     position: absolute;
+    z-index: 2;
     top: 50%;
     right: 1rem;
     transform: translateY(-50%);
