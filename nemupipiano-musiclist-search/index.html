@@ -37,7 +37,7 @@
           </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="fuzzySearchModeToggle" type="button" role="tab" aria-selected="false" aria-controls="panel-search" data-tab="fuzzy">
+          <button class="nav-link" id="fuzzySearchModeToggle" type="button" role="tab" aria-selected="false" aria-controls="panel-fuzzy" data-tab="fuzzy">
             <span class="theme-icon tab-icon" aria-hidden="true">
               <img class="theme-icon-light" src="../lib/icon/white/moon.svg" alt="">
               <img class="theme-icon-dark" src="../lib/icon/black/moon.svg" alt="">
@@ -305,7 +305,10 @@
         <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
         </div>
 
-        <div class="fuzzy-search-panel" id="fuzzySearchPanel" hidden>
+      </section>
+
+      <section class="tab-panel" id="panel-fuzzy" role="tabpanel" aria-labelledby="fuzzySearchModeToggle" hidden>
+        <div class="fuzzy-search-panel" id="fuzzySearchPanel">
           <section class="home-section mb-4">
             <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
               <span class="theme-icon section-heading-icon" aria-hidden="true">
@@ -318,8 +321,12 @@
               気分や情景、雰囲気からリクエストしたい曲を探してみよう！今日の気持ちにマッチする曲が見つかるかも？
             </p>
           </section>
-          <div class="fuzzy-category-tabs" id="fuzzyCategoryTabs" role="tablist" aria-label="ふわっと検索のカテゴリ"></div>
-          <section class="fuzzy-category-content mt-3" id="fuzzyCategoryContent" aria-live="polite"></section>
+          <div class="fuzzy-category-scroll" id="fuzzyCategoryScroll">
+            <button class="btn fuzzy-category-scroll-button" id="fuzzyCategoryScrollPrev" type="button" aria-label="前のカテゴリを表示">＜</button>
+            <div class="fuzzy-category-tabs" id="fuzzyCategoryTabs" role="tablist" aria-label="ふわっと検索のカテゴリ"></div>
+            <button class="btn fuzzy-category-scroll-button" id="fuzzyCategoryScrollNext" type="button" aria-label="次のカテゴリを表示">＞</button>
+          </div>
+          <section class="fuzzy-category-content mt-3" id="fuzzyCategoryContent" role="tabpanel" aria-live="polite"></section>
           <div class="fuzzy-result-summary mt-4" id="fuzzyResultSummary" aria-live="polite"></div>
           <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="fuzzySongs" data-columns="3"></div>
           <div class="empty-box text-center p-4 mt-3" id="fuzzyEmpty">気になる条件を選んでみてください。</div>

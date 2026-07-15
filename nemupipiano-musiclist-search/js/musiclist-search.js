@@ -75,6 +75,9 @@ const els = {
   fuzzySearchModeToggle: document.getElementById("fuzzySearchModeToggle"),
   normalSearchPanel: document.getElementById("normalSearchPanel"),
   fuzzySearchPanel: document.getElementById("fuzzySearchPanel"),
+  fuzzyCategoryScroll: document.getElementById("fuzzyCategoryScroll"),
+  fuzzyCategoryScrollPrev: document.getElementById("fuzzyCategoryScrollPrev"),
+  fuzzyCategoryScrollNext: document.getElementById("fuzzyCategoryScrollNext"),
   fuzzyCategoryTabs: document.getElementById("fuzzyCategoryTabs"),
   fuzzyCategoryContent: document.getElementById("fuzzyCategoryContent"),
   fuzzyResultSummary: document.getElementById("fuzzyResultSummary"),
@@ -105,6 +108,7 @@ const els = {
   tabs: document.querySelectorAll("[data-tab]"),
   panels: document.querySelectorAll(".tab-panel"),
   copyToast: document.getElementById("copyToast"),
+  siteFooter: document.querySelector(".site-footer"),
   backToTop: document.getElementById("backToTop"),
   settingsButton: document.getElementById("settingsButton"),
   appPanel: document.getElementById("appPanel"),
@@ -117,6 +121,7 @@ const els = {
 };
 
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const easyAccordionQuery = window.matchMedia("(max-width: 575.98px)");
 let songs = [];
 let homeRecommendedSongs = [];
 let homeMoodSuggestions = [];
@@ -134,6 +139,8 @@ let longPressSuppressTimer = null;
 let longPressStartX = 0;
 let longPressStartY = 0;
 let lastSearchGuideHasKeyword = null;
+let searchGuideAutoInitialized = false;
+let footerScrollTimer = null;
 let fuzzySearchPresets = [];
 let performancePreviews = {};
 let fuzzySearchMode = false;
@@ -631,11 +638,28 @@ function isSearchGuideDefaultState() {
 }
 
 function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
+  if (easySearchMode) {
+    setSearchGuideOpen(false);
+    return;
+  }
+
   const currentHasKeyword = hasSearchKeyword();
+
+  if (!searchGuideAutoInitialized) {
+    searchGuideAutoInitialized = true;
+    lastSearchGuideHasKeyword = currentHasKeyword;
+    setSearchGuideOpen(
+      !currentHasKeyword && !favoriteOnly && !hasSearchDetailFilter()
+    );
+    return;
+  }
+
   if (!force && lastSearchGuideHasKeyword === currentHasKeyword) return;
 
   lastSearchGuideHasKeyword = currentHasKeyword;
-  setSearchGuideOpen(!currentHasKeyword && !favoriteOnly);
+  if (currentHasKeyword || favoriteOnly || hasSearchDetailFilter()) {
+    setSearchGuideOpen(false);
+  }
 }
 
 function sourceCategoriesFor(song) {
@@ -1029,6 +1053,13 @@ function renderEasySearch() {
   els.easyCategoryList.innerHTML = EASY_CATEGORIES.map(renderEasyCategory).join("");
 }
 
+function resetEasyCategoryOpenForViewport() {
+  EASY_CATEGORIES.forEach((category, index) => {
+    easyCategoryOpen[category.key] = easyAccordionQuery.matches ? index === 0 : true;
+  });
+  if (easySearchMode) renderEasySearch();
+}
+
 function setEasySearchMode(active) {
   easySearchMode = Boolean(active);
   els.normalSearchPanel.classList.toggle("easy-mode", easySearchMode);
@@ -1284,11 +1315,41 @@ function visibleFuzzyItems(preset) {
     .filter(({ item }) => fuzzyItemTier(item) <= fuzzyVisibleTier);
 }
 
+function updateFuzzyCategoryScrollButtons() {
+  const maxScrollLeft = Math.max(
+    els.fuzzyCategoryTabs.scrollWidth - els.fuzzyCategoryTabs.clientWidth,
+    0
+  );
+  els.fuzzyCategoryScrollPrev.disabled = els.fuzzyCategoryTabs.scrollLeft <= 1;
+  els.fuzzyCategoryScrollNext.disabled = els.fuzzyCategoryTabs.scrollLeft >= maxScrollLeft - 1;
+}
+
+function refreshFuzzyCategoryScrollControls() {
+  els.fuzzyCategoryScroll.classList.remove("has-overflow");
+  requestAnimationFrame(() => {
+    const hasOverflow = els.fuzzyCategoryTabs.scrollWidth > els.fuzzyCategoryTabs.clientWidth + 1;
+    els.fuzzyCategoryScroll.classList.toggle("has-overflow", hasOverflow);
+    requestAnimationFrame(updateFuzzyCategoryScrollButtons);
+  });
+}
+
+function scrollFuzzyCategories(direction) {
+  els.fuzzyCategoryTabs.scrollBy({
+    left: direction * Math.max(els.fuzzyCategoryTabs.clientWidth * 0.7, 140),
+    behavior: "smooth",
+  });
+}
+
 function renderFuzzySearch() {
   const preset = fuzzySearchPresets[activeFuzzyCategoryIndex];
   els.fuzzyCategoryTabs.innerHTML = fuzzySearchPresets.map((item, index) => `
-    <button class="btn fuzzy-category-tab ${index === activeFuzzyCategoryIndex ? "active" : ""}" type="button" role="tab" data-fuzzy-category="${index}" aria-selected="${index === activeFuzzyCategoryIndex}">${escapeHtml(item.title)}</button>
+    <button class="btn fuzzy-category-tab ${index === activeFuzzyCategoryIndex ? "active" : ""}" id="fuzzy-category-tab-${index}" type="button" role="tab" data-fuzzy-category="${index}" aria-controls="fuzzyCategoryContent" aria-selected="${index === activeFuzzyCategoryIndex}">${escapeHtml(item.title)}</button>
   `).join("");
+  els.fuzzyCategoryContent.setAttribute(
+    "aria-labelledby",
+    `fuzzy-category-tab-${activeFuzzyCategoryIndex}`
+  );
+  refreshFuzzyCategoryScrollControls();
 
   if (!preset) {
     els.fuzzyCategoryContent.innerHTML = "";
@@ -2001,7 +2062,7 @@ function switchTab(tabName) {
     tab.setAttribute("aria-selected", String(active));
   });
 
-  const activePanelId = normalized === "fuzzy" ? "panel-search" : `panel-${normalized}`;
+  const activePanelId = `panel-${normalized}`;
   els.panels.forEach(panel => {
     const active = panel.id === activePanelId;
     panel.hidden = !active;
@@ -2012,6 +2073,17 @@ function switchTab(tabName) {
 
 function updateBackToTopVisibility() {
   els.backToTop.hidden = window.scrollY < 320;
+}
+
+function handlePageScroll() {
+  updateBackToTopVisibility();
+  if (!els.siteFooter) return;
+
+  els.siteFooter.classList.add("is-scrolling");
+  clearTimeout(footerScrollTimer);
+  footerScrollTimer = setTimeout(() => {
+    els.siteFooter.classList.remove("is-scrolling");
+  }, 180);
 }
 
 function resolveTheme(theme) {
@@ -2090,7 +2162,15 @@ els.easyCategoryList.addEventListener("click", event => {
   const toggleButton = event.target.closest("[data-easy-toggle]");
   if (toggleButton) {
     const categoryKey = toggleButton.dataset.easyToggle;
-    easyCategoryOpen[categoryKey] = easyCategoryOpen[categoryKey] === false;
+    if (easyAccordionQuery.matches) {
+      const willOpen = easyCategoryOpen[categoryKey] === false;
+      EASY_CATEGORIES.forEach(category => {
+        easyCategoryOpen[category.key] = false;
+      });
+      easyCategoryOpen[categoryKey] = willOpen;
+    } else {
+      easyCategoryOpen[categoryKey] = easyCategoryOpen[categoryKey] === false;
+    }
     renderEasySearch();
     return;
   }
@@ -2120,6 +2200,9 @@ els.fuzzyCategoryTabs.addEventListener("click", event => {
   fuzzyVisibleTier = 1;
   renderFuzzySearch();
 });
+els.fuzzyCategoryTabs.addEventListener("scroll", updateFuzzyCategoryScrollButtons, { passive: true });
+els.fuzzyCategoryScrollPrev.addEventListener("click", () => scrollFuzzyCategories(-1));
+els.fuzzyCategoryScrollNext.addEventListener("click", () => scrollFuzzyCategories(1));
 els.fuzzyCategoryContent.addEventListener("click", event => {
   const tierMoreButton = event.target.closest("[data-fuzzy-tier-more]");
   if (tierMoreButton) {
@@ -2240,7 +2323,14 @@ if (systemThemeQuery.addEventListener) {
 } else if (systemThemeQuery.addListener) {
   systemThemeQuery.addListener(handleSystemThemeChange);
 }
-window.addEventListener("scroll", updateBackToTopVisibility, { passive: true });
+const handleEasyAccordionBreakpointChange = () => resetEasyCategoryOpenForViewport();
+if (easyAccordionQuery.addEventListener) {
+  easyAccordionQuery.addEventListener("change", handleEasyAccordionBreakpointChange);
+} else if (easyAccordionQuery.addListener) {
+  easyAccordionQuery.addListener(handleEasyAccordionBreakpointChange);
+}
+window.addEventListener("resize", refreshFuzzyCategoryScrollControls, { passive: true });
+window.addEventListener("scroll", handlePageScroll, { passive: true });
 
 document.addEventListener("pointerdown", (event) => {
   if (event.target.closest("[data-card-menu]")) return;
@@ -2373,6 +2463,7 @@ homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem
   : "all";
 favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
 loadFavoriteKeys();
+resetEasyCategoryOpenForViewport();
 setSearchDetailsOpen(false);
 setFuzzySearchMode(false);
 applyColumnLayout();
