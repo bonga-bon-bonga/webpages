@@ -127,7 +127,7 @@
             検索してみる
             <button id="easyModeToggle" class="btn recommend-source-button search-mode-toggle" type="button" aria-pressed="false">かんたんモード</button>
           </h2>
-          <p class="recommend-desc text-secondary mb-0">
+          <p class="recommend-desc text-secondary mb-0" id="searchModeDescription">
             曲名やアーティスト名から、リクエストしたい曲を探せます。
           </p>
         </section>
@@ -289,9 +289,6 @@
         </div>
 
         <div class="easy-search-panel mt-3" id="easySearchPanel" hidden>
-          <p class="recommend-desc text-secondary mb-3">
-            ボタンを組み合わせて、リクエスト候補をかんたんに絞り込めます。気になる条件を選んで、少しずつ曲を探してみてください。
-          </p>
           <div class="easy-selected-row" id="easySelectedConditions" aria-live="polite"></div>
           <div class="easy-refresh-row">
             <button id="easyRefresh" class="btn easy-refresh-button" type="button" disabled>絞り込み更新</button>
