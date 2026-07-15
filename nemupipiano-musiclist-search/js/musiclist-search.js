@@ -1762,7 +1762,7 @@ function performancePreviewWatchUrl(preview) {
 
 function performancePreviewRoundLabel(preview) {
   const no = normalizeCellText(preview?.no);
-  return no ? `採用回：No. ${no}` : "";
+  return no ? `ピックアップ回：No. ${no}` : "";
 }
 
 function renderPerformancePreview(song) {
