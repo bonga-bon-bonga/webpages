@@ -909,7 +909,7 @@ html[data-theme="dark"] .song-card.accent-other {
 
 .song-grid[data-columns="1"] .song-card-body {
     display: grid !important;
-    grid-template-columns: minmax(12rem, 1fr) minmax(18rem, 18rem) minmax(9.5rem, auto);
+    grid-template-columns: 50% minmax(0, 1fr) minmax(9.5rem, auto);
     align-items: center;
     padding-right: 3.4rem !important;
     gap: .65rem !important;
