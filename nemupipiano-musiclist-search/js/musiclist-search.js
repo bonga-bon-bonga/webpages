@@ -121,6 +121,7 @@ const els = {
 };
 
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const easyAccordionQuery = window.matchMedia("(max-width: 575.98px)");
 let songs = [];
 let homeRecommendedSongs = [];
@@ -1336,7 +1337,7 @@ function refreshFuzzyCategoryScrollControls() {
 function scrollFuzzyCategories(direction) {
   els.fuzzyCategoryTabs.scrollBy({
     left: direction * Math.max(els.fuzzyCategoryTabs.clientWidth * 0.7, 140),
-    behavior: "smooth",
+    behavior: reducedMotionQuery.matches ? "auto" : "smooth",
   });
 }
 
@@ -1475,7 +1476,7 @@ function menuIconHtml() {
 function renderSongCards(items) {
   return items.map(song => `
     <div class="col">
-      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""} ${songAccentClass(song)}" role="button" tabindex="0" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" data-song-key="${escapeHtml(favoriteKeyForSong(song))}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー">
+      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""} ${songAccentClass(song)}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}">
         <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
           <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
             <div class="song-card-text min-w-0">
@@ -1483,15 +1484,16 @@ function renderSongCards(items) {
               <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
             </div>
             ${accentColorEnabled ? `<span class="song-accent-label">${escapeHtml(songAccentLabel(song))}</span>` : ""}
-            <button class="song-card-menu" type="button" data-card-menu data-song-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}の詳細を開く">
-              ${menuIconHtml()}
-            </button>
           </div>
           <div class="song-card-meta d-flex">
             ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
             ${songGenreLabel(song) ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(songGenreLabel(song))}</span>` : ""}
           </div>
         </div>
+        <button class="song-card-copy" type="button" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" data-song-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー"></button>
+        <button class="song-card-menu" type="button" data-card-menu data-song-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}の詳細を開く">
+          ${menuIconHtml()}
+        </button>
       </article>
     </div>
   `).join("");
@@ -2302,7 +2304,10 @@ els.searchGuideToggle.addEventListener("click", () => {
   setSearchGuideOpen(els.searchGuide.hidden);
 });
 els.backToTop.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: reducedMotionQuery.matches ? "auto" : "smooth",
+  });
 });
 els.panelFontSizes.forEach(option => {
   option.addEventListener("change", () => applyAppPanelFontSize(option.value));
@@ -2395,15 +2400,6 @@ document.addEventListener("click", (event) => {
     longPressHandled = false;
     return;
   }
-  handleCardCopy(card);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Enter" && event.key !== " ") return;
-  if (event.target.closest("[data-card-menu]")) return;
-  const card = event.target.closest("[data-copy-song]");
-  if (!card) return;
-  event.preventDefault();
   handleCardCopy(card);
 });
 
