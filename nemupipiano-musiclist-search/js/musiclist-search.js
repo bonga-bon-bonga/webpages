@@ -1216,6 +1216,9 @@ function fuzzySearchValues(song, group) {
   if (group === "sourceCategories") {
     return normalizeStringArray(song.classification?.sourceCategories);
   }
+  if (group === "subgenres") {
+    return normalizeStringArray(song.classification?.subgenres);
+  }
   if (group === "releaseDecade") {
     return normalizeStringArray([song.releaseDecade]);
   }

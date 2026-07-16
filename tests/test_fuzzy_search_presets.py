@@ -20,6 +20,8 @@ def matches(song, match):
     def values(group):
         if group == "sourceCategories":
             return classification.get("sourceCategories", [])
+        if group == "subgenres":
+            return classification.get("subgenres", [])
         if group == "releaseDecade":
             return [song.get("releaseDecade")] if song.get("releaseDecade") else []
         return tags.get(group, [])
@@ -56,6 +58,7 @@ class FuzzySearchPresetTests(unittest.TestCase):
             "motifTags",
             "eventTags",
             "sourceCategories",
+            "subgenres",
             "releaseDecade",
         }
         for preset in self.presets:
@@ -75,7 +78,10 @@ class FuzzySearchPresetTests(unittest.TestCase):
     def test_match_groups_use_and_and_values_within_group_use_or(self):
         matching_song = {
             "releaseDecade": "2020年代",
-            "classification": {"sourceCategories": ["アニメ"]},
+            "classification": {
+                "sourceCategories": ["アニメ"],
+                "subgenres": ["バラード"],
+            },
             "tags": {
                 "themeTags": ["恋愛"],
                 "moodTags": ["切ない"],
@@ -96,6 +102,7 @@ class FuzzySearchPresetTests(unittest.TestCase):
                 matching_song,
                 {
                     "sourceCategories": ["アニメ", "映画"],
+                    "subgenres": ["バラード"],
                     "releaseDecade": ["2020年代"],
                 },
             )
@@ -106,6 +113,24 @@ class FuzzySearchPresetTests(unittest.TestCase):
                 {"themeTags": ["恋愛"], "moodTags": ["明るい"]},
             )
         )
+
+    def test_sleepy_presets_have_matching_songs(self):
+        items = {
+            item["label"]: item
+            for preset in self.presets
+            for item in preset["items"]
+        }
+        labels = ["😴眠る前に", "🌌夢見心地の夜"]
+
+        for label in labels:
+            with self.subTest(item=label):
+                self.assertIn(label, items)
+                matched = [
+                    song
+                    for song in self.songs
+                    if matches(song, items[label]["match"])
+                ]
+                self.assertGreaterEqual(len(matched), 5)
 
     def test_daily_order_is_stable_and_changes_with_date(self):
         keys = [f"song-{index}" for index in range(20)]
