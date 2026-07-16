@@ -39,37 +39,66 @@ test("検索ガイドは初期表示後、入力を消しても自動で再展�
   await expect(guide).toBeHidden();
 });
 
-test("かんたんモードの説明文が通常検索と切り替わる", async ({ page }) => {
+test("通常検索とかんたんモードをタブで切り替えられる", async ({ page }) => {
   await openTab(page, "search");
 
-  const modeToggle = page.locator("#easyModeToggle");
+  const normalTab = page.getByRole("tab", { name: "通常検索" });
+  const easyTab = page.getByRole("tab", { name: "かんたんモード" });
   const description = page.locator("#searchModeDescription");
 
+  await expect(normalTab).toHaveAttribute("aria-selected", "true");
+  await expect(easyTab).toHaveAttribute("aria-selected", "false");
+  await expect(page.locator("#normalSearchControls")).toBeVisible();
+  await expect(page.locator("#easySearchPanel")).toBeHidden();
   await expect(description).toHaveText(NORMAL_DESCRIPTION);
-  await modeToggle.click();
-  await expect(modeToggle).toHaveAttribute("aria-pressed", "true");
+
+  await easyTab.click();
+  await expect(normalTab).toHaveAttribute("aria-selected", "false");
+  await expect(easyTab).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("#normalSearchControls")).toBeHidden();
+  await expect(page.locator("#easySearchPanel")).toBeVisible();
   await expect(description).toHaveText(EASY_DESCRIPTION);
 
-  await modeToggle.click();
-  await expect(modeToggle).toHaveAttribute("aria-pressed", "false");
+  await easyTab.press("ArrowLeft");
+  await expect(normalTab).toBeFocused();
+  await expect(normalTab).toHaveAttribute("aria-selected", "true");
   await expect(description).toHaveText(NORMAL_DESCRIPTION);
 });
 
-test("スマホのかんたんモードは1カテゴリずつ展開する", async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== "mobile-chromium", "スマホ表示専用の挙動");
+test("かんたんモードは1カテゴリずつ展開し候補を自動更新する", async ({ page }) => {
   await openTab(page, "search");
-  await page.locator("#easyModeToggle").click();
+  await page.getByRole("tab", { name: "かんたんモード" }).click();
 
   const genre = page.locator('[data-easy-toggle="genre"]');
   const artist = page.locator('[data-easy-toggle="artist"]');
+  const mood = page.locator('[data-easy-toggle="mood"]');
   await expect(genre).toHaveAttribute("aria-expanded", "true");
   await expect(artist).toHaveAttribute("aria-expanded", "false");
+  await expect(mood).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("#easyRefresh")).toHaveCount(0);
+
+  const artistOptions = page.locator('#easy-category-artist [data-easy-option]');
+  const artistsBeforeSelection = await artistOptions.allTextContents();
+  await page.locator('[data-easy-category="genre"][data-easy-option="アニメ"]').click();
+  await expect.poll(() => artistOptions.allTextContents()).not.toEqual(artistsBeforeSelection);
+  await expect(genre.locator(".easy-category-selected")).toHaveCount(0);
 
   await artist.click();
   await expect(genre).toHaveAttribute("aria-expanded", "false");
   await expect(artist).toHaveAttribute("aria-expanded", "true");
+  await expect(mood).toHaveAttribute("aria-expanded", "false");
+  await expect(genre.locator(".easy-category-selected")).toHaveText("アニメ");
   await expect(page.locator("#easy-category-genre")).toBeHidden();
   await expect(page.locator("#easy-category-artist")).toBeVisible();
+
+  const more = page.locator("#easy-category-artist .easy-more-button");
+  if (await more.count()) {
+    const [bodyBox, moreBox] = await Promise.all([
+      page.locator("#easy-category-artist").boundingBox(),
+      more.boundingBox(),
+    ]);
+    expect(Math.abs((bodyBox.x + bodyBox.width) - (moreBox.x + moreBox.width))).toBeLessThan(2);
+  }
 });
 
 test("ふわっと検索のタブと内容がアクセシブルに関連付く", async ({ page }) => {

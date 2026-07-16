@@ -84,12 +84,10 @@ const els = {
   fuzzySongs: document.getElementById("fuzzySongs"),
   fuzzyEmpty: document.getElementById("fuzzyEmpty"),
   fuzzyMore: document.getElementById("fuzzyMore"),
-  easyModeToggle: document.getElementById("easyModeToggle"),
+  searchModeTabs: document.querySelectorAll("[data-search-mode]"),
+  normalSearchControls: document.getElementById("normalSearchControls"),
   searchModeDescription: document.getElementById("searchModeDescription"),
   easySearchPanel: document.getElementById("easySearchPanel"),
-  easySelectedConditions: document.getElementById("easySelectedConditions"),
-  easyRefresh: document.getElementById("easyRefresh"),
-  easyRefreshStatus: document.getElementById("easyRefreshStatus"),
   easyCategoryList: document.getElementById("easyCategoryList"),
   easyReset: document.getElementById("easyReset"),
   playableFilter: document.getElementById("playableFilter"),
@@ -122,7 +120,6 @@ const els = {
 
 const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-const easyAccordionQuery = window.matchMedia("(max-width: 575.98px)");
 let songs = [];
 let homeRecommendedSongs = [];
 let homeMoodSuggestions = [];
@@ -161,11 +158,6 @@ let easyVisibleCounts = {
   artist: EASY_OPTION_INITIAL_COUNT,
   mood: EASY_OPTION_INITIAL_COUNT,
 };
-let easyOptionStale = {
-  genre: false,
-  artist: false,
-  mood: false,
-};
 let easyOptionSnapshots = {
   genre: null,
   artist: null,
@@ -173,8 +165,8 @@ let easyOptionSnapshots = {
 };
 let easyCategoryOpen = {
   genre: true,
-  artist: true,
-  mood: true,
+  artist: false,
+  mood: false,
 };
 
 // HTMLエスケープを行う関数。& < > " ' をそれぞれ対応するHTMLエンティティに置換する。nullやundefinedも空文字に変換する。
@@ -873,16 +865,7 @@ function easyFilteredSongs() {
 
 function easySelectionsForOptionCount(categoryKey, optionValue) {
   const next = cloneEasySelections();
-  if (categoryKey === "genre" && optionValue === "all") {
-    next.genre = new Set(["all"]);
-    return next;
-  }
-
-  if (categoryKey === "genre" && next.genre.has("all")) {
-    next.genre.delete("all");
-  }
-
-  next[categoryKey].add(optionValue);
+  next[categoryKey] = new Set([optionValue]);
   return next;
 }
 
@@ -898,7 +881,7 @@ function easyGenreOptions() {
       ...option,
       count: option.value === "all" ? easyFilteredSongsForSelections({ ...easySelections, genre: new Set(["all"]) }).length : easyOptionCount("genre", option.value),
     }))
-    .filter(option => option.value === "all" || option.count > 0);
+    .filter(option => option.value === "all" || option.count > 0 || easySelections.genre.has(option.value));
 }
 
 function easyArtistOptions() {
@@ -912,6 +895,10 @@ function easyArtistOptions() {
     counts.set(artist, (counts.get(artist) || 0) + 1);
   });
 
+  easySelections.artist.forEach(artist => {
+    if (!counts.has(artist)) counts.set(artist, 0);
+  });
+
   return Array.from(counts.entries())
     .map(([value, count]) => ({ value, label: `${value} (${count})`, count }))
     .sort((left, right) => right.count - left.count || left.value.localeCompare(right.value, "ja"));
@@ -920,7 +907,7 @@ function easyArtistOptions() {
 function easyMoodOptions() {
   return EASY_MOOD_OPTIONS
     .map(option => ({ ...option, count: easyOptionCount("mood", option.value) }))
-    .filter(option => option.count > 0);
+    .filter(option => option.count > 0 || easySelections.mood.has(option.value));
 }
 
 function computeEasyOptionsForCategory(categoryKey) {
@@ -930,24 +917,20 @@ function computeEasyOptionsForCategory(categoryKey) {
   return [];
 }
 
-function easyOptionsForCategory(categoryKey, { refresh = false } = {}) {
-  if (refresh || !easyOptionSnapshots[categoryKey]) {
+function easyOptionsForCategory(categoryKey) {
+  if (!easyOptionSnapshots[categoryKey]) {
     easyOptionSnapshots[categoryKey] = computeEasyOptionsForCategory(categoryKey);
   }
   return easyOptionSnapshots[categoryKey];
 }
 
-function isEasyOptionStale() {
-  return EASY_CATEGORIES.some(category => easyOptionStale[category.key]);
-}
-
-function refreshEasyOptions() {
+function invalidateEasyOptions({ resetVisibleCounts = false } = {}) {
   EASY_CATEGORIES.forEach(category => {
-    easyOptionStale[category.key] = false;
-    easyVisibleCounts[category.key] = EASY_OPTION_INITIAL_COUNT;
-    easyOptionsForCategory(category.key, { refresh: true });
+    easyOptionSnapshots[category.key] = null;
+    if (resetVisibleCounts) {
+      easyVisibleCounts[category.key] = EASY_OPTION_INITIAL_COUNT;
+    }
   });
-  renderEasySearch();
 }
 
 function easyOptionLabel(categoryKey, value) {
@@ -974,53 +957,43 @@ function toggleEasyOption(categoryKey, value) {
     selected.add(value);
   }
 
-  EASY_CATEGORIES.forEach(category => {
-    if (category.key !== categoryKey) easyOptionStale[category.key] = true;
-  });
+  invalidateEasyOptions();
 }
 
 function resetEasySearch() {
   EASY_CATEGORIES.forEach(category => {
     easySelections[category.key].clear();
     easyVisibleCounts[category.key] = EASY_OPTION_INITIAL_COUNT;
-    easyOptionStale[category.key] = false;
     easyOptionSnapshots[category.key] = null;
   });
   render();
 }
 
-function renderEasySelectedConditions() {
-  if (!hasEasySelections()) {
-    els.easySelectedConditions.innerHTML = `<span class="easy-selected-empty">条件はまだ選択されていません。</span>`;
-    return;
-  }
-
-  els.easySelectedConditions.innerHTML = EASY_CATEGORIES
-    .map(category => {
-      const values = selectedEasyValues(category.key);
-      if (values.length === 0) return "";
-      return `
-      <span class="easy-selected-chip">
-        <span class="easy-selected-category">${escapeHtml(category.label)}</span>
-        ${escapeHtml(values.map(value => easyOptionLabel(category.key, value)).join("、"))}
-      </span>
-    `;
-    })
-    .join("");
-}
-
 function renderEasyCategory(category) {
   const options = easyOptionsForCategory(category.key);
   const visibleCount = easyVisibleCounts[category.key];
-  const visibleOptions = options.slice(0, visibleCount);
-  const hasMore = options.length > visibleCount;
+  const initiallyVisibleOptions = options.slice(0, visibleCount);
+  const visibleValues = new Set(initiallyVisibleOptions.map(option => option.value));
+  const selectedOptions = options.filter(option => (
+    easySelections[category.key].has(option.value) && !visibleValues.has(option.value)
+  ));
+  const visibleOptions = [...initiallyVisibleOptions, ...selectedOptions];
+  const hasMore = options.length > visibleOptions.length;
   const open = easyCategoryOpen[category.key] !== false;
+  const selectedLabels = selectedEasyValues(category.key)
+    .map(value => easyOptionLabel(category.key, value));
+  const selectedSummary = !open && selectedLabels.length > 0
+    ? `<span class="easy-category-selected">${escapeHtml(selectedLabels.join("、"))}</span>`
+    : "";
 
   return `
-    <section class="easy-category-card">
+    <section class="easy-category-card ${open ? "is-open" : ""}">
       <div class="easy-category-header">
         <button class="btn easy-category-toggle" type="button" data-easy-toggle="${escapeHtml(category.key)}" aria-expanded="${open}" aria-controls="easy-category-${escapeHtml(category.key)}">
-          <span class="easy-category-title">${escapeHtml(category.label)}</span>
+          <span class="easy-category-heading">
+            <span class="easy-category-title">${escapeHtml(category.label)}</span>
+            ${selectedSummary}
+          </span>
           <span class="easy-category-icon" aria-hidden="true">${open ? "▲" : "▼"}</span>
         </button>
       </div>
@@ -1046,17 +1019,12 @@ function renderEasyCategory(category) {
 
 function renderEasySearch() {
   if (!els.easySearchPanel) return;
-  renderEasySelectedConditions();
-  const stale = isEasyOptionStale();
-  els.easyRefresh.disabled = !stale;
-  els.easyRefresh.classList.toggle("is-stale", stale);
-  els.easyRefreshStatus.hidden = stale;
   els.easyCategoryList.innerHTML = EASY_CATEGORIES.map(renderEasyCategory).join("");
 }
 
-function resetEasyCategoryOpenForViewport() {
+function resetEasyCategoryOpen() {
   EASY_CATEGORIES.forEach((category, index) => {
-    easyCategoryOpen[category.key] = easyAccordionQuery.matches ? index === 0 : true;
+    easyCategoryOpen[category.key] = index === 0;
   });
   if (easySearchMode) renderEasySearch();
 }
@@ -1064,9 +1032,14 @@ function resetEasyCategoryOpenForViewport() {
 function setEasySearchMode(active) {
   easySearchMode = Boolean(active);
   els.normalSearchPanel.classList.toggle("easy-mode", easySearchMode);
+  els.normalSearchControls.hidden = easySearchMode;
   els.easySearchPanel.hidden = !easySearchMode;
-  els.easyModeToggle.textContent = easySearchMode ? "通常検索に戻る" : "かんたんモードにする";
-  els.easyModeToggle.setAttribute("aria-pressed", String(easySearchMode));
+  els.searchModeTabs.forEach(tab => {
+    const selected = (tab.dataset.searchMode === "easy") === easySearchMode;
+    tab.classList.toggle("active", selected);
+    tab.setAttribute("aria-selected", String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+  });
   els.searchModeDescription.textContent = easySearchMode
     ? "ボタンを組み合わせて、リクエスト候補をかんたんに絞り込めます。気になる条件を選んで、少しずつ曲を探してみてください。"
     : "曲名やアーティスト名から、リクエストしたい曲を探せます。";
@@ -2156,23 +2129,33 @@ function setSearchGuideOpen(open) {
 }
 
 els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
-els.easyModeToggle.addEventListener("click", () => {
-  setEasySearchMode(!easySearchMode);
+els.searchModeTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => {
+    setEasySearchMode(tab.dataset.searchMode === "easy");
+  });
+  tab.addEventListener("keydown", event => {
+    const lastIndex = els.searchModeTabs.length - 1;
+    let nextIndex = null;
+    if (event.key === "ArrowRight") nextIndex = index === lastIndex ? 0 : index + 1;
+    if (event.key === "ArrowLeft") nextIndex = index === 0 ? lastIndex : index - 1;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = lastIndex;
+    if (nextIndex === null) return;
+    event.preventDefault();
+    const nextTab = els.searchModeTabs[nextIndex];
+    setEasySearchMode(nextTab.dataset.searchMode === "easy");
+    nextTab.focus();
+  });
 });
-els.easyRefresh.addEventListener("click", refreshEasyOptions);
 els.easyCategoryList.addEventListener("click", event => {
   const toggleButton = event.target.closest("[data-easy-toggle]");
   if (toggleButton) {
     const categoryKey = toggleButton.dataset.easyToggle;
-    if (easyAccordionQuery.matches) {
-      const willOpen = easyCategoryOpen[categoryKey] === false;
-      EASY_CATEGORIES.forEach(category => {
-        easyCategoryOpen[category.key] = false;
-      });
-      easyCategoryOpen[categoryKey] = willOpen;
-    } else {
-      easyCategoryOpen[categoryKey] = easyCategoryOpen[categoryKey] === false;
-    }
+    const willOpen = easyCategoryOpen[categoryKey] === false;
+    EASY_CATEGORIES.forEach(category => {
+      easyCategoryOpen[category.key] = false;
+    });
+    easyCategoryOpen[categoryKey] = willOpen;
     renderEasySearch();
     return;
   }
@@ -2254,7 +2237,7 @@ els.stats.addEventListener("click", event => {
   if (event.target.closest("[data-easy-playable-filter]")) {
     playableOnly = !playableOnly;
     localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
-    refreshEasyOptions();
+    invalidateEasyOptions({ resetVisibleCounts: true });
     render();
     return;
   }
@@ -2262,7 +2245,7 @@ els.stats.addEventListener("click", event => {
   if (event.target.closest("[data-easy-favorite-filter]")) {
     favoriteOnly = !favoriteOnly;
     localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
-    refreshEasyOptions();
+    invalidateEasyOptions({ resetVisibleCounts: true });
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
   }
 });
@@ -2327,12 +2310,6 @@ if (systemThemeQuery.addEventListener) {
   systemThemeQuery.addEventListener("change", handleSystemThemeChange);
 } else if (systemThemeQuery.addListener) {
   systemThemeQuery.addListener(handleSystemThemeChange);
-}
-const handleEasyAccordionBreakpointChange = () => resetEasyCategoryOpenForViewport();
-if (easyAccordionQuery.addEventListener) {
-  easyAccordionQuery.addEventListener("change", handleEasyAccordionBreakpointChange);
-} else if (easyAccordionQuery.addListener) {
-  easyAccordionQuery.addListener(handleEasyAccordionBreakpointChange);
 }
 window.addEventListener("resize", refreshFuzzyCategoryScrollControls, { passive: true });
 window.addEventListener("scroll", handlePageScroll, { passive: true });
@@ -2459,7 +2436,7 @@ homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem
   : "all";
 favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
 loadFavoriteKeys();
-resetEasyCategoryOpenForViewport();
+resetEasyCategoryOpen();
 setSearchDetailsOpen(false);
 setFuzzySearchMode(false);
 applyColumnLayout();

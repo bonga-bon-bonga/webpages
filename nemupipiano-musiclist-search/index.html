@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.2.5" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.2.6" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">本文へスキップ</a>
@@ -126,12 +126,22 @@
               <img class="theme-icon-dark" src="../lib/icon/black/search.svg" alt="">
             </span>
             検索する
-            <button id="easyModeToggle" class="btn recommend-source-button search-mode-toggle" type="button" aria-pressed="false">かんたんモードにする</button>
           </h2>
           <p class="recommend-desc text-secondary mb-0" id="searchModeDescription">
             曲名やアーティスト名から、リクエストしたい曲を探せます。
           </p>
         </section>
+        <div class="search-mode-tabs" role="tablist" aria-label="検索方法">
+          <button class="btn search-mode-tab active" id="normalSearchModeTab" type="button" role="tab" aria-selected="true" aria-controls="normalSearchControls" data-search-mode="normal">
+            <span class="theme-icon search-mode-tab-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/white/search.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/search.svg" alt="">
+            </span>
+            通常検索
+          </button>
+          <button class="btn search-mode-tab" id="easySearchModeTab" type="button" role="tab" aria-selected="false" aria-controls="easySearchPanel" data-search-mode="easy" tabindex="-1">かんたんモード</button>
+        </div>
+        <div id="normalSearchControls" role="tabpanel" aria-labelledby="normalSearchModeTab">
         <div class="row g-2 g-md-3 align-items-stretch search-form-row">
           <div class="col-8 col-md-10">
             <label class="visually-hidden" for="search">検索キーワード</label>
@@ -213,6 +223,7 @@
             </div>
           </div>
         </div>
+        </div>
 
         <div class="search-guide-wrapper mt-3">
           <button id="searchGuideToggle" class="btn search-guide-toggle" type="button" aria-expanded="false" aria-controls="searchGuide">▼検索ガイド</button>
@@ -289,11 +300,8 @@
           </div>
         </div>
 
-        <div class="easy-search-panel mt-3" id="easySearchPanel" hidden>
-          <div class="easy-selected-row" id="easySelectedConditions" aria-live="polite"></div>
-          <div class="easy-refresh-row">
-            <button id="easyRefresh" class="btn easy-refresh-button" type="button" disabled>絞り込み更新</button>
-            <span id="easyRefreshStatus" class="easy-refresh-status">最新の状態です</span>
+        <div class="easy-search-panel" id="easySearchPanel" role="tabpanel" aria-labelledby="easySearchModeTab" hidden>
+          <div class="easy-actions-row">
             <button id="easyReset" class="btn fuzzy-more-button easy-reset-button" type="button">条件をリセット</button>
           </div>
           <div class="easy-category-list" id="easyCategoryList"></div>
@@ -506,7 +514,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.2.5 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.2.6 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -523,7 +531,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.2.5"></script>
+  <script src="./js/musiclist-search.js?v=2.2.6"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 <!--

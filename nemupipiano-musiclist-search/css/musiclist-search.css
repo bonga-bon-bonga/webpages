@@ -430,19 +430,52 @@ html[data-theme="dark"] .theme-icon-light {
     text-decoration: underline;
 }
 
-.search-mode-toggle {
-    margin-left: auto;
-}
-
-#normalSearchPanel.easy-mode > .search-form-row,
-#normalSearchPanel.easy-mode > .search-details,
-#normalSearchPanel.easy-mode > .result-controls,
 #normalSearchPanel.easy-mode > .search-guide-wrapper {
     display: none !important;
 }
 
-#normalSearchPanel:not(.easy-mode) .easy-search-panel {
-    display: none !important;
+.search-mode-tabs {
+    display: inline-flex;
+    align-self: flex-start;
+    gap: .25rem;
+    margin-bottom: 1rem;
+    padding: .25rem;
+    border: 1px solid var(--page-line);
+    border-radius: 999px;
+    background: var(--page-control-soft);
+}
+
+.search-mode-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+    min-height: 2.5rem;
+    padding: .45rem 1rem;
+    border: 0;
+    border-radius: 999px;
+    color: var(--page-muted);
+    background: transparent;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.search-mode-tab:hover,
+.search-mode-tab:focus,
+.search-mode-tab.active,
+.search-mode-tab[aria-selected="true"] {
+    color: var(--page-text);
+    background: var(--page-active);
+}
+
+.search-mode-tab.active,
+.search-mode-tab[aria-selected="true"] {
+    box-shadow: 0 5px 12px var(--page-shadow);
+}
+
+.search-mode-tab-icon {
+    width: 1rem;
+    height: 1rem;
 }
 
 .easy-search-panel {
@@ -452,49 +485,15 @@ html[data-theme="dark"] .theme-icon-light {
     background: var(--page-control-soft);
 }
 
-.easy-selected-row {
+.easy-actions-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
+    justify-content: flex-end;
     margin-bottom: 1rem;
 }
 
 .easy-selected-empty {
     color: var(--page-muted);
     font-size: .9rem;
-}
-
-.easy-selected-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: .35rem;
-    min-height: 2rem;
-    padding: .25rem .75rem;
-    border: 1px solid var(--page-filter-active-border);
-    border-radius: 999px;
-    color: var(--page-filter-active-text);
-    background: var(--page-filter-active-bg);
-    font-weight: 800;
-    font-size: .9rem;
-}
-
-.easy-selected-category {
-    color: var(--page-muted);
-    font-weight: 700;
-}
-
-.easy-refresh-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: .75rem;
-    margin-bottom: 1rem;
-}
-
-.easy-refresh-status {
-    color: var(--page-muted);
-    font-size: .9rem;
-    font-weight: 700;
 }
 
 .easy-category-list {
@@ -511,6 +510,10 @@ html[data-theme="dark"] .theme-icon-light {
 
 .easy-category-header {
     margin-bottom: .75rem;
+}
+
+.easy-category-card:not(.is-open) .easy-category-header {
+    margin-bottom: 0;
 }
 
 .easy-category-toggle {
@@ -532,28 +535,24 @@ html[data-theme="dark"] .theme-icon-light {
     font-weight: 900;
 }
 
-.easy-refresh-button {
-    min-height: 2rem;
-    padding: .25rem .8rem;
-    border: 1px solid var(--page-line);
-    border-radius: 999px;
-    color: var(--page-muted);
-    background: var(--page-button-soft);
-    font-weight: 800;
-    font-size: .88rem;
+.easy-category-heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: .25rem .6rem;
+    min-width: 0;
+    text-align: left;
 }
 
-.easy-refresh-button.is-stale {
-    border-color: var(--page-filter-active-border);
+.easy-category-selected {
     color: var(--page-filter-active-text);
-    background: var(--page-filter-active-bg);
+    font-size: .9rem;
+    font-weight: 750;
+    overflow-wrap: anywhere;
 }
 
-.easy-refresh-button:disabled {
-    border-color: var(--page-line);
-    color: var(--page-muted);
-    background: var(--page-button-soft);
-    opacity: .7;
+.easy-category-icon {
+    flex: 0 0 auto;
 }
 
 .easy-option-list {
@@ -582,11 +581,13 @@ html[data-theme="dark"] .theme-icon-light {
 }
 
 .easy-more-button {
-    margin-top: .75rem;
+    display: block;
+    width: fit-content;
+    margin: .75rem 0 0 auto;
 }
 
 .easy-reset-button {
-    margin-left: auto;
+    padding-inline: .25rem;
 }
 
 .settings-actions {
@@ -1683,6 +1684,16 @@ body.floating-actions-suppressed .settings-button {
 
     .quick-filter-group .stat-filter-button {
     white-space: nowrap;
+    }
+
+    .search-mode-tabs {
+    align-self: stretch;
+    }
+
+    .search-mode-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: .6rem;
     }
 
     .easy-search-panel,
