@@ -1065,7 +1065,7 @@ function setEasySearchMode(active) {
   easySearchMode = Boolean(active);
   els.normalSearchPanel.classList.toggle("easy-mode", easySearchMode);
   els.easySearchPanel.hidden = !easySearchMode;
-  els.easyModeToggle.textContent = easySearchMode ? "通常検索" : "かんたんモード";
+  els.easyModeToggle.textContent = easySearchMode ? "通常検索に戻る" : "かんたんモードにする";
   els.easyModeToggle.setAttribute("aria-pressed", String(easySearchMode));
   els.searchModeDescription.textContent = easySearchMode
     ? "ボタンを組み合わせて、リクエスト候補をかんたんに絞り込めます。気になる条件を選んで、少しずつ曲を探してみてください。"
