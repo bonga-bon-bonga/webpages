@@ -231,7 +231,13 @@ def main():
             entry["titleSearchWords"] = unique(title_search_words + generated_title_words)
 
         # アーティストの検索ワードを生成する
-        dictionary_artist_words = dictionary_values(artist_alias_dictionary, artist, source_artist)
+        artist_dictionary_keys = [artist]
+        if entry.get("includeSourceArtistInSearch") is not False:
+            artist_dictionary_keys.append(source_artist)
+        dictionary_artist_words = dictionary_values(
+            artist_alias_dictionary,
+            *artist_dictionary_keys,
+        )
         if dictionary_artist_words is not None:
             entry["artistSearchWords"] = unique(dictionary_artist_words)
         else:

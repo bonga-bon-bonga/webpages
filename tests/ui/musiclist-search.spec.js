@@ -65,6 +65,37 @@ test("通常検索とかんたんモードをタブで切り替えられる", as
   await expect(description).toHaveText(NORMAL_DESCRIPTION);
 });
 
+test("曲単位補正で除外した元アーティストは検索対象にしない", async ({ page }) => {
+  await page.route("**/data/musiclist.json", route => route.fulfill({
+    json: [
+      {
+        no: "list#1",
+        displayTitle: "Target Song",
+        displayArtist: "Singer",
+        songKey: "target song|singer",
+        sourceTitle: "Target Song",
+        sourceArtist: "Composer",
+        includeSourceArtistInSearch: false,
+        titleSearchWords: [],
+        artistSearchWords: [],
+        playable: "○",
+        genre: "J-POP",
+      },
+    ],
+  }));
+  await page.reload();
+  await openTab(page, "search");
+
+  const search = page.locator("#search");
+  await search.fill("Composer");
+  await expect(page.locator("#empty")).toBeVisible();
+  await expect(page.locator("#songs .song-card")).toHaveCount(0);
+
+  await search.fill("Singer");
+  await expect(page.locator("#songs .song-card")).toHaveCount(1);
+  await expect(page.locator("#songs .song-card .song-artist")).toHaveText("Singer");
+});
+
 test("かんたんモードは1カテゴリずつ展開し候補を自動更新する", async ({ page }) => {
   await openTab(page, "search");
   await page.getByRole("tab", { name: "かんたんモード" }).click();

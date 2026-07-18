@@ -330,20 +330,21 @@ def load_existing_entries():
 
 def load_search_enhancements():
     if not os.path.exists(SEARCH_ENHANCEMENTS_PATH):
-        return {"titleCorrections": {}, "artistCorrections": {}}
+        return {"titleCorrections": {}, "artistCorrections": {}, "songCorrections": {}}
 
     with open(SEARCH_ENHANCEMENTS_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     if not isinstance(data, dict):
-        return {"titleCorrections": {}, "artistCorrections": {}}
+        return {"titleCorrections": {}, "artistCorrections": {}, "songCorrections": {}}
 
-    if "titleCorrections" not in data and "artistCorrections" not in data:
+    if not any(key in data for key in ("titleCorrections", "artistCorrections", "songCorrections")):
         data = {"titleCorrections": data, "artistCorrections": {}}
 
     return {
         "titleCorrections": normalize_corrections(data.get("titleCorrections")),
         "artistCorrections": normalize_corrections(data.get("artistCorrections")),
+        "songCorrections": normalize_song_corrections(data.get("songCorrections")),
     }
 
 
@@ -385,9 +386,13 @@ def load_music_metadata():
     return entries, data
 
 
-def build_input_hash(sheet_hash, metadata_records):
+def build_input_hash(sheet_hash, metadata_records, search_enhancements):
     return calculate_table_hash(
-        {"spreadsheetHash": sheet_hash, "musicMetadata": metadata_records}
+        {
+            "spreadsheetHash": sheet_hash,
+            "musicMetadata": metadata_records,
+            "searchEnhancements": search_enhancements,
+        }
     )
 
 ''' 検索補正を正規化する関数。 '''
@@ -400,6 +405,41 @@ def normalize_corrections(value):
         for key, correction in value.items()
         if create_search_key(key) and normalize_cell_text(correction)
     }
+
+
+def normalize_song_corrections(value):
+    if value is None:
+        return {}
+    if not isinstance(value, list):
+        raise ValueError("songCorrections must be a JSON array")
+
+    result = {}
+    for index, correction in enumerate(value):
+        if not isinstance(correction, dict):
+            raise ValueError(f"songCorrections[{index}] must be a JSON object")
+
+        source_title = normalize_cell_text(correction.get("sourceTitle"))
+        source_artist = normalize_cell_text(correction.get("sourceArtist"))
+        display_artist = normalize_cell_text(correction.get("displayArtist"))
+        include_source_artist = correction.get("includeSourceArtistInSearch")
+        if not source_title or not source_artist or not display_artist:
+            raise ValueError(
+                f"songCorrections[{index}] requires sourceTitle, sourceArtist, and displayArtist"
+            )
+        if not isinstance(include_source_artist, bool):
+            raise ValueError(
+                f"songCorrections[{index}].includeSourceArtistInSearch must be boolean"
+            )
+
+        key = song_key(source_title, source_artist)
+        if key in result:
+            raise ValueError(f"Duplicate songCorrections source key: {key}")
+        result[key] = {
+            "displayArtist": display_artist,
+            "includeSourceArtistInSearch": include_source_artist,
+        }
+
+    return result
 
 ''' 値を補正する関数。補正が存在する場合は補正値を返し、存在しない場合は元の値を返す。'''
 def corrected_value(source_value, corrections):
@@ -415,6 +455,7 @@ def build_musiclist(
     output_items = []
     title_corrections = search_enhancements["titleCorrections"]
     artist_corrections = search_enhancements["artistCorrections"]
+    song_corrections = search_enhancements.get("songCorrections", {})
     metadata_entries = metadata_entries or {}
 
     for row in sheet_rows:
@@ -425,6 +466,10 @@ def build_musiclist(
 
         display_title = corrected_value(source_title, title_corrections)
         display_artist = corrected_value(source_artist, artist_corrections)
+        source_key = song_key(source_title, source_artist)
+        song_correction = song_corrections.get(source_key)
+        if song_correction:
+            display_artist = song_correction["displayArtist"]
         key = song_key(display_title, display_artist)
         legacy_key = f"{source_title}|{source_artist}"
         existing = normalize_entry(
@@ -451,28 +496,33 @@ def build_musiclist(
             tie_ups = existing["tieUps"]
         genre = pick_value(row, "ジャンル", "genre")
 
-        output_items.append(
-            {
-                "no": format_source_no(
-                    pick_value(row, "No", "no"),
-                    row["_numberPrefix"],
-                ),
-                "displayTitle": display_title,
-                "displayArtist": display_artist,
-                "songKey": key,
-                "titleSearchWords": existing["titleSearchWords"],
-                "artistSearchWords": existing["artistSearchWords"],
-                "releaseDecade": release_decade,
-                "classification": classification,
-                "tags": metadata_tags,
-                "tieUps": tie_ups,
-                "sourceTitle": source_title,
-                "sourceArtist": source_artist,
-                "playable": pick_value(row, "弾ける曲", "playable"),
-                "genre": genre,
-                "note": pick_value(row, "補足", "note"),
-            }
-        )
+        output_item = {
+            "no": format_source_no(
+                pick_value(row, "No", "no"),
+                row["_numberPrefix"],
+            ),
+            "displayTitle": display_title,
+            "displayArtist": display_artist,
+            "songKey": key,
+            "titleSearchWords": existing["titleSearchWords"],
+            "artistSearchWords": []
+            if song_correction and not song_correction["includeSourceArtistInSearch"]
+            else existing["artistSearchWords"],
+            "releaseDecade": release_decade,
+            "classification": classification,
+            "tags": metadata_tags,
+            "tieUps": tie_ups,
+            "sourceTitle": source_title,
+            "sourceArtist": source_artist,
+            "playable": pick_value(row, "弾ける曲", "playable"),
+            "genre": genre,
+            "note": pick_value(row, "補足", "note"),
+        }
+        if song_correction:
+            output_item["includeSourceArtistInSearch"] = song_correction[
+                "includeSourceArtistInSearch"
+            ]
+        output_items.append(output_item)
 
     return output_items
 
@@ -487,13 +537,17 @@ def save_json(data):
 def main():
     sheet_rows, sheet_hash = load_sheets()
     metadata_entries, metadata_records = load_music_metadata()
-    input_hash = build_input_hash(sheet_hash, metadata_records)
+    search_enhancements = load_search_enhancements()
+    input_hash = build_input_hash(
+        sheet_hash,
+        metadata_records,
+        search_enhancements,
+    )
     if has_unchanged_input(HASH_PATH, input_hash, OUTPUT_JSON_PATH):
         print("Music list inputs are unchanged. Skipping update.")
         return
 
     existing_entries = load_existing_entries()
-    search_enhancements = load_search_enhancements()
     musiclist = build_musiclist(
         sheet_rows,
         existing_entries,
