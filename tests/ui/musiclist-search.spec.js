@@ -168,6 +168,7 @@ test("曲カードは情報領域とコピー・詳細ボタンを分離して�
   await expect(detailButton).toHaveCount(1);
   await expect(copyButton).toHaveAccessibleName(/をリクエスト形式でコピー$/);
   await expect(detailButton).toHaveAccessibleName(/の詳細を開く$/);
+  await expect(detailButton.locator(".theme-icon-light")).toHaveAttribute("src", "../lib/icon/white/detail.svg");
 
   await copyButton.click();
   await expect(page.locator("#copyToastMessage")).toHaveText("クリップボードにコピーしました！");
@@ -176,6 +177,53 @@ test("曲カードは情報領域とコピー・詳細ボタンを分離して�
   await expect(page.locator("#songDetailModal")).toBeVisible();
   await expect(page.locator("#songDetailModalLabel")).toHaveText("曲の詳細");
   await expect(page.locator("#songDetailModal .btn-close")).toHaveAccessibleName("閉じる");
+});
+
+test("ハンバーガーメニューから使い方と設定を開ける", async ({ page }) => {
+  const menuButton = page.getByRole("button", { name: "メニュー", exact: true });
+  const menu = page.getByRole("menu", { name: "サイトメニュー" });
+  await expect(page.locator(".site-navbar").getByRole("button", { name: "使い方" })).toHaveCount(0);
+  await expect(menuButton.locator("img")).toHaveAttribute("src", "../lib/icon/white/menu.svg");
+
+  await menuButton.click();
+  await expect(menuButton).toHaveAttribute("aria-expanded", "true");
+  await expect(menu).toBeVisible();
+  await expect(page.getByRole("menuitem", { name: "使い方" })).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(page.getByRole("menuitem", { name: "設定" })).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(menu).toBeHidden();
+  await expect(menuButton).toBeFocused();
+
+  await menuButton.click();
+  await page.getByRole("menuitem", { name: "設定" }).click();
+  await expect(page.locator("#settingsModal")).toBeVisible();
+  await expect(page.locator("#floatingMenu")).toBeHidden();
+  await page.locator("#settingsModal .btn-close").click();
+
+  await expect(menuButton).toBeVisible();
+  await menuButton.click();
+  await page.getByRole("menuitem", { name: "使い方" }).click();
+  await expect(page.locator("#informationModal")).toBeVisible();
+});
+
+test("ヘッダーはタブレットとスマホの下方向スクロール時だけ隠れる", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop-chromium", "表示幅ごとの挙動を1プロジェクトで検証");
+  const navbar = page.locator("#siteNavbar");
+
+  for (const width of [900, 390]) {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.setViewportSize({ width, height: 600 });
+    await page.evaluate(() => window.scrollTo(0, 600));
+    await expect(navbar).toHaveClass(/is-hidden/);
+    await page.evaluate(() => window.scrollTo(0, 200));
+    await expect(navbar).not.toHaveClass(/is-hidden/);
+  }
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.setViewportSize({ width: 1200, height: 700 });
+  await page.evaluate(() => window.scrollTo(0, 600));
+  await expect(navbar).not.toHaveClass(/is-hidden/);
 });
 
 test("スキップリンクで本文へキーボード移動できる", async ({ page }) => {

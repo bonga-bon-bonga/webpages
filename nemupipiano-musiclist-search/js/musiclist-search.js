@@ -107,13 +107,18 @@ const els = {
   panels: document.querySelectorAll(".tab-panel"),
   copyToast: document.getElementById("copyToast"),
   siteFooter: document.querySelector(".site-footer"),
+  siteNavbar: document.getElementById("siteNavbar"),
   backToTop: document.getElementById("backToTop"),
-  settingsButton: document.getElementById("settingsButton"),
+  floatingMenu: document.getElementById("floatingMenu"),
+  floatingMenuPanel: document.getElementById("floatingMenuPanel"),
+  floatingMenuItems: document.querySelectorAll("[data-floating-menu-item]"),
+  menuButton: document.getElementById("menuButton"),
   appPanel: document.getElementById("appPanel"),
   themeModes: document.querySelectorAll("[name='themeMode']"),
   panelFontSizes: document.querySelectorAll("[name='panelFontSize']"),
   accentColors: document.querySelectorAll("[name='accentColor']"),
   informationModal: document.getElementById("informationModal"),
+  settingsModal: document.getElementById("settingsModal"),
   songDetailModal: document.getElementById("songDetailModal"),
   songDetailBody: document.getElementById("songDetailBody"),
 };
@@ -139,6 +144,7 @@ let longPressStartY = 0;
 let lastSearchGuideHasKeyword = null;
 let searchGuideAutoInitialized = false;
 let footerScrollTimer = null;
+let headerScrollAnchor = window.scrollY;
 let fuzzySearchPresets = [];
 let performancePreviews = {};
 let fuzzySearchMode = false;
@@ -1441,11 +1447,11 @@ function songAccentClass(song) {
   return accentColorEnabled ? `has-accent accent-${songAccentType(song)}` : "";
 }
 
-function menuIconHtml() {
+function detailIconHtml() {
   return `
     <span class="theme-icon song-card-menu-icon" aria-hidden="true">
-      <img class="theme-icon-light" src="../lib/icon/white/menu.svg" alt="">
-      <img class="theme-icon-dark" src="../lib/icon/black/menu.svg" alt="">
+      <img class="theme-icon-light" src="../lib/icon/white/detail.svg" alt="">
+      <img class="theme-icon-dark" src="../lib/icon/black/detail.svg" alt="">
     </span>
   `;
 }
@@ -1469,7 +1475,7 @@ function renderSongCards(items) {
         </div>
         <button class="song-card-copy" type="button" data-copy-song="${escapeHtml(song.title)}" data-copy-artist="${escapeHtml(song.artist)}" data-copy-no="${escapeHtml(song.no)}" data-song-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}をリクエスト形式でコピー"></button>
         <button class="song-card-menu" type="button" data-card-menu data-song-key="${escapeHtml(favoriteKeyForSong(song))}" aria-label="${escapeHtml(song.title)}の詳細を開く">
-          ${menuIconHtml()}
+          ${detailIconHtml()}
         </button>
       </article>
     </div>
@@ -1944,7 +1950,36 @@ function clearSongDetail() {
 }
 
 function setFloatingActionsSuppressed(suppressed) {
+  if (suppressed) setFloatingMenuOpen(false);
   document.body.classList.toggle("floating-actions-suppressed", suppressed);
+}
+
+function setFloatingMenuOpen(open, { restoreFocus = false } = {}) {
+  if (!els.floatingMenuPanel || !els.menuButton) return;
+  els.floatingMenuPanel.hidden = !open;
+  els.menuButton.setAttribute("aria-expanded", String(open));
+  els.floatingMenu.classList.toggle("is-open", open);
+  if (open) {
+    els.floatingMenuItems[0]?.focus();
+  } else if (restoreFocus) {
+    els.menuButton.focus();
+  }
+}
+
+function updateResponsiveHeaderVisibility() {
+  if (!els.siteNavbar) return;
+  const currentScrollY = Math.max(window.scrollY, 0);
+  const responsiveWidth = window.matchMedia("(max-width: 991.98px)").matches;
+  if (!responsiveWidth || currentScrollY <= 16) {
+    els.siteNavbar.classList.remove("is-hidden");
+    headerScrollAnchor = currentScrollY;
+    return;
+  }
+
+  const scrollDelta = currentScrollY - headerScrollAnchor;
+  if (Math.abs(scrollDelta) < 8) return;
+  els.siteNavbar.classList.toggle("is-hidden", scrollDelta > 0);
+  headerScrollAnchor = currentScrollY;
 }
 
 function openSongDetail(song) {
@@ -2056,6 +2091,7 @@ function updateBackToTopVisibility() {
 
 function handlePageScroll() {
   updateBackToTopVisibility();
+  updateResponsiveHeaderVisibility();
   if (!els.siteFooter) return;
 
   els.siteFooter.classList.add("is-scrolling");
@@ -2296,6 +2332,12 @@ els.backToTop.addEventListener("click", () => {
     behavior: reducedMotionQuery.matches ? "auto" : "smooth",
   });
 });
+els.menuButton.addEventListener("click", () => {
+  setFloatingMenuOpen(els.floatingMenuPanel.hidden);
+});
+els.floatingMenuItems.forEach(item => {
+  item.addEventListener("click", () => setFloatingMenuOpen(false));
+});
 els.panelFontSizes.forEach(option => {
   option.addEventListener("change", () => applyAppPanelFontSize(option.value));
 });
@@ -2315,8 +2357,37 @@ if (systemThemeQuery.addEventListener) {
 } else if (systemThemeQuery.addListener) {
   systemThemeQuery.addListener(handleSystemThemeChange);
 }
-window.addEventListener("resize", refreshFuzzyCategoryScrollControls, { passive: true });
+window.addEventListener("resize", () => {
+  refreshFuzzyCategoryScrollControls();
+  updateResponsiveHeaderVisibility();
+}, { passive: true });
 window.addEventListener("scroll", handlePageScroll, { passive: true });
+
+document.addEventListener("pointerdown", event => {
+  if (!els.floatingMenuPanel.hidden && !event.target.closest("#floatingMenu")) {
+    setFloatingMenuOpen(false);
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (els.floatingMenuPanel.hidden) return;
+  if (event.key === "Escape") {
+    event.preventDefault();
+    setFloatingMenuOpen(false, { restoreFocus: true });
+    return;
+  }
+  if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+
+  event.preventDefault();
+  const menuItems = [...els.floatingMenuItems];
+  const currentIndex = menuItems.indexOf(document.activeElement);
+  let nextIndex;
+  if (event.key === "Home") nextIndex = 0;
+  else if (event.key === "End") nextIndex = menuItems.length - 1;
+  else if (event.key === "ArrowDown") nextIndex = (currentIndex + 1) % menuItems.length;
+  else nextIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+  menuItems[nextIndex]?.focus();
+});
 
 document.addEventListener("pointerdown", (event) => {
   if (event.target.closest("[data-card-menu]")) return;
@@ -2417,6 +2488,11 @@ if (els.songDetailModal) {
 if (els.informationModal) {
   els.informationModal.addEventListener("show.bs.modal", () => setFloatingActionsSuppressed(true));
   els.informationModal.addEventListener("hidden.bs.modal", () => setFloatingActionsSuppressed(false));
+}
+
+if (els.settingsModal) {
+  els.settingsModal.addEventListener("show.bs.modal", () => setFloatingActionsSuppressed(true));
+  els.settingsModal.addEventListener("hidden.bs.modal", () => setFloatingActionsSuppressed(false));
 }
 
 els.tabs.forEach(tab => {
