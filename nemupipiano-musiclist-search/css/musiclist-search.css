@@ -22,6 +22,7 @@
     --page-filter-active-border: #fdba74;
     --favorite-card-bg: #fffbeb;
     --favorite-card-border: #fde68a;
+    --floating-icon-half-offset: .725rem;
 }
 
 html[data-theme="dark"] {
@@ -1529,14 +1530,14 @@ html[data-theme="dark"] .text-secondary {
 
 .back-to-top {
     position: fixed;
-    bottom: 4.25rem;
+    bottom: calc(4.25rem - var(--floating-icon-half-offset));
     right: 1rem;
     z-index: 1070;
 }
 
 .floating-menu {
     position: fixed;
-    bottom: 4.25rem;
+    bottom: calc(4.25rem - var(--floating-icon-half-offset));
     left: 1rem;
     z-index: 1070;
 }
@@ -1931,14 +1932,14 @@ body.floating-actions-suppressed .floating-menu {
 
     .back-to-top {
     right: .75rem;
-    bottom: 4rem;
+    bottom: calc(4rem - var(--floating-icon-half-offset));
     width: 2.75rem;
     height: 2.75rem;
     }
 
     .floating-menu {
     left: .75rem;
-    bottom: 4rem;
+    bottom: calc(4rem - var(--floating-icon-half-offset));
     }
 
     .menu-button {
