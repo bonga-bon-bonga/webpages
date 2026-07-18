@@ -64,9 +64,9 @@ body {
     font-weight: 700;
 }
 
-.navbar-button {
-    margin-left: .75rem;
-    white-space: nowrap;
+.site-navbar {
+    transition: transform .2s ease;
+    will-change: transform;
 }
 
 
@@ -1508,10 +1508,7 @@ html[data-theme="dark"] .text-secondary {
 }
 
 .back-to-top,
-.settings-button {
-    position: fixed;
-    bottom: 4.25rem;
-    z-index: 1070;
+.menu-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1531,24 +1528,68 @@ html[data-theme="dark"] .text-secondary {
 }
 
 .back-to-top {
+    position: fixed;
+    bottom: 4.25rem;
     right: 1rem;
+    z-index: 1070;
 }
 
-.settings-button {
+.floating-menu {
+    position: fixed;
+    bottom: 4.25rem;
     left: 1rem;
+    z-index: 1070;
+}
+
+.floating-menu-panel {
+    position: absolute;
+    bottom: calc(100% + .65rem);
+    left: 0;
+    display: grid;
+    min-width: 9rem;
+    overflow: hidden;
+    border: 1px solid var(--page-line);
+    border-radius: .9rem;
+    background: var(--page-control);
+    box-shadow: 0 1rem 2rem rgba(41, 37, 36, .2);
+}
+
+.floating-menu-panel[hidden] {
+    display: none;
+}
+
+.floating-menu-item {
+    border: 0;
+    border-bottom: 1px solid var(--page-line);
+    padding: .8rem 1rem;
+    color: var(--page-text);
+    background: transparent;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.floating-menu-item:last-child {
+    border-bottom: 0;
+}
+
+.floating-menu-item:hover,
+.floating-menu-item:focus-visible {
+    color: var(--page-accent);
+    background: var(--page-accent-soft);
+    outline: 0;
 }
 
 .back-to-top:hover,
 .back-to-top:focus,
-.settings-button:hover,
-.settings-button:focus {
+.menu-button:hover,
+.menu-button:focus {
     background: var(--page-accent);
     box-shadow: 0 1rem 1.75rem rgba(41, 37, 36, .22);
     transform: translateY(-2px);
 }
 
 .back-to-top:active,
-.settings-button:active {
+.menu-button:active {
     transform: translateY(0);
 }
 
@@ -1557,7 +1598,7 @@ html[data-theme="dark"] .text-secondary {
 }
 
 body.floating-actions-suppressed .back-to-top,
-body.floating-actions-suppressed .settings-button {
+body.floating-actions-suppressed .floating-menu {
     display: none;
 }
 
@@ -1609,12 +1650,17 @@ body.floating-actions-suppressed .settings-button {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .site-footer {
+    .site-footer,
+    .site-navbar {
         transition: none;
     }
 }
 
 @media (max-width: 991.98px) {
+    .site-navbar.is-hidden {
+        transform: translateY(-100%);
+    }
+
     .song-detail-field:not(.song-detail-related-field) {
     grid-template-columns: 1fr;
     gap: .25rem;
@@ -1890,9 +1936,12 @@ body.floating-actions-suppressed .settings-button {
     height: 2.75rem;
     }
 
-    .settings-button {
+    .floating-menu {
     left: .75rem;
     bottom: 4rem;
+    }
+
+    .menu-button {
     width: 2.75rem;
     height: 2.75rem;
     }
