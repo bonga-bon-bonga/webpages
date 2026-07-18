@@ -21,5 +21,48 @@
     "井上陽水奥田民生": "井上陽水、奥田民生",
     "クリステン・アンダーソン＝ロペス/ロバート・ロペス": "クリステン・アンダーソン＝ロペス、ロバート・ロペス"
   },
-  "songCorrections": []
+  "songCorrections": [
+    {
+      "sourceTitle": "世界の約束",
+      "sourceArtist": "久石譲",
+      "displayArtist": "倍賞千恵子",
+      "includeSourceArtistInSearch": true
+    },
+    {
+      "sourceTitle": "君をのせて",
+      "sourceArtist": "久石譲",
+      "displayArtist": "井上あずみ",
+      "includeSourceArtistInSearch": true
+    },
+    {
+      "sourceTitle": "風のとおり道",
+      "sourceArtist": "久石譲",
+      "displayArtist": "井上あずみ",
+      "includeSourceArtistInSearch": true
+    },
+    {
+      "sourceTitle": "さんぽ",
+      "sourceArtist": "久石譲",
+      "displayArtist": "井上あずみ",
+      "includeSourceArtistInSearch": true
+    },
+    {
+      "sourceTitle": "となりのトトロ",
+      "sourceArtist": "久石譲",
+      "displayArtist": "井上あずみ",
+        "includeSourceArtistInSearch": true
+    },
+    {
+      "sourceTitle": "崖の上のポニョ",
+      "sourceArtist": "久石譲",
+      "displayArtist": "藤岡藤巻と大橋のぞみ",
+      "includeSourceArtistInSearch": true
+    },
+    {
+      "sourceTitle": "君をのせて",
+      "sourceArtist": "久石譲",
+      "displayArtist": "井上あずみ",
+      "includeSourceArtistInSearch": true
+    }
+  ]
 }
