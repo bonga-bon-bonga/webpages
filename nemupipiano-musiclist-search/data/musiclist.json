@@ -51676,8 +51676,8 @@
   {
     "no": "disney#3",
     "displayTitle": "雪だるまつくろう",
-    "displayArtist": "クリステン・アンダーソン＝ロペス/ロバート・ロペス",
-    "songKey": "雪だるまつくろう|クリステンアンダーソン=ロペス/ロバートロペス",
+    "displayArtist": "クリステン・アンダーソン＝ロペス、ロバート・ロペス",
+    "songKey": "雪だるまつくろう|クリステンアンダーソン=ロペスロバートロペス",
     "titleSearchWords": [
       "ゆきだるまつくろう",
       "ユキダルマツクロウ"
@@ -53059,15 +53059,15 @@
   {
     "no": "ghibli#1",
     "displayTitle": "世界の約束",
-    "displayArtist": "久石譲",
-    "songKey": "世界の約束|久石譲",
+    "displayArtist": "倍賞千恵子",
+    "songKey": "世界の約束|倍賞千恵子",
     "titleSearchWords": [
       "せかいのやくそく",
       "セカイノヤクソク"
     ],
     "artistSearchWords": [
-      "ひさいしじょう",
-      "ヒサイシジョウ"
+      "ばいしょうちえこ",
+      "バイショウチエコ"
     ],
     "releaseDecade": null,
     "classification": {
@@ -53111,7 +53111,8 @@
     "sourceArtist": "久石譲",
     "playable": "",
     "genre": "",
-    "note": ""
+    "note": "",
+    "includeSourceArtistInSearch": true
   },
   {
     "no": "ghibli#2",
@@ -53171,15 +53172,15 @@
   {
     "no": "ghibli#3",
     "displayTitle": "風のとおり道",
-    "displayArtist": "久石譲",
-    "songKey": "風のとおり道|久石譲",
+    "displayArtist": "井上あずみ",
+    "songKey": "風のとおり道|井上あずみ",
     "titleSearchWords": [
       "かぜのとおりみち",
       "カゼノトオリミチ"
     ],
     "artistSearchWords": [
-      "ひさいしじょう",
-      "ヒサイシジョウ"
+      "いのうえあずみ",
+      "イノウエアズミ"
     ],
     "releaseDecade": null,
     "classification": {
@@ -53220,7 +53221,8 @@
     "sourceArtist": "久石譲",
     "playable": "",
     "genre": "",
-    "note": ""
+    "note": "",
+    "includeSourceArtistInSearch": true
   },
   {
     "no": "ghibli#4",
@@ -53281,15 +53283,15 @@
   {
     "no": "ghibli#5",
     "displayTitle": "さんぽ",
-    "displayArtist": "久石譲",
-    "songKey": "さんぽ|久石譲",
+    "displayArtist": "井上あずみ",
+    "songKey": "さんぽ|井上あずみ",
     "titleSearchWords": [
       "さんぽ",
       "サンポ"
     ],
     "artistSearchWords": [
-      "ひさいしじょう",
-      "ヒサイシジョウ"
+      "いのうえあずみ",
+      "イノウエアズミ"
     ],
     "releaseDecade": "2000年代",
     "classification": {
@@ -53332,7 +53334,8 @@
     "sourceArtist": "久石譲",
     "playable": "",
     "genre": "",
-    "note": ""
+    "note": "",
+    "includeSourceArtistInSearch": true
   },
   {
     "no": "ghibli#6",
@@ -53394,15 +53397,15 @@
   {
     "no": "ghibli#7",
     "displayTitle": "となりのトトロ",
-    "displayArtist": "久石譲",
-    "songKey": "となりのトトロ|久石譲",
+    "displayArtist": "井上あずみ",
+    "songKey": "となりのトトロ|井上あずみ",
     "titleSearchWords": [
       "となりのととろ",
       "トナリノトトロ"
     ],
     "artistSearchWords": [
-      "ひさいしじょう",
-      "ヒサイシジョウ"
+      "いのうえあずみ",
+      "イノウエアズミ"
     ],
     "releaseDecade": null,
     "classification": {
@@ -53444,20 +53447,23 @@
     "sourceArtist": "久石譲",
     "playable": "",
     "genre": "",
-    "note": ""
+    "note": "",
+    "includeSourceArtistInSearch": true
   },
   {
     "no": "ghibli#8",
     "displayTitle": "崖の上のポニョ",
-    "displayArtist": "久石譲",
-    "songKey": "崖の上のポニョ|久石譲",
+    "displayArtist": "藤岡藤巻と大橋のぞみ",
+    "songKey": "崖の上のポニョ|藤岡藤巻と大橋のぞみ",
     "titleSearchWords": [
       "がけのうえのぽにょ",
       "ガケノウエノポニョ"
     ],
     "artistSearchWords": [
-      "ひさいしじょう",
-      "ヒサイシジョウ"
+      "ふじおかふじまき",
+      "おおはしのぞみ",
+      "フジオカフジマキ",
+      "オオハシノゾミ"
     ],
     "releaseDecade": "2000年代",
     "classification": {
@@ -53498,7 +53504,8 @@
     "sourceArtist": "久石譲",
     "playable": "",
     "genre": "",
-    "note": ""
+    "note": "",
+    "includeSourceArtistInSearch": true
   },
   {
     "no": "ghibli#9",
@@ -53727,15 +53734,15 @@
   {
     "no": "ghibli#13",
     "displayTitle": "君をのせて",
-    "displayArtist": "久石譲",
-    "songKey": "君をのせて|久石譲",
+    "displayArtist": "井上あずみ",
+    "songKey": "君をのせて|井上あずみ",
     "titleSearchWords": [
       "きみをのせて",
       "キミヲノセテ"
     ],
     "artistSearchWords": [
-      "ひさいしじょう",
-      "ヒサイシジョウ"
+      "いのうえあずみ",
+      "イノウエアズミ"
     ],
     "releaseDecade": null,
     "classification": {
@@ -53779,7 +53786,8 @@
     "sourceArtist": "久石譲",
     "playable": "",
     "genre": "",
-    "note": ""
+    "note": "",
+    "includeSourceArtistInSearch": true
   },
   {
     "no": "ghibli#14",

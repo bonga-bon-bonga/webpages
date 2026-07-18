@@ -244,6 +244,7 @@ function normalizeMusiclistSong(item) {
     displayArtist,
     sourceTitle,
     sourceArtist,
+    includeSourceArtistInSearch: item?.includeSourceArtistInSearch !== false,
     songKey: normalizeCellText(item?.songKey) || createSongKey(displayTitle, displayArtist),
     titleSearchWords: normalizeStringArray(item?.titleSearchWords ?? item?.searchWords),
     artistSearchWords: normalizeStringArray(item?.artistSearchWords ?? item?.artistAliases),
@@ -594,7 +595,7 @@ function searchTargetsForScope(song, scope) {
   ];
   const artistTargets = [
     song.artist,
-    song.sourceArtist,
+    ...(song.includeSourceArtistInSearch ? [song.sourceArtist] : []),
     ...normalizeStringArray(song.artistSearchWords),
   ];
 

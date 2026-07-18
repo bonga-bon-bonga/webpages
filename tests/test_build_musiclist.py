@@ -158,12 +158,107 @@ class BuildMusiclistTests(unittest.TestCase):
     def test_metadata_changes_affect_input_hash(self):
         sheet_hash = "sheet-hash"
         first = self.module.build_input_hash(
-            sheet_hash, [{"metadata": {"releaseDecade": "2010年代"}}]
+            sheet_hash,
+            [{"metadata": {"releaseDecade": "2010年代"}}],
+            {"titleCorrections": {}, "artistCorrections": {}, "songCorrections": {}},
         )
         second = self.module.build_input_hash(
-            sheet_hash, [{"metadata": {"releaseDecade": "2020年代"}}]
+            sheet_hash,
+            [{"metadata": {"releaseDecade": "2020年代"}}],
+            {"titleCorrections": {}, "artistCorrections": {}, "songCorrections": {}},
         )
         self.assertNotEqual(first, second)
+
+    def test_search_enhancements_changes_affect_input_hash(self):
+        sheet_hash = "sheet-hash"
+        metadata = [{"metadata": {"releaseDecade": "2020年代"}}]
+        first = self.module.build_input_hash(
+            sheet_hash,
+            metadata,
+            {"titleCorrections": {}, "artistCorrections": {}, "songCorrections": {}},
+        )
+        second = self.module.build_input_hash(
+            sheet_hash,
+            metadata,
+            {
+                "titleCorrections": {},
+                "artistCorrections": {},
+                "songCorrections": {
+                    self.module.song_key("Song", "Composer"): {
+                        "displayArtist": "Singer",
+                        "includeSourceArtistInSearch": False,
+                    }
+                },
+            },
+        )
+        self.assertNotEqual(first, second)
+
+    def test_applies_artist_correction_to_only_the_matching_song(self):
+        corrections = self.module.normalize_song_corrections(
+            [
+                {
+                    "sourceTitle": "Target Song",
+                    "sourceArtist": "Composer",
+                    "displayArtist": "Singer",
+                    "includeSourceArtistInSearch": False,
+                }
+            ]
+        )
+        rows = [
+            {
+                "No": 1,
+                "曲名": "Target Song",
+                "アーティスト": "Composer",
+                "_numberPrefix": "list",
+            },
+            {
+                "No": 2,
+                "曲名": "Other Song",
+                "アーティスト": "Composer",
+                "_numberPrefix": "list",
+            },
+        ]
+        musiclist = self.module.build_musiclist(
+            rows,
+            existing_entries={
+                self.module.song_key("Target Song", "Composer"): {
+                    "artistSearchWords": ["composer"],
+                }
+            },
+            search_enhancements={
+                "titleCorrections": {},
+                "artistCorrections": {},
+                "songCorrections": corrections,
+            },
+        )
+
+        self.assertEqual(musiclist[0]["displayArtist"], "Singer")
+        self.assertEqual(musiclist[0]["sourceArtist"], "Composer")
+        self.assertEqual(musiclist[0]["artistSearchWords"], [])
+        self.assertFalse(musiclist[0]["includeSourceArtistInSearch"])
+        self.assertEqual(
+            musiclist[0]["songKey"], self.module.song_key("Target Song", "Singer")
+        )
+        self.assertEqual(musiclist[1]["displayArtist"], "Composer")
+        self.assertNotIn("includeSourceArtistInSearch", musiclist[1])
+
+    def test_rejects_duplicate_song_correction_source_keys(self):
+        corrections = [
+            {
+                "sourceTitle": "Song",
+                "sourceArtist": "Artist",
+                "displayArtist": "Singer A",
+                "includeSourceArtistInSearch": False,
+            },
+            {
+                "sourceTitle": "Ｓｏｎｇ",
+                "sourceArtist": "Ａｒｔｉｓｔ",
+                "displayArtist": "Singer B",
+                "includeSourceArtistInSearch": True,
+            },
+        ]
+        with self.assertRaisesRegex(ValueError, "Duplicate songCorrections"):
+            self.module.normalize_song_corrections(corrections)
 
     def test_normalize_entry_keeps_metadata_when_called_repeatedly(self):
         entry = {
