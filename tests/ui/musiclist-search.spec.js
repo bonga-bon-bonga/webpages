@@ -108,7 +108,8 @@ test("曲単位補正で除外した元アーティストは検索対象にし�
 
   const search = page.locator("#search");
   await search.fill("Composer");
-  await expect(page.locator("#empty")).toBeVisible();
+  await expect(page.locator("#empty")).toBeHidden();
+  await expect(page.locator("#zeroResultRecommendations")).toBeVisible();
   await expect(page.locator("#songs .song-card")).toHaveCount(0);
 
   await search.fill("Singer");
@@ -177,7 +178,11 @@ test("入力候補をキーボードで選択し表記揺れ候補から再検�
   await expect(page.locator("#songs .song-card")).toHaveCount(0);
   await expect(page.locator("#searchAlternatives")).toBeVisible();
   await expect(page.locator("#searchAlternatives")).toContainText("Blue Night");
+  await expect(page.locator("#empty")).toBeHidden();
   await expect(page.locator("#zeroResultRecommendations")).toBeVisible();
+  await expect(page.locator("#zeroResultRecommendationsTitle")).toHaveText(
+    "一致する曲は見つかりませんでしたが、こんな曲はいかがですか？"
+  );
   await expect(page.locator("#zeroResultRecommendations")).toContainText("条件には完全一致しませんが、近い曲です。");
   await expect(page.locator("#zeroResultRecommendationSongs .song-card")).toHaveCount(3);
   await page.locator("#searchAlternatives").getByRole("button", { name: /Blue Night/ }).click();
@@ -239,14 +244,15 @@ test("久しぶりの曲はコピー履歴が古い順に表示する", async ({
       { key: "song 001|artist 1", copiedAt: "2024-07-01T00:00:00.000Z" },
     ]));
   });
+  await page.locator('[data-home-random-source="all"]').click();
 
-  await page.locator('[data-home-random-source="recent"]').click();
-  await expect(page.locator("#homeRecommendations .song-title")).toHaveText([
+  await expect(page.locator('[data-home-random-source="recent"]')).toHaveCount(0);
+  await expect(page.locator("#longAgoCopiedSongs .song-title")).toHaveText([
     "Song 001",
     "Song 002",
     "Song 003",
   ]);
-  await expect(page.locator('[data-home-random-source="recent"]')).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#longAgoCopiedSongs")).toBeVisible();
 });
 
 test("かんたんモードは1カテゴリずつ展開し候補を自動更新する", async ({ page }) => {

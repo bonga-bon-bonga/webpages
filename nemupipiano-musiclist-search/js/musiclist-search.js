@@ -107,6 +107,8 @@ const els = {
   homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
   homeRecommendations: document.getElementById("homeRecommendations"),
   homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
+  longAgoCopiedSongs: document.getElementById("longAgoCopiedSongs"),
+  longAgoCopiedEmpty: document.getElementById("longAgoCopiedEmpty"),
   homeMoodOptions: document.getElementById("homeMoodOptions"),
   homeMoodSongs: document.getElementById("homeMoodSongs"),
   homeMoodEmpty: document.getElementById("homeMoodEmpty"),
@@ -1409,16 +1411,11 @@ function isPlayable(song) {
 function getHomeRecommendSource() {
   if (homeRandomSource === "playable") return songs.filter(isPlayable);
   if (homeRandomSource === "favorite") return songs.filter(isFavorite);
-  if (homeRandomSource === "recent") return longAgoCopiedSongs();
   return songs;
 }
 
 function pickHomeRecommendations() {
   const source = [...getHomeRecommendSource()];
-  if (homeRandomSource === "recent") {
-    homeRecommendedSongs = source.slice(0, HOME_RECOMMEND_COUNT);
-    return;
-  }
   for (let i = source.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [source[i], source[j]] = [source[j], source[i]];
@@ -1511,7 +1508,7 @@ function gridClassesForColumns(columns) {
 function applyColumnLayout() {
   const gridClassName = gridClassesForColumns(displayColumnCount);
 
-  [els.homeRecommendations, els.homeMoodSongs, els.copyHistorySongs, els.songs, els.zeroResultRecommendationSongs, els.fuzzySongs].forEach(grid => {
+  [els.homeRecommendations, els.homeMoodSongs, els.longAgoCopiedSongs, els.copyHistorySongs, els.songs, els.zeroResultRecommendationSongs, els.fuzzySongs].forEach(grid => {
     if (!grid) return;
     grid.className = gridClassName;
     grid.dataset.columns = displayColumnCount;
@@ -1807,8 +1804,6 @@ function renderEasyStats(items, visibleItems = items) {
 function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
   const items = filteredSongs();
   const visibleItems = items.slice(0, searchResultLimit);
-  const isDefaultSearchState = isSearchGuideDefaultState();
-
   if (easySearchMode) renderEasySearch();
   els.stats.innerHTML = `
     <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 検索結果：<strong>${items.length}</strong>件</span>
@@ -1825,12 +1820,11 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
     syncSearchGuideOnSearchStateChange({ force: forceSearchGuideSync });
   }
 
-  els.empty.hidden = isDefaultSearchState || items.length !== 0;
+  els.empty.hidden = true;
   if (easySearchMode) {
-    els.empty.textContent = hasEasyActiveFilters()
-      ? "条件に合う曲が見つかりませんでした。条件を少し減らしてみてください。"
-      : "条件を選んでみてください。";
-    els.empty.hidden = items.length !== 0;
+    const hasActiveFilters = hasEasyActiveFilters();
+    els.empty.textContent = "条件を選んでみてください。";
+    els.empty.hidden = hasActiveFilters || items.length !== 0;
   }
   els.searchMore.hidden = visibleItems.length >= items.length;
   els.searchMore.textContent = `さらに${Math.min(SEARCH_RESULT_STEP, items.length - visibleItems.length)}件表示 ⇒`;
@@ -1842,11 +1836,10 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
 function renderHome() {
   updateHomeRandomSourceButtons();
   els.homeRecommendEmpty.hidden = homeRecommendedSongs.length !== 0;
-  els.homeRecommendEmpty.textContent = homeRandomSource === "recent"
-    ? "コピー履歴がたまると、久しぶりの曲を表示できます。"
-    : "おすすめできる曲がまだありません。";
+  els.homeRecommendEmpty.textContent = "おすすめできる曲がまだありません。";
   els.homeRecommendations.innerHTML = renderSongCards(homeRecommendedSongs);
   renderHomeMood();
+  renderLongAgoCopiedSongs();
   renderCopyHistory();
 }
 
@@ -2274,6 +2267,12 @@ function setFloatingActionsSuppressed(suppressed) {
   document.body.classList.toggle("floating-actions-suppressed", suppressed);
 }
 
+function renderLongAgoCopiedSongs() {
+  const items = longAgoCopiedSongs().slice(0, HOME_RECOMMEND_COUNT);
+  els.longAgoCopiedEmpty.hidden = items.length !== 0;
+  els.longAgoCopiedSongs.innerHTML = renderSongCards(items);
+}
+
 function longAgoCopiedSongs() {
   const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
   const history = Array.isArray(savedHistory) ? savedHistory : [];
@@ -2350,6 +2349,7 @@ function recordCopyHistory({ key, no, title, artist, text }) {
     count: counts[key],
   });
   writeJsonStorage(COPY_HISTORY_KEY, history.slice(0, COPY_HISTORY_LIMIT));
+  renderLongAgoCopiedSongs();
   renderCopyHistory();
 }
 
@@ -2706,7 +2706,7 @@ els.favoriteFilter.addEventListener("click", () => {
 els.clearFavorites.addEventListener("click", clearAllFavorites);
 els.homeRandomOptions.forEach(button => {
   button.addEventListener("click", () => {
-    homeRandomSource = ["all", "playable", "favorite", "recent"].includes(button.dataset.homeRandomSource)
+    homeRandomSource = ["all", "playable", "favorite"].includes(button.dataset.homeRandomSource)
       ? button.dataset.homeRandomSource
       : "all";
     localStorage.setItem(HOME_RANDOM_SOURCE_KEY, homeRandomSource);
@@ -2916,7 +2916,7 @@ els.sortOrder.value = ["playable", "no", "title", "artist", "favorite", "copyCou
   : "playable";
 const savedAnimeDrama = localStorage.getItem(ANIME_DRAMA_KEY);
 pendingAnimeDramaValue = savedAnimeDrama || "";
-homeRandomSource = ["all", "playable", "favorite", "recent"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
+homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
   ? localStorage.getItem(HOME_RANDOM_SOURCE_KEY)
   : "all";
 favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
