@@ -7,6 +7,9 @@ const FUZZY_RESULT_INITIAL_COUNT = 5;
 const FUZZY_RESULT_STEP = 5;
 const FUZZY_RESULT_MAX_COUNT = 30;
 const FUZZY_MAX_TIER = 3;
+const SEARCH_RESULT_INITIAL_COUNT = 30;
+const SEARCH_RESULT_STEP = 30;
+const SEARCH_SUGGESTION_MAX_COUNT = 3;
 const EASY_OPTION_INITIAL_COUNT = 8;
 const EASY_OPTION_STEP = 8;
 const EASY_CATEGORIES = [
@@ -57,6 +60,7 @@ const COPY_HISTORY_LIMIT = 500;
 
 const els = {
   search: document.getElementById("search"),
+  searchSuggestions: document.getElementById("searchSuggestions"),
   searchScopes: document.querySelectorAll("[name='searchScope']"),
   displayColumns: document.querySelectorAll("[name='displayColumns']"),
   genre: document.getElementById("genre"),
@@ -92,11 +96,19 @@ const els = {
   easyReset: document.getElementById("easyReset"),
   playableFilter: document.getElementById("playableFilter"),
   stats: document.getElementById("stats"),
+  activeSearchFilters: document.getElementById("activeSearchFilters"),
+  activeSearchFilterList: document.getElementById("activeSearchFilterList"),
   songs: document.getElementById("songs"),
+  searchMore: document.getElementById("searchMore"),
   empty: document.getElementById("empty"),
+  searchAlternatives: document.getElementById("searchAlternatives"),
+  zeroResultRecommendations: document.getElementById("zeroResultRecommendations"),
+  zeroResultRecommendationSongs: document.getElementById("zeroResultRecommendationSongs"),
   homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
   homeRecommendations: document.getElementById("homeRecommendations"),
   homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
+  longAgoCopiedSongs: document.getElementById("longAgoCopiedSongs"),
+  longAgoCopiedEmpty: document.getElementById("longAgoCopiedEmpty"),
   homeMoodOptions: document.getElementById("homeMoodOptions"),
   homeMoodSongs: document.getElementById("homeMoodSongs"),
   homeMoodEmpty: document.getElementById("homeMoodEmpty"),
@@ -143,6 +155,9 @@ let longPressStartX = 0;
 let longPressStartY = 0;
 let lastSearchGuideHasKeyword = null;
 let searchGuideAutoInitialized = false;
+let searchResultLimit = SEARCH_RESULT_INITIAL_COUNT;
+let searchSuggestionOptions = [];
+let activeSearchSuggestionIndex = -1;
 let footerScrollTimer = null;
 let headerScrollAnchor = window.scrollY;
 let fuzzySearchPresets = [];
@@ -414,6 +429,7 @@ async function loadSheet() {
     performancePreviews = loadedPerformancePreviews;
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
+    buildSearchSuggestionOptions(songs);
     pickHomeRecommendations();
     pickHomeMoodSuggestions();
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
@@ -580,6 +596,11 @@ function createSearchKey(text) {
     .replace(/[!?*"#$%&',.:：;；･・…‥、。|]/g, "");
 }
 
+function searchKeywords(value = els.search.value) {
+  const keyword = createSearchKey(value);
+  return keyword ? [keyword] : [];
+}
+
 function getSearchScope() {
   return document.querySelector("[name='searchScope']:checked")?.value || "all";
 }
@@ -593,33 +614,313 @@ function updateSearchPlaceholder(scope = getSearchScope()) {
   els.search.placeholder = placeholders[scope] || placeholders.all;
 }
 
-function searchTargetsForScope(song, scope) {
-  const titleTargets = [
+function searchTargetsByType(song) {
+  return {
+    title: [
     song.title,
     song.sourceTitle,
     ...normalizeStringArray(song.titleSearchWords),
-  ];
-  const artistTargets = [
+    ],
+    artist: [
     song.artist,
     ...(song.includeSourceArtistInSearch ? [song.sourceArtist] : []),
     ...normalizeStringArray(song.artistSearchWords),
-  ];
-
-  if (scope === "title") return titleTargets;
-  if (scope === "artist") return artistTargets;
-  return [...titleTargets, ...artistTargets];
+    ],
+  };
 }
 
-function matchesSearchKeyword(song, keyword, scope) {
-  if (!keyword) return true;
+function searchTargetsForScope(song, scope) {
+  const targets = searchTargetsByType(song);
 
-  const searchTargets = searchTargetsForScope(song, scope);
+  if (scope === "title") return targets.title;
+  if (scope === "artist") return targets.artist;
+  return [...targets.title, ...targets.artist];
+}
 
-  return searchTargets.some(target => createSearchKey(target).includes(keyword));
+function matchesSearchKeyword(song, keywords, scope) {
+  if (!Array.isArray(keywords) || keywords.length === 0) return true;
+
+  const searchTargets = searchTargetsForScope(song, scope).map(createSearchKey).filter(Boolean);
+
+  return keywords.every(keyword => searchTargets.some(target => target.includes(keyword)));
+}
+
+function buildSearchSuggestionOptions(items) {
+  const optionMap = new Map();
+  const addOption = (type, value, aliases = []) => {
+    const label = normalizeCellText(value);
+    const key = createSearchKey(label);
+    if (!key) return;
+    const mapKey = `${type}|${key}`;
+    const keys = [label, ...aliases].map(createSearchKey).filter(Boolean);
+    const existing = optionMap.get(mapKey);
+    if (existing) {
+      existing.keys = [...new Set([...existing.keys, ...keys])];
+    } else {
+      optionMap.set(mapKey, { type, value: label, key, keys: [...new Set(keys)] });
+    }
+  };
+
+  items.forEach(song => {
+    addOption("title", song.title, [song.sourceTitle, ...normalizeStringArray(song.titleSearchWords)]);
+    addOption("artist", song.artist, [
+      ...(song.includeSourceArtistInSearch ? [song.sourceArtist] : []),
+      ...normalizeStringArray(song.artistSearchWords),
+    ]);
+  });
+
+  const typeOrder = { title: 0, artist: 1 };
+  searchSuggestionOptions = [...optionMap.values()].sort((left, right) => {
+    return typeOrder[left.type] - typeOrder[right.type]
+      || left.value.localeCompare(right.value, "ja");
+  });
+}
+
+function searchSuggestionTypeLabel(type) {
+  return { title: "曲名", artist: "アーティスト" }[type] || "候補";
+}
+
+function matchingSearchSuggestions() {
+  const keyword = createSearchKey(els.search.value);
+  if (!keyword) return [];
+  const scope = getSearchScope();
+
+  return searchSuggestionOptions
+    .filter(option => (scope === "all" || option.type === scope) && option.keys.some(key => key.includes(keyword)))
+    .slice(0, SEARCH_SUGGESTION_MAX_COUNT);
+}
+
+function hideSearchSuggestions() {
+  activeSearchSuggestionIndex = -1;
+  els.searchSuggestions.hidden = true;
+  els.searchSuggestions.innerHTML = "";
+  els.search.setAttribute("aria-expanded", "false");
+  els.search.removeAttribute("aria-activedescendant");
+}
+
+function renderSearchSuggestions() {
+  if (easySearchMode || document.activeElement !== els.search) {
+    hideSearchSuggestions();
+    return;
+  }
+
+  const options = matchingSearchSuggestions();
+  if (options.length === 0) {
+    hideSearchSuggestions();
+    return;
+  }
+
+  if (activeSearchSuggestionIndex >= options.length) activeSearchSuggestionIndex = -1;
+  els.searchSuggestions.innerHTML = options.map((option, index) => `
+    <button class="search-suggestion-option" id="search-suggestion-${index}" type="button" role="option" data-search-suggestion="${escapeHtml(option.value)}" aria-selected="${index === activeSearchSuggestionIndex}">
+      <span>${escapeHtml(option.value)}</span>
+      <small>${escapeHtml(searchSuggestionTypeLabel(option.type))}</small>
+    </button>
+  `).join("");
+  els.searchSuggestions.hidden = false;
+  els.search.setAttribute("aria-expanded", "true");
+  if (activeSearchSuggestionIndex >= 0) {
+    els.search.setAttribute("aria-activedescendant", `search-suggestion-${activeSearchSuggestionIndex}`);
+  } else {
+    els.search.removeAttribute("aria-activedescendant");
+  }
+}
+
+function selectSearchSuggestion(value) {
+  els.search.value = normalizeCellText(value);
+  hideSearchSuggestions();
+  searchResultLimit = SEARCH_RESULT_INITIAL_COUNT;
+  render({ syncSearchGuide: true });
+}
+
+function selectedOptionLabel(select) {
+  return select.selectedOptions?.[0]?.textContent?.trim() || select.value;
+}
+
+function activeSearchConditions() {
+  if (easySearchMode) return [];
+  const conditions = [];
+  const hasPrimaryCondition = hasSearchKeyword() || hasSearchDetailFilter() || playableOnly || favoriteOnly;
+  const scopeLabels = { title: "曲名", artist: "アーティスト" };
+
+  if (hasSearchKeyword()) conditions.push({ key: "query", label: `キーワード：${normalizeCellText(els.search.value)}` });
+  if (hasSearchKeyword() && getSearchScope() !== "all") {
+    conditions.push({ key: "scope", label: `検索対象：${scopeLabels[getSearchScope()] || getSearchScope()}` });
+  }
+  [
+    ["genre", "ジャンル", els.genre],
+    ["subgenre", "サブジャンル", els.subgenre],
+    ["source", "出典", els.sourceCategory],
+    ["work", "アニメ・ドラマ", els.animeDrama],
+    ["vocal", "ボーカル", els.vocalType],
+    ["decade", "年代", els.releaseDecade],
+  ].forEach(([key, label, select]) => {
+    if (select.value) conditions.push({ key, label: `${label}：${selectedOptionLabel(select)}` });
+  });
+  if (playableOnly) conditions.push({ key: "playable", label: "弾ける曲のみ" });
+  if (favoriteOnly) conditions.push({ key: "favorites", label: "お気に入りのみ" });
+  if (hasPrimaryCondition && els.sortOrder.value !== "playable") {
+    conditions.push({ key: "sort", label: `並び順：${selectedOptionLabel(els.sortOrder)}` });
+  }
+  return conditions;
+}
+
+function renderActiveSearchFilters() {
+  const conditions = activeSearchConditions();
+  els.activeSearchFilters.hidden = conditions.length === 0;
+  els.activeSearchFilterList.innerHTML = conditions.map(condition => `
+    <button class="active-search-filter" type="button" data-clear-search-filter="${escapeHtml(condition.key)}" aria-label="${escapeHtml(condition.label)}を解除">
+      <span>${escapeHtml(condition.label)}</span><span aria-hidden="true">×</span>
+    </button>
+  `).join("");
+}
+
+function resetSearchResultLimit() {
+  searchResultLimit = SEARCH_RESULT_INITIAL_COUNT;
+}
+
+function clearSearchCondition(key) {
+  if (key === "query") els.search.value = "";
+  if (key === "scope") updateSearchPlaceholder(applyRadioValue(els.searchScopes, "all", "all"));
+  if (key === "genre") els.genre.value = "";
+  if (key === "subgenre") els.subgenre.value = "";
+  if (key === "source") els.sourceCategory.value = "";
+  if (key === "work") els.animeDrama.value = "";
+  if (key === "vocal") els.vocalType.value = "";
+  if (key === "decade") els.releaseDecade.value = "";
+  if (key === "playable") playableOnly = false;
+  if (key === "favorites") favoriteOnly = false;
+  if (key === "sort") els.sortOrder.value = "playable";
+
+  localStorage.setItem(SEARCH_SCOPE_KEY, getSearchScope());
+  localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
+  localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+  localStorage.setItem(SORT_ORDER_KEY, els.sortOrder.value || "playable");
+  localStorage.setItem(ANIME_DRAMA_KEY, els.animeDrama.value || "");
+  hideSearchSuggestions();
+  resetSearchResultLimit();
+  render({ syncSearchGuide: true });
+}
+
+function levenshteinDistance(left, right) {
+  const previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+  for (let leftIndex = 1; leftIndex <= left.length; leftIndex += 1) {
+    const current = [leftIndex];
+    for (let rightIndex = 1; rightIndex <= right.length; rightIndex += 1) {
+      current[rightIndex] = Math.min(
+        current[rightIndex - 1] + 1,
+        previous[rightIndex] + 1,
+        previous[rightIndex - 1] + (left[leftIndex - 1] === right[rightIndex - 1] ? 0 : 1)
+      );
+    }
+    previous.splice(0, previous.length, ...current);
+  }
+  return previous[right.length];
+}
+
+function similarSearchSuggestions(resultItems) {
+  const keywords = searchKeywords();
+  const query = createSearchKey(els.search.value);
+  if (easySearchMode || resultItems.length !== 0 || keywords.length === 0 || query.length < 2) return [];
+  const scope = getSearchScope();
+  if (songs.some(song => matchesSearchKeyword(song, keywords, scope))) return [];
+  const threshold = Math.max(1, Math.floor(query.length * .3));
+
+  return searchSuggestionOptions
+    .filter(option => scope === "all" || option.type === scope)
+    .map(option => ({
+      ...option,
+      distance: Math.min(...option.keys
+        .filter(key => Math.abs(key.length - query.length) <= threshold)
+        .map(key => levenshteinDistance(query, key))),
+    }))
+    .filter(option => option.distance > 0 && option.distance <= threshold)
+    .sort((left, right) => left.distance - right.distance || left.value.localeCompare(right.value, "ja"))
+    .slice(0, 3);
+}
+
+function renderSearchAlternatives(resultItems) {
+  const alternatives = similarSearchSuggestions(resultItems);
+  els.searchAlternatives.hidden = alternatives.length === 0;
+  els.searchAlternatives.innerHTML = alternatives.length === 0 ? "" : `
+    <span class="search-alternatives-label">もしかして：</span>
+    <div class="search-alternatives-list">
+      ${alternatives.map(option => `
+        <button class="btn search-alternative-button" type="button" data-search-alternative="${escapeHtml(option.value)}">
+          ${escapeHtml(option.value)} <small>${escapeHtml(searchSuggestionTypeLabel(option.type))}</small>
+        </button>
+      `).join("")}
+    </div>
+  `;
+}
+
+function normalizedSearchSimilarity(query, target) {
+  if (!query || !target) return 0;
+  if (target.includes(query) || query.includes(target)) return 1;
+  const maxLength = Math.max(query.length, target.length);
+  return maxLength === 0 ? 0 : Math.max(0, 1 - levenshteinDistance(query, target) / maxLength);
+}
+
+function keywordSimilarityForSong(song) {
+  const query = createSearchKey(els.search.value);
+  if (!query) return 0;
+  const targets = searchTargetsForScope(song, getSearchScope()).map(createSearchKey).filter(Boolean);
+  return targets.reduce((best, target) => Math.max(best, normalizedSearchSimilarity(query, target)), 0);
+}
+
+function zeroRecommendationScore(song) {
+  const scores = [];
+
+  if (easySearchMode) {
+    EASY_CATEGORIES.forEach(category => {
+      if (selectedEasyValues(category.key).length > 0) {
+        scores.push(Number(easyMatchesCategory(song, category.key)));
+      }
+    });
+  } else {
+    if (hasSearchKeyword()) scores.push(keywordSimilarityForSong(song));
+    if (els.genre.value) scores.push(Number(song.genre === els.genre.value));
+    if (els.subgenre.value) scores.push(Number(normalizeStringArray(song.classification?.subgenres).includes(els.subgenre.value)));
+    if (els.sourceCategory.value) scores.push(Number(sourceCategoriesFor(song).includes(els.sourceCategory.value)));
+    if (els.animeDrama.value) scores.push(Number(matchesAnimeDramaFilter(song, els.animeDrama.value)));
+    if (els.vocalType.value) scores.push(Number(normalizeStringArray(song.classification?.vocalTypes).includes(els.vocalType.value)));
+    if (els.releaseDecade.value) scores.push(Number(song.releaseDecade === els.releaseDecade.value));
+  }
+
+  if (playableOnly) scores.push(Number(isPlayable(song)));
+  if (favoriteOnly) scores.push(Number(isFavorite(song)));
+  return scores.reduce((total, score) => total + score, 0);
+}
+
+function zeroResultRecommendationSongs(resultItems) {
+  const hasActiveCondition = easySearchMode ? hasEasyActiveFilters() : !isSearchGuideDefaultState();
+  if (!hasActiveCondition || resultItems.length !== 0 || songs.length === 0) return [];
+  const conditionKey = easySearchMode
+    ? EASY_CATEGORIES.map(category => selectedEasyValues(category.key).join(",")).join("|")
+    : activeSearchConditions().map(condition => condition.label).join("|");
+  const dateKey = localDateSeedKey();
+
+  return songs
+    .map(song => ({
+      song,
+      score: zeroRecommendationScore(song),
+      tieBreak: stableStringHash(`${dateKey}|${conditionKey}|${favoriteKeyForSong(song)}`),
+    }))
+    .sort((left, right) => right.score - left.score
+      || playablePriority(left.song, right.song)
+      || left.tieBreak - right.tieBreak)
+    .slice(0, 3)
+    .map(item => item.song);
+}
+
+function renderZeroResultRecommendations(resultItems) {
+  const recommendations = zeroResultRecommendationSongs(resultItems);
+  els.zeroResultRecommendations.hidden = recommendations.length === 0;
+  els.zeroResultRecommendationSongs.innerHTML = renderSongCards(recommendations);
 }
 
 function hasSearchKeyword() {
-  return createSearchKey(els.search.value) !== "";
+  return searchKeywords().length !== 0;
 }
 
 function hasSearchDetailFilter() {
@@ -968,6 +1269,7 @@ function toggleEasyOption(categoryKey, value) {
 }
 
 function resetEasySearch() {
+  resetSearchResultLimit();
   EASY_CATEGORIES.forEach(category => {
     easySelections[category.key].clear();
     easyVisibleCounts[category.key] = EASY_OPTION_INITIAL_COUNT;
@@ -1038,6 +1340,8 @@ function resetEasyCategoryOpen() {
 
 function setEasySearchMode(active) {
   easySearchMode = Boolean(active);
+  resetSearchResultLimit();
+  hideSearchSuggestions();
   els.normalSearchPanel.classList.toggle("easy-mode", easySearchMode);
   els.normalSearchControls.hidden = easySearchMode;
   els.easySearchPanel.hidden = !easySearchMode;
@@ -1050,14 +1354,16 @@ function setEasySearchMode(active) {
   els.searchModeDescription.textContent = easySearchMode
     ? "ボタンを組み合わせて、リクエスト候補をかんたんに絞り込めます。気になる条件を選んで、少しずつ曲を探してみてください。"
     : "曲名やアーティスト名から、リクエストしたい曲を探せます。";
-  if (easySearchMode) setSearchGuideOpen(false);
+  if (easySearchMode) {
+    setSearchGuideOpen(false);
+  }
   render({ syncSearchGuide: true, forceSearchGuideSync: true });
 }
 
 function filteredSongs() {
   if (easySearchMode) return easyFilteredSongs();
 
-  const keyword = createSearchKey(els.search.value);
+  const keywords = searchKeywords();
   const searchScope = getSearchScope();
   const genre = els.genre.value;
   const subgenre = els.subgenre.value;
@@ -1066,10 +1372,10 @@ function filteredSongs() {
   const vocalType = els.vocalType.value;
   const releaseDecade = els.releaseDecade.value;
 
-  if (!keyword && !favoriteOnly && !hasSearchDetailFilter()) return [];
+  if (keywords.length === 0 && !favoriteOnly && !hasSearchDetailFilter()) return [];
 
   const filtered = songs.filter(song => {
-    const keywordOk = matchesSearchKeyword(song, keyword, searchScope);
+    const keywordOk = matchesSearchKeyword(song, keywords, searchScope);
     const genreOk = !genre || song.genre === genre;
     const subgenreOk = !subgenre
       || normalizeStringArray(song.classification?.subgenres).includes(subgenre);
@@ -1202,7 +1508,7 @@ function gridClassesForColumns(columns) {
 function applyColumnLayout() {
   const gridClassName = gridClassesForColumns(displayColumnCount);
 
-  [els.homeRecommendations, els.homeMoodSongs, els.copyHistorySongs, els.songs, els.fuzzySongs].forEach(grid => {
+  [els.homeRecommendations, els.homeMoodSongs, els.longAgoCopiedSongs, els.copyHistorySongs, els.songs, els.zeroResultRecommendationSongs, els.fuzzySongs].forEach(grid => {
     if (!grid) return;
     grid.className = gridClassName;
     grid.dataset.columns = displayColumnCount;
@@ -1457,7 +1763,8 @@ function detailIconHtml() {
 }
 
 function renderSongCards(items) {
-  return items.map(song => `
+  return items.map(song => {
+    return `
     <div class="col">
       <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""} ${songAccentClass(song)}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}">
         <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
@@ -1479,12 +1786,13 @@ function renderSongCards(items) {
         </button>
       </article>
     </div>
-  `).join("");
+  `;
+  }).join("");
 }
 
-function renderEasyStats(items) {
+function renderEasyStats(items, visibleItems = items) {
   return `
-    <span class="badge rounded-pill stat-badge px-3 py-2">一致する曲：<strong>${items.length}</strong></span>
+    <span class="badge rounded-pill stat-badge px-3 py-2">検索結果：<strong>${items.length}</strong>件</span>
     <span class="playable-filter easy-stat-filter" aria-label="弾ける曲フィルター">
       <span class="playable-filter-label">弾ける曲</span>
       <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-easy-playable-filter aria-pressed="${playableOnly}">${playableOnly ? "ON" : "OFF"}</button>
@@ -1495,15 +1803,15 @@ function renderEasyStats(items) {
 
 function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) {
   const items = filteredSongs();
-  const isDefaultSearchState = isSearchGuideDefaultState();
-
+  const visibleItems = items.slice(0, searchResultLimit);
   if (easySearchMode) renderEasySearch();
   els.stats.innerHTML = `
-    <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 表示中：<strong>${items.length}</strong></span>
+    <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 検索結果：<strong>${items.length}</strong>件</span>
   `;
   if (easySearchMode) {
-    els.stats.innerHTML = renderEasyStats(items);
+    els.stats.innerHTML = renderEasyStats(items, visibleItems);
   }
+  renderActiveSearchFilters();
   els.playableFilter.classList.toggle("active", playableOnly);
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
@@ -1512,21 +1820,26 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
     syncSearchGuideOnSearchStateChange({ force: forceSearchGuideSync });
   }
 
-  els.empty.hidden = isDefaultSearchState || items.length !== 0;
+  els.empty.hidden = true;
   if (easySearchMode) {
-    els.empty.textContent = hasEasyActiveFilters()
-      ? "条件に合う曲が見つかりませんでした。条件を少し減らしてみてください。"
-      : "条件を選んでみてください。";
-    els.empty.hidden = items.length !== 0;
+    const hasActiveFilters = hasEasyActiveFilters();
+    els.empty.textContent = "条件を選んでみてください。";
+    els.empty.hidden = hasActiveFilters || items.length !== 0;
   }
-  els.songs.innerHTML = renderSongCards(items);
+  els.searchMore.hidden = visibleItems.length >= items.length;
+  els.searchMore.textContent = `さらに${Math.min(SEARCH_RESULT_STEP, items.length - visibleItems.length)}件表示 ⇒`;
+  els.songs.innerHTML = renderSongCards(visibleItems);
+  renderSearchAlternatives(items);
+  renderZeroResultRecommendations(items);
 }
 
 function renderHome() {
   updateHomeRandomSourceButtons();
   els.homeRecommendEmpty.hidden = homeRecommendedSongs.length !== 0;
+  els.homeRecommendEmpty.textContent = "おすすめできる曲がまだありません。";
   els.homeRecommendations.innerHTML = renderSongCards(homeRecommendedSongs);
   renderHomeMood();
+  renderLongAgoCopiedSongs();
   renderCopyHistory();
 }
 
@@ -1954,6 +2267,31 @@ function setFloatingActionsSuppressed(suppressed) {
   document.body.classList.toggle("floating-actions-suppressed", suppressed);
 }
 
+function renderLongAgoCopiedSongs() {
+  const items = longAgoCopiedSongs().slice(0, HOME_RECOMMEND_COUNT);
+  els.longAgoCopiedEmpty.hidden = items.length !== 0;
+  els.longAgoCopiedSongs.innerHTML = renderSongCards(items);
+}
+
+function longAgoCopiedSongs() {
+  const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
+  const history = Array.isArray(savedHistory) ? savedHistory : [];
+  const latestByKey = new Map();
+
+  history.forEach(entry => {
+    const key = normalizeCellText(entry?.key || favoriteKeyForSong(entry || {}));
+    if (!key || latestByKey.has(key)) return;
+    const copiedAt = Date.parse(entry?.copiedAt || entry?.timestamp || "");
+    latestByKey.set(key, Number.isFinite(copiedAt) ? copiedAt : 0);
+  });
+
+  return [...latestByKey.entries()]
+    .map(([key, copiedAt]) => ({ song: findSongByStoredKey(key), copiedAt }))
+    .filter(item => item.song)
+    .sort((left, right) => left.copiedAt - right.copiedAt || compareSongNo(left.song, right.song))
+    .map(item => item.song);
+}
+
 function setFloatingMenuOpen(open, { restoreFocus = false } = {}) {
   if (!els.floatingMenuPanel || !els.menuButton) return;
   els.floatingMenuPanel.hidden = !open;
@@ -2011,6 +2349,7 @@ function recordCopyHistory({ key, no, title, artist, text }) {
     count: counts[key],
   });
   writeJsonStorage(COPY_HISTORY_KEY, history.slice(0, COPY_HISTORY_LIMIT));
+  renderLongAgoCopiedSongs();
   renderCopyHistory();
 }
 
@@ -2168,7 +2507,57 @@ function setSearchGuideOpen(open) {
   els.searchGuideToggle.textContent = open ? "▲検索ガイド" : "▼検索ガイド";
 }
 
-els.search.addEventListener("input", () => render({ syncSearchGuide: true }));
+els.search.addEventListener("input", () => {
+  resetSearchResultLimit();
+  activeSearchSuggestionIndex = -1;
+  renderSearchSuggestions();
+  render({ syncSearchGuide: true });
+});
+els.search.addEventListener("focus", renderSearchSuggestions);
+els.search.addEventListener("keydown", event => {
+  const suggestions = matchingSearchSuggestions();
+  if (event.key === "Escape") {
+    const wasOpen = !els.searchSuggestions.hidden;
+    hideSearchSuggestions();
+    if (wasOpen) event.preventDefault();
+    return;
+  }
+  if (!["ArrowDown", "ArrowUp", "Enter"].includes(event.key)) return;
+  if (event.key === "Enter") {
+    if (activeSearchSuggestionIndex < 0 || activeSearchSuggestionIndex >= suggestions.length) return;
+    event.preventDefault();
+    selectSearchSuggestion(suggestions[activeSearchSuggestionIndex].value);
+    return;
+  }
+  if (suggestions.length === 0) return;
+
+  event.preventDefault();
+  if (event.key === "ArrowDown") {
+    activeSearchSuggestionIndex = (activeSearchSuggestionIndex + 1) % suggestions.length;
+  } else {
+    activeSearchSuggestionIndex = activeSearchSuggestionIndex <= 0
+      ? suggestions.length - 1
+      : activeSearchSuggestionIndex - 1;
+  }
+  renderSearchSuggestions();
+});
+els.searchSuggestions.addEventListener("pointerdown", event => event.preventDefault());
+els.searchSuggestions.addEventListener("click", event => {
+  const option = event.target.closest("[data-search-suggestion]");
+  if (option) selectSearchSuggestion(option.dataset.searchSuggestion);
+});
+els.activeSearchFilterList.addEventListener("click", event => {
+  const filter = event.target.closest("[data-clear-search-filter]");
+  if (filter) clearSearchCondition(filter.dataset.clearSearchFilter);
+});
+els.searchAlternatives.addEventListener("click", event => {
+  const alternative = event.target.closest("[data-search-alternative]");
+  if (alternative) selectSearchSuggestion(alternative.dataset.searchAlternative);
+});
+els.searchMore.addEventListener("click", () => {
+  searchResultLimit += SEARCH_RESULT_STEP;
+  render();
+});
 els.searchModeTabs.forEach((tab, index) => {
   tab.addEventListener("click", () => {
     setEasySearchMode(tab.dataset.searchMode === "easy");
@@ -2202,6 +2591,7 @@ els.easyCategoryList.addEventListener("click", event => {
 
   const optionButton = event.target.closest("[data-easy-option]");
   if (optionButton) {
+    resetSearchResultLimit();
     toggleEasyOption(optionButton.dataset.easyCategory, optionButton.dataset.easyOption);
     render();
     return;
@@ -2250,8 +2640,10 @@ els.fuzzyMore.addEventListener("click", () => {
   renderFuzzySearch();
 });
 els.searchScopes.forEach(scope => scope.addEventListener("change", () => {
+  resetSearchResultLimit();
   localStorage.setItem(SEARCH_SCOPE_KEY, scope.value);
   updateSearchPlaceholder(scope.value);
+  renderSearchSuggestions();
   render();
 }));
 els.displayColumns.forEach(column => {
@@ -2261,20 +2653,29 @@ els.displayColumns.forEach(column => {
     applyColumnLayout();
   });
 });
-els.genre.addEventListener("change", render);
+els.genre.addEventListener("change", () => {
+  resetSearchResultLimit();
+  render();
+});
 els.sortOrder.addEventListener("change", () => {
+  resetSearchResultLimit();
   localStorage.setItem(SORT_ORDER_KEY, els.sortOrder.value || "playable");
   render();
 });
 els.animeDrama.addEventListener("change", () => {
+  resetSearchResultLimit();
   localStorage.setItem(ANIME_DRAMA_KEY, els.animeDrama.value || "");
   render();
 });
 [els.subgenre, els.sourceCategory, els.vocalType, els.releaseDecade].forEach(select => {
-  select.addEventListener("change", render);
+  select.addEventListener("change", () => {
+    resetSearchResultLimit();
+    render();
+  });
 });
 els.stats.addEventListener("click", event => {
   if (event.target.closest("[data-easy-playable-filter]")) {
+    resetSearchResultLimit();
     playableOnly = !playableOnly;
     localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
     invalidateEasyOptions({ resetVisibleCounts: true });
@@ -2283,6 +2684,7 @@ els.stats.addEventListener("click", event => {
   }
 
   if (event.target.closest("[data-easy-favorite-filter]")) {
+    resetSearchResultLimit();
     favoriteOnly = !favoriteOnly;
     localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
     invalidateEasyOptions({ resetVisibleCounts: true });
@@ -2290,11 +2692,13 @@ els.stats.addEventListener("click", event => {
   }
 });
 els.playableFilter.addEventListener("click", () => {
+  resetSearchResultLimit();
   playableOnly = !playableOnly;
   localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
   render();
 });
 els.favoriteFilter.addEventListener("click", () => {
+  resetSearchResultLimit();
   favoriteOnly = !favoriteOnly;
   localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
   render({ syncSearchGuide: true, forceSearchGuideSync: true });
@@ -2364,6 +2768,7 @@ window.addEventListener("resize", () => {
 window.addEventListener("scroll", handlePageScroll, { passive: true });
 
 document.addEventListener("pointerdown", event => {
+  if (!event.target.closest(".search-input-wrapper")) hideSearchSuggestions();
   if (!els.floatingMenuPanel.hidden && !event.target.closest("#floatingMenu")) {
     setFloatingMenuOpen(false);
   }

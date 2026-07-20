@@ -635,6 +635,58 @@ html[data-theme="dark"] .form-select {
     display: none;
 }
 
+.search-input-wrapper {
+    position: relative;
+}
+
+.search-suggestions {
+    position: absolute;
+    z-index: 1060;
+    top: calc(100% + .35rem);
+    right: calc(var(--bs-gutter-x) * .5);
+    left: calc(var(--bs-gutter-x) * .5);
+    max-height: min(21rem, 55vh);
+    overflow-y: auto;
+    padding: .35rem;
+    border: 1px solid var(--page-line);
+    border-radius: .85rem;
+    background: var(--page-control);
+    box-shadow: 0 .9rem 2rem var(--page-shadow);
+}
+
+.search-suggestions[hidden] {
+    display: none;
+}
+
+.search-suggestion-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    width: 100%;
+    padding: .65rem .75rem;
+    color: var(--page-text);
+    background: transparent;
+    border: 0;
+    border-radius: .65rem;
+    text-align: left;
+}
+
+.search-suggestion-option:hover,
+.search-suggestion-option:focus,
+.search-suggestion-option[aria-selected="true"] {
+    color: var(--page-text);
+    background: var(--page-accent-soft);
+    outline: none;
+}
+
+.search-suggestion-option small {
+    flex: 0 0 auto;
+    color: var(--page-muted);
+    font-size: .72rem;
+    font-weight: 700;
+}
+
 .search-guide-toggle {
     width: 100%;
     min-height: 2.75rem;
@@ -693,6 +745,51 @@ html[data-theme="dark"] .form-select {
     flex-wrap: wrap;
     align-items: center;
     gap: .5rem 1rem;
+}
+
+.active-search-filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .65rem 1rem;
+    padding: .65rem;
+    border: 1px solid var(--page-line);
+    border-radius: .85rem;
+    background: var(--page-control-soft);
+}
+
+.active-search-filters[hidden] {
+    display: none;
+}
+
+.active-search-filter-list {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    gap: .4rem;
+    min-width: 0;
+}
+
+.active-search-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    min-width: 0;
+    padding: .32rem .65rem;
+    color: var(--page-accent);
+    background: var(--page-accent-soft);
+    border: 1px solid color-mix(in srgb, var(--page-accent) 40%, var(--page-line));
+    border-radius: 999px;
+    font-size: .82rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.active-search-filter:hover,
+.active-search-filter:focus {
+    color: var(--page-button-active-text);
+    background: var(--page-accent);
+    outline: none;
 }
 
 .quick-filter-group {
@@ -992,6 +1089,68 @@ html[data-theme="dark"] .song-card.accent-other {
     align-items: center;
     justify-content: space-between;
     gap: .75rem 1rem;
+}
+
+.search-more-row {
+    display: flex;
+    justify-content: flex-end;
+    order: 25;
+}
+
+.search-alternatives {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem .75rem;
+    padding: .75rem;
+    color: var(--page-muted);
+    background: var(--page-control-soft);
+    border: 1px solid var(--page-line);
+    border-radius: .85rem;
+}
+
+.search-alternatives[hidden] {
+    display: none;
+}
+
+.search-alternatives-label {
+    font-weight: 800;
+}
+
+.search-alternatives-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+}
+
+.search-alternative-button {
+    padding: .35rem .65rem;
+    color: var(--page-text);
+    background: var(--page-button-soft);
+    border: 1px solid var(--page-line);
+    border-radius: 999px;
+    font-weight: 800;
+}
+
+.search-alternative-button:hover,
+.search-alternative-button:focus {
+    color: var(--page-text);
+    border-color: var(--page-accent);
+    background: var(--page-active);
+}
+
+.search-alternative-button small {
+    color: var(--page-muted);
+    font-size: .7rem;
+}
+
+.zero-result-recommendations[hidden] {
+    display: none;
+}
+
+.zero-result-recommendations {
+    padding-top: 1rem;
+    border-top: 1px solid var(--page-line);
 }
 
 .song-grid[data-columns="1"] .song-card-body,
@@ -1669,6 +1828,11 @@ body.floating-actions-suppressed .floating-menu {
 }
 
 @media (max-width: 575.98px) {
+    .active-search-filters {
+    align-items: stretch;
+    flex-direction: column;
+    }
+
     .app-panel {
     border-radius: 1.1rem;
     }

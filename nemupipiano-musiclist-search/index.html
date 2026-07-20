@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.2.10" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.3.4" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">本文へスキップ</a>
@@ -71,7 +71,7 @@
                 今日のおすすめ
               </h2>
               <p class="recommend-desc text-secondary mb-0">
-                下の条件を選ぶ毎に、おすすめ曲を5件ランダム表示します。気になった曲はリクエストしてみましょう！<br>
+                下の条件を選ぶと、おすすめ曲を5件表示します。気になった曲はリクエストしてみましょう！<br>
                 ※「弾ける曲」は、曲リストの「弾ける」欄にチェックが入っている曲のみを対象としています。
               </p>
             </div>
@@ -100,6 +100,19 @@
           <div class="text-end mt-3">
             <button id="homeFuzzyLink" class="btn fuzzy-more-button" type="button">ふわっと検索で他の項目を探す</button>
           </div>
+        </section>
+
+        <section class="home-section mt-4">
+          <h2 class="h4 fw-bold mb-1 section-heading-with-icon">
+            <span class="theme-icon section-heading-icon" aria-hidden="true">
+              <img class="theme-icon-light" src="../lib/icon/white/calendar.svg" alt="">
+              <img class="theme-icon-dark" src="../lib/icon/black/calendar.svg" alt="">
+            </span>
+            久しぶりの曲
+          </h2>
+          <p class="recommend-desc text-secondary mb-0">コピー履歴が古い曲から、最大5件を表示します。</p>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="longAgoCopiedSongs" data-columns="3"></div>
+          <div class="empty-box text-center p-4 mt-3" id="longAgoCopiedEmpty" hidden>コピー履歴がたまると、久しぶりの曲を表示できます。</div>
         </section>
 
         <section class="home-section mt-4">
@@ -142,9 +155,10 @@
         </div>
         <div id="normalSearchControls" role="tabpanel" aria-labelledby="normalSearchModeTab">
         <div class="row g-2 g-md-3 align-items-stretch search-form-row">
-          <div class="col-8 col-md-10">
+          <div class="col-8 col-md-10 search-input-wrapper">
             <label class="visually-hidden" for="search">検索キーワード</label>
-            <input id="search" class="form-control form-control-lg" type="search" placeholder="曲名・アーティストで検索" autocomplete="off" />
+            <input id="search" class="form-control form-control-lg" type="search" placeholder="曲名・アーティストで検索" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="searchSuggestions" aria-expanded="false" />
+            <div class="search-suggestions" id="searchSuggestions" role="listbox" aria-label="検索候補" hidden></div>
           </div>
           <div class="col-4 col-md-2 d-grid">
             <button id="searchDetailToggle" class="btn btn-dark btn-lg detail-toggle-button" type="button" aria-expanded="false" aria-controls="searchDetails">▼詳細</button>
@@ -306,11 +320,23 @@
           <div class="easy-category-list" id="easyCategoryList"></div>
         </div>
 
+        <div class="active-search-filters mt-3" id="activeSearchFilters" aria-label="選択中の検索条件" hidden>
+          <div class="active-search-filter-list" id="activeSearchFilterList"></div>
+        </div>
         <div class="stats-row mt-3">
           <div class="d-flex flex-wrap gap-2" id="stats" aria-live="polite"></div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="songs" data-columns="3"></div>
+        <div class="search-more-row mt-3">
+          <button id="searchMore" class="btn fuzzy-more-button" type="button" hidden>さらに30件表示 ⇒</button>
+        </div>
         <div class="empty-box text-center p-4 mt-3" id="empty" hidden>条件に合う曲が見つかりませんでした。</div>
+        <div class="search-alternatives mt-3" id="searchAlternatives" aria-live="polite" hidden></div>
+        <section class="zero-result-recommendations mt-4" id="zeroResultRecommendations" aria-labelledby="zeroResultRecommendationsTitle" hidden>
+          <h2 class="h5 fw-bold mb-1" id="zeroResultRecommendationsTitle">一致する曲は見つかりませんでしたが、こんな曲はいかがですか？</h2>
+          <p class="recommend-desc text-secondary mb-0">条件には完全一致しませんが、近い曲です。</p>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3 mt-1 song-grid" id="zeroResultRecommendationSongs" data-columns="3"></div>
+        </section>
         </div>
 
       </section>
@@ -374,6 +400,7 @@
           <ul>
             <li>今日のおすすめ曲を確認できます。</li>
             <li>今日の気分から、ふわっと検索の候補を確認できます。</li>
+            <li>コピーしてから時間がたった「久しぶりの曲」を確認できます。</li>
             <li>過去にコピーした曲の履歴を確認できます。</li>
           </ul>
           <p class="mb-2"><strong>検索</strong>タブでは、曲リストから目的の曲を探せます。</p>
@@ -391,6 +418,7 @@
           <h5>機能</h5>
           <ul>
             <li>今日のおすすめ曲の表示</li>
+            <li>久しぶりの曲の表示</li>
             <li>直近のクリップボード履歴の表示</li>
             <li>検索タブによる曲名、アーティストのキーワード検索（ひらがな・カタカナでの検索にも対応）</li>
             <li>ふわっと検索による気分・雰囲気・情景などからの曲探し</li>
@@ -513,7 +541,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.2.10 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.3.4 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -536,7 +564,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.2.10"></script>
+  <script src="./js/musiclist-search.js?v=2.3.4"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 <!--
