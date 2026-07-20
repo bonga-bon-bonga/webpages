@@ -15,6 +15,26 @@ async function openTab(page, tabName) {
   await expect(page.locator(`#panel-${tabName}`)).toBeVisible();
 }
 
+function makeSearchSong(index, overrides = {}) {
+  const title = overrides.displayTitle || `Song ${String(index).padStart(3, "0")}`;
+  const artist = overrides.displayArtist || `Artist ${index}`;
+  return {
+    no: `list#${index}`,
+    displayTitle: title,
+    displayArtist: artist,
+    songKey: `${title.toLowerCase()}|${artist.toLowerCase()}`,
+    sourceTitle: title,
+    sourceArtist: artist,
+    titleSearchWords: [],
+    artistSearchWords: [],
+    classification: { genres: ["J-POP"], subgenres: [], sourceCategories: [], vocalTypes: [] },
+    tieUps: [],
+    playable: "○",
+    genre: "J-POP",
+    ...overrides,
+  };
+}
+
 test.beforeEach(async ({ page }) => {
   await page.route("**/googletagmanager.com/**", route => route.abort());
   await openApp(page);
@@ -94,6 +114,111 @@ test("曲単位補正で除外した元アーティストは検索対象にし�
   await search.fill("Singer");
   await expect(page.locator("#songs .song-card")).toHaveCount(1);
   await expect(page.locator("#songs .song-card .song-artist")).toHaveText("Singer");
+});
+
+test("空白区切りのAND検索と作品名検索に対応する", async ({ page }) => {
+  await page.route("**/data/musiclist.json", route => route.fulfill({
+    json: [
+      makeSearchSong(1, {
+        displayTitle: "Blue Night",
+        displayArtist: "Singer A",
+        tieUps: [{ series: "星空アニメ", workTitle: "星空物語", role: "主題歌" }],
+      }),
+      makeSearchSong(2, { displayTitle: "Blue Day", displayArtist: "Singer B" }),
+    ],
+  }));
+  await page.reload();
+  await openTab(page, "search");
+
+  const search = page.locator("#search");
+  await search.fill("Night Singer");
+  await expect(page.locator("#songs .song-card")).toHaveCount(1);
+  await expect(page.locator("#songs .song-title")).toContainText("Blue Night");
+  await expect(page.locator("#songs .song-title mark.search-match")).toHaveText(/night/i);
+  await expect(page.locator("#songs .song-artist")).toContainText("Singer A");
+
+  await page.locator('label[for="searchScopeWork"]').click();
+  await search.fill("星空物語");
+  await expect(page.locator("#songs .song-card")).toHaveCount(1);
+  await expect(page.locator("#songs .song-search-context")).toContainText("作品：星空物語");
+  await expect(page.locator("#songs .song-search-context mark.search-match")).toHaveText("星空物語");
+});
+
+test("入力候補をキーボードで選択し表記揺れ候補から再検索できる", async ({ page }) => {
+  await page.route("**/data/musiclist.json", route => route.fulfill({
+    json: [
+      makeSearchSong(1, {
+        displayTitle: "Blue Night",
+        displayArtist: "GReeeeN",
+        artistSearchWords: ["ぐりーん"],
+      }),
+    ],
+  }));
+  await page.reload();
+  await openTab(page, "search");
+
+  const search = page.locator("#search");
+  await search.fill("ぐりー");
+  await expect(search).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator("#searchSuggestions [role=option]")).toContainText(["GReeeeN"]);
+  await search.press("ArrowDown");
+  await search.press("Enter");
+  await expect(search).toHaveValue("GReeeeN");
+  await expect(page.locator("#songs .song-card")).toHaveCount(1);
+
+  await search.fill("Bluu Night");
+  await expect(page.locator("#songs .song-card")).toHaveCount(0);
+  await expect(page.locator("#searchAlternatives")).toBeVisible();
+  await expect(page.locator("#searchAlternatives")).toContainText("Blue Night");
+  await page.getByRole("button", { name: /Blue Night/ }).click();
+  await expect(search).toHaveValue("Blue Night");
+  await expect(page.locator("#songs .song-card")).toHaveCount(1);
+});
+
+test("検索条件をチップとURLへ同期しURLから復元する", async ({ page }) => {
+  await openTab(page, "search");
+  const search = page.locator("#search");
+  await search.fill("夜");
+  await search.press("Escape");
+  await page.locator('label[for="searchScopeTitle"]').click();
+  await page.locator("#searchDetailToggle").click();
+  await page.locator("#genre").selectOption({ label: "J-POP" });
+
+  await expect(page.locator("#activeSearchFilters")).toBeVisible();
+  await expect(page.locator("#activeSearchFilterList")).toContainText("キーワード：夜");
+  await expect(page.locator("#activeSearchFilterList")).toContainText("検索対象：曲名");
+  await expect(page.locator("#activeSearchFilterList")).toContainText("ジャンル：J-POP");
+  await expect.poll(() => new URL(page.url()).searchParams.get("q")).toBe("夜");
+  expect(new URL(page.url()).searchParams.get("scope")).toBe("title");
+  expect(new URL(page.url()).searchParams.get("genre")).toBe("J-POP");
+
+  await page.reload();
+  await expect(page.locator("#panel-search")).toBeVisible();
+  await expect(search).toHaveValue("夜");
+  await expect(page.locator("#searchScopeTitle")).toBeChecked();
+  await expect(page.locator("#genre")).toHaveValue("J-POP");
+
+  await page.getByRole("button", { name: "ジャンル：J-POPを解除" }).click();
+  await expect(page.locator("#genre")).toHaveValue("");
+  await expect.poll(() => new URL(page.url()).searchParams.has("genre")).toBe(false);
+});
+
+test("検索結果を30件ずつ段階表示する", async ({ page }) => {
+  await page.route("**/data/musiclist.json", route => route.fulfill({
+    json: Array.from({ length: 65 }, (_, index) => makeSearchSong(index + 1)),
+  }));
+  await page.reload();
+  await openTab(page, "search");
+  await page.locator("#search").fill("Song");
+
+  await expect(page.locator("#songs .song-card")).toHaveCount(30);
+  await expect(page.locator("#searchMore")).toHaveText("さらに30件表示 ⇒");
+  await page.locator("#searchMore").click();
+  await expect(page.locator("#songs .song-card")).toHaveCount(60);
+  await expect(page.locator("#searchMore")).toHaveText("さらに5件表示 ⇒");
+  await page.locator("#searchMore").click();
+  await expect(page.locator("#songs .song-card")).toHaveCount(65);
+  await expect(page.locator("#searchMore")).toBeHidden();
 });
 
 test("かんたんモードは1カテゴリずつ展開し候補を自動更新する", async ({ page }) => {
