@@ -9,7 +9,7 @@ const FUZZY_RESULT_MAX_COUNT = 30;
 const FUZZY_MAX_TIER = 3;
 const SEARCH_RESULT_INITIAL_COUNT = 30;
 const SEARCH_RESULT_STEP = 30;
-const SEARCH_SUGGESTION_MAX_COUNT = 8;
+const SEARCH_SUGGESTION_MAX_COUNT = 3;
 const EASY_OPTION_INITIAL_COUNT = 8;
 const EASY_OPTION_STEP = 8;
 const EASY_CATEGORIES = [
@@ -98,7 +98,6 @@ const els = {
   stats: document.getElementById("stats"),
   activeSearchFilters: document.getElementById("activeSearchFilters"),
   activeSearchFilterList: document.getElementById("activeSearchFilterList"),
-  copySearchUrl: document.getElementById("copySearchUrl"),
   songs: document.getElementById("songs"),
   searchMore: document.getElementById("searchMore"),
   empty: document.getElementById("empty"),
@@ -155,7 +154,6 @@ let searchGuideAutoInitialized = false;
 let searchResultLimit = SEARCH_RESULT_INITIAL_COUNT;
 let searchSuggestionOptions = [];
 let activeSearchSuggestionIndex = -1;
-let searchUrlReady = false;
 let footerScrollTimer = null;
 let headerScrollAnchor = window.scrollY;
 let fuzzySearchPresets = [];
@@ -428,9 +426,6 @@ async function loadSheet() {
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
     buildSearchSuggestionOptions(songs);
-    const restoredSearchUrl = applySearchUrlParams();
-    searchUrlReady = true;
-    if (restoredSearchUrl) switchTab("search");
     pickHomeRecommendations();
     pickHomeMoodSuggestions();
     render({ syncSearchGuide: true, forceSearchGuideSync: true });
@@ -597,17 +592,9 @@ function createSearchKey(text) {
     .replace(/[!?*"#$%&',.:：;；･・…‥、。|]/g, "");
 }
 
-function searchRawTerms(value = els.search.value) {
-  return normalizeText(value)
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
-}
-
 function searchKeywords(value = els.search.value) {
-  return searchRawTerms(value)
-    .map(createSearchKey)
-    .filter(Boolean);
+  const keyword = createSearchKey(value);
+  return keyword ? [keyword] : [];
 }
 
 function getSearchScope() {
@@ -616,10 +603,9 @@ function getSearchScope() {
 
 function updateSearchPlaceholder(scope = getSearchScope()) {
   const placeholders = {
-    all: "曲名・アーティスト・作品名で検索",
+    all: "曲名・アーティストで検索",
     title: "曲名で検索",
     artist: "アーティストで検索",
-    work: "作品名・タイアップ名で検索",
   };
   els.search.placeholder = placeholders[scope] || placeholders.all;
 }
@@ -636,11 +622,6 @@ function searchTargetsByType(song) {
     ...(song.includeSourceArtistInSearch ? [song.sourceArtist] : []),
     ...normalizeStringArray(song.artistSearchWords),
     ],
-    work: (song.tieUps || []).flatMap(tieUp => [
-      tieUp.series,
-      tieUp.workTitle,
-      tieUp.role,
-    ]).filter(Boolean),
   };
 }
 
@@ -649,8 +630,7 @@ function searchTargetsForScope(song, scope) {
 
   if (scope === "title") return targets.title;
   if (scope === "artist") return targets.artist;
-  if (scope === "work") return targets.work;
-  return [...targets.title, ...targets.artist, ...targets.work];
+  return [...targets.title, ...targets.artist];
 }
 
 function matchesSearchKeyword(song, keywords, scope) {
@@ -683,13 +663,9 @@ function buildSearchSuggestionOptions(items) {
       ...(song.includeSourceArtistInSearch ? [song.sourceArtist] : []),
       ...normalizeStringArray(song.artistSearchWords),
     ]);
-    (song.tieUps || []).forEach(tieUp => {
-      addOption("work", tieUp.series);
-      addOption("work", tieUp.workTitle);
-    });
   });
 
-  const typeOrder = { title: 0, artist: 1, work: 2 };
+  const typeOrder = { title: 0, artist: 1 };
   searchSuggestionOptions = [...optionMap.values()].sort((left, right) => {
     return typeOrder[left.type] - typeOrder[right.type]
       || left.value.localeCompare(right.value, "ja");
@@ -697,13 +673,11 @@ function buildSearchSuggestionOptions(items) {
 }
 
 function searchSuggestionTypeLabel(type) {
-  return { title: "曲名", artist: "アーティスト", work: "作品名" }[type] || "候補";
+  return { title: "曲名", artist: "アーティスト" }[type] || "候補";
 }
 
 function matchingSearchSuggestions() {
-  const terms = searchRawTerms();
-  if (terms.length !== 1) return [];
-  const keyword = createSearchKey(terms[0]);
+  const keyword = createSearchKey(els.search.value);
   if (!keyword) return [];
   const scope = getSearchScope();
 
@@ -763,7 +737,7 @@ function activeSearchConditions() {
   if (easySearchMode) return [];
   const conditions = [];
   const hasPrimaryCondition = hasSearchKeyword() || hasSearchDetailFilter() || playableOnly || favoriteOnly;
-  const scopeLabels = { title: "曲名", artist: "アーティスト", work: "作品名" };
+  const scopeLabels = { title: "曲名", artist: "アーティスト" };
 
   if (hasSearchKeyword()) conditions.push({ key: "query", label: `キーワード：${normalizeCellText(els.search.value)}` });
   if (hasSearchKeyword() && getSearchScope() !== "all") {
@@ -822,95 +796,6 @@ function clearSearchCondition(key) {
   hideSearchSuggestions();
   resetSearchResultLimit();
   render({ syncSearchGuide: true });
-}
-
-const SEARCH_URL_PARAM_KEYS = [
-  "q", "scope", "genre", "subgenre", "source", "work", "vocal", "decade", "playable", "favorites", "sort",
-];
-
-function removeSearchUrlParams() {
-  if (!searchUrlReady) return;
-  const url = new URL(window.location.href);
-  SEARCH_URL_PARAM_KEYS.forEach(key => url.searchParams.delete(key));
-  window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
-}
-
-function syncSearchUrl() {
-  if (!searchUrlReady || easySearchMode) return;
-  const url = new URL(window.location.href);
-  SEARCH_URL_PARAM_KEYS.forEach(key => url.searchParams.delete(key));
-
-  const hasPrimaryCondition = hasSearchKeyword() || hasSearchDetailFilter() || playableOnly || favoriteOnly;
-  if (hasSearchKeyword()) url.searchParams.set("q", normalizeCellText(els.search.value));
-  if (hasSearchKeyword() && getSearchScope() !== "all") url.searchParams.set("scope", getSearchScope());
-  if (els.genre.value) url.searchParams.set("genre", els.genre.value);
-  if (els.subgenre.value) url.searchParams.set("subgenre", els.subgenre.value);
-  if (els.sourceCategory.value) url.searchParams.set("source", els.sourceCategory.value);
-  if (els.animeDrama.value) url.searchParams.set("work", els.animeDrama.value);
-  if (els.vocalType.value) url.searchParams.set("vocal", els.vocalType.value);
-  if (els.releaseDecade.value) url.searchParams.set("decade", els.releaseDecade.value);
-  if (playableOnly) url.searchParams.set("playable", "1");
-  if (favoriteOnly) url.searchParams.set("favorites", "1");
-  if (hasPrimaryCondition && els.sortOrder.value !== "playable") url.searchParams.set("sort", els.sortOrder.value);
-
-  window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
-}
-
-function applySearchUrlParams() {
-  const params = new URLSearchParams(window.location.search);
-  if (!SEARCH_URL_PARAM_KEYS.some(key => params.has(key))) return false;
-  const setSelectValue = (select, value) => {
-    const normalized = normalizeCellText(value);
-    if ([...select.options].some(option => option.value === normalized)) select.value = normalized;
-  };
-
-  els.search.value = normalizeCellText(params.get("q"));
-  updateSearchPlaceholder(applyRadioValue(els.searchScopes, params.get("scope"), "all"));
-  setSelectValue(els.genre, params.get("genre"));
-  setSelectValue(els.subgenre, params.get("subgenre"));
-  setSelectValue(els.sourceCategory, params.get("source"));
-  setSelectValue(els.animeDrama, params.get("work"));
-  setSelectValue(els.vocalType, params.get("vocal"));
-  setSelectValue(els.releaseDecade, params.get("decade"));
-  playableOnly = params.get("playable") === "1";
-  favoriteOnly = params.get("favorites") === "1";
-  els.sortOrder.value = ["playable", "no", "title", "artist", "favorite", "copyCount", "random"].includes(params.get("sort"))
-    ? params.get("sort")
-    : "playable";
-  return true;
-}
-
-function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function highlightedText(value, rawTerms, forceHighlight = false) {
-  const text = String(value ?? "");
-  const terms = [...new Set(rawTerms.map(normalizeCellText).filter(Boolean))]
-    .sort((left, right) => right.length - left.length);
-  if (terms.length === 0) return escapeHtml(text);
-
-  const matcher = new RegExp(`(${terms.map(escapeRegExp).join("|")})`, "giu");
-  const parts = text.split(matcher);
-  const hasVisibleMatch = parts.some((part, index) => index % 2 === 1 && part);
-  if (hasVisibleMatch) {
-    return parts.map((part, index) => (
-      index % 2 === 1 ? `<mark class="search-match">${escapeHtml(part)}</mark>` : escapeHtml(part)
-    )).join("");
-  }
-  return forceHighlight ? `<mark class="search-match">${escapeHtml(text)}</mark>` : escapeHtml(text);
-}
-
-function fieldMatchesAnyKeyword(song, type, keywords) {
-  const targets = searchTargetsByType(song)[type] || [];
-  const normalizedTargets = targets.map(createSearchKey);
-  return keywords.some(keyword => normalizedTargets.some(target => target.includes(keyword)));
-}
-
-function matchingWorkContext(song, keywords) {
-  if (getSearchScope() === "title" || getSearchScope() === "artist") return "";
-  const values = [...new Set((song.tieUps || []).flatMap(tieUp => [tieUp.series, tieUp.workTitle, tieUp.role]).filter(Boolean))];
-  return values.find(value => keywords.some(keyword => createSearchKey(value).includes(keyword))) || "";
 }
 
 function levenshteinDistance(left, right) {
@@ -1402,7 +1287,6 @@ function setEasySearchMode(active) {
     : "曲名やアーティスト名から、リクエストしたい曲を探せます。";
   if (easySearchMode) {
     setSearchGuideOpen(false);
-    removeSearchUrlParams();
   }
   render({ syncSearchGuide: true, forceSearchGuideSync: true });
 }
@@ -1809,30 +1693,16 @@ function detailIconHtml() {
   `;
 }
 
-function renderSongCards(items, { highlightSearch = false } = {}) {
-  const rawTerms = highlightSearch ? searchRawTerms() : [];
-  const keywords = highlightSearch ? searchKeywords() : [];
+function renderSongCards(items) {
   return items.map(song => {
-    const highlightedTitle = highlightedText(
-      song.title,
-      rawTerms,
-      highlightSearch && fieldMatchesAnyKeyword(song, "title", keywords)
-    );
-    const highlightedArtist = highlightedText(
-      song.artist || "アーティスト未設定",
-      rawTerms,
-      highlightSearch && fieldMatchesAnyKeyword(song, "artist", keywords)
-    );
-    const workContext = highlightSearch ? matchingWorkContext(song, keywords) : "";
     return `
     <div class="col">
-      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""} ${workContext ? "has-search-context" : ""} ${songAccentClass(song)}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}">
+      <article class="card song-card h-100 ${isFavorite(song) ? "is-favorite" : ""} ${songAccentClass(song)}" data-favorite-key="${escapeHtml(favoriteKeyForSong(song))}">
         <div class="card-body song-card-body d-flex flex-column gap-2 p-3 p-md-4">
           <div class="song-card-header d-flex justify-content-between gap-3 align-items-start">
             <div class="song-card-text min-w-0">
-              <h2 class="song-title h5 fw-bold mb-1">${highlightedTitle}</h2>
-              <p class="song-artist mb-0">${highlightedArtist}</p>
-              ${workContext ? `<p class="song-search-context mb-0">作品：${highlightedText(workContext, rawTerms, true)}</p>` : ""}
+              <h2 class="song-title h5 fw-bold mb-1">${escapeHtml(song.title)}</h2>
+              <p class="song-artist mb-0">${escapeHtml(song.artist || "アーティスト未設定")}</p>
             </div>
             ${accentColorEnabled ? `<span class="song-accent-label">${escapeHtml(songAccentLabel(song))}</span>` : ""}
           </div>
@@ -1892,9 +1762,8 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
   }
   els.searchMore.hidden = visibleItems.length >= items.length;
   els.searchMore.textContent = `さらに${Math.min(SEARCH_RESULT_STEP, items.length - visibleItems.length)}件表示 ⇒`;
-  els.songs.innerHTML = renderSongCards(visibleItems, { highlightSearch: !easySearchMode });
+  els.songs.innerHTML = renderSongCards(visibleItems);
   renderSearchAlternatives(items);
-  syncSearchUrl();
 }
 
 function renderHome() {
@@ -2585,16 +2454,6 @@ els.searchSuggestions.addEventListener("click", event => {
 els.activeSearchFilterList.addEventListener("click", event => {
   const filter = event.target.closest("[data-clear-search-filter]");
   if (filter) clearSearchCondition(filter.dataset.clearSearchFilter);
-});
-els.copySearchUrl.addEventListener("click", async () => {
-  syncSearchUrl();
-  try {
-    await copyToClipboard(window.location.href);
-    showCopyToast("検索条件URLをコピーしました！");
-  } catch (error) {
-    console.error(error);
-    showCopyToast("検索条件URLのコピーに失敗しました");
-  }
 });
 els.searchAlternatives.addEventListener("click", event => {
   const alternative = event.target.closest("[data-search-alternative]");

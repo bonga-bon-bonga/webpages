@@ -792,25 +792,6 @@ html[data-theme="dark"] .form-select {
     outline: none;
 }
 
-.search-url-copy-button {
-    flex: 0 0 auto;
-    padding: .38rem .65rem;
-    color: var(--page-muted);
-    border: 1px solid var(--page-line);
-    border-radius: .6rem;
-    background: var(--page-button-soft);
-    font-size: .78rem;
-    font-weight: 800;
-    white-space: nowrap;
-}
-
-.search-url-copy-button:hover,
-.search-url-copy-button:focus {
-    color: var(--page-text);
-    border-color: var(--page-accent);
-    background: var(--page-active);
-}
-
 .quick-filter-group {
     display: inline-flex;
     flex: 0 0 auto;
@@ -1032,20 +1013,6 @@ html[data-theme="dark"] .song-card.accent-other {
     overflow-wrap: anywhere;
 }
 
-.search-match {
-    padding: 0 .08em;
-    color: inherit;
-    background: color-mix(in srgb, var(--page-accent) 28%, transparent);
-    border-radius: .2em;
-}
-
-.song-search-context {
-    color: var(--page-muted);
-    font-size: .75rem;
-    line-height: 1.35;
-    overflow-wrap: anywhere;
-}
-
 .song-card-menu {
     display: inline-flex;
     align-items: center;
@@ -1228,17 +1195,6 @@ html[data-theme="dark"] .song-card.accent-other {
 .song-grid[data-columns="1"] .song-artist {
     font-size: .9rem;
     grid-column: 2;
-}
-
-.song-grid[data-columns="1"] .song-card.has-search-context .song-title,
-.song-grid[data-columns="1"] .song-card.has-search-context .song-artist,
-.song-grid[data-columns="1"] .song-card.has-search-context .song-card-meta {
-    grid-row: 1;
-}
-
-.song-grid[data-columns="1"] .song-card.has-search-context .song-search-context {
-    grid-column: 1 / 3;
-    grid-row: 2;
 }
 
 .song-grid[data-columns="1"] .song-accent-label {
@@ -1867,10 +1823,6 @@ body.floating-actions-suppressed .floating-menu {
     flex-direction: column;
     }
 
-    .search-url-copy-button {
-    align-self: flex-end;
-    }
-
     .app-panel {
     border-radius: 1.1rem;
     }
@@ -2095,19 +2047,6 @@ body.floating-actions-suppressed .floating-menu {
     max-width: 5.5rem;
     padding: .2rem .45rem;
     font-size: .72rem;
-    }
-
-    .song-card.has-search-context .song-search-context {
-    grid-column: 1;
-    grid-row: 3;
-    }
-
-    .song-card.has-search-context .song-card-meta {
-    grid-row: 4;
-    }
-
-    .song-card.has-search-context .song-card-menu {
-    grid-row: 1 / 5;
     }
 
     .song-accent-label,
