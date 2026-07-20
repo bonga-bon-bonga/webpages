@@ -224,6 +224,11 @@ test("検索結果を30件ずつ段階表示する", async ({ page }) => {
   await expect(page.locator("#stats")).toContainText("検索結果：65件");
   await expect(page.locator("#stats")).not.toContainText("表示中");
   await expect(page.locator("#searchMore")).toHaveText("さらに30件表示 ⇒");
+  const initialResultPositions = await page.evaluate(() => ({
+    lastCardBottom: document.querySelector("#songs .song-card:last-child")?.getBoundingClientRect().bottom ?? 0,
+    moreButtonTop: document.querySelector("#searchMore")?.getBoundingClientRect().top ?? 0,
+  }));
+  expect(initialResultPositions.moreButtonTop).toBeGreaterThan(initialResultPositions.lastCardBottom);
   await page.locator("#searchMore").click();
   await expect(page.locator("#songs .song-card")).toHaveCount(60);
   await expect(page.locator("#searchMore")).toHaveText("さらに5件表示 ⇒");

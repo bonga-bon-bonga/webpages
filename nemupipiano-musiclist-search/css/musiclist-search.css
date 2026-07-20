@@ -1094,6 +1094,7 @@ html[data-theme="dark"] .song-card.accent-other {
 .search-more-row {
     display: flex;
     justify-content: flex-end;
+    order: 25;
 }
 
 .search-alternatives {
