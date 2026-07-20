@@ -102,6 +102,8 @@ const els = {
   searchMore: document.getElementById("searchMore"),
   empty: document.getElementById("empty"),
   searchAlternatives: document.getElementById("searchAlternatives"),
+  zeroResultRecommendations: document.getElementById("zeroResultRecommendations"),
+  zeroResultRecommendationSongs: document.getElementById("zeroResultRecommendationSongs"),
   homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
   homeRecommendations: document.getElementById("homeRecommendations"),
   homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
@@ -850,6 +852,71 @@ function renderSearchAlternatives(resultItems) {
   `;
 }
 
+function normalizedSearchSimilarity(query, target) {
+  if (!query || !target) return 0;
+  if (target.includes(query) || query.includes(target)) return 1;
+  const maxLength = Math.max(query.length, target.length);
+  return maxLength === 0 ? 0 : Math.max(0, 1 - levenshteinDistance(query, target) / maxLength);
+}
+
+function keywordSimilarityForSong(song) {
+  const query = createSearchKey(els.search.value);
+  if (!query) return 0;
+  const targets = searchTargetsForScope(song, getSearchScope()).map(createSearchKey).filter(Boolean);
+  return targets.reduce((best, target) => Math.max(best, normalizedSearchSimilarity(query, target)), 0);
+}
+
+function zeroRecommendationScore(song) {
+  const scores = [];
+
+  if (easySearchMode) {
+    EASY_CATEGORIES.forEach(category => {
+      if (selectedEasyValues(category.key).length > 0) {
+        scores.push(Number(easyMatchesCategory(song, category.key)));
+      }
+    });
+  } else {
+    if (hasSearchKeyword()) scores.push(keywordSimilarityForSong(song));
+    if (els.genre.value) scores.push(Number(song.genre === els.genre.value));
+    if (els.subgenre.value) scores.push(Number(normalizeStringArray(song.classification?.subgenres).includes(els.subgenre.value)));
+    if (els.sourceCategory.value) scores.push(Number(sourceCategoriesFor(song).includes(els.sourceCategory.value)));
+    if (els.animeDrama.value) scores.push(Number(matchesAnimeDramaFilter(song, els.animeDrama.value)));
+    if (els.vocalType.value) scores.push(Number(normalizeStringArray(song.classification?.vocalTypes).includes(els.vocalType.value)));
+    if (els.releaseDecade.value) scores.push(Number(song.releaseDecade === els.releaseDecade.value));
+  }
+
+  if (playableOnly) scores.push(Number(isPlayable(song)));
+  if (favoriteOnly) scores.push(Number(isFavorite(song)));
+  return scores.reduce((total, score) => total + score, 0);
+}
+
+function zeroResultRecommendationSongs(resultItems) {
+  const hasActiveCondition = easySearchMode ? hasEasyActiveFilters() : !isSearchGuideDefaultState();
+  if (!hasActiveCondition || resultItems.length !== 0 || songs.length === 0) return [];
+  const conditionKey = easySearchMode
+    ? EASY_CATEGORIES.map(category => selectedEasyValues(category.key).join(",")).join("|")
+    : activeSearchConditions().map(condition => condition.label).join("|");
+  const dateKey = localDateSeedKey();
+
+  return songs
+    .map(song => ({
+      song,
+      score: zeroRecommendationScore(song),
+      tieBreak: stableStringHash(`${dateKey}|${conditionKey}|${favoriteKeyForSong(song)}`),
+    }))
+    .sort((left, right) => right.score - left.score
+      || playablePriority(left.song, right.song)
+      || left.tieBreak - right.tieBreak)
+    .slice(0, 3)
+    .map(item => item.song);
+}
+
+function renderZeroResultRecommendations(resultItems) {
+  const recommendations = zeroResultRecommendationSongs(resultItems);
+  els.zeroResultRecommendations.hidden = recommendations.length === 0;
+  els.zeroResultRecommendationSongs.innerHTML = renderSongCards(recommendations);
+}
+
 function hasSearchKeyword() {
   return searchKeywords().length !== 0;
 }
@@ -1342,11 +1409,16 @@ function isPlayable(song) {
 function getHomeRecommendSource() {
   if (homeRandomSource === "playable") return songs.filter(isPlayable);
   if (homeRandomSource === "favorite") return songs.filter(isFavorite);
+  if (homeRandomSource === "recent") return longAgoCopiedSongs();
   return songs;
 }
 
 function pickHomeRecommendations() {
   const source = [...getHomeRecommendSource()];
+  if (homeRandomSource === "recent") {
+    homeRecommendedSongs = source.slice(0, HOME_RECOMMEND_COUNT);
+    return;
+  }
   for (let i = source.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [source[i], source[j]] = [source[j], source[i]];
@@ -1439,7 +1511,7 @@ function gridClassesForColumns(columns) {
 function applyColumnLayout() {
   const gridClassName = gridClassesForColumns(displayColumnCount);
 
-  [els.homeRecommendations, els.homeMoodSongs, els.copyHistorySongs, els.songs, els.fuzzySongs].forEach(grid => {
+  [els.homeRecommendations, els.homeMoodSongs, els.copyHistorySongs, els.songs, els.zeroResultRecommendationSongs, els.fuzzySongs].forEach(grid => {
     if (!grid) return;
     grid.className = gridClassName;
     grid.dataset.columns = displayColumnCount;
@@ -1723,7 +1795,7 @@ function renderSongCards(items) {
 
 function renderEasyStats(items, visibleItems = items) {
   return `
-    <span class="badge rounded-pill stat-badge px-3 py-2">一致する曲：<strong>${items.length}</strong> 表示中：<strong>${visibleItems.length}</strong></span>
+    <span class="badge rounded-pill stat-badge px-3 py-2">検索結果：<strong>${items.length}</strong>件</span>
     <span class="playable-filter easy-stat-filter" aria-label="弾ける曲フィルター">
       <span class="playable-filter-label">弾ける曲</span>
       <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-easy-playable-filter aria-pressed="${playableOnly}">${playableOnly ? "ON" : "OFF"}</button>
@@ -1739,7 +1811,7 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
 
   if (easySearchMode) renderEasySearch();
   els.stats.innerHTML = `
-    <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 一致：<strong>${items.length}</strong> 表示中：<strong>${visibleItems.length}</strong></span>
+    <span class="badge rounded-pill stat-badge px-3 py-2">全曲数：<strong>${songs.length}</strong> 検索結果：<strong>${items.length}</strong>件</span>
   `;
   if (easySearchMode) {
     els.stats.innerHTML = renderEasyStats(items, visibleItems);
@@ -1764,11 +1836,15 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
   els.searchMore.textContent = `さらに${Math.min(SEARCH_RESULT_STEP, items.length - visibleItems.length)}件表示 ⇒`;
   els.songs.innerHTML = renderSongCards(visibleItems);
   renderSearchAlternatives(items);
+  renderZeroResultRecommendations(items);
 }
 
 function renderHome() {
   updateHomeRandomSourceButtons();
   els.homeRecommendEmpty.hidden = homeRecommendedSongs.length !== 0;
+  els.homeRecommendEmpty.textContent = homeRandomSource === "recent"
+    ? "コピー履歴がたまると、久しぶりの曲を表示できます。"
+    : "おすすめできる曲がまだありません。";
   els.homeRecommendations.innerHTML = renderSongCards(homeRecommendedSongs);
   renderHomeMood();
   renderCopyHistory();
@@ -2198,6 +2274,25 @@ function setFloatingActionsSuppressed(suppressed) {
   document.body.classList.toggle("floating-actions-suppressed", suppressed);
 }
 
+function longAgoCopiedSongs() {
+  const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
+  const history = Array.isArray(savedHistory) ? savedHistory : [];
+  const latestByKey = new Map();
+
+  history.forEach(entry => {
+    const key = normalizeCellText(entry?.key || favoriteKeyForSong(entry || {}));
+    if (!key || latestByKey.has(key)) return;
+    const copiedAt = Date.parse(entry?.copiedAt || entry?.timestamp || "");
+    latestByKey.set(key, Number.isFinite(copiedAt) ? copiedAt : 0);
+  });
+
+  return [...latestByKey.entries()]
+    .map(([key, copiedAt]) => ({ song: findSongByStoredKey(key), copiedAt }))
+    .filter(item => item.song)
+    .sort((left, right) => left.copiedAt - right.copiedAt || compareSongNo(left.song, right.song))
+    .map(item => item.song);
+}
+
 function setFloatingMenuOpen(open, { restoreFocus = false } = {}) {
   if (!els.floatingMenuPanel || !els.menuButton) return;
   els.floatingMenuPanel.hidden = !open;
@@ -2611,7 +2706,7 @@ els.favoriteFilter.addEventListener("click", () => {
 els.clearFavorites.addEventListener("click", clearAllFavorites);
 els.homeRandomOptions.forEach(button => {
   button.addEventListener("click", () => {
-    homeRandomSource = ["all", "playable", "favorite"].includes(button.dataset.homeRandomSource)
+    homeRandomSource = ["all", "playable", "favorite", "recent"].includes(button.dataset.homeRandomSource)
       ? button.dataset.homeRandomSource
       : "all";
     localStorage.setItem(HOME_RANDOM_SOURCE_KEY, homeRandomSource);
@@ -2821,7 +2916,7 @@ els.sortOrder.value = ["playable", "no", "title", "artist", "favorite", "copyCou
   : "playable";
 const savedAnimeDrama = localStorage.getItem(ANIME_DRAMA_KEY);
 pendingAnimeDramaValue = savedAnimeDrama || "";
-homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
+homeRandomSource = ["all", "playable", "favorite", "recent"].includes(localStorage.getItem(HOME_RANDOM_SOURCE_KEY))
   ? localStorage.getItem(HOME_RANDOM_SOURCE_KEY)
   : "all";
 favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);

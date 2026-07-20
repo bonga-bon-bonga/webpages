@@ -1143,6 +1143,15 @@ html[data-theme="dark"] .song-card.accent-other {
     font-size: .7rem;
 }
 
+.zero-result-recommendations[hidden] {
+    display: none;
+}
+
+.zero-result-recommendations {
+    padding-top: 1rem;
+    border-top: 1px solid var(--page-line);
+}
+
 .song-grid[data-columns="1"] .song-card-body,
 .song-grid[data-columns="2"] .song-card-body {
     padding: .75rem 1rem !important;

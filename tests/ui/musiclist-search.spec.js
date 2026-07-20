@@ -177,9 +177,13 @@ test("入力候補をキーボードで選択し表記揺れ候補から再検�
   await expect(page.locator("#songs .song-card")).toHaveCount(0);
   await expect(page.locator("#searchAlternatives")).toBeVisible();
   await expect(page.locator("#searchAlternatives")).toContainText("Blue Night");
-  await page.getByRole("button", { name: /Blue Night/ }).click();
+  await expect(page.locator("#zeroResultRecommendations")).toBeVisible();
+  await expect(page.locator("#zeroResultRecommendations")).toContainText("条件には完全一致しませんが、近い曲です。");
+  await expect(page.locator("#zeroResultRecommendationSongs .song-card")).toHaveCount(3);
+  await page.locator("#searchAlternatives").getByRole("button", { name: /Blue Night/ }).click();
   await expect(search).toHaveValue("Blue Night");
   await expect(page.locator("#songs .song-card")).toHaveCount(1);
+  await expect(page.locator("#zeroResultRecommendations")).toBeHidden();
 });
 
 test("検索条件をチップ表示し個別に解除できる", async ({ page }) => {
@@ -212,6 +216,8 @@ test("検索結果を30件ずつ段階表示する", async ({ page }) => {
   await page.locator("#search").fill("Song");
 
   await expect(page.locator("#songs .song-card")).toHaveCount(30);
+  await expect(page.locator("#stats")).toContainText("検索結果：65件");
+  await expect(page.locator("#stats")).not.toContainText("表示中");
   await expect(page.locator("#searchMore")).toHaveText("さらに30件表示 ⇒");
   await page.locator("#searchMore").click();
   await expect(page.locator("#songs .song-card")).toHaveCount(60);
@@ -219,6 +225,28 @@ test("検索結果を30件ずつ段階表示する", async ({ page }) => {
   await page.locator("#searchMore").click();
   await expect(page.locator("#songs .song-card")).toHaveCount(65);
   await expect(page.locator("#searchMore")).toBeHidden();
+});
+
+test("久しぶりの曲はコピー履歴が古い順に表示する", async ({ page }) => {
+  await page.route("**/data/musiclist.json", route => route.fulfill({
+    json: Array.from({ length: 3 }, (_, index) => makeSearchSong(index + 1)),
+  }));
+  await page.reload();
+  await page.evaluate(() => {
+    localStorage.setItem("nemupipiano:copyHistory", JSON.stringify([
+      { key: "song 003|artist 3", copiedAt: "2026-07-01T00:00:00.000Z" },
+      { key: "song 002|artist 2", copiedAt: "2025-07-01T00:00:00.000Z" },
+      { key: "song 001|artist 1", copiedAt: "2024-07-01T00:00:00.000Z" },
+    ]));
+  });
+
+  await page.locator('[data-home-random-source="recent"]').click();
+  await expect(page.locator("#homeRecommendations .song-title")).toHaveText([
+    "Song 001",
+    "Song 002",
+    "Song 003",
+  ]);
+  await expect(page.locator('[data-home-random-source="recent"]')).toHaveAttribute("aria-pressed", "true");
 });
 
 test("かんたんモードは1カテゴリずつ展開し候補を自動更新する", async ({ page }) => {
