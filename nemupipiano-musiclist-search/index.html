@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.3.4" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.3.5" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">本文へスキップ</a>
@@ -72,12 +72,12 @@
               </h2>
               <p class="recommend-desc text-secondary mb-0">
                 下の条件を選ぶと、おすすめ曲を5件表示します。気になった曲はリクエストしてみましょう！<br>
-                ※「弾ける曲」は、曲リストの「弾ける」欄にチェックが入っている曲のみを対象としています。
+                ※「リクエスト可」は、曲リストの「リク可」欄にチェックが入っている曲のみを対象としています。
               </p>
             </div>
           </div>
           <div class="recommend-source-options" role="radiogroup" aria-label="今日のおすすめの選出方法">
-            <button class="btn recommend-source-button" type="button" data-home-random-source="playable" aria-pressed="true">弾ける曲</button>
+            <button class="btn recommend-source-button" type="button" data-home-random-source="playable" aria-pressed="true">リクエスト可</button>
             <button class="btn recommend-source-button active" type="button" data-home-random-source="all" aria-pressed="false">全曲</button>
             <button class="btn recommend-source-button" type="button" data-home-random-source="favorite" aria-pressed="false">お気に入り</button>
           </div>
@@ -205,7 +205,7 @@
             <div class="col-12 col-md-6">
               <label class="form-label fw-bold" for="sortOrder">並び順</label>
               <select id="sortOrder" class="form-select form-select-lg">
-                <option value="playable">弾ける曲を優先する</option>
+                <option value="playable">リクエスト可を優先する</option>
                 <option value="no">No順</option>
                 <option value="title">曲名毎に並べる</option>
                 <option value="artist">アーティスト毎に並べる</option>
@@ -227,8 +227,8 @@
             <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
           </div>
           <div class="quick-filter-group">
-            <div class="playable-filter" aria-label="弾ける曲フィルター">
-              <span class="playable-filter-label">弾ける曲</span>
+            <div class="playable-filter" aria-label="リクエスト可フィルター">
+              <span class="playable-filter-label">リクエスト可</span>
               <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="playableFilter" type="button" data-filter="playable" aria-pressed="false">OFF</button>
             </div>
             <div class="favorite-filter" aria-label="お気に入りフィルター">
@@ -252,7 +252,7 @@
               <ul class="mb-0">
                 <li>検索フォームにキーワードを入力すると、一致する曲カードが表示されます。</li>
                 <li>曲名・アーティストの原文に加えて、ひらがな・カタカナ読みでの検索にも対応しています。</li>
-                <li>「検索対象」「弾ける曲」「お気に入りのみ」を選ぶと、検索結果を絞り込めます。</li>
+                <li>「検索対象」「リクエスト可」「お気に入りのみ」を選ぶと、検索結果を絞り込めます。</li>
                 <li>「▼詳細」から、ジャンルなどの詳細な検索条件を設定できます。</li>
               </ul>
               <h6 class="fw-bold mt-3">■かんたんモード</h6>
@@ -406,7 +406,7 @@
           <p class="mb-2"><strong>検索</strong>タブでは、曲リストから目的の曲を探せます。</p>
           <ul class="mb-0">
             <li>曲名・アーティスト名でキーワード検索できます。</li>
-            <li>詳細を開くとジャンルなどの条件の絞り込み、また弾ける曲・お気に入りのみに絞った表示に切り替えられます。</li>
+            <li>詳細を開くとジャンルなどの条件の絞り込み、またリクエスト可・お気に入りのみに絞った表示に切り替えられます。</li>
           </ul>
           <p class="mb-2"><strong>ふわっと検索</strong>タブでは、気分や雰囲気などにマッチする曲を探せます。</p>
           <ul class="mb-0">
@@ -541,7 +541,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.3.4 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.3.5 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -564,7 +564,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.3.4"></script>
+  <script src="./js/musiclist-search.js?v=2.3.5"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 <!--

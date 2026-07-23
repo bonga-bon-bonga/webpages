@@ -76,6 +76,31 @@ class BuildMusiclistTests(unittest.TestCase):
             ["list#1", "disney#2", "ghibli#3"],
         )
 
+    def test_maps_requestable_header_to_playable_field(self):
+        rows = [
+            {
+                "No": 1,
+                "リク可": "○",
+                "曲名": "Song",
+                "アーティスト": "Artist",
+                "_numberPrefix": "list",
+            },
+            {
+                "No": 2,
+                "弾ける曲": "○",
+                "曲名": "Legacy Song",
+                "アーティスト": "Artist",
+                "_numberPrefix": "disney",
+            },
+        ]
+        musiclist = self.module.build_musiclist(
+            rows,
+            existing_entries={},
+            search_enhancements={"titleCorrections": {}, "artistCorrections": {}},
+        )
+
+        self.assertEqual([item["playable"] for item in musiclist], ["○", "○"])
+
     def test_merges_music_metadata_into_existing_record(self):
         rows = [
             {
