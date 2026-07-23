@@ -218,6 +218,18 @@ class BuildMusiclistTests(unittest.TestCase):
         )
         self.assertNotEqual(first, second)
 
+    def test_generator_changes_affect_input_hash(self):
+        arguments = (
+            "sheet-hash",
+            [{"metadata": {"releaseDecade": "2020年代"}}],
+            {"titleCorrections": {}, "artistCorrections": {}, "songCorrections": {}},
+        )
+
+        first = self.module.build_input_hash(*arguments, generator_hash="generator-v1")
+        second = self.module.build_input_hash(*arguments, generator_hash="generator-v2")
+
+        self.assertNotEqual(first, second)
+
     def test_applies_artist_correction_to_only_the_matching_song(self):
         corrections = self.module.normalize_song_corrections(
             [

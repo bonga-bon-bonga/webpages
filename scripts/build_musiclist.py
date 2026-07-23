@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import re
@@ -390,12 +391,26 @@ def load_music_metadata():
     return entries, data
 
 
-def build_input_hash(sheet_hash, metadata_records, search_enhancements):
+def calculate_file_hash(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as source:
+        for chunk in iter(lambda: source.read(65536), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def build_input_hash(
+    sheet_hash,
+    metadata_records,
+    search_enhancements,
+    generator_hash=None,
+):
     return calculate_table_hash(
         {
             "spreadsheetHash": sheet_hash,
             "musicMetadata": metadata_records,
             "searchEnhancements": search_enhancements,
+            "generatorHash": generator_hash or calculate_file_hash(__file__),
         }
     )
 
