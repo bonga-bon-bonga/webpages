@@ -757,7 +757,7 @@ function activeSearchConditions() {
   ].forEach(([key, label, select]) => {
     if (select.value) conditions.push({ key, label: `${label}：${selectedOptionLabel(select)}` });
   });
-  if (playableOnly) conditions.push({ key: "playable", label: "弾ける曲のみ" });
+  if (playableOnly) conditions.push({ key: "playable", label: "リクエスト可のみ" });
   if (favoriteOnly) conditions.push({ key: "favorites", label: "お気に入りのみ" });
   if (hasPrimaryCondition && els.sortOrder.value !== "playable") {
     conditions.push({ key: "sort", label: `並び順：${selectedOptionLabel(els.sortOrder)}` });
@@ -1401,7 +1401,7 @@ function filteredSongs() {
   return sortedSearchSongs(filtered);
 }
 
-// 曲が「弾ける曲」かどうかを判定する。セルの値に「〇」や「○」、または「yes」（大文字小文字問わず）が含まれていれば弾ける曲とみなす。
+// 曲が「リクエスト可」かどうかを判定する。セルの値に「〇」や「○」、または「yes」（大文字小文字問わず）が含まれていればリクエスト可能とみなす。
 function isPlayable(song) {
   const raw = String(song.playable ?? "");
   const normalized = raw.trim().toLowerCase();
@@ -1776,7 +1776,7 @@ function renderSongCards(items) {
             ${accentColorEnabled ? `<span class="song-accent-label">${escapeHtml(songAccentLabel(song))}</span>` : ""}
           </div>
           <div class="song-card-meta d-flex">
-            ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} 弾ける</span>` : ""}
+            ${song.playable ? `<span class="badge rounded-pill badge-playable">${escapeHtml(song.playable)} リクエスト可</span>` : ""}
             ${songGenreLabel(song) ? `<span class="badge rounded-pill text-bg-light border">${escapeHtml(songGenreLabel(song))}</span>` : ""}
           </div>
         </div>
@@ -1793,8 +1793,8 @@ function renderSongCards(items) {
 function renderEasyStats(items, visibleItems = items) {
   return `
     <span class="badge rounded-pill stat-badge px-3 py-2">検索結果：<strong>${items.length}</strong>件</span>
-    <span class="playable-filter easy-stat-filter" aria-label="弾ける曲フィルター">
-      <span class="playable-filter-label">弾ける曲</span>
+    <span class="playable-filter easy-stat-filter" aria-label="リクエスト可フィルター">
+      <span class="playable-filter-label">リクエスト可</span>
       <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${playableOnly ? "active" : ""}" type="button" data-easy-playable-filter aria-pressed="${playableOnly}">${playableOnly ? "ON" : "OFF"}</button>
     </span>
     <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2 ${favoriteOnly ? "active" : ""}" type="button" data-easy-favorite-filter aria-pressed="${favoriteOnly}" aria-label="${favoriteOnly ? "お気に入りのみ表示中" : "お気に入りのみ表示"}">${favoriteOnly ? "★お気に入りのみ" : "☆お気に入りのみ"}</button>
@@ -2183,7 +2183,7 @@ function renderOriginalYoutubeSearch(song) {
 function renderSongDetail(song) {
   const genreBadge = detailBadge(songGenreLabel(song));
   const playableBadge = song.playable
-    ? detailBadge(`${song.playable} 弾ける`, "badge-playable")
+    ? detailBadge(`${song.playable} リクエスト可`, "badge-playable")
     : "";
   const number = songNumberValue(song.no);
   const tieUps = tieUpLabels(song);

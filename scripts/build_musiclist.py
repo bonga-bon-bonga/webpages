@@ -54,7 +54,7 @@ HASH_PATH = (
     or "nemupipiano-musiclist-search/data/hash/musiclist"
 )
 
-KNOWN_HEADERS = {"No", "弾ける曲", "曲名", "アーティスト", "ジャンル", "補足"}
+KNOWN_HEADERS = {"No", "リク可", "弾ける曲", "曲名", "アーティスト", "ジャンル", "補足"}
 REQUIRED_HEADERS = {"No", "曲名", "アーティスト"}
 ROMAN_NUMERAL_MAP = str.maketrans(
     {
@@ -108,8 +108,12 @@ def cell_value(cell):
 
 
 ''' 行から値を取得する関数 '''
-def pick_value(row, japanese_key, english_key):
-    return normalize_cell_text(row.get(japanese_key) or row.get(english_key))
+def pick_value(row, *keys):
+    for key in keys:
+        value = normalize_cell_text(row.get(key))
+        if value:
+            return value
+    return ""
 
 
 ''' 番号をフォーマットする関数 '''
@@ -514,7 +518,7 @@ def build_musiclist(
             "tieUps": tie_ups,
             "sourceTitle": source_title,
             "sourceArtist": source_artist,
-            "playable": pick_value(row, "弾ける曲", "playable"),
+            "playable": pick_value(row, "リク可", "弾ける曲", "playable"),
             "genre": genre,
             "note": pick_value(row, "補足", "note"),
         }

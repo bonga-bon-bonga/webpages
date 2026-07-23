@@ -83,6 +83,9 @@ test("通常検索とかんたんモードをタブで切り替えられる", as
   await expect(normalTab).toBeFocused();
   await expect(normalTab).toHaveAttribute("aria-selected", "true");
   await expect(description).toHaveText(NORMAL_DESCRIPTION);
+  await expect(page.locator('[data-home-random-source="playable"]')).toHaveText("リクエスト可");
+  await expect(page.locator("#normalSearchControls .playable-filter-label"))
+    .toHaveText("リクエスト可");
 });
 
 test("曲単位補正で除外した元アーティストは検索対象にしない", async ({ page }) => {
@@ -115,6 +118,7 @@ test("曲単位補正で除外した元アーティストは検索対象にし�
   await search.fill("Singer");
   await expect(page.locator("#songs .song-card")).toHaveCount(1);
   await expect(page.locator("#songs .song-card .song-artist")).toHaveText("Singer");
+  await expect(page.locator("#songs .badge-playable")).toHaveText("○ リクエスト可");
 });
 
 test("空白を含む検索語をひとつの語として扱い作品名は検索しない", async ({ page }) => {
