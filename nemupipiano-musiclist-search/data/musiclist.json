@@ -51571,10 +51571,47 @@
       "せかいのおわり",
       "セカイノオワリ"
     ],
-    "releaseDecade": null,
-    "classification": {},
-    "tags": {},
-    "tieUps": [],
+    "releaseDecade": "2020年代",
+    "classification": {
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "喪失",
+        "記憶",
+        "絆"
+      ],
+      "moodTags": [
+        "切ない",
+        "泣ける",
+        "優しい"
+      ],
+      "motifTags": [
+        "涙",
+        "冬",
+        "春",
+        "犬"
+      ],
+      "eventTags": []
+    },
+    "tieUps": [
+      {
+        "series": "少年と犬",
+        "workTitle": "少年と犬",
+        "role": "主題歌"
+      }
+    ],
     "sourceTitle": "琥珀",
     "sourceArtist": "SEKAI NO OWARI",
     "playable": "",
@@ -51594,9 +51631,38 @@
       "よあそび",
       "ヨアソビ"
     ],
-    "releaseDecade": null,
-    "classification": {},
-    "tags": {},
+    "releaseDecade": "2020年代",
+    "classification": {
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "エレクトロポップ"
+      ],
+      "sourceCategories": [],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "別れ",
+        "記憶",
+        "祈り",
+        "希望"
+      ],
+      "moodTags": [
+        "切ない",
+        "儚い",
+        "壮大"
+      ],
+      "motifTags": [
+        "音楽",
+        "街",
+        "夜"
+      ],
+      "eventTags": []
+    },
     "tieUps": [],
     "sourceTitle": "アンコール",
     "sourceArtist": "YOASOBI",
@@ -51618,9 +51684,43 @@
       "センゴクナデシコキゴウシーブイ．ハナザワカナキゴウ"
     ],
     "releaseDecade": null,
-    "classification": {},
-    "tags": {},
-    "tieUps": [],
+    "classification": {
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "アイドルポップ"
+      ],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "恋愛",
+        "片想い",
+        "憧れ"
+      ],
+      "moodTags": [
+        "かわいい",
+        "明るい",
+        "楽しい"
+      ],
+      "motifTags": [
+        "声"
+      ],
+      "eventTags": []
+    },
+    "tieUps": [
+      {
+        "series": "物語シリーズ",
+        "workTitle": "化物語",
+        "role": "OP"
+      }
+    ],
     "sourceTitle": "恋愛サーキュレーション",
     "sourceArtist": "千石撫子(CV.花澤香菜)",
     "playable": "",
@@ -51641,9 +51741,36 @@
       "ヤバイティーシャツヤサン",
       "やばいTシャツ屋さん"
     ],
-    "releaseDecade": null,
-    "classification": {},
-    "tags": {},
+    "releaseDecade": "2010年代",
+    "classification": {
+      "genres": [
+        "ロック"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [],
+      "vocalTypes": [
+        "デュエット"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "恋愛",
+        "応援",
+        "絆"
+      ],
+      "moodTags": [
+        "楽しい",
+        "明るい",
+        "元気",
+        "コミカル"
+      ],
+      "motifTags": [],
+      "eventTags": [
+        "結婚"
+      ]
+    },
     "tieUps": [],
     "sourceTitle": "ハッピーウェディング前ソング",
     "sourceArtist": "ヤバイTシャツ屋さん",
@@ -51664,10 +51791,49 @@
       "きんぐぬー",
       "キングヌー"
     ],
-    "releaseDecade": null,
-    "classification": {},
-    "tags": {},
-    "tieUps": [],
+    "releaseDecade": "2020年代",
+    "classification": {
+      "genres": [
+        "オルタナティブ"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "アニメ",
+        "映画"
+      ],
+      "vocalTypes": [
+        "男性ボーカル"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "恋愛",
+        "喪失",
+        "記憶",
+        "夢"
+      ],
+      "moodTags": [
+        "切ない",
+        "壮大",
+        "ダーク"
+      ],
+      "motifTags": [
+        "夜",
+        "冬",
+        "涙",
+        "手"
+      ],
+      "eventTags": []
+    },
+    "tieUps": [
+      {
+        "series": "呪術廻戦",
+        "workTitle": "劇場版 呪術廻戦 0",
+        "role": "ED"
+      }
+    ],
     "sourceTitle": "逆夢",
     "sourceArtist": "King Gnu",
     "playable": "",
@@ -51689,9 +51855,37 @@
       "デコニーナ",
       "デコ27"
     ],
-    "releaseDecade": null,
-    "classification": {},
-    "tags": {},
+    "releaseDecade": "2010年代",
+    "classification": {
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "ポップロック"
+      ],
+      "sourceCategories": [
+        "ボカロ"
+      ],
+      "vocalTypes": [
+        "VOCALOID"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "恋愛",
+        "葛藤",
+        "別れ",
+        "孤独"
+      ],
+      "moodTags": [
+        "ダーク",
+        "切ない",
+        "疾走感",
+        "かっこいい"
+      ],
+      "motifTags": [],
+      "eventTags": []
+    },
     "tieUps": [],
     "sourceTitle": "モザイクロール",
     "sourceArtist": "DECO*27",
@@ -51714,9 +51908,39 @@
       "サカモトマーヤ",
       "サカモトマアヤ"
     ],
-    "releaseDecade": null,
-    "classification": {},
-    "tags": {},
+    "releaseDecade": "2000年代",
+    "classification": {
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "恋愛",
+        "別れ",
+        "記憶",
+        "成長"
+      ],
+      "moodTags": [
+        "切ない",
+        "ノスタルジック",
+        "優しい"
+      ],
+      "motifTags": [
+        "桜",
+        "春",
+        "星",
+        "紅茶"
+      ],
+      "eventTags": []
+    },
     "tieUps": [],
     "sourceTitle": "紅茶",
     "sourceArtist": "坂本真綾",
@@ -51737,10 +51961,47 @@
       "まきのゆい",
       "マキノユイ"
     ],
-    "releaseDecade": null,
-    "classification": {},
-    "tags": {},
-    "tieUps": [],
+    "releaseDecade": "2000年代",
+    "classification": {
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [],
+      "sourceCategories": [
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "記憶",
+        "日常",
+        "旅立ち",
+        "再会"
+      ],
+      "moodTags": [
+        "優しい",
+        "穏やか",
+        "癒し",
+        "透明感"
+      ],
+      "motifTags": [
+        "風",
+        "空",
+        "星",
+        "道"
+      ],
+      "eventTags": []
+    },
+    "tieUps": [
+      {
+        "series": "ARIA",
+        "workTitle": "ARIA The ORIGINATION",
+        "role": "OP"
+      }
+    ],
     "sourceTitle": "スピラーレ",
     "sourceArtist": "牧野由依",
     "playable": "〇",
