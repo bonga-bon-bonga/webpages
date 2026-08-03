@@ -11068,7 +11068,7 @@
     ],
     "sourceTitle": "春の歌",
     "sourceArtist": "スピッツ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11125,7 +11125,7 @@
     ],
     "sourceTitle": "帝国のマーチ(The Imperial March)",
     "sourceArtist": "ジョン・ウィリアムズ",
-    "playable": "",
+    "playable": "〇",
     "genre": "映画音楽",
     "note": ""
   },
@@ -11178,7 +11178,7 @@
     ],
     "sourceTitle": "暴れん坊将軍のテーマ",
     "sourceArtist": "菊池俊輔",
-    "playable": "",
+    "playable": "〇",
     "genre": "劇伴音楽",
     "note": ""
   },
@@ -11227,7 +11227,7 @@
     "tieUps": [],
     "sourceTitle": "Dear",
     "sourceArtist": "Mrs. GREEN APPLE",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11278,7 +11278,7 @@
     "tieUps": [],
     "sourceTitle": "遥か",
     "sourceArtist": "スピッツ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11331,7 +11331,7 @@
     "tieUps": [],
     "sourceTitle": "ツバサ",
     "sourceArtist": "アンダーグラフ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11384,7 +11384,7 @@
     "tieUps": [],
     "sourceTitle": "抜錨",
     "sourceArtist": "ナナホシ管弦楽団",
-    "playable": "",
+    "playable": "〇",
     "genre": "ボカロ",
     "note": ""
   },
@@ -11442,7 +11442,7 @@
     ],
     "sourceTitle": "デイ・ドリーム・ビリーバー",
     "sourceArtist": "ザ・モンキーズ / ザ・タイマーズ",
-    "playable": "",
+    "playable": "〇",
     "genre": "洋楽",
     "note": ""
   },
@@ -11497,7 +11497,7 @@
     ],
     "sourceTitle": "Realize",
     "sourceArtist": "玉置成実",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11549,7 +11549,7 @@
     "tieUps": [],
     "sourceTitle": "瑠璃色の地球",
     "sourceArtist": "松田聖子",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11598,7 +11598,7 @@
     "tieUps": [],
     "sourceTitle": "て",
     "sourceArtist": "上野大樹",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11656,7 +11656,7 @@
     ],
     "sourceTitle": "花になって",
     "sourceArtist": "緑黄色社会",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11717,7 +11717,7 @@
     ],
     "sourceTitle": "花束を君に",
     "sourceArtist": "宇多田ヒカル",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11771,7 +11771,7 @@
     "tieUps": [],
     "sourceTitle": "花",
     "sourceArtist": "中孝介 / 森山直太朗(Self Cover)",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11830,7 +11830,7 @@
     ],
     "sourceTitle": "花",
     "sourceArtist": "ORANGE RANGE",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -11890,62 +11890,7 @@
     ],
     "sourceTitle": "花占い",
     "sourceArtist": "Vaundy",
-    "playable": "",
-    "genre": "J-POP",
-    "note": ""
-  },
-  {
-    "no": "list#214",
-    "displayTitle": "花",
-    "displayArtist": "樹原涼子",
-    "songKey": "花|樹原涼子",
-    "titleSearchWords": [
-      "はな",
-      "ハナ",
-      "hana"
-    ],
-    "artistSearchWords": [
-      "さかきばらりょうこ",
-      "サカキバラリョウコ"
-    ],
-    "releaseDecade": "2000年代",
-    "classification": {
-      "genres": [
-        "キッズ"
-      ],
-      "subgenres": [
-        "バラード"
-      ],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "女性ボーカル"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "日常",
-        "夢",
-        "希望"
-      ],
-      "moodTags": [
-        "かわいい",
-        "癒し"
-      ],
-      "motifTags": [
-        "花"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "ピアノランド",
-        "workTitle": "ピアノランド",
-        "role": "教材曲"
-      }
-    ],
-    "sourceTitle": "花",
-    "sourceArtist": "樹原涼子",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12005,7 +11950,7 @@
     ],
     "sourceTitle": "花の名",
     "sourceArtist": "BUMP OF CHICKEN",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12063,7 +12008,7 @@
     ],
     "sourceTitle": "花の塔",
     "sourceArtist": "さユり",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12120,7 +12065,7 @@
     ],
     "sourceTitle": "桜坂",
     "sourceArtist": "福山雅治",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12179,7 +12124,7 @@
     ],
     "sourceTitle": "ひまわり",
     "sourceArtist": "福山雅治",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12228,7 +12173,7 @@
     "tieUps": [],
     "sourceTitle": "帰ろう",
     "sourceArtist": "藤井風",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12285,7 +12230,7 @@
     ],
     "sourceTitle": "ケセラセラ",
     "sourceArtist": "Mrs. GREEN APPLE",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12332,7 +12277,7 @@
     "tieUps": [],
     "sourceTitle": "コーヒールンバ",
     "sourceArtist": "ウーゴ・ブランコ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12384,7 +12329,7 @@
     "tieUps": [],
     "sourceTitle": "コーヒーとシロップ",
     "sourceArtist": "Official髭男dism",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12438,7 +12383,7 @@
     "tieUps": [],
     "sourceTitle": "一杯のコーヒーから",
     "sourceArtist": "霧島昇とミス・コロムビア",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12498,7 +12443,7 @@
     ],
     "sourceTitle": "God knows...",
     "sourceArtist": "涼宮ハルヒ(CV.平野 綾)",
-    "playable": "",
+    "playable": "〇",
     "genre": "アニメ",
     "note": ""
   },
@@ -12548,7 +12493,7 @@
     "tieUps": [],
     "sourceTitle": "コーヒーハウスにて",
     "sourceArtist": "相曽晴日",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12598,7 +12543,7 @@
     "tieUps": [],
     "sourceTitle": "ベンチとコーヒー",
     "sourceArtist": "BUMP OF CHICKEN",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12649,7 +12594,7 @@
     "tieUps": [],
     "sourceTitle": "コーヒーショップで",
     "sourceArtist": "あべ静江",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12697,7 +12642,7 @@
     "tieUps": [],
     "sourceTitle": "Coffee",
     "sourceArtist": "Mrs. GREEN APPLE",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12746,7 +12691,7 @@
     "tieUps": [],
     "sourceTitle": "MELODY",
     "sourceArtist": "福山雅治",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12799,7 +12744,7 @@
     "tieUps": [],
     "sourceTitle": "時代",
     "sourceArtist": "中島みゆき",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12857,7 +12802,7 @@
     ],
     "sourceTitle": "新時代",
     "sourceArtist": "Ado",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12917,7 +12862,7 @@
     ],
     "sourceTitle": "少年時代",
     "sourceArtist": "井上陽水",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -12967,7 +12912,7 @@
     "tieUps": [],
     "sourceTitle": "川の流れのように",
     "sourceArtist": "美空ひばり",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -13017,7 +12962,7 @@
     "tieUps": [],
     "sourceTitle": "神田川",
     "sourceArtist": "かぐや姫",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -13069,7 +13014,7 @@
     "tieUps": [],
     "sourceTitle": "神っぽいな",
     "sourceArtist": "ピノキオピー",
-    "playable": "",
+    "playable": "〇",
     "genre": "ボカロ",
     "note": ""
   },
@@ -13124,7 +13069,7 @@
     ],
     "sourceTitle": "Love Song",
     "sourceArtist": "Uru",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -13185,7 +13130,7 @@
     ],
     "sourceTitle": "水の星へ愛をこめて",
     "sourceArtist": "森口博子",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -13245,7 +13190,7 @@
     ],
     "sourceTitle": "翔べ! ガンダム",
     "sourceArtist": "池田鴻",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -13304,7 +13249,7 @@
     ],
     "sourceTitle": "哀 戦士",
     "sourceArtist": "井上大輔",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -52005,6 +51950,151 @@
     "sourceTitle": "スピラーレ",
     "sourceArtist": "牧野由依",
     "playable": "〇",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#955",
+    "displayTitle": "君の恋人になったら",
+    "displayArtist": "back number",
+    "songKey": "君の恋人になったら|backnumber",
+    "titleSearchWords": [
+      "きみのこいびとになったら",
+      "キミノコイビトニナッタラ"
+    ],
+    "artistSearchWords": [
+      "ばっくなんばー",
+      "バックナンバー"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "君の恋人になったら",
+    "sourceArtist": "back number",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#956",
+    "displayTitle": "世界中の誰よりきっと",
+    "displayArtist": "中山美穂&WANDS",
+    "songKey": "世界中の誰よりきっと|中山美穂wands",
+    "titleSearchWords": [
+      "せかいじゅうのだれよりきっと",
+      "セカイジュウノダレヨリキット"
+    ],
+    "artistSearchWords": [
+      "なかやまみほ",
+      "わんず",
+      "ナカヤマミホ",
+      "ワンズ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "世界中の誰よりきっと",
+    "sourceArtist": "中山美穂&WANDS",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#957",
+    "displayTitle": "銀河鉄道の夜",
+    "displayArtist": "GOING STEADY / 銀杏BOYS",
+    "songKey": "銀河鉄道の夜|goingsteady/銀杏boys",
+    "titleSearchWords": [
+      "ぎんがてつどうのよる",
+      "ギンガテツドウノヨル"
+    ],
+    "artistSearchWords": [
+      "ごーいんぐすてでぃ",
+      "ごいすて",
+      "ぎんなんぼーいず",
+      "ゴーイングステディ",
+      "ゴイステ",
+      "ギンナンボーイズ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "銀河鉄道の夜",
+    "sourceArtist": "GOING STEADY / 銀杏BOYS",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#958",
+    "displayTitle": "ニア",
+    "displayArtist": "夏代孝明",
+    "songKey": "ニア|夏代孝明",
+    "titleSearchWords": [
+      "にあ",
+      "ニア"
+    ],
+    "artistSearchWords": [
+      "なつよこうめい",
+      "ナツヨコウメイ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "ニア",
+    "sourceArtist": "夏代孝明",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#959",
+    "displayTitle": "遥か",
+    "displayArtist": "GReeeeN",
+    "songKey": "遥か|greeeen",
+    "titleSearchWords": [
+      "はるか",
+      "ハルカ"
+    ],
+    "artistSearchWords": [
+      "ぐりーん",
+      "グリーン"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "遥か",
+    "sourceArtist": "GReeeeN",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#960",
+    "displayTitle": "アポトーシス",
+    "displayArtist": "Official髭男dism",
+    "songKey": "アポトーシス|official髭男dism",
+    "titleSearchWords": [
+      "あぽとーしす"
+    ],
+    "artistSearchWords": [
+      "おふぃしゃるひげだんでぃずむ",
+      "ひげだん",
+      "オフィシャルヒゲダンディズム",
+      "ヒゲダン"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "アポトーシス",
+    "sourceArtist": "Official髭男dism",
+    "playable": "",
     "genre": "",
     "note": ""
   },
