@@ -14520,7 +14520,7 @@
     ],
     "sourceTitle": "My Heart Will Go On",
     "sourceArtist": "セリーヌ・ディオン",
-    "playable": "",
+    "playable": "〇",
     "genre": "映画音楽",
     "note": ""
   },
@@ -14565,7 +14565,7 @@
     "tieUps": [],
     "sourceTitle": "let it be",
     "sourceArtist": "ビートルズ",
-    "playable": "",
+    "playable": "〇",
     "genre": "洋楽",
     "note": ""
   },
@@ -14614,7 +14614,7 @@
     "tieUps": [],
     "sourceTitle": "翼をください",
     "sourceArtist": "村井邦彦",
-    "playable": "",
+    "playable": "〇",
     "genre": "合唱曲",
     "note": ""
   },
@@ -14671,7 +14671,7 @@
     ],
     "sourceTitle": "戦場のメリークリスマス",
     "sourceArtist": "坂本龍一",
-    "playable": "",
+    "playable": "〇",
     "genre": "映画音楽",
     "note": ""
   },
@@ -14728,7 +14728,7 @@
     ],
     "sourceTitle": "The Rose",
     "sourceArtist": "ベット・ミドラー",
-    "playable": "",
+    "playable": "〇",
     "genre": "洋楽",
     "note": ""
   },
@@ -14774,7 +14774,7 @@
     "tieUps": [],
     "sourceTitle": "アメイジング・グレイス",
     "sourceArtist": "ジョン・ニュートン",
-    "playable": "",
+    "playable": "〇",
     "genre": "讃美歌",
     "note": ""
   },
@@ -14823,7 +14823,7 @@
     "tieUps": [],
     "sourceTitle": "天城越え",
     "sourceArtist": "石川さゆり",
-    "playable": "",
+    "playable": "〇",
     "genre": "演歌",
     "note": ""
   },
@@ -14876,7 +14876,7 @@
     "tieUps": [],
     "sourceTitle": "二人セゾン",
     "sourceArtist": "欅坂46",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -14932,7 +14932,7 @@
     ],
     "sourceTitle": "硝子の少年",
     "sourceArtist": "KinKi Kids",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -14988,7 +14988,7 @@
     ],
     "sourceTitle": "Time goes by",
     "sourceArtist": "Every Little Thing",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -15046,7 +15046,7 @@
     ],
     "sourceTitle": "スノーマジックファンタジー",
     "sourceArtist": "SEKAI NO OWARI",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -15094,7 +15094,7 @@
     "tieUps": [],
     "sourceTitle": "純恋歌",
     "sourceArtist": "湘南乃風",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15146,7 +15146,7 @@
     "tieUps": [],
     "sourceTitle": "夏の終わり",
     "sourceArtist": "森山直太朗",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15201,7 +15201,7 @@
     ],
     "sourceTitle": "このまま君だけを奪い去りたい",
     "sourceArtist": "DEEN",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15258,7 +15258,7 @@
     ],
     "sourceTitle": "涙のイエスタデー",
     "sourceArtist": "GARNET CROW",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15354,7 +15354,7 @@
     "tieUps": [],
     "sourceTitle": "きらきら星",
     "sourceArtist": "ジャン・フィリップ・ラモー",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -15424,7 +15424,7 @@
     ],
     "sourceTitle": "7月7日、晴れ",
     "sourceArtist": "DREAMS COME TRUE",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15473,7 +15473,7 @@
     "tieUps": [],
     "sourceTitle": "渚にまつわるエトセトラ",
     "sourceArtist": "PUFFY",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15526,7 +15526,7 @@
     "tieUps": [],
     "sourceTitle": "渚",
     "sourceArtist": "スピッツ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15586,7 +15586,7 @@
     ],
     "sourceTitle": "残響散歌",
     "sourceArtist": "Aimer",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -52094,6 +52094,29 @@
     "tieUps": [],
     "sourceTitle": "アポトーシス",
     "sourceArtist": "Official髭男dism",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#961",
+    "displayTitle": "センチメンタル・キス",
+    "displayArtist": "汐れいら",
+    "songKey": "センチメンタルキス|汐れいら",
+    "titleSearchWords": [
+      "せんちめんたる・きす"
+    ],
+    "artistSearchWords": [
+      "しおれいら",
+      "シオレイラ",
+      "汐令等"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "センチメンタル・キス",
+    "sourceArtist": "汐れいら",
     "playable": "",
     "genre": "",
     "note": ""
