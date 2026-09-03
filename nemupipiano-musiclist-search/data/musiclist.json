@@ -14378,96 +14378,6 @@
     "note": ""
   },
   {
-    "no": "list#260",
-    "displayTitle": "渚のアデリーヌ",
-    "displayArtist": "リチャード・クレイダーマン",
-    "songKey": "渚のアデリーヌ|リチャードクレイダーマン",
-    "titleSearchWords": [
-      "なぎさのあでりーぬ",
-      "ナギサノアデリーヌ",
-      "nagisanoaderiinu"
-    ],
-    "artistSearchWords": [
-      "りちゃーどくれいだーまん",
-      "リチャードクレイダーマン"
-    ],
-    "releaseDecade": "1970年代",
-    "classification": {
-      "genres": [
-        "イージーリスニング"
-      ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "恋愛"
-      ],
-      "moodTags": [
-        "おしゃれ",
-        "癒し"
-      ],
-      "motifTags": [
-        "海"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [],
-    "sourceTitle": "渚のアデリーヌ",
-    "sourceArtist": "リチャード・クレイダーマン",
-    "playable": "",
-    "genre": "イージーリスニング",
-    "note": ""
-  },
-  {
-    "no": "list#261",
-    "displayTitle": "River flows in you",
-    "displayArtist": "イルマ",
-    "songKey": "riverflowsinyou|イルマ",
-    "titleSearchWords": [
-      "りばーふろーずいんゆー",
-      "りばーふろーずいんゆう",
-      "リバーフローズインユー",
-      "リバーフローズインユウ"
-    ],
-    "artistSearchWords": [
-      "いるま",
-      "イルマ"
-    ],
-    "releaseDecade": "2000年代",
-    "classification": {
-      "genres": [
-        "イージーリスニング"
-      ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [],
-      "moodTags": [
-        "透明感",
-        "切ない",
-        "癒し"
-      ],
-      "motifTags": [
-        "川"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [],
-    "sourceTitle": "River flows in you",
-    "sourceArtist": "イルマ",
-    "playable": "",
-    "genre": "イージーリスニング",
-    "note": ""
-  },
-  {
     "no": "list#262",
     "displayTitle": "My Heart Will Go On",
     "displayArtist": "セリーヌ・ディオン",
@@ -15263,55 +15173,6 @@
     "note": ""
   },
   {
-    "no": "list#277",
-    "displayTitle": "energy flow",
-    "displayArtist": "坂本龍一",
-    "songKey": "energyflow|坂本龍一",
-    "titleSearchWords": [
-      "えなじーふろー",
-      "えなじーふろう",
-      "エナジーフロー",
-      "エナジーフロウ"
-    ],
-    "artistSearchWords": [
-      "さかもとりゅういち",
-      "サカモトリュウイチ"
-    ],
-    "releaseDecade": "1990年代",
-    "classification": {
-      "genres": [
-        "イージーリスニング"
-      ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [],
-      "moodTags": [
-        "おしゃれ",
-        "透明感",
-        "癒し"
-      ],
-      "motifTags": [],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "資生堂",
-        "workTitle": "資生堂 アクエア",
-        "role": "CMソング"
-      }
-    ],
-    "sourceTitle": "energy flow",
-    "sourceArtist": "坂本龍一",
-    "playable": "",
-    "genre": "イージーリスニング",
-    "note": ""
-  },
-  {
     "no": "list#278",
     "displayTitle": "きらきら星",
     "displayArtist": "ジャン・フィリップ・ラモー",
@@ -15636,7 +15497,7 @@
     "tieUps": [],
     "sourceTitle": "夏の魔物",
     "sourceArtist": "スピッツ",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15685,7 +15546,7 @@
     "tieUps": [],
     "sourceTitle": "魔法の絨毯",
     "sourceArtist": "川崎鷹也",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15733,7 +15594,7 @@
     "tieUps": [],
     "sourceTitle": "わたしの一番かわいいところ",
     "sourceArtist": "FRUITS ZIPPER",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15785,7 +15646,7 @@
     "tieUps": [],
     "sourceTitle": "たなばたさま",
     "sourceArtist": "下総皖一",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -15846,7 +15707,7 @@
     ],
     "sourceTitle": "シングル・アゲイン",
     "sourceArtist": "竹内まりや",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15904,7 +15765,7 @@
     ],
     "sourceTitle": "毎日がスペシャル",
     "sourceArtist": "竹内まりや",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -15952,7 +15813,7 @@
     "tieUps": [],
     "sourceTitle": "うさぎ",
     "sourceArtist": "作曲者不詳",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -16008,7 +15869,7 @@
     ],
     "sourceTitle": "祝福",
     "sourceArtist": "YOASOBI",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16055,7 +15916,7 @@
     "tieUps": [],
     "sourceTitle": "いぬのおまわりさん",
     "sourceArtist": "大中恩",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -16116,7 +15977,7 @@
     ],
     "sourceTitle": "新宝島",
     "sourceArtist": "サカナクション",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16173,7 +16034,7 @@
     ],
     "sourceTitle": "ありがとう",
     "sourceArtist": "大橋卓弥",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16222,7 +16083,7 @@
     "tieUps": [],
     "sourceTitle": "ありがとう",
     "sourceArtist": "井上陽水奥田民生",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16282,7 +16143,7 @@
     ],
     "sourceTitle": "青春ライン",
     "sourceArtist": "いきものがかり",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16342,7 +16203,7 @@
     ],
     "sourceTitle": "天体観測",
     "sourceArtist": "BUMP OF CHICKEN",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16400,7 +16261,7 @@
     ],
     "sourceTitle": "貴方の側に。",
     "sourceArtist": "りりあ。",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16467,7 +16328,7 @@
     ],
     "sourceTitle": "打上花火",
     "sourceArtist": "DAOKO×米津玄師",
-    "playable": "",
+    "playable": "〇",
     "genre": "J-POP",
     "note": ""
   },
@@ -16514,68 +16375,7 @@
     "tieUps": [],
     "sourceTitle": "海",
     "sourceArtist": "文部省唱歌(作詞、作曲不詳)",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
-    "no": "list#300",
-    "displayTitle": "久遠 ～光と波の記憶～",
-    "displayArtist": "松枝賀子、江口貴勅",
-    "songKey": "久遠~光と波の記憶~|松枝賀子江口貴勅",
-    "titleSearchWords": [
-      "くどう ～ひかとなみのきおく～",
-      "クドウ ～ヒカトナミノキオク～",
-      "kudou ~hikatonaminokioku~",
-      "くおん",
-      "ひかりとなみのきおく",
-      "クオン",
-      "ヒカリトナミノキオク"
-    ],
-    "artistSearchWords": [
-      "えぐちたかひと",
-      "まつえだのりこ",
-      "エグチタカヒト",
-      "マツエダノリコ"
-    ],
-    "releaseDecade": null,
-    "classification": {
-      "genres": [
-        "劇伴音楽"
-      ],
-      "subgenres": [],
-      "sourceCategories": [
-        "ゲーム"
-      ],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "冒険",
-        "記憶"
-      ],
-      "moodTags": [
-        "幻想的",
-        "透明感",
-        "ミステリアス"
-      ],
-      "motifTags": [
-        "光"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "ファイナルファンタジー",
-        "workTitle": "FINAL FANTASY X-2",
-        "role": "テーマ曲"
-      }
-    ],
-    "sourceTitle": "久遠 ～光と波の記憶～",
-    "sourceArtist": "松枝賀子、江口貴勅",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
