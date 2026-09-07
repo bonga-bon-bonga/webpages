@@ -10807,64 +10807,6 @@
     "note": ""
   },
   {
-    "no": "list#194",
-    "displayTitle": "コウを追いかけて",
-    "displayArtist": "坂本秀一",
-    "songKey": "コウを追いかけて|坂本秀一",
-    "titleSearchWords": [
-      "こうをおいかけて",
-      "コウヲオイカケテ",
-      "kouwooikakete"
-    ],
-    "artistSearchWords": [
-      "さかもとひでかず",
-      "さかもとしゅういち",
-      "サカモトヒデカズ",
-      "サカモトシュウイチ"
-    ],
-    "releaseDecade": "2010年代",
-    "classification": {
-      "genres": [
-        "劇伴音楽"
-      ],
-      "subgenres": [
-        "バラード"
-      ],
-      "sourceCategories": [
-        "映画"
-      ],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "恋愛",
-        "青春",
-        "記憶"
-      ],
-      "moodTags": [
-        "切ない",
-        "透明感",
-        "ノスタルジック"
-      ],
-      "motifTags": [],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "溺れるナイフ",
-        "workTitle": "溺れるナイフ",
-        "role": "劇伴"
-      }
-    ],
-    "sourceTitle": "コウを追いかけて",
-    "sourceArtist": "坂本秀一",
-    "playable": "〇",
-    "genre": "J-POP",
-    "note": ""
-  },
-  {
     "no": "list#195",
     "displayTitle": "さわって・変わって",
     "displayArtist": "スピッツ",
@@ -14266,60 +14208,6 @@
     "sourceArtist": "ゆず",
     "playable": "〇",
     "genre": "J-POP",
-    "note": ""
-  },
-  {
-    "no": "list#258",
-    "displayTitle": "Summer",
-    "displayArtist": "久石譲",
-    "songKey": "summer|久石譲",
-    "titleSearchWords": [
-      "さまー",
-      "サマー"
-    ],
-    "artistSearchWords": [
-      "ひさいしじょう",
-      "ヒサイシジョウ"
-    ],
-    "releaseDecade": "1990年代",
-    "classification": {
-      "genres": [
-        "劇伴音楽"
-      ],
-      "subgenres": [],
-      "sourceCategories": [
-        "映画"
-      ],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "日常",
-        "記憶"
-      ],
-      "moodTags": [
-        "明るい",
-        "ノスタルジック",
-        "癒し"
-      ],
-      "motifTags": [
-        "夏"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "菊次郎の夏",
-        "workTitle": "菊次郎の夏",
-        "role": "テーマ曲"
-      }
-    ],
-    "sourceTitle": "Summer",
-    "sourceArtist": "久石譲",
-    "playable": "〇",
-    "genre": "映画音楽",
     "note": ""
   },
   {
@@ -51917,6 +51805,76 @@
     "tieUps": [],
     "sourceTitle": "センチメンタル・キス",
     "sourceArtist": "汐れいら",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#962",
+    "displayTitle": "くつずれ",
+    "displayArtist": "トクマルシューゴ",
+    "songKey": "くつずれ|トクマルシューゴ",
+    "titleSearchWords": [
+      "クツズレ",
+      "靴擦れ"
+    ],
+    "artistSearchWords": [
+      "とくまるしゅーご",
+      "トクマルシューゴ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "くつずれ",
+    "sourceArtist": "トクマルシューゴ",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#963",
+    "displayTitle": "真夏の果実",
+    "displayArtist": "サザンオールスターズ",
+    "songKey": "真夏の果実|サザンオールスターズ",
+    "titleSearchWords": [
+      "まなつのかじつ",
+      "マナツノカジツ"
+    ],
+    "artistSearchWords": [
+      "さざんおーるすたーず",
+      "サザンオールスターズ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "真夏の果実",
+    "sourceArtist": "サザンオールスターズ",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#964",
+    "displayTitle": "見知らぬ糸",
+    "displayArtist": "スピッツ",
+    "songKey": "見知らぬ糸|スピッツ",
+    "titleSearchWords": [
+      "みしらぬいと",
+      "ミシラヌイト",
+      "見知るず糸"
+    ],
+    "artistSearchWords": [
+      "すぴっつ",
+      "スピッツ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "見知らぬ糸",
+    "sourceArtist": "スピッツ",
     "playable": "",
     "genre": "",
     "note": ""
