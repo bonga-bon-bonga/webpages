@@ -18890,7 +18890,7 @@
     ],
     "sourceTitle": "虹",
     "sourceArtist": "手嶌葵",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -18949,7 +18949,7 @@
     ],
     "sourceTitle": "虹",
     "sourceArtist": "Aqua Timez",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19009,7 +19009,7 @@
     ],
     "sourceTitle": "虹",
     "sourceArtist": "福山雅治",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19069,7 +19069,7 @@
     ],
     "sourceTitle": "虹",
     "sourceArtist": "高橋優",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19120,7 +19120,7 @@
     "tieUps": [],
     "sourceTitle": "虹",
     "sourceArtist": "二宮和也",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19171,7 +19171,7 @@
     "tieUps": [],
     "sourceTitle": "虹",
     "sourceArtist": "ゆず",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19223,53 +19223,7 @@
     "tieUps": [],
     "sourceTitle": "虹",
     "sourceArtist": "コブクロ",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
-    "no": "list#354",
-    "displayTitle": "虹色の心",
-    "displayArtist": "リチャード・クレイダーマン",
-    "songKey": "虹色の心|リチャードクレイダーマン",
-    "titleSearchWords": [
-      "にじいろのこころ",
-      "ニジイロノココロ",
-      "nijiironokokoro"
-    ],
-    "artistSearchWords": [
-      "りちゃーどくれいだーまん",
-      "リチャードクレイダーマン"
-    ],
-    "releaseDecade": "1980年代",
-    "classification": {
-      "genres": [
-        "イージーリスニング"
-      ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "希望",
-        "夢"
-      ],
-      "moodTags": [
-        "癒し",
-        "幻想的"
-      ],
-      "motifTags": [
-        "虹"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [],
-    "sourceTitle": "虹色の心",
-    "sourceArtist": "リチャード・クレイダーマン",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19330,7 +19284,7 @@
     ],
     "sourceTitle": "ベテルギウス",
     "sourceArtist": "優里",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19381,7 +19335,7 @@
     "tieUps": [],
     "sourceTitle": "あの夢をなぞって",
     "sourceArtist": "YOASOBI",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19438,7 +19392,7 @@
     ],
     "sourceTitle": "サヨナラ",
     "sourceArtist": "GAO",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19485,7 +19439,7 @@
     "tieUps": [],
     "sourceTitle": "どんぐりころころ",
     "sourceArtist": "梁田貞",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19544,7 +19498,7 @@
     ],
     "sourceTitle": "森の小さなレストラン",
     "sourceArtist": "手嶌葵",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19603,7 +19557,7 @@
     ],
     "sourceTitle": "ドラえもん",
     "sourceArtist": "星野源",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19670,7 +19624,7 @@
     ],
     "sourceTitle": "YUME日和",
     "sourceArtist": "島谷ひとみ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19729,7 +19683,7 @@
     ],
     "sourceTitle": "ボクノート",
     "sourceArtist": "スキマスイッチ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19797,7 +19751,7 @@
     ],
     "sourceTitle": "また会える日まで",
     "sourceArtist": "ゆず",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19856,7 +19810,7 @@
     ],
     "sourceTitle": "ぼくドラえもん",
     "sourceArtist": "大山のぶ代、こおろぎ'73",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19915,7 +19869,7 @@
     ],
     "sourceTitle": "少年期",
     "sourceArtist": "武田鉄矢",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -19976,7 +19930,7 @@
     ],
     "sourceTitle": "スター・ウォーズ メインテーマ",
     "sourceArtist": "ジョン・ウィリアムズ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -20036,7 +19990,7 @@
     ],
     "sourceTitle": "ヘドウィグのテーマ",
     "sourceArtist": "ジョン・ウィリアムズ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
