@@ -51834,6 +51834,144 @@
     "note": ""
   },
   {
+    "no": "list#965",
+    "displayTitle": "絵空",
+    "displayArtist": "マルシィ",
+    "songKey": "絵空|マルシィ",
+    "titleSearchWords": [
+      "えそら",
+      "エソラ"
+    ],
+    "artistSearchWords": [
+      "まるしぃ",
+      "マルシィ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "絵空",
+    "sourceArtist": "マルシィ",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#966",
+    "displayTitle": "冬紅葉",
+    "displayArtist": "ささ。",
+    "songKey": "冬紅葉|ささ",
+    "titleSearchWords": [
+      "ふゆこうよう",
+      "フユコウヨウ"
+    ],
+    "artistSearchWords": [
+      "ササ。"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "冬紅葉",
+    "sourceArtist": "ささ。",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#967",
+    "displayTitle": "魔法にかけられて",
+    "displayArtist": "Saucy Dog",
+    "songKey": "魔法にかけられて|saucydog",
+    "titleSearchWords": [
+      "まほうにかけられて",
+      "マホウニカケラレテ",
+      "魔法にかけるられるて"
+    ],
+    "artistSearchWords": [
+      "さうしーどっぐ",
+      "サウシードッグ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "魔法にかけられて",
+    "sourceArtist": "Saucy Dog",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#968",
+    "displayTitle": "Monster",
+    "displayArtist": "嵐",
+    "songKey": "monster|嵐",
+    "titleSearchWords": [
+      "もんすたー",
+      "モンスター"
+    ],
+    "artistSearchWords": [
+      "あらし",
+      "アラシ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "Monster",
+    "sourceArtist": "嵐",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#969",
+    "displayTitle": "恋人じゃなくなった日",
+    "displayArtist": "優里",
+    "songKey": "恋人じゃなくなった日|優里",
+    "titleSearchWords": [
+      "こいびとじゃなくなったひ",
+      "コイビトジャナクナッタヒ",
+      "恋人だ無い成るた日"
+    ],
+    "artistSearchWords": [
+      "ゆうり",
+      "ユウリ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "恋人じゃなくなった日",
+    "sourceArtist": "優里",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "list#970",
+    "displayTitle": "ビリミリオン",
+    "displayArtist": "優里",
+    "songKey": "ビリミリオン|優里",
+    "titleSearchWords": [
+      "びりみりおん"
+    ],
+    "artistSearchWords": [
+      "ゆうり",
+      "ユウリ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "ビリミリオン",
+    "sourceArtist": "優里",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
     "no": "disney#1",
     "displayTitle": "輝く未来",
     "displayArtist": "アラン・メンケン",
@@ -53327,6 +53465,95 @@
     ],
     "sourceTitle": "フレンド・ライク・ミー",
     "sourceArtist": "アラン・メンケン",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "disney#28",
+    "displayTitle": "カム・ジョイン・ザ・ジュビリー",
+    "displayArtist": "タイラー・クーンツ",
+    "songKey": "カムジョインザジュビリー|タイラークーンツ",
+    "titleSearchWords": [
+      "かむ・じょいん・ざ・じゅびりー"
+    ],
+    "artistSearchWords": [
+      "たいらー・くーんつ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "カム・ジョイン・ザ・ジュビリー",
+    "sourceArtist": "タイラー・クーンツ",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "disney#29",
+    "displayTitle": "君の願いが世界を輝かす",
+    "displayArtist": "MISIA",
+    "songKey": "君の願いが世界を輝かす|misia",
+    "titleSearchWords": [
+      "きみのねがいがせかいをかがやかす",
+      "キミノネガイガセカイヲカガヤカス"
+    ],
+    "artistSearchWords": [
+      "みーしゃ",
+      "ミーシャ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "君の願いが世界を輝かす",
+    "sourceArtist": "MISIA",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "disney#30",
+    "displayTitle": "どこまでも ～How Far I'll Go～",
+    "displayArtist": "屋比久知奈",
+    "songKey": "どこまでも~howfarillgo~|屋比久知奈",
+    "titleSearchWords": [
+      "どこまでもきごう~はうきごうえふえーあーるきごうあいきごうllきごうごー~",
+      "ドコマデモキゴウ~ハウキゴウエフエーアールキゴウアイキゴウllキゴウゴー~",
+      "どこまでも ~ハウ FAR I＇ll ゴー~"
+    ],
+    "artistSearchWords": [
+      "やびくちな",
+      "ヤビクチナ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "どこまでも ～How Far I'll Go～",
+    "sourceArtist": "屋比久知奈",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "disney#31",
+    "displayTitle": "リビング・イン・カラー",
+    "displayArtist": "チャントリー・ジョンソン、ディワイン・ウィットモア",
+    "songKey": "リビングインカラー|チャントリージョンソンディワインウィットモア",
+    "titleSearchWords": [
+      "りびんぐ・いん・からー"
+    ],
+    "artistSearchWords": [
+      "ちゃんとりー・じょんそん、でぃわいん・うぃっともあ"
+    ],
+    "releaseDecade": null,
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "リビング・イン・カラー",
+    "sourceArtist": "チャントリー・ジョンソン、ディワイン・ウィットモア",
     "playable": "",
     "genre": "",
     "note": ""
