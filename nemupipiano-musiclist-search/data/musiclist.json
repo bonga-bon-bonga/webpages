@@ -21799,7 +21799,7 @@
     ],
     "sourceTitle": "Eyes On Me",
     "sourceArtist": "Superfly",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -21855,7 +21855,7 @@
     "tieUps": [],
     "sourceTitle": "AM11:00",
     "sourceArtist": "HY",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -21918,7 +21918,7 @@
     ],
     "sourceTitle": "黒毛和牛上塩タン焼680円",
     "sourceArtist": "大塚愛",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -21970,7 +21970,7 @@
     "tieUps": [],
     "sourceTitle": "夜空ノムコウ",
     "sourceArtist": "SMAP",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22029,7 +22029,7 @@
     ],
     "sourceTitle": "想い出がいっぱい",
     "sourceArtist": "H2O",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22086,7 +22086,7 @@
     ],
     "sourceTitle": "Your Best Friend",
     "sourceArtist": "倉木麻衣",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22144,7 +22144,7 @@
     ],
     "sourceTitle": "めざせポケモンマスター",
     "sourceArtist": "松本梨香",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22206,62 +22206,7 @@
     ],
     "sourceTitle": "乙女どもよ。",
     "sourceArtist": "CHiCO with HoneyWorks",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
-    "no": "list#407",
-    "displayTitle": "パリは燃えているか",
-    "displayArtist": "加古隆",
-    "songKey": "パリは燃えているか|加古隆",
-    "titleSearchWords": [
-      "ぱりはもえているか",
-      "パリハモエテイルカ",
-      "parihamoeteiruka"
-    ],
-    "artistSearchWords": [
-      "かこたかし",
-      "カコタカシ"
-    ],
-    "releaseDecade": "2000年代",
-    "classification": {
-      "genres": [
-        "劇伴音楽"
-      ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "戦い",
-        "記憶",
-        "喪失"
-      ],
-      "moodTags": [
-        "荘厳",
-        "壮大",
-        "緊張感"
-      ],
-      "motifTags": [
-        "炎",
-        "影"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "映像の世紀",
-        "workTitle": "映像の世紀",
-        "role": "テーマ曲"
-      }
-    ],
-    "sourceTitle": "パリは燃えているか",
-    "sourceArtist": "加古隆",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22313,7 +22258,7 @@
     "tieUps": [],
     "sourceTitle": "木蘭の涙",
     "sourceArtist": "スターダストレビュー",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22373,7 +22318,7 @@
     ],
     "sourceTitle": "夏の決心",
     "sourceArtist": "大江千里",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22423,7 +22368,7 @@
     "tieUps": [],
     "sourceTitle": "未来へ",
     "sourceArtist": "Kiroro",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22475,7 +22420,7 @@
     "tieUps": [],
     "sourceTitle": "Sunny Day Sunday",
     "sourceArtist": "センチメンタル・バス",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22527,7 +22472,7 @@
     "tieUps": [],
     "sourceTitle": "Over Drive",
     "sourceArtist": "JUDY AND MARY",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22579,7 +22524,7 @@
     "tieUps": [],
     "sourceTitle": "ミュージック・アワー",
     "sourceArtist": "ポルノグラフィティ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -22632,7 +22577,7 @@
     "tieUps": [],
     "sourceTitle": "HOT LIMIT",
     "sourceArtist": "T.M.Revolution",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
