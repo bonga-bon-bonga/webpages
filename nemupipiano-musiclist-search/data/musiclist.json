@@ -23719,7 +23719,7 @@
     "tieUps": [],
     "sourceTitle": "金魚花火",
     "sourceArtist": "大塚愛",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -23777,7 +23777,7 @@
     ],
     "sourceTitle": "天使のくれた奇跡",
     "sourceArtist": "Libera",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -23835,7 +23835,7 @@
     ],
     "sourceTitle": "唱",
     "sourceArtist": "Ado",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -23885,7 +23885,7 @@
     "tieUps": [],
     "sourceTitle": "うっせぇわ",
     "sourceArtist": "Ado",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -23941,7 +23941,7 @@
     ],
     "sourceTitle": "ドラえもんのうた",
     "sourceArtist": "大杉久美子",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -23994,7 +23994,7 @@
     "tieUps": [],
     "sourceTitle": "倍倍FIGHT!",
     "sourceArtist": "CANDY TUNE",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24041,7 +24041,7 @@
     "tieUps": [],
     "sourceTitle": "恋のメガラバ",
     "sourceArtist": "マキシマム ザ ホルモン",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24100,7 +24100,7 @@
     ],
     "sourceTitle": "決意の朝に",
     "sourceArtist": "Aqua Timez",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24158,7 +24158,7 @@
     ],
     "sourceTitle": "Violet Snow",
     "sourceArtist": "結城アイラ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24217,7 +24217,7 @@
     ],
     "sourceTitle": "みちしるべ",
     "sourceArtist": "茅原実里",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24277,7 +24277,7 @@
     ],
     "sourceTitle": "WILL",
     "sourceArtist": "TRUE",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24334,7 +24334,7 @@
     ],
     "sourceTitle": "KissHug",
     "sourceArtist": "aiko",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24393,64 +24393,7 @@
     ],
     "sourceTitle": "相思相愛",
     "sourceArtist": "aiko",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
-    "no": "list#448",
-    "displayTitle": "Zoltraak",
-    "displayArtist": "Evan Call",
-    "songKey": "zoltraak|evancall",
-    "titleSearchWords": [
-      "ぞるとらーく",
-      "ゾルトラーク"
-    ],
-    "artistSearchWords": [
-      "えばんこーる",
-      "えゔぁんこーる",
-      "エバンコール",
-      "エヴァンコール"
-    ],
-    "releaseDecade": null,
-    "classification": {
-      "genres": [
-        "劇伴音楽"
-      ],
-      "subgenres": [],
-      "sourceCategories": [
-        "アニメ"
-      ],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "戦い",
-        "冒険"
-      ],
-      "moodTags": [
-        "緊張感",
-        "壮大",
-        "ダーク"
-      ],
-      "motifTags": [
-        "炎",
-        "影"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "葬送のフリーレン",
-        "workTitle": "葬送のフリーレン",
-        "role": "劇中曲"
-      }
-    ],
-    "sourceTitle": "Zoltraak",
-    "sourceArtist": "Evan Call",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24501,7 +24444,7 @@
     "tieUps": [],
     "sourceTitle": "怪獣のバラード",
     "sourceArtist": "東海林修",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24551,60 +24494,7 @@
     "tieUps": [],
     "sourceTitle": "愛のメモリー",
     "sourceArtist": "松崎しげる",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
-    "no": "list#451",
-    "displayTitle": "I Don't Want to Set the World on Fire",
-    "displayArtist": "The Ink Spots",
-    "songKey": "idontwanttosettheworldonfire|theinkspots",
-    "titleSearchWords": [
-      "あいどんとうぉんととぅせっとざわーるどおんふぁいあ",
-      "あいどんとわんととぅせっとざわーるどおんふぁいあ",
-      "アイドントウォントトゥセットザワールドオンファイア",
-      "アイドントワントトゥセットザワールドオンファイア"
-    ],
-    "artistSearchWords": [
-      "いんくすぽっつ",
-      "インクスポッツ"
-    ],
-    "releaseDecade": null,
-    "classification": {
-      "genres": [
-        "ジャズ"
-      ],
-      "subgenres": [
-        "バラード"
-      ],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "男性ボーカル",
-        "合唱"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "恋愛",
-        "祈り",
-        "戦い"
-      ],
-      "moodTags": [
-        "優しい",
-        "ミステリアス",
-        "ノスタルジック"
-      ],
-      "motifTags": [
-        "炎",
-        "夜"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [],
-    "sourceTitle": "I Don't Want to Set the World on Fire",
-    "sourceArtist": "The Ink Spots",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24664,7 +24554,7 @@
     ],
     "sourceTitle": "銀色飛行船",
     "sourceArtist": "supercell",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24724,7 +24614,7 @@
     ],
     "sourceTitle": "雨に唄えば(Singin' in the Rain)",
     "sourceArtist": "ナシオ・ハーブ・ブラウン",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24774,7 +24664,7 @@
     "tieUps": [],
     "sourceTitle": "ハナミズキ",
     "sourceArtist": "一青窈",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24828,7 +24718,7 @@
     "tieUps": [],
     "sourceTitle": "明日へ",
     "sourceArtist": "富岡博志",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24878,7 +24768,7 @@
     "tieUps": [],
     "sourceTitle": "荒城の月",
     "sourceArtist": "滝廉太郎",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24926,7 +24816,7 @@
     "tieUps": [],
     "sourceTitle": "花",
     "sourceArtist": "滝廉太郎",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -24973,7 +24863,7 @@
     "tieUps": [],
     "sourceTitle": "さくらんぼ",
     "sourceArtist": "大塚愛",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -25020,7 +24910,7 @@
     "tieUps": [],
     "sourceTitle": "夕焼小焼",
     "sourceArtist": "草川信",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -25067,7 +24957,7 @@
     "tieUps": [],
     "sourceTitle": "故郷",
     "sourceArtist": "岡野貞一",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -25114,7 +25004,7 @@
     "tieUps": [],
     "sourceTitle": "おもちゃのチャチャチャ",
     "sourceArtist": "越部信義",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -25171,7 +25061,7 @@
     ],
     "sourceTitle": "魂のルフラン",
     "sourceArtist": "高橋洋子",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
