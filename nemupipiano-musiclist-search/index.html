@@ -352,12 +352,11 @@
         </div>
         <div class="song-number-range mt-3" id="songNumberRange" role="group" aria-label="曲の番号範囲" hidden>
           <span class="song-number-range-value" id="songNumberRangeValue"></span>
-          <label for="songNumberStart">開始番号
-            <input id="songNumberStart" type="range" min="0" max="0" value="0">
-          </label>
-          <label for="songNumberEnd">終了番号
-            <input id="songNumberEnd" type="range" min="0" max="0" value="0">
-          </label>
+          <div class="song-number-slider" id="songNumberSlider">
+            <div class="song-number-track" id="songNumberTrack" aria-hidden="true"></div>
+            <input id="songNumberStart" type="range" aria-label="開始番号" min="0" max="0" value="0">
+            <input id="songNumberEnd" type="range" aria-label="終了番号" min="0" max="0" value="0">
+          </div>
         </div>
         <div class="stats-row mt-3">
           <div class="d-flex flex-wrap gap-2" id="stats" aria-live="polite"></div>

@@ -264,16 +264,37 @@ test("番号スライドは曲リストだけを開始・終了番号で絞り�
 
   await toggle.click();
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
-  await expect(range).toContainText("1-65");
+  await expect(range).toHaveText("No：1-65");
   await expect(page.locator("#stats")).toContainText("検索結果：65件");
   await expect(titles).toHaveCount(30);
   await expect(page.locator("#searchGuide")).toBeHidden();
+
+  const track = range.locator(".song-number-track");
+  await expect(track).toHaveCount(1);
+  await expect(range).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await track.scrollIntoViewIfNeeded();
+  const bounds = await track.boundingBox();
+  const trackX = value => bounds.x + (value - 1) / 64 * bounds.width;
+  const trackY = bounds.y + bounds.height / 2;
+  const dragThumb = async (from, to) => {
+    await page.mouse.move(trackX(from), trackY);
+    await page.mouse.down();
+    await page.mouse.move(trackX(to), trackY, { steps: 4 });
+    await page.mouse.up();
+  };
+  await dragThumb(1, 10);
+  await dragThumb(65, 10);
+  await expect(range).toContainText("10-10");
+  await dragThumb(10, 1);
+  await expect(range).toContainText("1-10");
+  await dragThumb(10, 65);
+  await expect(range).toContainText("1-65");
 
   await start.press("ArrowRight");
   await end.press("Home");
   await expect(end).toHaveValue("2");
   await end.press("ArrowRight");
-  await expect(range).toContainText("2-3");
+  await expect(range).toHaveText("No：2-3");
   await expect(titles).toHaveText(["Song 002", "Song 003"]);
 
   await search.fill("Song 003");

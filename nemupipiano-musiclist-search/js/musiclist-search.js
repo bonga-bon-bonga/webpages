@@ -100,6 +100,8 @@ const els = {
   songNumberFilter: document.getElementById("songNumberFilter"),
   songNumberRange: document.getElementById("songNumberRange"),
   songNumberRangeValue: document.getElementById("songNumberRangeValue"),
+  songNumberSlider: document.getElementById("songNumberSlider"),
+  songNumberTrack: document.getElementById("songNumberTrack"),
   songNumberStart: document.getElementById("songNumberStart"),
   songNumberEnd: document.getElementById("songNumberEnd"),
   stats: document.getElementById("stats"),
@@ -1060,6 +1062,72 @@ function songNumberRangeLabel() {
   return `${els.songNumberStart.value}-${els.songNumberEnd.value}`;
 }
 
+function renderSongNumberRange() {
+  els.songNumberRangeValue.textContent = `No：${songNumberRangeLabel()}`;
+  const min = Number(els.songNumberStart.min);
+  const span = Number(els.songNumberStart.max) - min;
+  const position = input => span > 0 ? (input.valueAsNumber - min) / span * 100 : 0;
+  els.songNumberTrack.style.setProperty("--song-number-start", `${position(els.songNumberStart)}%`);
+  els.songNumberTrack.style.setProperty("--song-number-end", `${position(els.songNumberEnd)}%`);
+}
+
+function updateSongNumberRange(input) {
+  const { songNumberStart: start, songNumberEnd: end } = els;
+  if (start.valueAsNumber > end.valueAsNumber) {
+    input.value = input === start ? end.value : start.value;
+  }
+  resetSearchResultLimit();
+  render();
+}
+
+function bindSongNumberSlider() {
+  const { songNumberSlider: slider, songNumberTrack: track, songNumberStart: start, songNumberEnd: end } = els;
+  let activePointer = null;
+  let activeInput = null;
+
+  function moveThumb(event) {
+    const { left, width } = track.getBoundingClientRect();
+    if (width <= 0) return;
+    const min = Number(start.min);
+    const max = Number(start.max);
+    const ratio = Math.min(1, Math.max(0, (event.clientX - left) / width));
+    const value = Math.round(min + ratio * (max - min));
+
+    if (!activeInput) {
+      const startValue = start.valueAsNumber;
+      const endValue = end.valueAsNumber;
+      // When the thumbs overlap, wait for the drag direction before picking one.
+      if (startValue === endValue && value === startValue) return;
+      activeInput = value - startValue <= endValue - value ? start : end;
+      activeInput.focus({ preventScroll: true });
+    }
+
+    const next = activeInput === start ? Math.min(value, end.valueAsNumber) : Math.max(value, start.valueAsNumber);
+    if (next === activeInput.valueAsNumber) return;
+    activeInput.valueAsNumber = next;
+    updateSongNumberRange(activeInput);
+  }
+
+  [start, end].forEach(input => {
+    input.addEventListener("input", () => updateSongNumberRange(input));
+  });
+  slider.addEventListener("pointerdown", event => {
+    if (event.button !== 0 || !event.isPrimary || activePointer !== null || start.disabled) return;
+    event.preventDefault();
+    activePointer = event.pointerId;
+    slider.setPointerCapture(activePointer);
+    moveThumb(event);
+  });
+  slider.addEventListener("pointermove", event => {
+    if (event.pointerId === activePointer) moveThumb(event);
+  });
+  slider.addEventListener("lostpointercapture", event => {
+    if (event.pointerId !== activePointer) return;
+    activePointer = null;
+    activeInput = null;
+  });
+}
+
 function matchesSongNumberRange(song) {
   if (!songNumberFilterEnabled) return true;
   if (songSourceType(song) !== "list") return false;
@@ -1871,7 +1939,7 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
   els.songNumberFilter.setAttribute("aria-pressed", String(songNumberFilterEnabled));
   els.songNumberFilter.textContent = songNumberFilterEnabled ? "ON" : "OFF";
   els.songNumberRange.hidden = easySearchMode || !songNumberFilterEnabled;
-  els.songNumberRangeValue.textContent = songNumberRangeLabel();
+  renderSongNumberRange();
   els.playableFilter.classList.toggle("active", playableOnly);
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
@@ -2812,15 +2880,7 @@ els.songNumberFilter.addEventListener("click", () => {
   resetSearchResultLimit();
   render({ syncSearchGuide: true, forceSearchGuideSync: true });
 });
-[els.songNumberStart, els.songNumberEnd].forEach(input => {
-  input.addEventListener("input", () => {
-    if (els.songNumberStart.valueAsNumber > els.songNumberEnd.valueAsNumber) {
-      input.value = input === els.songNumberStart ? els.songNumberEnd.value : els.songNumberStart.value;
-    }
-    resetSearchResultLimit();
-    render();
-  });
-});
+bindSongNumberSlider();
 els.favoriteFilter.addEventListener("click", () => {
   resetSearchResultLimit();
   favoriteOnly = !favoriteOnly;
