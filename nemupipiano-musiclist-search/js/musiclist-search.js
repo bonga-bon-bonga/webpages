@@ -97,6 +97,11 @@ const els = {
   easyCategoryList: document.getElementById("easyCategoryList"),
   easyReset: document.getElementById("easyReset"),
   playableFilter: document.getElementById("playableFilter"),
+  songNumberFilter: document.getElementById("songNumberFilter"),
+  songNumberRange: document.getElementById("songNumberRange"),
+  songNumberRangeValue: document.getElementById("songNumberRangeValue"),
+  songNumberStart: document.getElementById("songNumberStart"),
+  songNumberEnd: document.getElementById("songNumberEnd"),
   stats: document.getElementById("stats"),
   activeSearchFilters: document.getElementById("activeSearchFilters"),
   activeSearchFilterList: document.getElementById("activeSearchFilterList"),
@@ -146,6 +151,7 @@ let homeRecommendedSongs = [];
 let homeMoodSuggestions = [];
 let activeHomeMoodIndex = null;
 let playableOnly = false;
+let songNumberFilterEnabled = false;
 let homeRandomSource = "all";
 let longAgoPeriod = "quarter";
 let favoriteOnly = false;
@@ -434,6 +440,7 @@ async function loadSheet() {
     performancePreviews = loadedPerformancePreviews;
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
+    setupSongNumberRange();
     buildSearchSuggestionOptions(songs);
     pickHomeRecommendations();
     pickHomeMoodSuggestions();
@@ -745,7 +752,7 @@ function selectedOptionLabel(select) {
 function activeSearchConditions() {
   if (easySearchMode) return [];
   const conditions = [];
-  const hasPrimaryCondition = hasSearchKeyword() || hasSearchDetailFilter() || playableOnly || favoriteOnly;
+  const hasPrimaryCondition = hasSearchKeyword() || hasSearchDetailFilter() || songNumberFilterEnabled || playableOnly || favoriteOnly;
   const scopeLabels = { title: "曲名", artist: "アーティスト" };
 
   if (hasSearchKeyword()) conditions.push({ key: "query", label: `キーワード：${normalizeCellText(els.search.value)}` });
@@ -762,6 +769,7 @@ function activeSearchConditions() {
   ].forEach(([key, label, select]) => {
     if (select.value) conditions.push({ key, label: `${label}：${selectedOptionLabel(select)}` });
   });
+  if (songNumberFilterEnabled) conditions.push({ key: "number", label: `番号：${songNumberRangeLabel()}` });
   if (playableOnly) conditions.push({ key: "playable", label: "リクエスト可のみ" });
   if (favoriteOnly) conditions.push({ key: "favorites", label: "お気に入りのみ" });
   if (hasPrimaryCondition && els.sortOrder.value !== "playable") {
@@ -793,6 +801,7 @@ function clearSearchCondition(key) {
   if (key === "work") els.animeDrama.value = "";
   if (key === "vocal") els.vocalType.value = "";
   if (key === "decade") els.releaseDecade.value = "";
+  if (key === "number") songNumberFilterEnabled = false;
   if (key === "playable") playableOnly = false;
   if (key === "favorites") favoriteOnly = false;
   if (key === "sort") els.sortOrder.value = "playable";
@@ -918,6 +927,7 @@ function zeroResultRecommendationSongs(resultItems) {
   const dateKey = localDateSeedKey();
 
   return songs
+    .filter(song => easySearchMode || matchesSongNumberRange(song))
     .map(song => ({
       song,
       score: zeroRecommendationScore(song),
@@ -952,7 +962,7 @@ function hasSearchDetailFilter() {
 }
 
 function isSearchGuideDefaultState() {
-  return !hasSearchKeyword() && !favoriteOnly && !hasSearchDetailFilter();
+  return !hasSearchKeyword() && !favoriteOnly && !hasSearchDetailFilter() && !songNumberFilterEnabled;
 }
 
 function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
@@ -966,16 +976,14 @@ function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
   if (!searchGuideAutoInitialized) {
     searchGuideAutoInitialized = true;
     lastSearchGuideHasKeyword = currentHasKeyword;
-    setSearchGuideOpen(
-      !currentHasKeyword && !favoriteOnly && !hasSearchDetailFilter()
-    );
+    setSearchGuideOpen(isSearchGuideDefaultState());
     return;
   }
 
   if (!force && lastSearchGuideHasKeyword === currentHasKeyword) return;
 
   lastSearchGuideHasKeyword = currentHasKeyword;
-  if (currentHasKeyword || favoriteOnly || hasSearchDetailFilter()) {
+  if (!isSearchGuideDefaultState()) {
     setSearchGuideOpen(false);
   }
 }
@@ -1028,6 +1036,35 @@ function numericSongNumber(song) {
   const value = String(song.no || "");
   const match = value.match(/#?(\d+(?:\.\d+)?)$/);
   return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+}
+
+function setupSongNumberRange() {
+  const numbers = songs.filter(song => songSourceType(song) === "list")
+    .map(numericSongNumber)
+    .filter(Number.isFinite);
+  if (numbers.length === 0) return;
+
+  const min = Math.floor(Math.min(...numbers));
+  const max = Math.ceil(Math.max(...numbers));
+  [els.songNumberStart, els.songNumberEnd].forEach(input => {
+    input.min = String(min);
+    input.max = String(max);
+    input.disabled = min === max;
+  });
+  els.songNumberStart.value = String(min);
+  els.songNumberEnd.value = String(max);
+  els.songNumberFilter.disabled = false;
+}
+
+function songNumberRangeLabel() {
+  return `${els.songNumberStart.value}-${els.songNumberEnd.value}`;
+}
+
+function matchesSongNumberRange(song) {
+  if (!songNumberFilterEnabled) return true;
+  if (songSourceType(song) !== "list") return false;
+  const number = numericSongNumber(song);
+  return number >= els.songNumberStart.valueAsNumber && number <= els.songNumberEnd.valueAsNumber;
 }
 
 function sourceOrder(song) {
@@ -1389,9 +1426,10 @@ function filteredSongs() {
   const vocalType = els.vocalType.value;
   const releaseDecade = els.releaseDecade.value;
 
-  if (keywords.length === 0 && !favoriteOnly && !hasSearchDetailFilter()) return [];
+  if (keywords.length === 0 && !favoriteOnly && !hasSearchDetailFilter() && !songNumberFilterEnabled) return [];
 
   const filtered = songs.filter(song => {
+    if (!matchesSongNumberRange(song)) return false;
     const keywordOk = matchesSearchKeyword(song, keywords, searchScope);
     const genreOk = !genre || song.genre === genre;
     const subgenreOk = !subgenre
@@ -1829,6 +1867,11 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
     els.stats.innerHTML = renderEasyStats(items, visibleItems);
   }
   renderActiveSearchFilters();
+  els.songNumberFilter.classList.toggle("active", songNumberFilterEnabled);
+  els.songNumberFilter.setAttribute("aria-pressed", String(songNumberFilterEnabled));
+  els.songNumberFilter.textContent = songNumberFilterEnabled ? "ON" : "OFF";
+  els.songNumberRange.hidden = easySearchMode || !songNumberFilterEnabled;
+  els.songNumberRangeValue.textContent = songNumberRangeLabel();
   els.playableFilter.classList.toggle("active", playableOnly);
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
@@ -1848,6 +1891,10 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
   els.songs.innerHTML = renderSongCards(visibleItems);
   renderSearchAlternatives(items);
   renderZeroResultRecommendations(items);
+  if (!easySearchMode && songNumberFilterEnabled && items.length === 0 && els.zeroResultRecommendations.hidden) {
+    els.empty.textContent = "指定した番号の範囲に曲が見つかりませんでした。";
+    els.empty.hidden = false;
+  }
 }
 
 function setupHomeSectionToggles() {
@@ -2758,6 +2805,21 @@ els.playableFilter.addEventListener("click", () => {
   playableOnly = !playableOnly;
   localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
   render();
+});
+els.songNumberFilter.addEventListener("click", () => {
+  songNumberFilterEnabled = !songNumberFilterEnabled;
+  hideSearchSuggestions();
+  resetSearchResultLimit();
+  render({ syncSearchGuide: true, forceSearchGuideSync: true });
+});
+[els.songNumberStart, els.songNumberEnd].forEach(input => {
+  input.addEventListener("input", () => {
+    if (els.songNumberStart.valueAsNumber > els.songNumberEnd.valueAsNumber) {
+      input.value = input === els.songNumberStart ? els.songNumberEnd.value : els.songNumberStart.value;
+    }
+    resetSearchResultLimit();
+    render();
+  });
 });
 els.favoriteFilter.addEventListener("click", () => {
   resetSearchResultLimit();

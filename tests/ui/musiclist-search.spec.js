@@ -240,6 +240,61 @@ test("検索結果を30件ずつ段階表示する", async ({ page }) => {
   await expect(page.locator("#searchMore")).toBeHidden();
 });
 
+test("番号スライドは曲リストだけを開始・終了番号で絞り込む", async ({ page }) => {
+  await page.route("**/data/musiclist.json", route => route.fulfill({
+    json: [
+      ...Array.from({ length: 65 }, (_, index) => makeSearchSong(index + 1)),
+      makeSearchSong(66, { no: "disney#2", displayTitle: "Special Disney" }),
+      makeSearchSong(67, { no: "ghibli#3", displayTitle: "Special Ghibli" }),
+      makeSearchSong(68, { no: "disney#90", displayTitle: "Special Disney 90" }),
+    ],
+  }));
+  await page.reload();
+  await openTab(page, "search");
+  const toggle = page.getByRole("button", { name: "番号スライド" });
+  const range = page.getByRole("group", { name: "曲の番号範囲" });
+  const start = range.getByRole("slider", { name: "開始番号" });
+  const end = range.getByRole("slider", { name: "終了番号" });
+  const search = page.locator("#search");
+  const titles = page.locator("#songs .song-title");
+
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(range).toBeHidden();
+  await expect(titles).toHaveCount(0);
+
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(range).toContainText("1-65");
+  await expect(page.locator("#stats")).toContainText("検索結果：65件");
+  await expect(titles).toHaveCount(30);
+  await expect(page.locator("#searchGuide")).toBeHidden();
+
+  await start.press("ArrowRight");
+  await end.press("Home");
+  await expect(end).toHaveValue("2");
+  await end.press("ArrowRight");
+  await expect(range).toContainText("2-3");
+  await expect(titles).toHaveText(["Song 002", "Song 003"]);
+
+  await search.fill("Song 003");
+  await expect(titles).toHaveText(["Song 003"]);
+  await search.fill("Special");
+  await search.press("Escape");
+  await expect(page.locator("#stats")).toContainText("検索結果：0件");
+  await expect(page.locator("#zeroResultRecommendationSongs .song-title")).toHaveCount(2);
+  await expect(page.locator("#zeroResultRecommendationSongs")).not.toContainText("Special");
+
+  await page.getByRole("tab", { name: "かんたんモード" }).click();
+  await expect(range).toBeHidden();
+  await page.getByRole("tab", { name: "通常検索" }).click();
+  await expect(range).toContainText("2-3");
+  await page.getByRole("button", { name: "番号：2-3を解除" }).click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(range).toBeHidden();
+  await expect(titles).toHaveCount(3);
+  await expect(titles).toContainText(["Special Disney", "Special Disney 90", "Special Ghibli"]);
+});
+
 test("ホーム各項目を個別に開閉でき、再読み込み後も状態が復元される", async ({ page }) => {
   const toggles = page.locator("#panel-home .home-section-toggle");
   await expect(toggles).toHaveCount(5);

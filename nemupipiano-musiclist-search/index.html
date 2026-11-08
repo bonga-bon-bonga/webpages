@@ -249,6 +249,10 @@
             <label class="btn search-scope-button" for="searchScopeArtist">アーティスト</label>
           </div>
           <div class="quick-filter-group">
+            <div class="song-number-filter">
+              <span class="song-number-filter-label" id="songNumberFilterLabel">番号スライド</span>
+              <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="songNumberFilter" type="button" aria-labelledby="songNumberFilterLabel" aria-controls="songNumberRange" aria-pressed="false" disabled>OFF</button>
+            </div>
             <div class="playable-filter" aria-label="リクエスト可フィルター">
               <span class="playable-filter-label">リクエスト可</span>
               <button class="badge rounded-pill stat-badge stat-filter-button px-3 py-2" id="playableFilter" type="button" data-filter="playable" aria-pressed="false">OFF</button>
@@ -274,6 +278,7 @@
               <ul class="mb-0">
                 <li>検索フォームにキーワードを入力すると、一致する曲カードが表示されます。</li>
                 <li>曲名・アーティストの原文に加えて、ひらがな・カタカナ読みでの検索にも対応しています。</li>
+                <li>「番号スライド」をONにすると、曲リストの曲をNoの範囲で探せます。</li>
                 <li>「検索対象」「リクエスト可」「お気に入りのみ」を選ぶと、検索結果を絞り込めます。</li>
                 <li>「▼詳細」から、ジャンルなどの詳細な検索条件を設定できます。</li>
               </ul>
@@ -344,6 +349,15 @@
 
         <div class="active-search-filters mt-3" id="activeSearchFilters" aria-label="選択中の検索条件" hidden>
           <div class="active-search-filter-list" id="activeSearchFilterList"></div>
+        </div>
+        <div class="song-number-range mt-3" id="songNumberRange" role="group" aria-label="曲の番号範囲" hidden>
+          <span class="song-number-range-value" id="songNumberRangeValue"></span>
+          <label for="songNumberStart">開始番号
+            <input id="songNumberStart" type="range" min="0" max="0" value="0">
+          </label>
+          <label for="songNumberEnd">終了番号
+            <input id="songNumberEnd" type="range" min="0" max="0" value="0">
+          </label>
         </div>
         <div class="stats-row mt-3">
           <div class="d-flex flex-wrap gap-2" id="stats" aria-live="polite"></div>

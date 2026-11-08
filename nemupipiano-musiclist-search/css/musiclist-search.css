@@ -831,6 +831,7 @@ html[data-theme="dark"] .form-select {
 
 .search-scope,
 .display-columns,
+.song-number-filter,
 .playable-filter,
 .favorite-filter {
     display: inline-flex;
@@ -842,6 +843,7 @@ html[data-theme="dark"] .form-select {
 
 .search-scope-label,
 .display-columns-label,
+.song-number-filter-label,
 .playable-filter-label {
     color: var(--page-muted);
     font-size: .85rem;
@@ -1110,6 +1112,40 @@ html[data-theme="dark"] .song-card.accent-other {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.song-number-range {
+    display: grid;
+    grid-template-columns: auto repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: .35rem clamp(.5rem, 2vw, 1rem);
+    padding: .55rem .65rem;
+    border: 1px solid var(--page-line);
+    border-radius: .85rem;
+    background: var(--page-control-soft);
+}
+
+.song-number-range[hidden] {
+    display: none;
+}
+
+.song-number-range-value {
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.song-number-range label {
+    color: var(--page-muted);
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+.song-number-range input {
+    display: block;
+    width: 100%;
+    min-height: 1.5rem;
+    accent-color: var(--page-accent);
 }
 
 .stats-row {
@@ -1917,7 +1953,6 @@ body.floating-actions-suppressed .floating-menu {
     }
 
     .quick-filter-group {
-    flex-wrap: nowrap;
     gap: .5rem;
     max-width: 100%;
     }
