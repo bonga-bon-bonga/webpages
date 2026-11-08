@@ -50,6 +50,7 @@ const PLAYABLE_ONLY_KEY = "nemupipiano:playableOnly";
 const SORT_ORDER_KEY = "nemupipiano:sortOrder";
 const ANIME_DRAMA_KEY = "nemupipiano:animeDrama";
 const HOME_RANDOM_SOURCE_KEY = "nemupipiano:homeRandomSource";
+const HOME_SECTIONS_KEY = "nemupipiano:homeSections";
 const FAVORITES_KEY = "nemupipiano:favorites";
 const FAVORITES_ONLY_KEY = "nemupipiano:favoritesOnly";
 const COPY_COUNTS_KEY = "nemupipiano:copyCounts";
@@ -74,6 +75,7 @@ const els = {
   favoriteFilter: document.getElementById("favoriteFilter"),
   searchDetailToggle: document.getElementById("searchDetailToggle"),
   searchDetails: document.getElementById("searchDetails"),
+  clearSearchDetails: document.getElementById("clearSearchDetails"),
   searchGuideToggle: document.getElementById("searchGuideToggle"),
   searchGuide: document.getElementById("searchGuide"),
   fuzzySearchModeToggle: document.getElementById("fuzzySearchModeToggle"),
@@ -105,6 +107,8 @@ const els = {
   zeroResultRecommendations: document.getElementById("zeroResultRecommendations"),
   zeroResultRecommendationSongs: document.getElementById("zeroResultRecommendationSongs"),
   homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
+  homeSectionToggles: document.querySelectorAll(".home-section-toggle"),
+  longAgoPeriodOptions: document.querySelectorAll("[data-long-ago-period]"),
   homeRecommendations: document.getElementById("homeRecommendations"),
   homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
   longAgoCopiedSongs: document.getElementById("longAgoCopiedSongs"),
@@ -143,6 +147,7 @@ let homeMoodSuggestions = [];
 let activeHomeMoodIndex = null;
 let playableOnly = false;
 let homeRandomSource = "all";
+let longAgoPeriod = "quarter";
 let favoriteOnly = false;
 let favoriteKeys = new Set();
 let displayColumnCount = "3";
@@ -795,11 +800,23 @@ function clearSearchCondition(key) {
   localStorage.setItem(SEARCH_SCOPE_KEY, getSearchScope());
   localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
   localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+  refreshAfterClearingSearch();
+}
+
+function refreshAfterClearingSearch() {
   localStorage.setItem(SORT_ORDER_KEY, els.sortOrder.value || "playable");
   localStorage.setItem(ANIME_DRAMA_KEY, els.animeDrama.value || "");
   hideSearchSuggestions();
   resetSearchResultLimit();
   render({ syncSearchGuide: true });
+}
+
+function clearSearchDetails() {
+  [els.genre, els.subgenre, els.releaseDecade, els.sourceCategory, els.animeDrama, els.vocalType]
+    .forEach(select => { select.value = ""; });
+  els.sortOrder.value = "playable";
+  pendingAnimeDramaValue = "";
+  refreshAfterClearingSearch();
 }
 
 function levenshteinDistance(left, right) {
@@ -1833,6 +1850,25 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
   renderZeroResultRecommendations(items);
 }
 
+function setupHomeSectionToggles() {
+  const saved = readJsonStorage(HOME_SECTIONS_KEY, {});
+  const sections = {};
+  els.homeSectionToggles.forEach(button => {
+    const id = button.getAttribute("aria-controls");
+    const content = document.getElementById(id);
+    const setOpen = open => {
+      sections[id] = open;
+      content.hidden = !open;
+      button.setAttribute("aria-expanded", String(open));
+    };
+    setOpen(saved?.[id] !== false);
+    button.addEventListener("click", () => {
+      setOpen(content.hidden);
+      writeJsonStorage(HOME_SECTIONS_KEY, sections);
+    });
+  });
+}
+
 function renderHome() {
   updateHomeRandomSourceButtons();
   els.homeRecommendEmpty.hidden = homeRecommendedSongs.length !== 0;
@@ -2268,26 +2304,52 @@ function setFloatingActionsSuppressed(suppressed) {
 }
 
 function renderLongAgoCopiedSongs() {
+  els.longAgoPeriodOptions.forEach(button => {
+    button.setAttribute("aria-pressed", String(button.dataset.longAgoPeriod === longAgoPeriod));
+  });
   const items = longAgoCopiedSongs().slice(0, HOME_RECOMMEND_COUNT);
   els.longAgoCopiedEmpty.hidden = items.length !== 0;
   els.longAgoCopiedSongs.innerHTML = renderSongCards(items);
+}
+
+function longAgoPeriodStart(now) {
+  const start = new Date(now);
+  start.setHours(0, 0, 0, 0);
+  if (longAgoPeriod === "week") {
+    const daysSinceMonday = (start.getDay() + 6) % 7;
+    start.setDate(start.getDate() - daysSinceMonday - 7);
+    return start.getTime();
+  }
+
+  const months = longAgoPeriod === "month" ? 1 : 3;
+  const day = start.getDate();
+  // Move to the target month's last day first so dates such as May 31 do not overflow.
+  start.setMonth(start.getMonth() - months + 1, 0);
+  start.setDate(Math.min(day, start.getDate()));
+  return start.getTime();
 }
 
 function longAgoCopiedSongs() {
   const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
   const history = Array.isArray(savedHistory) ? savedHistory : [];
   const latestByKey = new Map();
+  const now = new Date();
+  const start = longAgoPeriodStart(now);
 
   history.forEach(entry => {
     const key = normalizeCellText(entry?.key || favoriteKeyForSong(entry || {}));
-    if (!key || latestByKey.has(key)) return;
     const copiedAt = Date.parse(entry?.copiedAt || entry?.timestamp || "");
-    latestByKey.set(key, Number.isFinite(copiedAt) ? copiedAt : 0);
+    if (!key || !(copiedAt >= start && copiedAt <= now.getTime())) return;
+    const song = findSongByStoredKey(key);
+    if (!song) return;
+    const songKey = favoriteKeyForSong(song);
+    const latest = latestByKey.get(songKey);
+    if (!latest || copiedAt > latest.copiedAt) {
+      latestByKey.set(songKey, { song, copiedAt });
+    }
   });
 
-  return [...latestByKey.entries()]
-    .map(([key, copiedAt]) => ({ song: findSongByStoredKey(key), copiedAt }))
-    .filter(item => item.song)
+  return [...latestByKey.values()]
     .sort((left, right) => left.copiedAt - right.copiedAt || compareSongNo(left.song, right.song))
     .map(item => item.song);
 }
@@ -2720,6 +2782,12 @@ els.homeMoodOptions.addEventListener("click", event => {
   activeHomeMoodIndex = Number(button.dataset.homeMood);
   renderHomeMood();
 });
+els.longAgoPeriodOptions.forEach(button => {
+  button.addEventListener("click", () => {
+    longAgoPeriod = button.dataset.longAgoPeriod;
+    renderLongAgoCopiedSongs();
+  });
+});
 els.homeFuzzyLink.addEventListener("click", () => {
   switchTab("fuzzy");
   els.fuzzySearchModeToggle.focus();
@@ -2727,6 +2795,7 @@ els.homeFuzzyLink.addEventListener("click", () => {
 els.searchDetailToggle.addEventListener("click", () => {
   setSearchDetailsOpen(els.searchDetails.hidden);
 });
+els.clearSearchDetails.addEventListener("click", clearSearchDetails);
 els.searchGuideToggle.addEventListener("click", () => {
   setSearchGuideOpen(els.searchGuide.hidden);
 });
@@ -2921,6 +2990,7 @@ homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem
   : "all";
 favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
 loadFavoriteKeys();
+setupHomeSectionToggles();
 resetEasyCategoryOpen();
 setSearchDetailsOpen(false);
 setFuzzySearchMode(false);

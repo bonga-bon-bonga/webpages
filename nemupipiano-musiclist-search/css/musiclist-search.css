@@ -258,6 +258,35 @@ html[data-theme="dark"] .theme-icon-light {
     padding-top: 1.25rem;
 }
 
+.home-section-toggle {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: start;
+}
+
+.home-section-toggle .section-heading-icon {
+    flex-shrink: 0;
+}
+
+.home-section-toggle::after {
+    content: "";
+    flex-shrink: 0;
+    width: .45em;
+    height: .45em;
+    margin-inline: auto .25em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.home-section-toggle[aria-expanded="true"]::after {
+    transform: rotate(225deg);
+}
+
 .recommend-source-options {
     display: flex;
     flex-wrap: wrap;
@@ -2161,4 +2190,18 @@ body.floating-actions-suppressed .floating-menu {
 
 .app-panel.font-size-large .badge {
     font-size: .95rem !important;
+}
+
+@media (max-width: 575.98px) {
+    .long-ago-period-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .25rem;
+    }
+
+    .app-panel .long-ago-period-options .recommend-source-button {
+        padding-inline: .15rem;
+        font-size: clamp(.72rem, 3.65vw, .95rem) !important;
+        white-space: nowrap;
+    }
 }
