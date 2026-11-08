@@ -50,6 +50,7 @@ const PLAYABLE_ONLY_KEY = "nemupipiano:playableOnly";
 const SORT_ORDER_KEY = "nemupipiano:sortOrder";
 const ANIME_DRAMA_KEY = "nemupipiano:animeDrama";
 const HOME_RANDOM_SOURCE_KEY = "nemupipiano:homeRandomSource";
+const HOME_SECTIONS_KEY = "nemupipiano:homeSections";
 const FAVORITES_KEY = "nemupipiano:favorites";
 const FAVORITES_ONLY_KEY = "nemupipiano:favoritesOnly";
 const COPY_COUNTS_KEY = "nemupipiano:copyCounts";
@@ -74,6 +75,7 @@ const els = {
   favoriteFilter: document.getElementById("favoriteFilter"),
   searchDetailToggle: document.getElementById("searchDetailToggle"),
   searchDetails: document.getElementById("searchDetails"),
+  clearSearchDetails: document.getElementById("clearSearchDetails"),
   searchGuideToggle: document.getElementById("searchGuideToggle"),
   searchGuide: document.getElementById("searchGuide"),
   fuzzySearchModeToggle: document.getElementById("fuzzySearchModeToggle"),
@@ -95,6 +97,13 @@ const els = {
   easyCategoryList: document.getElementById("easyCategoryList"),
   easyReset: document.getElementById("easyReset"),
   playableFilter: document.getElementById("playableFilter"),
+  songNumberFilter: document.getElementById("songNumberFilter"),
+  songNumberRange: document.getElementById("songNumberRange"),
+  songNumberRangeValue: document.getElementById("songNumberRangeValue"),
+  songNumberSlider: document.getElementById("songNumberSlider"),
+  songNumberTrack: document.getElementById("songNumberTrack"),
+  songNumberStart: document.getElementById("songNumberStart"),
+  songNumberEnd: document.getElementById("songNumberEnd"),
   stats: document.getElementById("stats"),
   activeSearchFilters: document.getElementById("activeSearchFilters"),
   activeSearchFilterList: document.getElementById("activeSearchFilterList"),
@@ -105,6 +114,8 @@ const els = {
   zeroResultRecommendations: document.getElementById("zeroResultRecommendations"),
   zeroResultRecommendationSongs: document.getElementById("zeroResultRecommendationSongs"),
   homeRandomOptions: document.querySelectorAll("[data-home-random-source]"),
+  homeSectionToggles: document.querySelectorAll(".home-section-toggle"),
+  longAgoPeriodOptions: document.querySelectorAll("[data-long-ago-period]"),
   homeRecommendations: document.getElementById("homeRecommendations"),
   homeRecommendEmpty: document.getElementById("homeRecommendEmpty"),
   longAgoCopiedSongs: document.getElementById("longAgoCopiedSongs"),
@@ -142,7 +153,9 @@ let homeRecommendedSongs = [];
 let homeMoodSuggestions = [];
 let activeHomeMoodIndex = null;
 let playableOnly = false;
+let songNumberFilterEnabled = false;
 let homeRandomSource = "all";
+let longAgoPeriod = "quarter";
 let favoriteOnly = false;
 let favoriteKeys = new Set();
 let displayColumnCount = "3";
@@ -429,6 +442,7 @@ async function loadSheet() {
     performancePreviews = loadedPerformancePreviews;
     migrateFavoriteKeys();
     setupSearchDetailOptions(songs);
+    setupSongNumberRange();
     buildSearchSuggestionOptions(songs);
     pickHomeRecommendations();
     pickHomeMoodSuggestions();
@@ -740,7 +754,7 @@ function selectedOptionLabel(select) {
 function activeSearchConditions() {
   if (easySearchMode) return [];
   const conditions = [];
-  const hasPrimaryCondition = hasSearchKeyword() || hasSearchDetailFilter() || playableOnly || favoriteOnly;
+  const hasPrimaryCondition = hasSearchKeyword() || hasSearchDetailFilter() || songNumberFilterEnabled || playableOnly || favoriteOnly;
   const scopeLabels = { title: "曲名", artist: "アーティスト" };
 
   if (hasSearchKeyword()) conditions.push({ key: "query", label: `キーワード：${normalizeCellText(els.search.value)}` });
@@ -757,6 +771,7 @@ function activeSearchConditions() {
   ].forEach(([key, label, select]) => {
     if (select.value) conditions.push({ key, label: `${label}：${selectedOptionLabel(select)}` });
   });
+  if (songNumberFilterEnabled) conditions.push({ key: "number", label: `番号：${songNumberRangeLabel()}` });
   if (playableOnly) conditions.push({ key: "playable", label: "リクエスト可のみ" });
   if (favoriteOnly) conditions.push({ key: "favorites", label: "お気に入りのみ" });
   if (hasPrimaryCondition && els.sortOrder.value !== "playable") {
@@ -788,6 +803,7 @@ function clearSearchCondition(key) {
   if (key === "work") els.animeDrama.value = "";
   if (key === "vocal") els.vocalType.value = "";
   if (key === "decade") els.releaseDecade.value = "";
+  if (key === "number") songNumberFilterEnabled = false;
   if (key === "playable") playableOnly = false;
   if (key === "favorites") favoriteOnly = false;
   if (key === "sort") els.sortOrder.value = "playable";
@@ -795,11 +811,23 @@ function clearSearchCondition(key) {
   localStorage.setItem(SEARCH_SCOPE_KEY, getSearchScope());
   localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
   localStorage.setItem(FAVORITES_ONLY_KEY, String(favoriteOnly));
+  refreshAfterClearingSearch();
+}
+
+function refreshAfterClearingSearch() {
   localStorage.setItem(SORT_ORDER_KEY, els.sortOrder.value || "playable");
   localStorage.setItem(ANIME_DRAMA_KEY, els.animeDrama.value || "");
   hideSearchSuggestions();
   resetSearchResultLimit();
   render({ syncSearchGuide: true });
+}
+
+function clearSearchDetails() {
+  [els.genre, els.subgenre, els.releaseDecade, els.sourceCategory, els.animeDrama, els.vocalType]
+    .forEach(select => { select.value = ""; });
+  els.sortOrder.value = "playable";
+  pendingAnimeDramaValue = "";
+  refreshAfterClearingSearch();
 }
 
 function levenshteinDistance(left, right) {
@@ -901,6 +929,7 @@ function zeroResultRecommendationSongs(resultItems) {
   const dateKey = localDateSeedKey();
 
   return songs
+    .filter(song => easySearchMode || matchesSongNumberRange(song))
     .map(song => ({
       song,
       score: zeroRecommendationScore(song),
@@ -935,7 +964,7 @@ function hasSearchDetailFilter() {
 }
 
 function isSearchGuideDefaultState() {
-  return !hasSearchKeyword() && !favoriteOnly && !hasSearchDetailFilter();
+  return !hasSearchKeyword() && !favoriteOnly && !hasSearchDetailFilter() && !songNumberFilterEnabled;
 }
 
 function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
@@ -949,16 +978,14 @@ function syncSearchGuideOnSearchStateChange({ force = false } = {}) {
   if (!searchGuideAutoInitialized) {
     searchGuideAutoInitialized = true;
     lastSearchGuideHasKeyword = currentHasKeyword;
-    setSearchGuideOpen(
-      !currentHasKeyword && !favoriteOnly && !hasSearchDetailFilter()
-    );
+    setSearchGuideOpen(isSearchGuideDefaultState());
     return;
   }
 
   if (!force && lastSearchGuideHasKeyword === currentHasKeyword) return;
 
   lastSearchGuideHasKeyword = currentHasKeyword;
-  if (currentHasKeyword || favoriteOnly || hasSearchDetailFilter()) {
+  if (!isSearchGuideDefaultState()) {
     setSearchGuideOpen(false);
   }
 }
@@ -1011,6 +1038,101 @@ function numericSongNumber(song) {
   const value = String(song.no || "");
   const match = value.match(/#?(\d+(?:\.\d+)?)$/);
   return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+}
+
+function setupSongNumberRange() {
+  const numbers = songs.filter(song => songSourceType(song) === "list")
+    .map(numericSongNumber)
+    .filter(Number.isFinite);
+  if (numbers.length === 0) return;
+
+  const min = Math.floor(Math.min(...numbers));
+  const max = Math.ceil(Math.max(...numbers));
+  [els.songNumberStart, els.songNumberEnd].forEach(input => {
+    input.min = String(min);
+    input.max = String(max);
+    input.disabled = min === max;
+  });
+  els.songNumberStart.value = String(min);
+  els.songNumberEnd.value = String(max);
+  els.songNumberFilter.disabled = false;
+}
+
+function songNumberRangeLabel() {
+  return `${els.songNumberStart.value}-${els.songNumberEnd.value}`;
+}
+
+function renderSongNumberRange() {
+  els.songNumberRangeValue.textContent = `No：${songNumberRangeLabel()}`;
+  const min = Number(els.songNumberStart.min);
+  const span = Number(els.songNumberStart.max) - min;
+  const position = input => span > 0 ? (input.valueAsNumber - min) / span * 100 : 0;
+  els.songNumberTrack.style.setProperty("--song-number-start", `${position(els.songNumberStart)}%`);
+  els.songNumberTrack.style.setProperty("--song-number-end", `${position(els.songNumberEnd)}%`);
+}
+
+function updateSongNumberRange(input) {
+  const { songNumberStart: start, songNumberEnd: end } = els;
+  if (start.valueAsNumber > end.valueAsNumber) {
+    input.value = input === start ? end.value : start.value;
+  }
+  resetSearchResultLimit();
+  render();
+}
+
+function bindSongNumberSlider() {
+  const { songNumberSlider: slider, songNumberTrack: track, songNumberStart: start, songNumberEnd: end } = els;
+  let activePointer = null;
+  let activeInput = null;
+
+  function moveThumb(event) {
+    const { left, width } = track.getBoundingClientRect();
+    if (width <= 0) return;
+    const min = Number(start.min);
+    const max = Number(start.max);
+    const ratio = Math.min(1, Math.max(0, (event.clientX - left) / width));
+    const value = Math.round(min + ratio * (max - min));
+
+    if (!activeInput) {
+      const startValue = start.valueAsNumber;
+      const endValue = end.valueAsNumber;
+      // When the thumbs overlap, wait for the drag direction before picking one.
+      if (startValue === endValue && value === startValue) return;
+      activeInput = value - startValue <= endValue - value ? start : end;
+      activeInput.focus({ preventScroll: true });
+    }
+
+    const next = activeInput === start ? Math.min(value, end.valueAsNumber) : Math.max(value, start.valueAsNumber);
+    if (next === activeInput.valueAsNumber) return;
+    activeInput.valueAsNumber = next;
+    updateSongNumberRange(activeInput);
+  }
+
+  [start, end].forEach(input => {
+    input.addEventListener("input", () => updateSongNumberRange(input));
+  });
+  slider.addEventListener("pointerdown", event => {
+    if (event.button !== 0 || !event.isPrimary || activePointer !== null || start.disabled) return;
+    event.preventDefault();
+    activePointer = event.pointerId;
+    slider.setPointerCapture(activePointer);
+    moveThumb(event);
+  });
+  slider.addEventListener("pointermove", event => {
+    if (event.pointerId === activePointer) moveThumb(event);
+  });
+  slider.addEventListener("lostpointercapture", event => {
+    if (event.pointerId !== activePointer) return;
+    activePointer = null;
+    activeInput = null;
+  });
+}
+
+function matchesSongNumberRange(song) {
+  if (!songNumberFilterEnabled) return true;
+  if (songSourceType(song) !== "list") return false;
+  const number = numericSongNumber(song);
+  return number >= els.songNumberStart.valueAsNumber && number <= els.songNumberEnd.valueAsNumber;
 }
 
 function sourceOrder(song) {
@@ -1372,9 +1494,10 @@ function filteredSongs() {
   const vocalType = els.vocalType.value;
   const releaseDecade = els.releaseDecade.value;
 
-  if (keywords.length === 0 && !favoriteOnly && !hasSearchDetailFilter()) return [];
+  if (keywords.length === 0 && !favoriteOnly && !hasSearchDetailFilter() && !songNumberFilterEnabled) return [];
 
   const filtered = songs.filter(song => {
+    if (!matchesSongNumberRange(song)) return false;
     const keywordOk = matchesSearchKeyword(song, keywords, searchScope);
     const genreOk = !genre || song.genre === genre;
     const subgenreOk = !subgenre
@@ -1812,6 +1935,11 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
     els.stats.innerHTML = renderEasyStats(items, visibleItems);
   }
   renderActiveSearchFilters();
+  els.songNumberFilter.classList.toggle("active", songNumberFilterEnabled);
+  els.songNumberFilter.setAttribute("aria-pressed", String(songNumberFilterEnabled));
+  els.songNumberFilter.textContent = songNumberFilterEnabled ? "ON" : "OFF";
+  els.songNumberRange.hidden = easySearchMode || !songNumberFilterEnabled;
+  renderSongNumberRange();
   els.playableFilter.classList.toggle("active", playableOnly);
   els.playableFilter.setAttribute("aria-pressed", String(playableOnly));
   els.playableFilter.textContent = playableOnly ? "ON" : "OFF";
@@ -1831,6 +1959,29 @@ function render({ syncSearchGuide = false, forceSearchGuideSync = false } = {}) 
   els.songs.innerHTML = renderSongCards(visibleItems);
   renderSearchAlternatives(items);
   renderZeroResultRecommendations(items);
+  if (!easySearchMode && songNumberFilterEnabled && items.length === 0 && els.zeroResultRecommendations.hidden) {
+    els.empty.textContent = "指定した番号の範囲に曲が見つかりませんでした。";
+    els.empty.hidden = false;
+  }
+}
+
+function setupHomeSectionToggles() {
+  const saved = readJsonStorage(HOME_SECTIONS_KEY, {});
+  const sections = {};
+  els.homeSectionToggles.forEach(button => {
+    const id = button.getAttribute("aria-controls");
+    const content = document.getElementById(id);
+    const setOpen = open => {
+      sections[id] = open;
+      content.hidden = !open;
+      button.setAttribute("aria-expanded", String(open));
+    };
+    setOpen(saved?.[id] !== false);
+    button.addEventListener("click", () => {
+      setOpen(content.hidden);
+      writeJsonStorage(HOME_SECTIONS_KEY, sections);
+    });
+  });
 }
 
 function renderHome() {
@@ -2268,26 +2419,52 @@ function setFloatingActionsSuppressed(suppressed) {
 }
 
 function renderLongAgoCopiedSongs() {
+  els.longAgoPeriodOptions.forEach(button => {
+    button.setAttribute("aria-pressed", String(button.dataset.longAgoPeriod === longAgoPeriod));
+  });
   const items = longAgoCopiedSongs().slice(0, HOME_RECOMMEND_COUNT);
   els.longAgoCopiedEmpty.hidden = items.length !== 0;
   els.longAgoCopiedSongs.innerHTML = renderSongCards(items);
+}
+
+function longAgoPeriodStart(now) {
+  const start = new Date(now);
+  start.setHours(0, 0, 0, 0);
+  if (longAgoPeriod === "week") {
+    const daysSinceMonday = (start.getDay() + 6) % 7;
+    start.setDate(start.getDate() - daysSinceMonday - 7);
+    return start.getTime();
+  }
+
+  const months = longAgoPeriod === "month" ? 1 : 3;
+  const day = start.getDate();
+  // Move to the target month's last day first so dates such as May 31 do not overflow.
+  start.setMonth(start.getMonth() - months + 1, 0);
+  start.setDate(Math.min(day, start.getDate()));
+  return start.getTime();
 }
 
 function longAgoCopiedSongs() {
   const savedHistory = readJsonStorage(COPY_HISTORY_KEY, []);
   const history = Array.isArray(savedHistory) ? savedHistory : [];
   const latestByKey = new Map();
+  const now = new Date();
+  const start = longAgoPeriodStart(now);
 
   history.forEach(entry => {
     const key = normalizeCellText(entry?.key || favoriteKeyForSong(entry || {}));
-    if (!key || latestByKey.has(key)) return;
     const copiedAt = Date.parse(entry?.copiedAt || entry?.timestamp || "");
-    latestByKey.set(key, Number.isFinite(copiedAt) ? copiedAt : 0);
+    if (!key || !(copiedAt >= start && copiedAt <= now.getTime())) return;
+    const song = findSongByStoredKey(key);
+    if (!song) return;
+    const songKey = favoriteKeyForSong(song);
+    const latest = latestByKey.get(songKey);
+    if (!latest || copiedAt > latest.copiedAt) {
+      latestByKey.set(songKey, { song, copiedAt });
+    }
   });
 
-  return [...latestByKey.entries()]
-    .map(([key, copiedAt]) => ({ song: findSongByStoredKey(key), copiedAt }))
-    .filter(item => item.song)
+  return [...latestByKey.values()]
     .sort((left, right) => left.copiedAt - right.copiedAt || compareSongNo(left.song, right.song))
     .map(item => item.song);
 }
@@ -2697,6 +2874,13 @@ els.playableFilter.addEventListener("click", () => {
   localStorage.setItem(PLAYABLE_ONLY_KEY, String(playableOnly));
   render();
 });
+els.songNumberFilter.addEventListener("click", () => {
+  songNumberFilterEnabled = !songNumberFilterEnabled;
+  hideSearchSuggestions();
+  resetSearchResultLimit();
+  render({ syncSearchGuide: true, forceSearchGuideSync: true });
+});
+bindSongNumberSlider();
 els.favoriteFilter.addEventListener("click", () => {
   resetSearchResultLimit();
   favoriteOnly = !favoriteOnly;
@@ -2720,6 +2904,12 @@ els.homeMoodOptions.addEventListener("click", event => {
   activeHomeMoodIndex = Number(button.dataset.homeMood);
   renderHomeMood();
 });
+els.longAgoPeriodOptions.forEach(button => {
+  button.addEventListener("click", () => {
+    longAgoPeriod = button.dataset.longAgoPeriod;
+    renderLongAgoCopiedSongs();
+  });
+});
 els.homeFuzzyLink.addEventListener("click", () => {
   switchTab("fuzzy");
   els.fuzzySearchModeToggle.focus();
@@ -2727,6 +2917,7 @@ els.homeFuzzyLink.addEventListener("click", () => {
 els.searchDetailToggle.addEventListener("click", () => {
   setSearchDetailsOpen(els.searchDetails.hidden);
 });
+els.clearSearchDetails.addEventListener("click", clearSearchDetails);
 els.searchGuideToggle.addEventListener("click", () => {
   setSearchGuideOpen(els.searchGuide.hidden);
 });
@@ -2921,6 +3112,7 @@ homeRandomSource = ["all", "playable", "favorite"].includes(localStorage.getItem
   : "all";
 favoriteOnly = loadSavedBoolean(FAVORITES_ONLY_KEY, false);
 loadFavoriteKeys();
+setupHomeSectionToggles();
 resetEasyCategoryOpen();
 setSearchDetailsOpen(false);
 setFuzzySearchMode(false);

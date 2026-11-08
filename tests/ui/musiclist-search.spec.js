@@ -5,7 +5,6 @@ const EASY_DESCRIPTION = "ボタンを組み合わせて、リクエスト候補
 const NORMAL_DESCRIPTION = "曲名やアーティスト名から、リクエストしたい曲を探せます。";
 
 async function openApp(page) {
-  await page.addInitScript(() => localStorage.clear());
   await page.goto(APP_PATH);
   await expect(page.locator("#homeRecommendations .song-card").first()).toBeVisible();
 }
@@ -241,27 +240,173 @@ test("検索結果を30件ずつ段階表示する", async ({ page }) => {
   await expect(page.locator("#searchMore")).toBeHidden();
 });
 
-test("久しぶりの曲はコピー履歴が古い順に表示する", async ({ page }) => {
+test("番号スライドは曲リストだけを開始・終了番号で絞り込む", async ({ page }) => {
   await page.route("**/data/musiclist.json", route => route.fulfill({
-    json: Array.from({ length: 3 }, (_, index) => makeSearchSong(index + 1)),
+    json: [
+      ...Array.from({ length: 65 }, (_, index) => makeSearchSong(index + 1)),
+      makeSearchSong(66, { no: "disney#2", displayTitle: "Special Disney" }),
+      makeSearchSong(67, { no: "ghibli#3", displayTitle: "Special Ghibli" }),
+      makeSearchSong(68, { no: "disney#90", displayTitle: "Special Disney 90" }),
+    ],
+  }));
+  await page.reload();
+  await openTab(page, "search");
+  const toggle = page.getByRole("button", { name: "番号スライド" });
+  const range = page.getByRole("group", { name: "曲の番号範囲" });
+  const start = range.getByRole("slider", { name: "開始番号" });
+  const end = range.getByRole("slider", { name: "終了番号" });
+  const search = page.locator("#search");
+  const titles = page.locator("#songs .song-title");
+
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(range).toBeHidden();
+  await expect(titles).toHaveCount(0);
+
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(range).toHaveText("No：1-65");
+  await expect(page.locator("#stats")).toContainText("検索結果：65件");
+  await expect(titles).toHaveCount(30);
+  await expect(page.locator("#searchGuide")).toBeHidden();
+
+  const track = range.locator(".song-number-track");
+  await expect(track).toHaveCount(1);
+  await expect(range).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  await track.scrollIntoViewIfNeeded();
+  const bounds = await track.boundingBox();
+  const trackX = value => bounds.x + (value - 1) / 64 * bounds.width;
+  const trackY = bounds.y + bounds.height / 2;
+  const dragThumb = async (from, to) => {
+    await page.mouse.move(trackX(from), trackY);
+    await page.mouse.down();
+    await page.mouse.move(trackX(to), trackY, { steps: 4 });
+    await page.mouse.up();
+  };
+  await dragThumb(1, 10);
+  await dragThumb(65, 10);
+  await expect(range).toContainText("10-10");
+  await dragThumb(10, 1);
+  await expect(range).toContainText("1-10");
+  await dragThumb(10, 65);
+  await expect(range).toContainText("1-65");
+
+  await start.press("ArrowRight");
+  await end.press("Home");
+  await expect(end).toHaveValue("2");
+  await end.press("ArrowRight");
+  await expect(range).toHaveText("No：2-3");
+  await expect(titles).toHaveText(["Song 002", "Song 003"]);
+
+  await search.fill("Song 003");
+  await expect(titles).toHaveText(["Song 003"]);
+  await search.fill("Special");
+  await search.press("Escape");
+  await expect(page.locator("#stats")).toContainText("検索結果：0件");
+  await expect(page.locator("#zeroResultRecommendationSongs .song-title")).toHaveCount(2);
+  await expect(page.locator("#zeroResultRecommendationSongs")).not.toContainText("Special");
+
+  await page.getByRole("tab", { name: "かんたんモード" }).click();
+  await expect(range).toBeHidden();
+  await page.getByRole("tab", { name: "通常検索" }).click();
+  await expect(range).toContainText("2-3");
+  await page.getByRole("button", { name: "番号：2-3を解除" }).click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  await expect(range).toBeHidden();
+  await expect(titles).toHaveCount(3);
+  await expect(titles).toContainText(["Special Disney", "Special Disney 90", "Special Ghibli"]);
+});
+
+test("ホーム各項目を個別に開閉でき、再読み込み後も状態が復元される", async ({ page }) => {
+  const toggles = page.locator("#panel-home .home-section-toggle");
+  await expect(toggles).toHaveCount(5);
+  for (const toggle of await toggles.all()) {
+    const content = page.locator(`#${await toggle.getAttribute("aria-controls")}`);
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await expect(content).toBeVisible();
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await expect(content).toBeHidden();
+  }
+  await toggles.first().focus();
+  await page.keyboard.press("Enter");
+  await page.reload();
+  await expect(toggles.first()).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator("#homeWelcomeContent")).toBeVisible();
+  for (const toggle of (await toggles.all()).slice(1)) {
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await expect(page.locator(`#${await toggle.getAttribute("aria-controls")}`)).toBeHidden();
+  }
+});
+
+test("久しぶりの曲は選択期間内で最後のコピーが古い順に表示する", async ({ page }) => {
+  await page.clock.setFixedTime(new Date(2026, 10, 8, 12));
+  await page.route("**/data/musiclist.json", route => route.fulfill({
+    json: Array.from({ length: 6 }, (_, index) => makeSearchSong(index + 1)),
   }));
   await page.reload();
   await page.evaluate(() => {
     localStorage.setItem("nemupipiano:copyHistory", JSON.stringify([
-      { key: "song 003|artist 3", copiedAt: "2026-07-01T00:00:00.000Z" },
-      { key: "song 002|artist 2", copiedAt: "2025-07-01T00:00:00.000Z" },
-      { key: "song 001|artist 1", copiedAt: "2024-07-01T00:00:00.000Z" },
+      { key: "song 006|artist 6", copiedAt: new Date(2026, 10, 9).toISOString() },
+      { key: "song 004|artist 4", copiedAt: new Date(2026, 10, 1).toISOString() },
+      { key: "song 003|artist 3", timestamp: new Date(2026, 9, 26).toISOString() },
+      { key: "song 002|artist 2", copiedAt: new Date(2026, 9, 8).toISOString() },
+      { key: "song 004|artist 4", copiedAt: new Date(2026, 8, 1).toISOString() },
+      { key: "song 001|artist 1", copiedAt: new Date(2026, 7, 8).toISOString() },
+      { key: "song 005|artist 5", copiedAt: new Date(2026, 7, 7, 23, 59).toISOString() },
     ]));
   });
   await page.locator('[data-home-random-source="all"]').click();
 
-  await expect(page.locator('[data-home-random-source="recent"]')).toHaveCount(0);
-  await expect(page.locator("#longAgoCopiedSongs .song-title")).toHaveText([
-    "Song 001",
-    "Song 002",
-    "Song 003",
-  ]);
-  await expect(page.locator("#longAgoCopiedSongs")).toBeVisible();
+  const titles = page.locator("#longAgoCopiedSongs .song-title");
+  await expect(page.getByRole("button", { name: "3ヵ月前まで" })).toHaveAttribute("aria-pressed", "true");
+  await expect(titles).toHaveText(["Song 001", "Song 002", "Song 003", "Song 004"]);
+  await page.getByRole("button", { name: "1ヵ月前まで" }).click();
+  await expect(titles).toHaveText(["Song 002", "Song 003", "Song 004"]);
+  await page.getByRole("button", { name: "先週まで" }).click();
+  await expect(titles).toHaveText(["Song 003", "Song 004"]);
+});
+
+test("320px幅・大きい文字設定でも久しぶりの曲の期間選択が1行に収まる", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 720 });
+  await page.evaluate(() => localStorage.setItem("nemupipiano:appPanelFontSize", "large"));
+  await page.reload();
+  const options = page.getByRole("group", { name: "久しぶりの曲の表示期間" });
+  await expect(options).toBeVisible();
+  const { singleRow, labelsFit } = await options.getByRole("button").evaluateAll(buttons => ({
+    singleRow: buttons.every(button => button.offsetTop === buttons[0].offsetTop),
+    labelsFit: buttons.every(button => button.scrollWidth <= button.clientWidth),
+  }));
+  expect(singleRow).toBe(true);
+  expect(labelsFit).toBe(true);
+});
+
+test("条件をクリアは詳細欄だけを初期化し、検索結果も更新する", async ({ page }) => {
+  await openTab(page, "search");
+  await page.locator('label[for="searchScopeTitle"]').click();
+  await page.locator("#playableFilter").click();
+  await page.locator("#search").fill("夜");
+  await page.locator("#search").press("Escape");
+  const resultsBefore = await page.locator("#stats").textContent();
+
+  await page.locator("#searchDetailToggle").click();
+  const filters = page.locator("#searchDetails select:not(#sortOrder)");
+  await expect(filters).toHaveCount(6);
+  for (const filter of await filters.all()) {
+    await filter.selectOption({ index: 1 });
+  }
+  await page.locator("#sortOrder").selectOption("title");
+  await page.getByRole("button", { name: "条件をクリア" }).click();
+  for (const filter of await filters.all()) {
+    await expect(filter).toHaveValue("");
+  }
+  await expect(page.locator("#sortOrder")).toHaveValue("playable");
+  await expect(page.locator("#search")).toHaveValue("夜");
+  await expect(page.locator("#searchScopeTitle")).toBeChecked();
+  await expect(page.locator("#playableFilter")).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#stats")).toHaveText(resultsBefore);
+  await page.reload();
+  await expect(page.locator("#animeDrama")).toHaveValue("");
+  await expect(page.locator("#sortOrder")).toHaveValue("playable");
 });
 
 test("かんたんモードは1カテゴリずつ展開し候補を自動更新する", async ({ page }) => {

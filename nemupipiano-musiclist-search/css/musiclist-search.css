@@ -258,6 +258,35 @@ html[data-theme="dark"] .theme-icon-light {
     padding-top: 1.25rem;
 }
 
+.home-section-toggle {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font: inherit;
+    text-align: start;
+}
+
+.home-section-toggle .section-heading-icon {
+    flex-shrink: 0;
+}
+
+.home-section-toggle::after {
+    content: "";
+    flex-shrink: 0;
+    width: .45em;
+    height: .45em;
+    margin-inline: auto .25em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.home-section-toggle[aria-expanded="true"]::after {
+    transform: rotate(225deg);
+}
+
 .recommend-source-options {
     display: flex;
     flex-wrap: wrap;
@@ -802,6 +831,7 @@ html[data-theme="dark"] .form-select {
 
 .search-scope,
 .display-columns,
+.song-number-filter,
 .playable-filter,
 .favorite-filter {
     display: inline-flex;
@@ -813,6 +843,7 @@ html[data-theme="dark"] .form-select {
 
 .search-scope-label,
 .display-columns-label,
+.song-number-filter-label,
 .playable-filter-label {
     color: var(--page-muted);
     font-size: .85rem;
@@ -1081,6 +1112,85 @@ html[data-theme="dark"] .song-card.accent-other {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.song-number-range {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(.5rem, 2vw, 1rem);
+}
+
+.song-number-range[hidden] {
+    display: none;
+}
+
+.song-number-range-value {
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.song-number-slider {
+    --song-number-thumb-size: 1.125rem;
+    position: relative;
+    height: 2.75rem;
+    cursor: pointer;
+    touch-action: pan-y;
+}
+
+.song-number-track {
+    position: absolute;
+    top: 50%;
+    inset-inline: calc(var(--song-number-thumb-size) / 2);
+    height: .25rem;
+    border-radius: 999px;
+    transform: translateY(-50%);
+    background: linear-gradient(to right,
+        var(--page-muted) 0 var(--song-number-start, 0%),
+        var(--page-accent) var(--song-number-start, 0%) var(--song-number-end, 100%),
+        var(--page-muted) var(--song-number-end, 100%) 100%);
+}
+
+.song-number-slider input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    appearance: none;
+    background: transparent;
+    pointer-events: none;
+}
+
+.song-number-slider input:focus-visible {
+    z-index: 1;
+    outline: none;
+    --song-number-thumb-outline: 2px solid var(--page-text);
+}
+
+.song-number-slider input::-webkit-slider-thumb {
+    appearance: none;
+    box-sizing: border-box;
+    width: var(--song-number-thumb-size);
+    height: var(--song-number-thumb-size);
+    border: 1px solid var(--page-control);
+    border-radius: 50%;
+    background: var(--page-accent);
+    outline: var(--song-number-thumb-outline, none);
+    outline-offset: 2px;
+}
+
+.song-number-slider input::-moz-range-thumb {
+    box-sizing: border-box;
+    width: var(--song-number-thumb-size);
+    height: var(--song-number-thumb-size);
+    border: 1px solid var(--page-control);
+    border-radius: 50%;
+    background: var(--page-accent);
+    outline: var(--song-number-thumb-outline, none);
+    outline-offset: 2px;
 }
 
 .stats-row {
@@ -1888,7 +1998,6 @@ body.floating-actions-suppressed .floating-menu {
     }
 
     .quick-filter-group {
-    flex-wrap: nowrap;
     gap: .5rem;
     max-width: 100%;
     }
@@ -2161,4 +2270,18 @@ body.floating-actions-suppressed .floating-menu {
 
 .app-panel.font-size-large .badge {
     font-size: .95rem !important;
+}
+
+@media (max-width: 575.98px) {
+    .long-ago-period-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .25rem;
+    }
+
+    .app-panel .long-ago-period-options .recommend-source-button {
+        padding-inline: .15rem;
+        font-size: clamp(.72rem, 3.65vw, .95rem) !important;
+        white-space: nowrap;
+    }
 }
