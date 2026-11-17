@@ -2222,25 +2222,25 @@ function performancePreviewFor(song) {
 
 function youtubeVideoId(value) {
   const text = normalizeCellText(value);
-  if (!text) return "";
-  if (/^[a-zA-Z0-9_-]{11}$/.test(text)) return text;
+  const videoIdPattern = /^[a-zA-Z0-9_-]{11}$/;
+  if (videoIdPattern.test(text)) return text;
 
   try {
     const url = new URL(text);
-    if (url.hostname.includes("youtu.be")) {
-      return url.pathname.replace(/^\/+/, "").split("/")[0] || "";
+    if (!["http:", "https:"].includes(url.protocol)) return "";
+
+    const [, path, id] = url.pathname.split("/");
+    let videoId = "";
+    if (url.hostname === "youtu.be") {
+      videoId = path;
+    } else if (url.hostname === "youtube.com" || url.hostname.endsWith(".youtube.com")) {
+      if (["embed", "shorts", "live"].includes(path)) videoId = id;
+      if (path === "watch") videoId = url.searchParams.get("v");
     }
-    if (url.hostname.includes("youtube.com")) {
-      if (url.pathname.startsWith("/embed/") || url.pathname.startsWith("/shorts/")) {
-        return url.pathname.split("/")[2] || "";
-      }
-      return url.searchParams.get("v") || "";
-    }
+    return videoId && videoIdPattern.test(videoId) ? videoId : "";
   } catch (error) {
     return "";
   }
-
-  return "";
 }
 
 function performancePreviewEmbedUrl(preview) {
@@ -2279,6 +2279,56 @@ function performancePreviewRoundLabel(preview) {
   return no ? `ピックアップ回：No. ${no}` : "";
 }
 
+function performanceStartSeconds(performance) {
+  const value = performance?.start;
+  if (typeof value !== "number" && (typeof value !== "string" || !value.trim())) return null;
+  const seconds = Number(value);
+  return Number.isFinite(seconds) && seconds >= 0 ? Math.floor(seconds) : null;
+}
+
+function formatPerformanceTimestamp(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = String(Math.floor(seconds / 60) % 60);
+  const remainder = String(seconds % 60).padStart(2, "0");
+  return hours ? `${hours}:${minutes.padStart(2, "0")}:${remainder}` : `${minutes}:${remainder}`;
+}
+
+function renderOtherPerformances(record) {
+  if (!Array.isArray(record?.recentPerformances)) return "";
+  const previewUrl = performanceStartSeconds(record.preview) !== null
+    ? performancePreviewWatchUrl(record.preview)
+    : "";
+  const seen = new Set([previewUrl]);
+  const links = [];
+  const performances = [...record.recentPerformances].sort(
+    (left, right) => (Number(right?.no) || 0) - (Number(left?.no) || 0)
+  );
+
+  for (const performance of performances) {
+    const start = performanceStartSeconds(performance);
+    if (start === null) continue;
+    const url = performancePreviewWatchUrl(performance);
+    if (!url || seen.has(url)) continue;
+    seen.add(url);
+
+    const no = normalizeCellText(performance.no);
+    const round = no ? `第${no}回` : "配信回不明";
+    links.push(`
+      <li><a class="performance-history-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">
+        ${escapeHtml(round)} · ${formatPerformanceTimestamp(start)}
+      </a></li>
+    `);
+    if (links.length === 3) break;
+  }
+
+  return links.length ? `
+    <details class="performance-history">
+      <summary>ほかの演奏</summary>
+      <ul>${links.join("")}</ul>
+    </details>
+  ` : "";
+}
+
 function renderPerformancePreview(song) {
   const record = performancePreviewFor(song);
   const preview = record?.preview;
@@ -2309,6 +2359,7 @@ function renderPerformancePreview(song) {
         </div>
         ${roundLabel ? `<div class="performance-preview-round-label">${escapeHtml(roundLabel)}</div>` : ""}
       ` : `<div class="performance-preview-empty">準備中</div>`}
+      ${renderOtherPerformances(record)}
     </div>
   `;
 }

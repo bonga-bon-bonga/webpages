@@ -1646,6 +1646,32 @@ html[data-theme="dark"] .detail-favorite-button.active {
     border-radius: .9rem;
 }
 
+.performance-history {
+    margin-top: .65rem;
+}
+
+.performance-history summary,
+.performance-history-link {
+    padding-block: .5rem;
+}
+
+.performance-history summary {
+    color: var(--page-text);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.performance-history ul {
+    margin: 0;
+    padding-inline-start: 1.25rem;
+}
+
+.performance-history-link {
+    display: inline-block;
+    color: var(--page-accent);
+    text-underline-offset: .2rem;
+}
+
 .detail-youtube-search-button {
     width: 100%;
     font-weight: 800;
