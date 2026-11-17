@@ -492,12 +492,12 @@ test("曲カードは情報領域とコピー・詳細ボタンを分離して�
   await expect(page.locator("#songDetailModal .btn-close")).toHaveAccessibleName("閉じる");
 });
 
-test("ほかの演奏は有効な別演奏を3件まで表示し、時刻リンクを別タブで開く", async ({ page, context }) => {
+test("ほかの演奏は最新の10回までを丸ボタンで表示し、同じ回は遅い開始位置を開く", async ({ page, context }) => {
   const songs = [makeSearchSong(1), makeSearchSong(2), makeSearchSong(3)];
   const previewId = "Zlir5tqjzEE";
   const otherId = "MYl8bVCcFEc";
   const preview = { no: "337", streamUrl: previewId, start: 12 };
-  const other = { no: "336", streamUrl: otherId, start: 2538 };
+  const other = { no: "336", streamUrl: otherId, start: 3661 };
   await context.route("https://www.youtube.com/**", route => route.fulfill({ body: "YouTube test" }));
   await page.route("**/data/musiclist.json", route => route.fulfill({ json: songs }));
   await page.route("**/data/performance_preview.json", route => route.fulfill({
@@ -505,9 +505,9 @@ test("ほかの演奏は有効な別演奏を3件まで表示し、時刻リン�
       [songs[0].songKey]: {
         preview,
         recentPerformances: [
-          { no: "330", streamUrl: otherId, start: 0 },
+          ...Array.from({ length: 10 }, (_, index) => ({ no: String(320 + index), streamUrl: otherId, start: index })),
           { ...preview, streamUrl: `https://youtu.be/${previewId}` },
-          { no: "334", streamUrl: otherId, start: 3661 },
+          { ...other, start: 2538 },
           { no: "338", streamUrl: `https://youtube.com.example.org/watch?v=${otherId}`, start: 2 },
           { no: "339", streamUrl: otherId, start: null },
           { no: "340", streamUrl: "https://www.youtube.com/watch?v=wrong", start: 3 },
@@ -540,20 +540,23 @@ test("ほかの演奏は有効な別演奏を3件まで表示し、時刻リン�
   await expect(disclosure).toHaveText("ほかの演奏");
   await expect(links.first()).toBeHidden();
   await disclosure.press("Enter");
-  await expect(links).toHaveText(["第336回 · 42:18", "第334回 · 1:01:01", "第332回 · 2:00"]);
+  await expect(links).toHaveText(["第336回", "第332回",
+    ...Array.from({ length: 8 }, (_, index) => `第${329 - index}回`)]);
+  await expect(links.first()).toHaveCSS("border-radius", "999px");
   await expect(links.first()).toHaveAttribute("target", "_blank");
-  await expect(links.first()).toHaveAttribute("href", `https://www.youtube.com/watch?v=${otherId}&t=2538s`);
+  await expect(links.first()).toHaveAttribute("href", `https://www.youtube.com/watch?v=${otherId}&t=3661s`);
   await page.keyboard.press("Tab");
   await expect(links.first()).toBeFocused();
   const [popup] = await Promise.all([page.waitForEvent("popup"), page.keyboard.press("Enter")]);
-  await expect(popup).toHaveURL(`https://www.youtube.com/watch?v=${otherId}&t=2538s`);
+  await expect(popup).toHaveURL(`https://www.youtube.com/watch?v=${otherId}&t=3661s`);
   await popup.close();
   await closeDetail();
 
   await openDetail("Song 002");
   await expect(modal.locator(".performance-preview-frame")).toHaveCount(0);
   await disclosure.click();
-  await expect(links).toHaveText(["第336回 · 0:00"]);
+  await expect(links).toHaveText(["第336回"]);
+  await expect(links.first()).toHaveAttribute("href", `https://www.youtube.com/watch?v=${otherId}&t=0s`);
   await closeDetail();
 
   await openDetail("Song 003");

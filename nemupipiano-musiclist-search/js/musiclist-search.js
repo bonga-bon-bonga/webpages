@@ -2286,39 +2286,35 @@ function performanceStartSeconds(performance) {
   return Number.isFinite(seconds) && seconds >= 0 ? Math.floor(seconds) : null;
 }
 
-function formatPerformanceTimestamp(seconds) {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = String(Math.floor(seconds / 60) % 60);
-  const remainder = String(seconds % 60).padStart(2, "0");
-  return hours ? `${hours}:${minutes.padStart(2, "0")}:${remainder}` : `${minutes}:${remainder}`;
-}
-
 function renderOtherPerformances(record) {
   if (!Array.isArray(record?.recentPerformances)) return "";
   const previewUrl = performanceStartSeconds(record.preview) !== null
     ? performancePreviewWatchUrl(record.preview)
     : "";
-  const seen = new Set([previewUrl]);
+  const seenUrls = new Set([previewUrl]);
+  const seenRounds = new Set();
   const links = [];
   const performances = [...record.recentPerformances].sort(
     (left, right) => (Number(right?.no) || 0) - (Number(left?.no) || 0)
+      || (performanceStartSeconds(right) ?? -1) - (performanceStartSeconds(left) ?? -1)
   );
 
   for (const performance of performances) {
     const start = performanceStartSeconds(performance);
     if (start === null) continue;
     const url = performancePreviewWatchUrl(performance);
-    if (!url || seen.has(url)) continue;
-    seen.add(url);
-
     const no = normalizeCellText(performance.no);
+    if (!url || seenUrls.has(url) || seenRounds.has(no)) continue;
+    seenUrls.add(url);
+    seenRounds.add(no);
+
     const round = no ? `第${no}回` : "配信回不明";
     links.push(`
       <li><a class="performance-history-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">
-        ${escapeHtml(round)} · ${formatPerformanceTimestamp(start)}
+        ${escapeHtml(round)}
       </a></li>
     `);
-    if (links.length === 3) break;
+    if (links.length === 10) break;
   }
 
   return links.length ? `

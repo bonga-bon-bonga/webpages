@@ -1650,26 +1650,39 @@ html[data-theme="dark"] .detail-favorite-button.active {
     margin-top: .65rem;
 }
 
-.performance-history summary,
-.performance-history-link {
-    padding-block: .5rem;
-}
-
 .performance-history summary {
+    padding-block: .5rem;
     color: var(--page-text);
     font-weight: 700;
     cursor: pointer;
 }
 
 .performance-history ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
     margin: 0;
-    padding-inline-start: 1.25rem;
+    padding: 0;
+    list-style: none;
 }
 
 .performance-history-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: .35rem .9rem;
+    border: 1px solid var(--page-line);
+    border-radius: 999px;
+    background: var(--page-button-soft);
+    color: var(--page-text);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.performance-history-link:hover,
+.performance-history-link:focus-visible {
+    border-color: var(--page-accent);
     color: var(--page-accent);
-    text-underline-offset: .2rem;
 }
 
 .detail-youtube-search-button {
