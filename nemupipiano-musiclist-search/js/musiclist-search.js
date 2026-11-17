@@ -2274,11 +2274,6 @@ function performancePreviewWatchUrl(preview) {
   return `https://www.youtube.com/watch?${params.toString()}`;
 }
 
-function performancePreviewRoundLabel(preview) {
-  const no = normalizeCellText(preview?.no);
-  return no ? `ピックアップ回：No. ${no}` : "";
-}
-
 function performanceStartSeconds(performance) {
   const value = performance?.start;
   if (typeof value !== "number" && (typeof value !== "string" || !value.trim())) return null;
@@ -2293,7 +2288,7 @@ function renderOtherPerformances(record) {
     : "";
   const seenUrls = new Set([previewUrl]);
   const seenRounds = new Set();
-  const links = [];
+  const buttons = [];
   const performances = [...record.recentPerformances].sort(
     (left, right) => (Number(right?.no) || 0) - (Number(left?.no) || 0)
       || (performanceStartSeconds(right) ?? -1) - (performanceStartSeconds(left) ?? -1)
@@ -2309,31 +2304,29 @@ function renderOtherPerformances(record) {
     seenRounds.add(no);
 
     const round = no ? `第${no}回` : "配信回不明";
-    links.push(`
-      <li><a class="performance-history-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">
+    buttons.push(`
+      <li><button class="performance-history-button" type="button" data-performance-index="${record.recentPerformances.indexOf(performance)}" aria-pressed="false">
         ${escapeHtml(round)}
-      </a></li>
+      </button></li>
     `);
-    if (links.length === 10) break;
+    if (buttons.length === 10) break;
   }
 
-  return links.length ? `
+  return buttons.length ? `
     <details class="performance-history">
       <summary>ほかの演奏</summary>
-      <ul>${links.join("")}</ul>
+      <ul role="list">${buttons.join("")}</ul>
     </details>
   ` : "";
 }
 
-function renderPerformancePreview(song) {
-  const record = performancePreviewFor(song);
-  const preview = record?.preview;
+function renderPerformancePlayer(song, preview, isPickup = true) {
   const embedUrl = performancePreviewEmbedUrl(preview);
   const watchUrl = performancePreviewWatchUrl(preview);
-  const roundLabel = performancePreviewRoundLabel(preview);
+  const no = normalizeCellText(preview?.no);
+  const roundLabel = no ? `${isPickup ? "ピックアップ回" : "選択中の回"}：No. ${no}` : "";
 
   return `
-    <div class="song-detail-field song-detail-preview-field">
       <div class="performance-preview-heading">
         <span class="detail-label">過去の演奏プレビュー</span>
         ${watchUrl ? `
@@ -2355,6 +2348,14 @@ function renderPerformancePreview(song) {
         </div>
         ${roundLabel ? `<div class="performance-preview-round-label">${escapeHtml(roundLabel)}</div>` : ""}
       ` : `<div class="performance-preview-empty">準備中</div>`}
+  `;
+}
+
+function renderPerformancePreview(song) {
+  const record = performancePreviewFor(song);
+  return `
+    <div class="song-detail-field song-detail-preview-field">
+      <div data-performance-player>${renderPerformancePlayer(song, record?.preview)}</div>
       ${renderOtherPerformances(record)}
     </div>
   `;
@@ -2609,7 +2610,11 @@ function toggleFavoriteForSong(song) {
   renderHome();
   if (fuzzySearchMode) renderFuzzySearch();
   if (activeDetailSongKey === key) {
-    els.songDetailBody.innerHTML = renderSongDetail(song);
+    const button = els.songDetailBody.querySelector("[data-detail-favorite]");
+    if (button) {
+      button.classList.toggle("active", willFavorite);
+      button.textContent = willFavorite ? "お気に入り解除" : "お気に入り登録";
+    }
   }
   showCopyToast(
     willFavorite ? `${title}をお気に入りにしました！` : `${title}をお気に入りから解除しました`
@@ -3109,6 +3114,21 @@ els.songDetailBody.addEventListener("click", (event) => {
 
   if (event.target.closest("[data-detail-favorite]")) {
     toggleFavoriteForSong(currentSong);
+    return;
+  }
+
+  const performanceButton = event.target.closest("[data-performance-index]");
+  if (performanceButton) {
+    if (performanceButton.getAttribute("aria-pressed") === "true") return;
+    const performance = performancePreviewFor(currentSong)?.recentPerformances?.[performanceButton.dataset.performanceIndex];
+    if (!performance) return;
+
+    stopPerformancePreviewPlayback();
+    els.songDetailBody.querySelector("[data-performance-player]").innerHTML =
+      renderPerformancePlayer(currentSong, performance, false);
+    for (const button of els.songDetailBody.querySelectorAll("[data-performance-index]")) {
+      button.setAttribute("aria-pressed", String(button === performanceButton));
+    }
     return;
   }
 

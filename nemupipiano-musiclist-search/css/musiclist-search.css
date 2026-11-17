@@ -1666,7 +1666,7 @@ html[data-theme="dark"] .detail-favorite-button.active {
     list-style: none;
 }
 
-.performance-history-link {
+.performance-history-button {
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
@@ -1679,10 +1679,16 @@ html[data-theme="dark"] .detail-favorite-button.active {
     text-decoration: none;
 }
 
-.performance-history-link:hover,
-.performance-history-link:focus-visible {
+.performance-history-button:hover,
+.performance-history-button:focus-visible {
     border-color: var(--page-accent);
     color: var(--page-accent);
+}
+
+.performance-history-button[aria-pressed="true"] {
+    border-color: var(--page-button-active);
+    background: var(--page-button-active);
+    color: var(--page-button-active-text);
 }
 
 .detail-youtube-search-button {
