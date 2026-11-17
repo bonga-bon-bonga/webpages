@@ -492,6 +492,92 @@ test("曲カードは情報領域とコピー・詳細ボタンを分離して�
   await expect(page.locator("#songDetailModal .btn-close")).toHaveAccessibleName("閉じる");
 });
 
+test("ほかの演奏は10回までの丸ボタンで、モーダル内のプレビューを切り替える", async ({ page, context }) => {
+  const songs = [makeSearchSong(1), makeSearchSong(2), makeSearchSong(3)];
+  const previewId = "Zlir5tqjzEE";
+  const otherId = "MYl8bVCcFEc";
+  const preview = { no: "337", streamUrl: previewId, start: 12 };
+  const other = { no: "336", streamUrl: otherId, start: 3661, end: 3800 };
+  await context.route("https://www.youtube.com/**", route => route.fulfill({ body: "YouTube test" }));
+  await page.route("**/data/musiclist.json", route => route.fulfill({ json: songs }));
+  await page.route("**/data/performance_preview.json", route => route.fulfill({
+    json: {
+      [songs[0].songKey]: {
+        preview,
+        recentPerformances: [
+          ...Array.from({ length: 10 }, (_, index) => ({ no: String(320 + index), streamUrl: otherId, start: index })),
+          { ...preview, streamUrl: `https://youtu.be/${previewId}` },
+          { ...other, start: 2538 },
+          { no: "338", streamUrl: `https://youtube.com.example.org/watch?v=${otherId}`, start: 2 },
+          { no: "339", streamUrl: otherId, start: null },
+          { no: "340", streamUrl: "https://www.youtube.com/watch?v=wrong", start: 3 },
+          { no: "341", start: 10 },
+          { no: "342", streamUrl: otherId },
+          { no: "343", streamUrl: otherId, start: -1 },
+          other,
+          { ...other, streamUrl: `https://www.youtube.com/watch?v=${otherId}` },
+          { no: "332", streamUrl: otherId, start: 120 },
+        ],
+      },
+      [songs[1].songKey]: { preview: null, recentPerformances: [{ ...other, start: 0 }] },
+      [songs[2].songKey]: { preview, recentPerformances: [preview, { ...other, start: "" }] },
+    },
+  }));
+  await page.reload();
+  const modal = page.locator("#songDetailModal");
+  const disclosure = modal.locator(".performance-history summary");
+  const buttons = modal.locator(".performance-history-button");
+  const player = modal.locator(".performance-preview-frame");
+  const watchLink = modal.getByRole("link", { name: "YouTubeでプレビューを開く" });
+  const openDetail = async title => {
+    await page.getByRole("button", { name: `${title}の詳細を開く` }).click();
+    await expect(modal).toBeFocused();
+  };
+  const closeDetail = async () => {
+    await modal.getByRole("button", { name: "閉じる", exact: true }).first().click();
+    await expect(modal).toBeHidden();
+  };
+
+  await openDetail("Song 001");
+  const initialUrl = page.url();
+  await expect(player).toHaveAttribute("src", new RegExp(`/embed/${previewId}\\?start=12&`));
+  await expect(disclosure).toHaveText("ほかの演奏");
+  await expect(buttons.first()).toBeHidden();
+  await disclosure.press("Enter");
+  await expect(buttons).toHaveText(["第336回", "第332回",
+    ...Array.from({ length: 8 }, (_, index) => `第${329 - index}回`)]);
+  await expect(buttons.first()).toHaveCSS("border-radius", "999px");
+  await page.keyboard.press("Tab");
+  await expect(buttons.first()).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(player).toHaveAttribute("src", new RegExp(`/embed/${otherId}\\?start=3661&end=3800&`));
+  await expect(watchLink).toHaveAttribute("href", `https://www.youtube.com/watch?v=${otherId}&t=3661s`);
+  await expect(modal.locator(".performance-preview-round-label")).toHaveText("選択中の回：No. 336");
+  await expect(buttons.first()).toHaveAttribute("aria-pressed", "true");
+  await expect(buttons.first()).toBeFocused();
+  await expect(page).toHaveURL(initialUrl);
+  expect(context.pages()).toHaveLength(1);
+
+  await buttons.nth(1).click();
+  await expect(player).toHaveAttribute("src", new RegExp(`/embed/${otherId}\\?start=120&`));
+  await expect(buttons.first()).toHaveAttribute("aria-pressed", "false");
+  await expect(buttons.nth(1)).toHaveAttribute("aria-pressed", "true");
+  await modal.getByRole("button", { name: "お気に入り登録" }).click();
+  await expect(buttons.nth(1)).toHaveAttribute("aria-pressed", "true");
+  await closeDetail();
+
+  await openDetail("Song 002");
+  await expect(player).toHaveCount(0);
+  await disclosure.click();
+  await expect(buttons).toHaveText(["第336回"]);
+  await buttons.first().click();
+  await expect(player).toHaveAttribute("src", new RegExp(`/embed/${otherId}\\?start=0&`));
+  await closeDetail();
+
+  await openDetail("Song 003");
+  await expect(disclosure).toHaveCount(0);
+});
+
 test("ハンバーガーメニューから使い方と設定を開ける", async ({ page }) => {
   const menuButton = page.getByRole("button", { name: "メニュー", exact: true });
   const menu = page.getByRole("menu", { name: "サイトメニュー" });

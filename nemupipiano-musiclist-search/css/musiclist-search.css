@@ -1646,6 +1646,51 @@ html[data-theme="dark"] .detail-favorite-button.active {
     border-radius: .9rem;
 }
 
+.performance-history {
+    margin-top: .65rem;
+}
+
+.performance-history summary {
+    padding-block: .5rem;
+    color: var(--page-text);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.performance-history ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.performance-history-button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: .35rem .9rem;
+    border: 1px solid var(--page-line);
+    border-radius: 999px;
+    background: var(--page-button-soft);
+    color: var(--page-text);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.performance-history-button:hover,
+.performance-history-button:focus-visible {
+    border-color: var(--page-accent);
+    color: var(--page-accent);
+}
+
+.performance-history-button[aria-pressed="true"] {
+    border-color: var(--page-button-active);
+    background: var(--page-button-active);
+    color: var(--page-button-active-text);
+}
+
 .detail-youtube-search-button {
     width: 100%;
     font-weight: 800;

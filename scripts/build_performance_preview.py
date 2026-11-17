@@ -31,6 +31,9 @@ HASH_PATH = (
     or "nemupipiano-musiclist-search/data/hash/performance_preview"
 )
 EMBED_ORIGIN = os.environ.get("PERFORMANCE_PREVIEW_EMBED_ORIGIN") or "http://localhost:8000"
+RECENT_PERFORMANCE_LIMIT = 10
+RECENT_PERFORMANCE_FORMAT_VERSION = 2
+VIDEO_ID_PATTERN = re.compile(r"[a-zA-Z0-9_-]{11}")
 
 GOOGLE_SHEET_URL = (
     f"https://docs.google.com/spreadsheets/d/"
@@ -253,21 +256,34 @@ def is_preview_enabled(value):
 
 
 def youtube_video_id(url):
-    parsed = urlparse(normalize_cell_text(url))
-    host = parsed.netloc.lower()
-    if "youtu.be" in host:
-        return parsed.path.strip("/").split("/")[0]
-    if "youtube.com" in host:
-        if parsed.path.startswith("/embed/"):
-            return parsed.path.split("/")[2]
-        if parsed.path.startswith("/shorts/"):
-            return parsed.path.split("/")[2]
-        query = parse_qs(parsed.query)
-        return (query.get("v") or [""])[0]
-    return ""
+    text = normalize_cell_text(url)
+    if VIDEO_ID_PATTERN.fullmatch(text):
+        return text
+
+    try:
+        parsed = urlparse(text)
+        host = parsed.hostname or ""
+    except ValueError:
+        return ""
+    if parsed.scheme not in {"http", "https"}:
+        return ""
+
+    path, _, path_id = parsed.path.lstrip("/").partition("/")
+    video_id = ""
+    if host == "youtu.be":
+        video_id = path
+    elif host == "youtube.com" or host.endswith(".youtube.com"):
+        if path in {"embed", "shorts", "live"}:
+            video_id = path_id.split("/")[0]
+        elif path == "watch":
+            video_id = (parse_qs(parsed.query).get("v") or [""])[0]
+    return video_id if VIDEO_ID_PATTERN.fullmatch(video_id) else ""
 
 
 def build_embed_url(stream_url, start, end=None):
+    # Bare IDs already use the browser's embed fallback.
+    if VIDEO_ID_PATTERN.fullmatch(normalize_cell_text(stream_url)):
+        return ""
     video_id = youtube_video_id(stream_url)
     if not video_id or start is None:
         return ""
@@ -308,6 +324,37 @@ def performance_record(row, headers):
     }
 
 
+def recent_performance_records(rows, headers, preview):
+    candidates = []
+    for row in rows:
+        record = performance_record(row, headers)
+        video_id = youtube_video_id(record["streamUrl"])
+        if video_id and record["start"] is not None:
+            candidates.append((record, video_id))
+
+    candidates.sort(
+        key=lambda item: (no_value(item[0]["no"]), item[0]["start"]),
+        reverse=True,
+    )
+    seen_rounds = set()
+    seen_performances = set()
+    if preview:
+        seen_performances.add((youtube_video_id(preview["streamUrl"]), preview["start"]))
+
+    recent = []
+    for record, video_id in candidates:
+        round_no = record["no"]
+        performance_key = (video_id, record["start"])
+        if round_no in seen_rounds or performance_key in seen_performances:
+            continue
+        recent.append(record)
+        seen_rounds.add(round_no)
+        seen_performances.add(performance_key)
+        if len(recent) == RECENT_PERFORMANCE_LIMIT:
+            break
+    return recent
+
+
 def build_performance_preview(headers, rows):
     resolved_headers = resolve_headers(headers)
     grouped = {}
@@ -335,7 +382,6 @@ def build_performance_preview(headers, rows):
     for key in sorted(grouped):
         item = grouped[key]
         rows_for_song = item["rows"]
-        recent_rows = sorted(rows_for_song, key=lambda row: no_value(pick(row, resolved_headers, "no")), reverse=True)
         preview_rows = [row for row in rows_for_song if eligible_preview_record(row, resolved_headers)]
         preview_row = max(
             preview_rows,
@@ -376,10 +422,7 @@ def build_performance_preview(headers, rows):
             "title": item["title"],
             "artist": item["artist"],
             "preview": preview,
-            "recentPerformances": [
-                performance_record(row, resolved_headers)
-                for row in recent_rows[:3]
-            ],
+            "recentPerformances": recent_performance_records(rows_for_song, resolved_headers, preview),
             "counts": {
                 "currentMonth": len(monthly_hashes["currentMonth"]),
                 "previousMonth": len(monthly_hashes["previousMonth"]),
@@ -400,13 +443,17 @@ def save_json(data):
 
 def main():
     headers, rows, sheet_hash = load_sheet()
-    if has_unchanged_input(HASH_PATH, sheet_hash, OUTPUT_JSON_PATH):
+    input_hash = calculate_table_hash({
+        "sheetHash": sheet_hash,
+        "recentPerformanceFormatVersion": RECENT_PERFORMANCE_FORMAT_VERSION,
+    })
+    if has_unchanged_input(HASH_PATH, input_hash, OUTPUT_JSON_PATH):
         print("Performance preview spreadsheet is unchanged. Skipping update.")
         return
 
     performance_preview = build_performance_preview(headers, rows)
     save_json(performance_preview)
-    save_hash(HASH_PATH, sheet_hash)
+    save_hash(HASH_PATH, input_hash)
     print(f"Updated {len(performance_preview)} performance preview records.")
 
 
