@@ -2281,20 +2281,33 @@ function performanceStartSeconds(performance) {
   return Number.isFinite(seconds) && seconds >= 0 ? Math.floor(seconds) : null;
 }
 
+function renderPerformanceChoice(performance, index, selected = false) {
+  const no = normalizeCellText(performance.no);
+  const round = no ? `第${no}回` : "配信回不明";
+  return `
+    <li><button class="performance-history-button" type="button" data-performance-index="${index}" aria-pressed="${selected}">
+      ${escapeHtml(round)}
+    </button></li>
+  `;
+}
+
 function renderOtherPerformances(record) {
-  if (!Array.isArray(record?.recentPerformances)) return "";
-  const previewUrl = performanceStartSeconds(record.preview) !== null
-    ? performancePreviewWatchUrl(record.preview)
-    : "";
-  const seenUrls = new Set([previewUrl]);
+  const seenUrls = new Set();
   const seenRounds = new Set();
   const buttons = [];
-  const performances = [...record.recentPerformances].sort(
-    (left, right) => (Number(right?.no) || 0) - (Number(left?.no) || 0)
+  const pickup = record?.preview;
+  if (performancePreviewEmbedUrl(pickup)) {
+    buttons.push(renderPerformanceChoice(pickup, "pickup", true));
+    seenUrls.add(performancePreviewWatchUrl(pickup));
+    seenRounds.add(normalizeCellText(pickup.no));
+  }
+
+  const recent = Array.isArray(record?.recentPerformances) ? record.recentPerformances : [];
+  const performances = recent.map((performance, index) => ({ performance, index })).sort(
+    ({ performance: left }, { performance: right }) => (Number(right?.no) || 0) - (Number(left?.no) || 0)
       || (performanceStartSeconds(right) ?? -1) - (performanceStartSeconds(left) ?? -1)
   );
-
-  for (const performance of performances) {
+  for (const { performance, index } of performances) {
     const start = performanceStartSeconds(performance);
     if (start === null) continue;
     const url = performancePreviewWatchUrl(performance);
@@ -2303,12 +2316,7 @@ function renderOtherPerformances(record) {
     seenUrls.add(url);
     seenRounds.add(no);
 
-    const round = no ? `第${no}回` : "配信回不明";
-    buttons.push(`
-      <li><button class="performance-history-button" type="button" data-performance-index="${record.recentPerformances.indexOf(performance)}" aria-pressed="false">
-        ${escapeHtml(round)}
-      </button></li>
-    `);
+    buttons.push(renderPerformanceChoice(performance, index));
     if (buttons.length === 10) break;
   }
 
@@ -3120,12 +3128,15 @@ els.songDetailBody.addEventListener("click", (event) => {
   const performanceButton = event.target.closest("[data-performance-index]");
   if (performanceButton) {
     if (performanceButton.getAttribute("aria-pressed") === "true") return;
-    const performance = performancePreviewFor(currentSong)?.recentPerformances?.[performanceButton.dataset.performanceIndex];
+    const record = performancePreviewFor(currentSong);
+    const index = performanceButton.dataset.performanceIndex;
+    const isPickup = index === "pickup";
+    const performance = isPickup ? record?.preview : record?.recentPerformances?.[index];
     if (!performance) return;
 
     stopPerformancePreviewPlayback();
     els.songDetailBody.querySelector("[data-performance-player]").innerHTML =
-      renderPerformancePlayer(currentSong, performance, false);
+      renderPerformancePlayer(currentSong, performance, isPickup);
     for (const button of els.songDetailBody.querySelectorAll("[data-performance-index]")) {
       button.setAttribute("aria-pressed", String(button === performanceButton));
     }
