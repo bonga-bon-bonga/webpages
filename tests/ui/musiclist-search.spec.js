@@ -492,7 +492,7 @@ test("曲カードは情報領域とコピー・詳細ボタンを分離して�
   await expect(page.locator("#songDetailModal .btn-close")).toHaveAccessibleName("閉じる");
 });
 
-test("ほかの演奏は10回までの丸ボタンで、モーダル内のプレビューを切り替える", async ({ page, context }) => {
+test("ほかの演奏はピックアップを含む10回までを表示し、初期プレビューへ戻れる", async ({ page, context }) => {
   const songs = [makeSearchSong(1), makeSearchSong(2), makeSearchSong(3)];
   const previewId = "Zlir5tqjzEE";
   const otherId = "MYl8bVCcFEc";
@@ -507,6 +507,7 @@ test("ほかの演奏は10回までの丸ボタンで、モーダル内のプレ
         recentPerformances: [
           ...Array.from({ length: 10 }, (_, index) => ({ no: String(320 + index), streamUrl: otherId, start: index })),
           { ...preview, streamUrl: `https://youtu.be/${previewId}` },
+          { ...preview, start: 45 },
           { ...other, start: 2538 },
           { no: "338", streamUrl: `https://youtube.com.example.org/watch?v=${otherId}`, start: 2 },
           { no: "339", streamUrl: otherId, start: null },
@@ -527,6 +528,8 @@ test("ほかの演奏は10回までの丸ボタンで、モーダル内のプレ
   const modal = page.locator("#songDetailModal");
   const disclosure = modal.locator(".performance-history summary");
   const buttons = modal.locator(".performance-history-button");
+  const pickup = modal.getByRole("button", { name: "第337回" });
+  const alternate = modal.getByRole("button", { name: "第336回" });
   const player = modal.locator(".performance-preview-frame");
   const watchLink = modal.getByRole("link", { name: "YouTubeでプレビューを開く" });
   const openDetail = async title => {
@@ -544,26 +547,35 @@ test("ほかの演奏は10回までの丸ボタンで、モーダル内のプレ
   await expect(disclosure).toHaveText("ほかの演奏");
   await expect(buttons.first()).toBeHidden();
   await disclosure.press("Enter");
-  await expect(buttons).toHaveText(["第336回", "第332回",
-    ...Array.from({ length: 8 }, (_, index) => `第${329 - index}回`)]);
+  await expect(buttons).toHaveText(["第337回", "第336回", "第332回",
+    ...Array.from({ length: 7 }, (_, index) => `第${329 - index}回`)]);
+  await expect(pickup).toHaveAttribute("aria-pressed", "true");
   await expect(buttons.first()).toHaveCSS("border-radius", "999px");
   await page.keyboard.press("Tab");
-  await expect(buttons.first()).toBeFocused();
+  await expect(pickup).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(alternate).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(player).toHaveAttribute("src", new RegExp(`/embed/${otherId}\\?start=3661&end=3800&`));
   await expect(watchLink).toHaveAttribute("href", `https://www.youtube.com/watch?v=${otherId}&t=3661s`);
   await expect(modal.locator(".performance-preview-round-label")).toHaveText("選択中の回：No. 336");
-  await expect(buttons.first()).toHaveAttribute("aria-pressed", "true");
-  await expect(buttons.first()).toBeFocused();
+  await expect(pickup).toHaveAttribute("aria-pressed", "false");
+  await expect(alternate).toHaveAttribute("aria-pressed", "true");
+  await expect(alternate).toBeFocused();
   await expect(page).toHaveURL(initialUrl);
   expect(context.pages()).toHaveLength(1);
 
-  await buttons.nth(1).click();
+  await buttons.nth(2).click();
   await expect(player).toHaveAttribute("src", new RegExp(`/embed/${otherId}\\?start=120&`));
-  await expect(buttons.first()).toHaveAttribute("aria-pressed", "false");
-  await expect(buttons.nth(1)).toHaveAttribute("aria-pressed", "true");
+  await expect(alternate).toHaveAttribute("aria-pressed", "false");
+  await expect(buttons.nth(2)).toHaveAttribute("aria-pressed", "true");
   await modal.getByRole("button", { name: "お気に入り登録" }).click();
-  await expect(buttons.nth(1)).toHaveAttribute("aria-pressed", "true");
+  await expect(buttons.nth(2)).toHaveAttribute("aria-pressed", "true");
+  await pickup.click();
+  await expect(player).toHaveAttribute("src", new RegExp(`/embed/${previewId}\\?start=12&`));
+  await expect(watchLink).toHaveAttribute("href", `https://www.youtube.com/watch?v=${previewId}&t=12s`);
+  await expect(modal.locator(".performance-preview-round-label")).toHaveText("ピックアップ回：No. 337");
+  await expect(pickup).toHaveAttribute("aria-pressed", "true");
   await closeDetail();
 
   await openDetail("Song 002");
@@ -575,7 +587,9 @@ test("ほかの演奏は10回までの丸ボタンで、モーダル内のプレ
   await closeDetail();
 
   await openDetail("Song 003");
-  await expect(disclosure).toHaveCount(0);
+  await disclosure.click();
+  await expect(buttons).toHaveText(["第337回"]);
+  await expect(pickup).toHaveAttribute("aria-pressed", "true");
 });
 
 test("ハンバーガーメニューから使い方と設定を開ける", async ({ page }) => {
