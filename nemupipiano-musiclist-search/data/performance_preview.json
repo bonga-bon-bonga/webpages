@@ -3,18 +3,25 @@
     "title": "115万キロのフィルム",
     "artist": "Official髭男dism",
     "preview": {
-      "no": "331",
-      "streamUrl": "Zlir5tqjzEE",
-      "start": 1447,
-      "end": 1620,
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 4295,
+      "end": 4451,
       "embedUrl": ""
     },
-    "recentPerformances": [],
+    "recentPerformances": [
+      {
+        "no": "331",
+        "streamUrl": "Zlir5tqjzEE",
+        "start": 1447,
+        "end": 1620
+      }
+    ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 1
+      "total": 2
     }
   },
   "366日|hy": {
@@ -56,6 +63,24 @@
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
+  "awholenewworld|アランメンケン": {
+    "title": "A Whole New World",
+    "artist": "アラン・メンケン",
+    "preview": {
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 2535,
+      "end": 2837,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
       "total": 1
     }
@@ -205,18 +230,18 @@
     "title": "HANABI",
     "artist": "Mr.Children",
     "preview": {
-      "no": "330",
-      "streamUrl": "pQ_N5c39V0E",
-      "start": 4036,
-      "end": 4209,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 2729,
+      "end": 2893,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 2729,
-        "end": 2893
+        "no": "330",
+        "streamUrl": "pQ_N5c39V0E",
+        "start": 4036,
+        "end": 4209
       },
       {
         "no": "326",
@@ -236,18 +261,18 @@
     "title": "Happiness",
     "artist": "嵐",
     "preview": {
-      "no": "330",
-      "streamUrl": "pQ_N5c39V0E",
-      "start": 5419,
-      "end": 5570,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 7514,
+      "end": 7632,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 7514,
-        "end": 7632
+        "no": "330",
+        "streamUrl": "pQ_N5c39V0E",
+        "start": 5419,
+        "end": 5570
       },
       {
         "no": "326",
@@ -327,15 +352,14 @@
   "lovesosweet|嵐": {
     "title": "Love so sweet",
     "artist": "嵐",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 7705,
-        "end": 7848
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 7705,
+      "end": 7848,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -346,20 +370,50 @@
   "moonriver|ヘンリーマンシーニ": {
     "title": "Moon River",
     "artist": "ヘンリー・マンシーニ",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 7981,
-        "end": 8099
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 7981,
+      "end": 8099,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
       "twoMonthsAgo": 0,
       "total": 1
+    }
+  },
+  "m|プリンセスプリンセス": {
+    "title": "M",
+    "artist": "プリンセス プリンセス",
+    "preview": {
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 1530,
+      "end": 1827,
+      "embedUrl": ""
+    },
+    "recentPerformances": [
+      {
+        "no": "379",
+        "streamUrl": "H5HTkovua78",
+        "start": 1842,
+        "end": 1981
+      },
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 1827,
+        "end": 2128
+      }
+    ],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 2,
+      "twoMonthsAgo": 0,
+      "total": 2
     }
   },
   "pretender|official髭男dism": {
@@ -439,15 +493,14 @@
   "remember|uru": {
     "title": "remember",
     "artist": "Uru",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 4470,
-        "end": 4838
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 4470,
+      "end": 4838,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -458,15 +511,14 @@
   "secretbase~君がくれたもの~|zone": {
     "title": "secret base〜君がくれたもの〜",
     "artist": "ZONE",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 6168,
-        "end": 6320
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 6168,
+      "end": 6320,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -477,15 +529,14 @@
   "soranji|mrsgreenapple": {
     "title": "Soranji",
     "artist": "Mrs. GREEN APPLE",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 4872,
-        "end": 5019
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 4872,
+      "end": 5019,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -497,10 +548,10 @@
     "title": "Summer",
     "artist": "久石譲",
     "preview": {
-      "no": "331",
-      "streamUrl": "Zlir5tqjzEE",
-      "start": 2680,
-      "end": 2928,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 3605,
+      "end": 3863,
       "embedUrl": ""
     },
     "recentPerformances": [
@@ -614,13 +665,19 @@
     "title": "ありがとう",
     "artist": "いきものがかり",
     "preview": {
-      "no": "330",
-      "streamUrl": "pQ_N5c39V0E",
-      "start": 998,
-      "end": 1203,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 1014,
+      "end": 1228,
       "embedUrl": ""
     },
     "recentPerformances": [
+      {
+        "no": "330",
+        "streamUrl": "pQ_N5c39V0E",
+        "start": 998,
+        "end": 1203
+      },
       {
         "no": "325",
         "streamUrl": "PMfqZFAspQw",
@@ -630,19 +687,19 @@
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 2
+      "total": 3
     }
   },
   "あー夏休み|tube": {
     "title": "あー夏休み",
     "artist": "TUBE",
     "preview": {
-      "no": "333",
-      "streamUrl": "SSbBsDAFNBA",
-      "start": 1412,
-      "end": 1542,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 1831,
+      "end": 1934,
       "embedUrl": ""
     },
     "recentPerformances": [
@@ -651,6 +708,12 @@
         "streamUrl": "5SPppEJKIgA",
         "start": 1947,
         "end": null
+      },
+      {
+        "no": "333",
+        "streamUrl": "SSbBsDAFNBA",
+        "start": 1412,
+        "end": 1542
       },
       {
         "no": "331",
@@ -688,10 +751,10 @@
     "title": "いのちの歌",
     "artist": "竹内まりや",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 5212,
-      "end": 5480,
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 4482,
+      "end": 4759,
       "embedUrl": ""
     },
     "recentPerformances": [
@@ -700,6 +763,12 @@
         "streamUrl": "5SPppEJKIgA",
         "start": 6705,
         "end": 6972
+      },
+      {
+        "no": "334",
+        "streamUrl": "MYl8bVCcFEc",
+        "start": 5212,
+        "end": 5480
       },
       {
         "no": "333",
@@ -734,9 +803,9 @@
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 7
+      "total": 8
     }
   },
   "おかえり|taniyuuki": {
@@ -761,18 +830,18 @@
     "title": "からくりピエロ",
     "artist": "40mP",
     "preview": {
-      "no": "326",
-      "streamUrl": "nWugqFcQB2M",
-      "start": 1984,
-      "end": 2139,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 1310,
+      "end": 1428,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 1310,
-        "end": 1428
+        "no": "326",
+        "streamUrl": "nWugqFcQB2M",
+        "start": 1984,
+        "end": 2139
       }
     ],
     "counts": {
@@ -882,15 +951,14 @@
   "ただ君に晴れ|ヨルシカ": {
     "title": "ただ君に晴れ",
     "artist": "ヨルシカ",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 3417,
-        "end": 3515
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 3417,
+      "end": 3515,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -1012,15 +1080,14 @@
   "にじ|中川ひろたか": {
     "title": "にじ",
     "artist": "中川ひろたか",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 8210,
-        "end": 8273
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 8210,
+      "end": 8273,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -1050,13 +1117,31 @@
     "title": "ひとりごつ",
     "artist": "トクマルシューゴ",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 5980,
-      "end": 6001,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 6481,
+      "end": 6518,
       "embedUrl": ""
     },
     "recentPerformances": [
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 5403,
+        "end": 5439
+      },
+      {
+        "no": "336",
+        "streamUrl": "5SPppEJKIgA",
+        "start": 8838,
+        "end": null
+      },
+      {
+        "no": "334",
+        "streamUrl": "MYl8bVCcFEc",
+        "start": 5980,
+        "end": 6001
+      },
       {
         "no": "333",
         "streamUrl": "SSbBsDAFNBA",
@@ -1098,38 +1183,13 @@
         "streamUrl": "nWugqFcQB2M",
         "start": 5621,
         "end": 5644
-      },
-      {
-        "no": "325",
-        "streamUrl": "PMfqZFAspQw",
-        "start": 8248,
-        "end": 8270
       }
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 2,
       "twoMonthsAgo": 0,
-      "total": 9
-    }
-  },
-  "ひとりごつ|ハチワレ⇒cパート": {
-    "title": "ひとりごつ",
-    "artist": "ハチワレ ⇒ Cパート",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 8838,
-        "end": null
-      }
-    ],
-    "counts": {
-      "currentMonth": 0,
-      "previousMonth": 0,
-      "twoMonthsAgo": 0,
-      "total": 1
+      "total": 12
     }
   },
   "ひまわりの約束|秦基博": {
@@ -1154,18 +1214,25 @@
     "title": "わたがし",
     "artist": "back number",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 3464,
-      "end": 3551,
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 3786,
+      "end": 3911,
       "embedUrl": ""
     },
-    "recentPerformances": [],
+    "recentPerformances": [
+      {
+        "no": "334",
+        "streamUrl": "MYl8bVCcFEc",
+        "start": 3464,
+        "end": 3551
+      }
+    ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 1
+      "total": 2
     }
   },
   "アイノカタチ|misia": {
@@ -1239,15 +1306,14 @@
   "アンパンマンのマーチ|ドリーミング": {
     "title": "アンパンマンのマーチ",
     "artist": "ドリーミング",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 5298,
-        "end": 5376
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 5298,
+      "end": 5376,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -1477,6 +1543,24 @@
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
+  "シャルル|バルーン": {
+    "title": "シャルル",
+    "artist": "バルーン",
+    "preview": {
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 2276,
+      "end": 2408,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
       "total": 1
     }
@@ -1755,20 +1839,63 @@
       "total": 1
     }
   },
-  "ベテルギウス|優里": {
-    "title": "ベテルギウス",
-    "artist": "優里",
+  "プロローグ|uru": {
+    "title": "プロローグ",
+    "artist": "Uru",
     "preview": {
-      "no": "332",
-      "streamUrl": "WPHHeK2d7l4",
-      "start": 948,
-      "end": 1068,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 689,
+      "end": 829,
       "embedUrl": ""
     },
     "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
+  "ベテルギウス|優里": {
+    "title": "ベテルギウス",
+    "artist": "優里",
+    "preview": {
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 5468,
+      "end": 5604,
+      "embedUrl": ""
+    },
+    "recentPerformances": [
+      {
+        "no": "332",
+        "streamUrl": "WPHHeK2d7l4",
+        "start": 948,
+        "end": 1068
+      }
+    ],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 2
+    }
+  },
+  "ホシアイ|レフティーモンスターp": {
+    "title": "ホシアイ",
+    "artist": "レフティーモンスターP",
+    "preview": {
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 2726,
+      "end": 2898,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
       "total": 1
     }
@@ -1820,19 +1947,13 @@
     "title": "マツケンサンバⅡ",
     "artist": "松平健",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 2812,
-      "end": 2963,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 5106,
+      "end": 5210,
       "embedUrl": ""
     },
     "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 5106,
-        "end": 5210
-      },
       {
         "no": "334",
         "streamUrl": "MYl8bVCcFEc",
@@ -1851,18 +1972,18 @@
     "title": "マリーゴールド",
     "artist": "あいみょん",
     "preview": {
-      "no": "331",
-      "streamUrl": "Zlir5tqjzEE",
-      "start": 1673,
-      "end": 1979,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 5842,
+      "end": 6146,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 5842,
-        "end": 6146
+        "no": "331",
+        "streamUrl": "Zlir5tqjzEE",
+        "start": 1673,
+        "end": 1979
       },
       {
         "no": "327",
@@ -1955,6 +2076,31 @@
       "previousMonth": 0,
       "twoMonthsAgo": 0,
       "total": 1
+    }
+  },
+  "三日月|絢香": {
+    "title": "三日月",
+    "artist": "絢香",
+    "preview": {
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 5222,
+      "end": 5338,
+      "embedUrl": ""
+    },
+    "recentPerformances": [
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 3077,
+        "end": 3368
+      }
+    ],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 2,
+      "twoMonthsAgo": 0,
+      "total": 2
     }
   },
   "上を向いて歩こう|坂本九": {
@@ -2084,6 +2230,18 @@
     },
     "recentPerformances": [
       {
+        "no": "379",
+        "streamUrl": "H5HTkovua78",
+        "start": 6160,
+        "end": null
+      },
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 5074,
+        "end": null
+      },
+      {
         "no": "336",
         "streamUrl": "5SPppEJKIgA",
         "start": 8514,
@@ -2130,19 +2288,13 @@
         "streamUrl": "nWugqFcQB2M",
         "start": 5355,
         "end": null
-      },
-      {
-        "no": "325",
-        "streamUrl": "PMfqZFAspQw",
-        "start": 8002,
-        "end": null
       }
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 2,
       "twoMonthsAgo": 0,
-      "total": 10
+      "total": 12
     }
   },
   "名探偵コナンのテーマ|大野克夫": {
@@ -2168,18 +2320,25 @@
     "title": "向日葵",
     "artist": "Ado",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 4631,
-      "end": 4742,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 3699,
+      "end": 3825,
       "embedUrl": ""
     },
-    "recentPerformances": [],
+    "recentPerformances": [
+      {
+        "no": "334",
+        "streamUrl": "MYl8bVCcFEc",
+        "start": 4631,
+        "end": 4742
+      }
+    ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 1
+      "total": 2
     }
   },
   "君が眩しいから僕は星が見えない|sixlounge": {
@@ -2253,18 +2412,18 @@
     "title": "回る空うさぎ",
     "artist": "Orangestar",
     "preview": {
-      "no": "325",
-      "streamUrl": "PMfqZFAspQw",
-      "start": 4366,
-      "end": 4509,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 875,
+      "end": 1031,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 875,
-        "end": 1031
+        "no": "325",
+        "streamUrl": "PMfqZFAspQw",
+        "start": 4366,
+        "end": 4509
       }
     ],
     "counts": {
@@ -2303,10 +2462,10 @@
     "title": "夜明けと蛍",
     "artist": "n-buna",
     "preview": {
-      "no": "330",
-      "streamUrl": "pQ_N5c39V0E",
-      "start": 740,
-      "end": 901,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 2060,
+      "end": 2208,
       "embedUrl": ""
     },
     "recentPerformances": [
@@ -2317,6 +2476,12 @@
         "end": 1688
       },
       {
+        "no": "330",
+        "streamUrl": "pQ_N5c39V0E",
+        "start": 740,
+        "end": 901
+      },
+      {
         "no": "325",
         "streamUrl": "PMfqZFAspQw",
         "start": 2984,
@@ -2325,27 +2490,39 @@
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 3
+      "total": 4
     }
   },
   "夢の星空|久石譲": {
     "title": "夢の星空",
     "artist": "久石譲",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 5577,
-      "end": 5705,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 5927,
+      "end": 6064,
       "embedUrl": ""
     },
     "recentPerformances": [
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 4883,
+        "end": 5006
+      },
       {
         "no": "336",
         "streamUrl": "5SPppEJKIgA",
         "start": 8303,
         "end": 8431
+      },
+      {
+        "no": "334",
+        "streamUrl": "MYl8bVCcFEc",
+        "start": 5577,
+        "end": 5705
       },
       {
         "no": "333",
@@ -2388,33 +2565,26 @@
         "streamUrl": "nWugqFcQB2M",
         "start": 5181,
         "end": 5304
-      },
-      {
-        "no": "325",
-        "streamUrl": "PMfqZFAspQw",
-        "start": 7814,
-        "end": 7943
       }
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 2,
       "twoMonthsAgo": 0,
-      "total": 10
+      "total": 12
     }
   },
   "天体観測|bumpofchicken": {
     "title": "天体観測",
     "artist": "BUMP OF CHICKEN",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 5455,
-        "end": 5680
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 5455,
+      "end": 5680,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -2501,20 +2671,63 @@
       "total": 1
     }
   },
-  "忘れてください|ヨルシカ": {
-    "title": "忘れてください",
-    "artist": "ヨルシカ",
+  "帰ろう|藤井風": {
+    "title": "帰ろう",
+    "artist": "藤井風",
     "preview": {
-      "no": "333",
-      "streamUrl": "SSbBsDAFNBA",
-      "start": 786,
-      "end": 881,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 4701,
+      "end": 4866,
       "embedUrl": ""
     },
     "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
+  "忘れてください|ヨルシカ": {
+    "title": "忘れてください",
+    "artist": "ヨルシカ",
+    "preview": {
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 4331,
+      "end": 4434,
+      "embedUrl": ""
+    },
+    "recentPerformances": [
+      {
+        "no": "333",
+        "streamUrl": "SSbBsDAFNBA",
+        "start": 786,
+        "end": 881
+      }
+    ],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 2
+    }
+  },
+  "思い出せなくなるその日まで|backnumber": {
+    "title": "思い出せなくなるその日まで",
+    "artist": "back number",
+    "preview": {
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 4126,
+      "end": 4256,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
       "total": 1
     }
@@ -2551,6 +2764,25 @@
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
+  "恋|backnumber": {
+    "title": "恋",
+    "artist": "back number",
+    "preview": null,
+    "recentPerformances": [
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 4044,
+        "end": null
+      }
+    ],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
       "total": 1
     }
@@ -2655,15 +2887,14 @@
   "抜錨|ナナホシ管弦楽団": {
     "title": "抜錨",
     "artist": "ナナホシ管弦楽団",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 2541,
-        "end": 2657
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 2541,
+      "end": 2657,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -2747,18 +2978,30 @@
     "title": "星に願いを",
     "artist": "リー・ハーライン",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 181,
-      "end": 302,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 270,
+      "end": 395,
       "embedUrl": ""
     },
     "recentPerformances": [
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 212,
+        "end": 347
+      },
       {
         "no": "336",
         "streamUrl": "5SPppEJKIgA",
         "start": 213,
         "end": 337
+      },
+      {
+        "no": "334",
+        "streamUrl": "MYl8bVCcFEc",
+        "start": 181,
+        "end": 302
       },
       {
         "no": "333",
@@ -2801,19 +3044,13 @@
         "streamUrl": "nWugqFcQB2M",
         "start": 249,
         "end": 372
-      },
-      {
-        "no": "325",
-        "streamUrl": "PMfqZFAspQw",
-        "start": 256,
-        "end": 386
       }
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 2,
       "twoMonthsAgo": 0,
-      "total": 10
+      "total": 12
     }
   },
   "春の歌|スピッツ": {
@@ -2852,18 +3089,35 @@
       "total": 1
     }
   },
+  "春愁|mrsgreenapple": {
+    "title": "春愁",
+    "artist": "Mrs. GREEN APPLE",
+    "preview": {
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 2461,
+      "end": 2564,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
   "春泥棒|ヨルシカ": {
     "title": "春泥棒",
     "artist": "ヨルシカ",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 1117,
-        "end": 1233
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 1117,
+      "end": 1233,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -2875,18 +3129,25 @@
     "title": "晩餐歌",
     "artist": "tuki.",
     "preview": {
-      "no": "330",
-      "streamUrl": "pQ_N5c39V0E",
-      "start": 2501,
-      "end": 2578,
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 2587,
+      "end": 2672,
       "embedUrl": ""
     },
-    "recentPerformances": [],
+    "recentPerformances": [
+      {
+        "no": "330",
+        "streamUrl": "pQ_N5c39V0E",
+        "start": 2501,
+        "end": 2578
+      }
+    ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 1
+      "total": 2
     }
   },
   "月光|鬼束ちひろ": {
@@ -2929,18 +3190,18 @@
     "title": "楓",
     "artist": "スピッツ",
     "preview": {
-      "no": "333",
-      "streamUrl": "SSbBsDAFNBA",
-      "start": 4630,
-      "end": 4929,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 7108,
+      "end": 7459,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 7108,
-        "end": 7459
+        "no": "333",
+        "streamUrl": "SSbBsDAFNBA",
+        "start": 4630,
+        "end": 4929
       },
       {
         "no": "330",
@@ -2992,6 +3253,31 @@
       "total": 1
     }
   },
+  "水の星へ愛をこめて|森口博子": {
+    "title": "水の星へ愛をこめて",
+    "artist": "森口博子",
+    "preview": {
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 1322,
+      "end": 1453,
+      "embedUrl": ""
+    },
+    "recentPerformances": [
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 1518,
+        "end": 1669
+      }
+    ],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 2,
+      "twoMonthsAgo": 0,
+      "total": 2
+    }
+  },
   "海の見える街|久石譲": {
     "title": "海の見える街",
     "artist": "久石譲",
@@ -3020,15 +3306,14 @@
   "渚|スピッツ": {
     "title": "渚",
     "artist": "スピッツ",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 4268,
-        "end": 4379
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 4268,
+      "end": 4379,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
@@ -3040,36 +3325,43 @@
     "title": "満ちてゆく",
     "artist": "藤井風",
     "preview": {
-      "no": "329",
-      "streamUrl": "gyjUpybXMb0",
-      "start": 1200,
-      "end": 1306,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 5019,
+      "end": 5134,
       "embedUrl": ""
     },
-    "recentPerformances": [],
+    "recentPerformances": [
+      {
+        "no": "329",
+        "streamUrl": "gyjUpybXMb0",
+        "start": 1200,
+        "end": 1306
+      }
+    ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 1
+      "total": 2
     }
   },
   "点描の唄|mrsgreenapple": {
     "title": "点描の唄",
     "artist": "Mrs. GREEN APPLE",
     "preview": {
-      "no": "334",
-      "streamUrl": "MYl8bVCcFEc",
-      "start": 4874,
-      "end": 5185,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 6329,
+      "end": 6655,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 6329,
-        "end": 6655
+        "no": "334",
+        "streamUrl": "MYl8bVCcFEc",
+        "start": 4874,
+        "end": 5185
       },
       {
         "no": "332",
@@ -3144,18 +3436,31 @@
     "title": "猫",
     "artist": "DISH//",
     "preview": {
-      "no": "325",
-      "streamUrl": "PMfqZFAspQw",
-      "start": 716,
-      "end": 842,
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 2254,
+      "end": 2368,
       "embedUrl": ""
     },
-    "recentPerformances": [],
+    "recentPerformances": [
+      {
+        "no": "378",
+        "streamUrl": "8K8KbAqEBb0",
+        "start": 959,
+        "end": 1081
+      },
+      {
+        "no": "325",
+        "streamUrl": "PMfqZFAspQw",
+        "start": 716,
+        "end": 842
+      }
+    ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 2,
       "twoMonthsAgo": 0,
-      "total": 1
+      "total": 3
     }
   },
   "琥珀|sekainoowari": {
@@ -3205,18 +3510,18 @@
     "title": "眠り姫",
     "artist": "SEKAI NO OWARI",
     "preview": {
-      "no": "332",
-      "streamUrl": "WPHHeK2d7l4",
-      "start": 4204,
-      "end": 4515,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 2143,
+      "end": 2459,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 2143,
-        "end": 2459
+        "no": "332",
+        "streamUrl": "WPHHeK2d7l4",
+        "start": 4204,
+        "end": 4515
       }
     ],
     "counts": {
@@ -3248,13 +3553,19 @@
     "title": "空も飛べるはず",
     "artist": "スピッツ",
     "preview": {
-      "no": "332",
-      "streamUrl": "WPHHeK2d7l4",
-      "start": 2681,
-      "end": 2818,
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 686,
+      "end": 834,
       "embedUrl": ""
     },
     "recentPerformances": [
+      {
+        "no": "332",
+        "streamUrl": "WPHHeK2d7l4",
+        "start": 2681,
+        "end": 2818
+      },
       {
         "no": "325",
         "streamUrl": "PMfqZFAspQw",
@@ -3264,9 +3575,9 @@
     ],
     "counts": {
       "currentMonth": 0,
-      "previousMonth": 0,
+      "previousMonth": 1,
       "twoMonthsAgo": 0,
-      "total": 2
+      "total": 3
     }
   },
   "笑顔|いきものがかり": {
@@ -3403,17 +3714,71 @@
       "total": 1
     }
   },
+  "花束を君に|宇多田ヒカル": {
+    "title": "花束を君に",
+    "artist": "宇多田ヒカル",
+    "preview": {
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 3510,
+      "end": 3597,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
+  "蕾|コブクロ": {
+    "title": "蕾",
+    "artist": "コブクロ",
+    "preview": {
+      "no": "379",
+      "streamUrl": "H5HTkovua78",
+      "start": 3331,
+      "end": 3503,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
+  "虹|手嶌葵": {
+    "title": "虹",
+    "artist": "手嶌葵",
+    "preview": {
+      "no": "378",
+      "streamUrl": "8K8KbAqEBb0",
+      "start": 1277,
+      "end": 1378,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
+    "counts": {
+      "currentMonth": 0,
+      "previousMonth": 1,
+      "twoMonthsAgo": 0,
+      "total": 1
+    }
+  },
   "虹|菅田将暉": {
     "title": "虹",
     "artist": "菅田将暉",
-    "preview": null,
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 8120,
+      "end": 8205,
+      "embedUrl": ""
+    },
     "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 8120,
-        "end": 8205
-      },
       {
         "no": "327",
         "streamUrl": "FNkeW_Srz8g",
@@ -3499,18 +3864,18 @@
     "title": "青と夏",
     "artist": "Mrs. GREEN APPLE",
     "preview": {
-      "no": "331",
-      "streamUrl": "Zlir5tqjzEE",
-      "start": 2288,
-      "end": 2401,
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 3247,
+      "end": 3387,
       "embedUrl": ""
     },
     "recentPerformances": [
       {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 3247,
-        "end": 3387
+        "no": "331",
+        "streamUrl": "Zlir5tqjzEE",
+        "start": 2288,
+        "end": 2401
       }
     ],
     "counts": {
@@ -3541,15 +3906,14 @@
   "高嶺の花子さん|backnumber": {
     "title": "高嶺の花子さん",
     "artist": "back number",
-    "preview": null,
-    "recentPerformances": [
-      {
-        "no": "336",
-        "streamUrl": "5SPppEJKIgA",
-        "start": 3033,
-        "end": 3185
-      }
-    ],
+    "preview": {
+      "no": "336",
+      "streamUrl": "5SPppEJKIgA",
+      "start": 3033,
+      "end": 3185,
+      "embedUrl": ""
+    },
+    "recentPerformances": [],
     "counts": {
       "currentMonth": 0,
       "previousMonth": 0,
