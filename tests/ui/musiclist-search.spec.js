@@ -527,7 +527,10 @@ test("ほかの演奏は有効な別演奏を3件まで表示し、時刻リン�
   const modal = page.locator("#songDetailModal");
   const disclosure = modal.locator(".performance-history summary");
   const links = modal.locator(".performance-history-link");
-  const openDetail = title => page.getByRole("button", { name: `${title}の詳細を開く` }).click();
+  const openDetail = async title => {
+    await page.getByRole("button", { name: `${title}の詳細を開く` }).click();
+    await expect(modal).toBeFocused();
+  };
   const closeDetail = async () => {
     await modal.getByRole("button", { name: "閉じる", exact: true }).first().click();
     await expect(modal).toBeHidden();
