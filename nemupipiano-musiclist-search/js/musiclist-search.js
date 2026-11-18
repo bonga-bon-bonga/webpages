@@ -2794,8 +2794,10 @@ els.searchAlternatives.addEventListener("click", event => {
   if (alternative) selectSearchSuggestion(alternative.dataset.searchAlternative);
 });
 els.searchMore.addEventListener("click", () => {
+  const { scrollX, scrollY } = window;
   searchResultLimit += SEARCH_RESULT_STEP;
   render();
+  window.scrollTo({ left: scrollX, top: scrollY, behavior: "instant" });
 });
 els.searchModeTabs.forEach((tab, index) => {
   tab.addEventListener("click", () => {

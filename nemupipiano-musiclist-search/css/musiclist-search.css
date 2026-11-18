@@ -1205,6 +1205,7 @@ html[data-theme="dark"] .song-card.accent-other {
     display: flex;
     justify-content: flex-end;
     order: 25;
+    overflow-anchor: none;
 }
 
 .search-alternatives {
@@ -1819,6 +1820,12 @@ html[data-theme="dark"] .detail-favorite-button.active {
     height: auto;
     border: 1px solid var(--page-line);
     border-radius: .5rem;
+}
+
+.usage-guide-page figcaption {
+    margin-top: .4em;
+    font-size: .875em;
+    color: var(--page-muted);
 }
 
 .usage-guide-note {

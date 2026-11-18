@@ -232,12 +232,20 @@ test("検索結果を30件ずつ段階表示する", async ({ page }) => {
     moreButtonTop: document.querySelector("#searchMore")?.getBoundingClientRect().top ?? 0,
   }));
   expect(initialResultPositions.moreButtonTop).toBeGreaterThan(initialResultPositions.lastCardBottom);
-  await page.locator("#searchMore").click();
-  await expect(page.locator("#songs .song-card")).toHaveCount(60);
-  await expect(page.locator("#searchMore")).toHaveText("さらに5件表示 ⇒");
-  await page.locator("#searchMore").click();
-  await expect(page.locator("#songs .song-card")).toHaveCount(65);
-  await expect(page.locator("#searchMore")).toBeHidden();
+
+  const more = page.locator("#searchMore");
+  for (const count of [60, 65]) {
+    await more.scrollIntoViewIfNeeded();
+    const before = await page.evaluate(() => window.scrollY);
+    await more.click();
+    await expect(page.locator("#songs .song-card")).toHaveCount(count);
+    const after = await page.evaluate(() => new Promise(resolve => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve(window.scrollY)));
+    }));
+    expect(Math.abs(after - before)).toBeLessThanOrEqual(1);
+    if (count === 60) await expect(more).toHaveText("さらに5件表示 ⇒");
+  }
+  await expect(more).toBeHidden();
 });
 
 test("番号スライドは曲リストだけを開始・終了番号で絞り込む", async ({ page }) => {
@@ -635,8 +643,16 @@ test("使い方ガイドは前後に移動でき、閉じるとメニューへ�
   const previous = dialog.getByRole("button", { name: "前へ", exact: true });
   const next = dialog.getByRole("button", { name: "次へ", exact: true });
   const progress = page.locator("#usageGuideProgress");
-  const headings = ["曲を探して、ぴぴりくしよう", "迷ったら、ホームから探そう", "条件を選んで探す｜かんたんモード",
-    "今の気分で探す｜ふわっと検索", "また探したい曲は、お気に入りへ", "過去の演奏を聴く・関連曲を探す"];
+  const headings = ["曲を探してリクエストしてみよう！", "迷ったら、ホームから探してみよう！", "条件を選んで探す｜かんたんモード",
+    "今の気分で探す｜ふわっと検索", "また探したい曲は、お気に入り登録しよう！", "曲の詳細情報を確認する・関連曲を探す"];
+  const captions = [
+    ["「ほしにねがいを」で検索して、星に願いをのカードから文面をコピーした例"],
+    ["今日のおすすめ：リクエスト可・全曲・お気に入りのボタンと曲カード"],
+    ["かんたんモードでジャンルの「ディズニー」を選んだ例"],
+    ["ふわっと検索の「きもち」カテゴリで「元気になりたい」を選んだ例"],
+    ["曲カードを長押ししてお気に入りに登録する例", "「お気に入りのみ」をオンにして、登録した曲を表示した例"],
+    ["曲の詳細で「ほかの演奏」を開いたときに表示される配信回のボタン", "曲の詳細で関連曲が表示されている例"],
+  ];
 
   await menuButton.focus();
   await page.keyboard.press("Enter");
@@ -646,7 +662,7 @@ test("使い方ガイドは前後に移動でき、閉じるとメニューへ�
   await expect(chapter).toHaveAccessibleDescription("1 / 6");
   await expect(previous).toBeDisabled();
   await expect(dialog).toContainText("固定コメント");
-  await expect(dialog).toContainText("今の配信で受付中という意味ではありません");
+  await expect(dialog).toContainText("リクエストが受付中であることを確認");
   await expect(menuButton).toBeHidden();
 
   const buttonPositions = () => dialog.locator(".modal-header .btn-close, .usage-guide-footer button")
@@ -660,9 +676,16 @@ test("使い方ガイドは前後に移動でき、閉じるとメニューへ�
   for (const [index, title] of headings.entries()) {
     await expect(chapter).toHaveText(title);
     await expect(progress).toHaveText(`${index + 1} / 6`);
-    const screenshot = dialog.getByRole("img");
-    await screenshot.scrollIntoViewIfNeeded();
-    await expect.poll(() => screenshot.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+    const figures = dialog.getByRole("figure");
+    await expect(figures.locator("figcaption")).toHaveText(captions[index]);
+    for (const figure of await figures.all()) {
+      const screenshot = figure.locator("img");
+      const caption = figure.locator("figcaption");
+      await caption.scrollIntoViewIfNeeded();
+      await expect(caption).toBeVisible();
+      await expect.poll(() => screenshot.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+      expect((await caption.boundingBox()).y).toBeGreaterThan((await screenshot.boundingBox()).y);
+    }
     expect(await buttonPositions()).toEqual(initialPositions);
     if (index === 0) {
       await page.keyboard.press("Tab");
