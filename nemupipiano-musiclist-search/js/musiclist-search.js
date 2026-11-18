@@ -141,6 +141,7 @@ const els = {
   panelFontSizes: document.querySelectorAll("[name='panelFontSize']"),
   accentColors: document.querySelectorAll("[name='accentColor']"),
   informationModal: document.getElementById("informationModal"),
+  usageGuideModal: document.getElementById("usageGuideModal"),
   settingsModal: document.getElementById("settingsModal"),
   songDetailModal: document.getElementById("songDetailModal"),
   songDetailBody: document.getElementById("songDetailBody"),
@@ -2696,6 +2697,7 @@ function applyAppPanelFontSize(size) {
   const normalized = ["small", "medium", "large"].includes(size) ? size : "medium";
   els.appPanel.classList.remove("font-size-small", "font-size-medium", "font-size-large");
   els.appPanel.classList.add(`font-size-${normalized}`);
+  if (els.usageGuideModal) els.usageGuideModal.dataset.fontSize = normalized;
   els.panelFontSizes.forEach(option => {
     option.checked = option.value === normalized;
   });
@@ -2792,8 +2794,10 @@ els.searchAlternatives.addEventListener("click", event => {
   if (alternative) selectSearchSuggestion(alternative.dataset.searchAlternative);
 });
 els.searchMore.addEventListener("click", () => {
+  const { scrollX, scrollY } = window;
   searchResultLimit += SEARCH_RESULT_STEP;
   render();
+  window.scrollTo({ left: scrollX, top: scrollY, behavior: "instant" });
 });
 els.searchModeTabs.forEach((tab, index) => {
   tab.addEventListener("click", () => {
@@ -3162,6 +3166,43 @@ if (els.songDetailModal) {
 if (els.informationModal) {
   els.informationModal.addEventListener("show.bs.modal", () => setFloatingActionsSuppressed(true));
   els.informationModal.addEventListener("hidden.bs.modal", () => setFloatingActionsSuppressed(false));
+}
+
+if (els.usageGuideModal) {
+  const modal = els.usageGuideModal;
+  const body = modal.querySelector(".usage-guide-body");
+  const pages = [...body.querySelectorAll(".usage-guide-page")];
+  const previous = modal.querySelector("#usageGuidePrevious");
+  const next = modal.querySelector("#usageGuideNext");
+  const progress = modal.querySelector("#usageGuideProgress");
+  let currentPage = 0;
+
+  const showPage = (index, focusHeading = true) => {
+    currentPage = index;
+    pages.forEach((page, i) => { page.hidden = i !== index; });
+    progress.textContent = `${index + 1} / ${pages.length}`;
+    previous.disabled = index === 0;
+    next.textContent = index === pages.length - 1 ? "閉じる" : "次へ";
+    body.scrollTop = 0;
+    if (focusHeading) pages[index].querySelector("h3").focus({ preventScroll: true });
+  };
+
+  previous.addEventListener("click", () => {
+    if (currentPage > 0) showPage(currentPage - 1);
+  });
+  next.addEventListener("click", () => {
+    if (currentPage === pages.length - 1) bootstrap.Modal.getInstance(modal)?.hide();
+    else showPage(currentPage + 1);
+  });
+  modal.addEventListener("show.bs.modal", () => {
+    setFloatingActionsSuppressed(true);
+    showPage(0, false);
+  });
+  modal.addEventListener("shown.bs.modal", () => pages[0].querySelector("h3").focus({ preventScroll: true }));
+  modal.addEventListener("hidden.bs.modal", () => {
+    setFloatingActionsSuppressed(false);
+    els.menuButton.focus({ preventScroll: true });
+  });
 }
 
 if (els.settingsModal) {

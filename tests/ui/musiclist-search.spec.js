@@ -232,12 +232,20 @@ test("検索結果を30件ずつ段階表示する", async ({ page }) => {
     moreButtonTop: document.querySelector("#searchMore")?.getBoundingClientRect().top ?? 0,
   }));
   expect(initialResultPositions.moreButtonTop).toBeGreaterThan(initialResultPositions.lastCardBottom);
-  await page.locator("#searchMore").click();
-  await expect(page.locator("#songs .song-card")).toHaveCount(60);
-  await expect(page.locator("#searchMore")).toHaveText("さらに5件表示 ⇒");
-  await page.locator("#searchMore").click();
-  await expect(page.locator("#songs .song-card")).toHaveCount(65);
-  await expect(page.locator("#searchMore")).toBeHidden();
+
+  const more = page.locator("#searchMore");
+  for (const count of [60, 65]) {
+    await more.scrollIntoViewIfNeeded();
+    const before = await page.evaluate(() => window.scrollY);
+    await more.click();
+    await expect(page.locator("#songs .song-card")).toHaveCount(count);
+    const after = await page.evaluate(() => new Promise(resolve => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve(window.scrollY)));
+    }));
+    expect(Math.abs(after - before)).toBeLessThanOrEqual(1);
+    if (count === 60) await expect(more).toHaveText("さらに5件表示 ⇒");
+  }
+  await expect(more).toBeHidden();
 });
 
 test("番号スライドは曲リストだけを開始・終了番号で絞り込む", async ({ page }) => {
@@ -592,7 +600,7 @@ test("ほかの演奏はピックアップを含む10回までを表示し、初
   await expect(pickup).toHaveAttribute("aria-pressed", "true");
 });
 
-test("ハンバーガーメニューから使い方と設定を開ける", async ({ page }) => {
+test("ハンバーガーメニューに使い方があり、設定と本ページについても開ける", async ({ page }) => {
   const menuButton = page.getByRole("button", { name: "メニュー", exact: true });
   const menu = page.getByRole("menu", { name: "サイトメニュー" });
   await expect(page.locator(".site-navbar").getByRole("button", { name: "使い方" })).toHaveCount(0);
@@ -601,9 +609,12 @@ test("ハンバーガーメニューから使い方と設定を開ける", async
   await menuButton.click();
   await expect(menuButton).toHaveAttribute("aria-expanded", "true");
   await expect(menu).toBeVisible();
+  await expect(menu.getByRole("menuitem")).toHaveText(["使い方", "設定", "本ページについて"]);
   await expect(page.getByRole("menuitem", { name: "使い方" })).toBeFocused();
   await page.keyboard.press("ArrowDown");
   await expect(page.getByRole("menuitem", { name: "設定" })).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await expect(page.getByRole("menuitem", { name: "本ページについて" })).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(menu).toBeHidden();
   await expect(menuButton).toBeFocused();
@@ -616,8 +627,111 @@ test("ハンバーガーメニューから使い方と設定を開ける", async
 
   await expect(menuButton).toBeVisible();
   await menuButton.click();
+  await page.getByRole("menuitem", { name: "本ページについて" }).click();
+  const about = page.getByRole("dialog", { name: "本ページについて" });
+  await expect(about).toBeVisible();
+  for (const title of ["曲リストの情報取得について", "情報の保存について", "お願いごと"]) {
+    await expect(about.getByRole("heading", { name: title })).toBeVisible();
+  }
+  await expect(about.getByRole("heading", { name: "使い方", exact: true })).toHaveCount(0);
+});
+
+test("使い方ガイドは前後に移動でき、閉じるとメニューへ戻る", async ({ page }) => {
+  const menuButton = page.getByRole("button", { name: "メニュー", exact: true });
+  const dialog = page.getByRole("dialog", { name: "使い方" });
+  const chapter = dialog.getByRole("heading", { level: 3 });
+  const previous = dialog.getByRole("button", { name: "前へ", exact: true });
+  const next = dialog.getByRole("button", { name: "次へ", exact: true });
+  const progress = page.locator("#usageGuideProgress");
+  const headings = ["曲を探してリクエストしてみよう！", "迷ったら、ホームから探してみよう！", "条件を選んで探す｜かんたんモード",
+    "今の気分で探す｜ふわっと検索", "また探したい曲は、お気に入り登録しよう！", "曲の詳細情報を確認する・関連曲を探す"];
+  const captions = [
+    ["「ほしにねがいを」で検索して、星に願いをのカードから文面をコピーした例"],
+    ["今日のおすすめ：リクエスト可・全曲・お気に入りのボタンと曲カード"],
+    ["かんたんモードでジャンルの「ディズニー」を選んだ例"],
+    ["ふわっと検索の「きもち」カテゴリで「元気になりたい」を選んだ例"],
+    ["曲カードを長押ししてお気に入りに登録する例", "「お気に入りのみ」をオンにして、登録した曲を表示した例"],
+    ["曲の詳細で「ほかの演奏」を開いたときに表示される配信回のボタン", "曲の詳細で関連曲が表示されている例"],
+  ];
+
+  await menuButton.focus();
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Enter");
+  await expect(dialog).toBeVisible();
+  await expect(chapter).toBeFocused();
+  await expect(chapter).toHaveAccessibleDescription("1 / 6");
+  await expect(previous).toBeDisabled();
+  await expect(dialog).toContainText("固定コメント");
+  await expect(dialog).toContainText("リクエストが受付中であることを確認");
+  await expect(menuButton).toBeHidden();
+
+  const buttonPositions = () => dialog.locator(".modal-header .btn-close, .usage-guide-footer button")
+    .evaluateAll(buttons => buttons.map(button => {
+      const { x, y } = button.getBoundingClientRect();
+      return { x, y };
+    }));
+  const initialPositions = await buttonPositions();
+  expect(initialPositions).toHaveLength(3);
+
+  for (const [index, title] of headings.entries()) {
+    await expect(chapter).toHaveText(title);
+    await expect(progress).toHaveText(`${index + 1} / 6`);
+    const figures = dialog.getByRole("figure");
+    await expect(figures.locator("figcaption")).toHaveText(captions[index]);
+    for (const figure of await figures.all()) {
+      const screenshot = figure.locator("img");
+      const caption = figure.locator("figcaption");
+      await caption.scrollIntoViewIfNeeded();
+      await expect(caption).toBeVisible();
+      await expect.poll(() => screenshot.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+      expect((await caption.boundingBox()).y).toBeGreaterThan((await screenshot.boundingBox()).y);
+    }
+    expect(await buttonPositions()).toEqual(initialPositions);
+    if (index === 0) {
+      await page.keyboard.press("Tab");
+      await expect(next).toBeFocused();
+      await page.keyboard.press("Enter");
+      const body = page.locator(".usage-guide-body");
+      await expect.poll(() => body.evaluate(el => el.scrollTop)).toBe(0);
+      await previous.click();
+      await expect(chapter).toHaveText(headings[0]);
+    }
+    if (index < headings.length - 1) await next.click();
+  }
+
+  await dialog.locator(".usage-guide-footer").getByRole("button", { name: "閉じる" }).press("Enter");
+  await expect(dialog).toBeHidden();
+  await expect(menuButton).toBeFocused();
+  await menuButton.click();
   await page.getByRole("menuitem", { name: "使い方" }).click();
-  await expect(page.locator("#informationModal")).toBeVisible();
+  await expect(chapter).toHaveText(headings[0]);
+  await expect(chapter).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await expect(menuButton).toBeFocused();
+});
+
+test("使い方ガイドはダークテーマ・文字サイズ大でも各表示幅に収まる", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop-chromium", "表示幅ごとの挙動を1プロジェクトで検証");
+  await page.evaluate(() => {
+    localStorage.setItem("nemupipiano:theme", "dark");
+    localStorage.setItem("nemupipiano:appPanelFontSize", "large");
+  });
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  const dialog = page.getByRole("dialog", { name: "使い方" });
+  for (const width of [320, 768, 1280]) {
+    await page.setViewportSize({ width, height: 600 });
+    await page.getByRole("button", { name: "メニュー", exact: true }).click();
+    await page.getByRole("menuitem", { name: "使い方" }).click();
+    await expect(dialog).toHaveAttribute("data-font-size", "large");
+    await expect(dialog.locator(".usage-guide-content")).toHaveCSS("font-size", "18px");
+    await expect(dialog.getByRole("button", { name: "次へ" })).toBeInViewport({ ratio: 1 });
+    await expect(dialog.getByText("1 / 6")).toBeInViewport({ ratio: 1 });
+    expect(await dialog.locator(".usage-guide-body").evaluate(el => el.scrollWidth - el.clientWidth)).toBe(0);
+    await dialog.locator(".btn-close").click();
+    await expect(dialog).toBeHidden();
+  }
 });
 
 test("ヘッダーはタブレットとスマホの下方向スクロール時だけ隠れる", async ({ page }, testInfo) => {

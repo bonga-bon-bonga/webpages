@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.5.1" />
+  <link rel="stylesheet" href="./css/musiclist-search.css?v=2.6.0" />
 </head>
 <body>
   <a class="skip-link" href="#mainContent">本文へスキップ</a>
@@ -60,8 +60,7 @@
             </button>
           </h2>
           <p class="recommend-desc text-secondary mb-0" id="homeWelcomeContent">
-            「ねむぴぴあの」で何をリクエストしようかな？そんな時のための、リクエスト探しのお手伝いサイトです。曲名や気分、ジャンルなどから、ぴったりの曲を探してみてください。<br>
-            （Update：07/14）このサイトで何ができるの？を <a href="https://x.com/bonga_bon_bonga/status/2076278663470096806" target="_blank" rel="noopener noreferrer">Ｘの記事</a> にまとめました！
+            「ねむぴぴあの」で何をリクエストしようかな？そんな時のための、リクエスト探しのお手伝いサイトです。曲名や気分、ジャンルなどから、ぴったりの曲を探してみてください。
           </p>
         </section>
 
@@ -417,11 +416,98 @@
     </section>
   </main>
 
+  <div class="modal fade" id="usageGuideModal" tabindex="-1" aria-labelledby="usageGuideModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content usage-guide-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="usageGuideModalLabel">使い方</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+        </div>
+        <div class="modal-body usage-guide-body">
+          <section class="usage-guide-page" aria-labelledby="usageGuideRequest">
+            <h3 id="usageGuideRequest" tabindex="-1" aria-describedby="usageGuideProgress">曲を探してリクエストしてみよう！</h3>
+            <ol>
+              <li>画面上部のタブから「🔍 検索」を選択し、「曲名・アーティストを検索」欄に曲名かアーティスト名を入力します。入力されたキーワードはリアルタイムに検索結果に反映されます。また、「ほしにねがいを」のようにひらがな・カタカナでも探せます。</li>
+              <li>目当ての<strong>曲カードをタップ</strong>すると「クリップボードにコピーしました！」と表示されて、リクエストする際に必要な曲名・アーティスト名がテキストとしてコピーされた状態になります。</li>
+              <li>クリップボードコピーした文面は配信中のチャットにペーストすることで、リクエストとして使うことができます。</li>
+            </ol>
+            <p class="usage-guide-note"><strong>リクエストの前に：</strong> リクエストを行う際は、リクエストが受付中であることを確認したうえでリクエストするようお願いします。タイミングによってはリクエストを募集していない場合がありますのでご注意ください。リクエスト受付中の時は、配信枠のチャット欄に固定コメントが設定されていますのでご確認ください。</p>
+            <figure>
+              <img src="images/guide/request.png" alt="" width="468" height="857" loading="lazy">
+              <figcaption>「ほしにねがいを」で検索して、星に願いをのカードから文面をコピーした例</figcaption>
+            </figure>
+          </section>
+          <section class="usage-guide-page" aria-labelledby="usageGuideHome" hidden>
+            <h3 id="usageGuideHome" tabindex="-1" aria-describedby="usageGuideProgress">迷ったら、ホームから探してみよう！</h3>
+            <ul>
+              <li><strong>今日のおすすめ：</strong>「リクエスト可」「全曲」「お気に入り」から最大5曲。もう一度同じボタンを押すと選び直せます。曲ガチャ感覚でどうぞ！</li>
+              <li><strong>今日の気分から曲を探してみる：</strong> 今の気分に近いボタンから、雰囲気に合った曲を探せます。もっと探してみたい時は「ふわっと検索」を使ってみましょう。</li>
+              <li><strong>久しぶりの曲・クリップボード履歴：</strong> 前にコピーした曲を探せます。「久しぶりの曲」は選んだ期間の古い履歴から、「クリップボード履歴」は最近の履歴から表示します。</li>
+            </ul>
+            <figure>
+              <img src="images/guide/home.png" alt="" width="451" height="739" loading="lazy">
+              <figcaption>今日のおすすめ：リクエスト可・全曲・お気に入りのボタンと曲カード</figcaption>
+            </figure>
+          </section>
+          <section class="usage-guide-page" aria-labelledby="usageGuideEasy" hidden>
+            <h3 id="usageGuideEasy" tabindex="-1" aria-describedby="usageGuideProgress">条件を選んで探す｜かんたんモード</h3>
+            <p>曲名が思い浮かばないときは、「検索」タブの<strong>「かんたんモード」</strong>から探すのがおススメです。ジャンル、アーティスト、曲の雰囲気から選択することで、候補の曲が絞り込まれます。</p>
+            <p>選ぶたびに候補が更新されます。たとえば「ディズニー」を選び、そこから「しっとり」した曲に絞り込んでみましょう。</p>
+            <figure>
+              <img src="images/guide/easy.png" alt="" width="449" height="794" loading="lazy">
+              <figcaption>かんたんモードでジャンルの「ディズニー」を選んだ例</figcaption>
+            </figure>
+          </section>
+          <section class="usage-guide-page" aria-labelledby="usageGuideFuzzy" hidden>
+            <h3 id="usageGuideFuzzy" tabindex="-1" aria-describedby="usageGuideProgress">今の気分で探す｜ふわっと検索</h3>
+            <p>「元気になりたい」「静かに沁みる曲が聴きたい」と思ったら、<strong>「ふわっと検索」</strong>へ。きもち・雰囲気・情景などから、今の自分に合うテーマを選んでみましょう。</p>
+            <p>テーマを増やすなら<strong>「もっと探す」</strong>、選んだテーマの曲を増やすなら曲一覧の下の<strong>「もっと見る」</strong>を押すことで候補曲を追加できます。</p>
+            <figure>
+              <img src="images/guide/fuzzy.png" alt="" width="457" height="870" loading="lazy">
+              <figcaption>ふわっと検索の「きもち」カテゴリで「元気になりたい」を選んだ例</figcaption>
+            </figure>
+          </section>
+          <section class="usage-guide-page" aria-labelledby="usageGuideFavorites" hidden>
+            <h3 id="usageGuideFavorites" tabindex="-1" aria-describedby="usageGuideProgress">また探したい曲は、お気に入り登録しよう！</h3>
+            <p>曲カードを<strong>長押し</strong>すると、お気に入りに登録できます。もう一度長押しすると解除できます。曲の詳細にあるボタンからも登録・解除できます。</p>
+            <p>登録した曲だけを見たいときは、検索画面で<strong>「お気に入りのみ」</strong>をオンにしてください。</p>
+            <figure>
+              <img src="images/guide/favorites1.png" alt="" width="452" height="331" loading="lazy">
+              <figcaption>曲カードを長押ししてお気に入りに登録する例</figcaption>
+            </figure>
+            <figure>
+              <img src="images/guide/favorites2.png" alt="" width="452" height="631" loading="lazy">
+              <figcaption>「お気に入りのみ」をオンにして、登録した曲を表示した例</figcaption>
+            </figure>
+          </section>
+          <section class="usage-guide-page" aria-labelledby="usageGuidePerformance" hidden>
+            <h3 id="usageGuidePerformance" tabindex="-1" aria-describedby="usageGuideProgress">曲の詳細情報を確認する・関連曲を探す</h3>
+            <p>曲カード右端の<strong>「詳細」アイコン</strong>を押すと、曲の詳細情報が確認できます。過去の演奏が登録されていれば、その場でプレビューを聴けます。「ほかの演奏」から、過去に演奏した回のプレビューも選択できます。</p>
+            <figure>
+              <img src="images/guide/performance1.png" alt="" width="750" height="1099" loading="lazy">
+              <figcaption>曲の詳細で「ほかの演奏」を開いたときに表示される配信回のボタン</figcaption>
+            </figure>
+            <p>また、選択したアーティストの他の曲を確認できるほか、雰囲気が近しい曲も候補として表示されます。</p>
+            <figure>
+              <img src="images/guide/performance2.png" alt="" width="750" height="1096" loading="lazy">
+              <figcaption>曲の詳細で関連曲が表示されている例</figcaption>
+            </figure>
+          </section>
+        </div>
+        <div class="modal-footer usage-guide-footer">
+          <button class="btn btn-dark" id="usageGuidePrevious" type="button" disabled>前へ</button>
+          <span id="usageGuideProgress">1 / 6</span>
+          <button class="btn btn-dark" id="usageGuideNext" type="button">次へ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="informationModal" tabindex="-1" aria-labelledby="informationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="informationModalLabel">このページについて・使い方</h5>
+          <h5 class="modal-title" id="informationModalLabel">本ページについて</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
         </div>
         <div class="modal-body">
@@ -429,50 +515,6 @@
             本ページは更新済みの<a href="https://docs.google.com/spreadsheets/d/1Dd-oj59leRwLI-Y1v1hD5tpEgk2yiu4w6DL7adkpr9g/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">ピアノ曲リスト</a>データをもとに、曲の検索や探索を行うことが出来ます。
             リストに曲が無い時は、<a href="https://www.youtube.com/@nemupipi" target="_blank" rel="noopener noreferrer">ねむぴぴ</a>のピアノ配信「ねむぴぴあの」内でリクエスト！
           </p>
-          <hr>
-          <h5>使い方</h5>
-          <p class="mb-2"><strong>ホーム</strong>タブでは、曲選びのきっかけになる情報を確認できます。</p>
-          <ul>
-            <li>今日のおすすめ曲を確認できます。</li>
-            <li>今日の気分から、ふわっと検索の候補を確認できます。</li>
-            <li>コピーしてから時間がたった「久しぶりの曲」を確認できます。</li>
-            <li>過去にコピーした曲の履歴を確認できます。</li>
-          </ul>
-          <p class="mb-2"><strong>検索</strong>タブでは、曲リストから目的の曲を探せます。</p>
-          <ul class="mb-0">
-            <li>曲名・アーティスト名でキーワード検索できます。</li>
-            <li>詳細を開くとジャンルなどの条件の絞り込み、またリクエスト可・お気に入りのみに絞った表示に切り替えられます。</li>
-          </ul>
-          <p class="mb-2"><strong>ふわっと検索</strong>タブでは、気分や雰囲気などにマッチする曲を探せます。</p>
-          <ul class="mb-0">
-            <li>「きもち、雰囲気」などの分類ごとに、そのイメージに合った曲を探せます。</li>
-            <li>5曲ピックアップされ、「もっと見る」をクリックするとさらに曲が表示されます（最大30曲）。</li>
-            <li>表示される曲は日替わり毎にランダムに選ばれます。</li>
-          </ul>
-          <hr>
-          <h5>機能</h5>
-          <ul>
-            <li>今日のおすすめ曲の表示</li>
-            <li>久しぶりの曲の表示</li>
-            <li>直近のクリップボード履歴の表示</li>
-            <li>検索タブによる曲名、アーティストのキーワード検索（ひらがな・カタカナでの検索にも対応）</li>
-            <li>ふわっと検索による気分・雰囲気・情景などからの曲探し</li>
-            <li>
-              曲カードクリックによるリクエスト用テキストのコピー<br>
-              <span class="d-inline-block mt-2 px-2 py-1 bg-light border rounded text-break">【ぴぴりく】&lt;曲番号&gt;.&lt;曲名&gt;／&lt;アーティスト&gt;</span>
-            </li>
-            <li>曲カードの長押しクリックによる「お気に入りの登録／解除」</li>
-            <li>曲カードの「詳細」アイコンから、分類・年代・タイアップ・関連曲などの詳細情報を確認</li>
-          </ul>
-          <h6 class="fw-bold mt-3">設定</h6>
-          <p class="mb-2">画面左下の「メニュー」ボタンから「設定」を開くと、下記の設定ができます。</p>
-          <ul class="mb-0">
-            <li>テーマの選択</li>
-            <li>文字の大きさ</li>
-            <li>曲カードの表示列</li>
-            <li>曲カードのアクセントカラー表示</li>
-            <li>「お気に入り登録」の全解除</li>
-          </ul>
           <hr>
           <h6 class="fw-bold mt-3">曲リストの情報取得について</h6>
             <ul class="mb-0">
@@ -576,7 +618,7 @@
   </div>
 
   <footer class="site-footer fixed-bottom mx-0 bg-black bg-opacity-75 text-center text-white">
-    <p>ver.2.5.1 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
+    <p>ver.2.6.0 問題点を見つけたら<a href="https://x.com/bonga_bon_bonga">X(旧Twitter)</a>にご連絡ください。</p>
   </footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="TOPへ戻る" hidden>
@@ -586,8 +628,9 @@
   </button>
   <div class="floating-menu" id="floatingMenu">
     <div class="floating-menu-panel" id="floatingMenuPanel" role="menu" aria-label="サイトメニュー" hidden>
-      <button class="floating-menu-item" type="button" role="menuitem" data-floating-menu-item data-bs-toggle="modal" data-bs-target="#informationModal">使い方</button>
+      <button class="floating-menu-item" type="button" role="menuitem" data-floating-menu-item data-bs-toggle="modal" data-bs-target="#usageGuideModal">使い方</button>
       <button class="floating-menu-item" type="button" role="menuitem" data-floating-menu-item data-bs-toggle="modal" data-bs-target="#settingsModal">設定</button>
+      <button class="floating-menu-item" type="button" role="menuitem" data-floating-menu-item data-bs-toggle="modal" data-bs-target="#informationModal">本ページについて</button>
     </div>
     <button id="menuButton" class="menu-button" type="button" aria-label="メニュー" aria-haspopup="menu" aria-controls="floatingMenuPanel" aria-expanded="false">
       <span class="floating-button-icon" aria-hidden="true">
@@ -599,7 +642,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-  <script src="./js/musiclist-search.js?v=2.5.1"></script>
+  <script src="./js/musiclist-search.js?v=2.6.0"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBXT5KPJ5L"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VBXT5KPJ5L');</script>
 <!--

@@ -1205,6 +1205,7 @@ html[data-theme="dark"] .song-card.accent-other {
     display: flex;
     justify-content: flex-end;
     order: 25;
+    overflow-anchor: none;
 }
 
 .search-alternatives {
@@ -1781,6 +1782,75 @@ html[data-theme="dark"] .detail-favorite-button.active {
 
 .modal-header {
     border-bottom-color: var(--page-line);
+}
+
+.usage-guide-content {
+    height: 100%;
+    background: var(--page-body);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#usageGuideModal[data-font-size="small"] .usage-guide-content {
+    font-size: .9rem;
+}
+
+#usageGuideModal[data-font-size="large"] .usage-guide-content {
+    font-size: 1.125rem;
+}
+
+.usage-guide-page h3 {
+    margin-bottom: .75em;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.usage-guide-page :is(ol, ul) {
+    padding-inline-start: 1.5em;
+}
+
+.usage-guide-page li + li {
+    margin-top: .5em;
+}
+
+.usage-guide-page img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--page-line);
+    border-radius: .5rem;
+}
+
+.usage-guide-page figcaption {
+    margin-top: .4em;
+    font-size: .875em;
+    color: var(--page-muted);
+}
+
+.usage-guide-note {
+    padding: .75em;
+    border-inline-start: .2rem solid var(--page-accent);
+    border-radius: .25rem;
+    background: var(--page-accent-soft);
+}
+
+.usage-guide-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: .5rem;
+    border-top-color: var(--page-line);
+    text-align: center;
+}
+
+.usage-guide-footer > * {
+    margin: 0;
+}
+
+.usage-guide-footer .btn {
+    min-height: 44px;
+    font-size: 1em;
 }
 
 html[data-theme="dark"] .btn-close {
