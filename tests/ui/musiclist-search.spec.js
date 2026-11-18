@@ -649,12 +649,21 @@ test("使い方ガイドは前後に移動でき、閉じるとメニューへ�
   await expect(dialog).toContainText("今の配信で受付中という意味ではありません");
   await expect(menuButton).toBeHidden();
 
+  const buttonPositions = () => dialog.locator(".modal-header .btn-close, .usage-guide-footer button")
+    .evaluateAll(buttons => buttons.map(button => {
+      const { x, y } = button.getBoundingClientRect();
+      return { x, y };
+    }));
+  const initialPositions = await buttonPositions();
+  expect(initialPositions).toHaveLength(3);
+
   for (const [index, title] of headings.entries()) {
     await expect(chapter).toHaveText(title);
     await expect(progress).toHaveText(`${index + 1} / 6`);
     const screenshot = dialog.getByRole("img");
     await screenshot.scrollIntoViewIfNeeded();
     await expect.poll(() => screenshot.evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+    expect(await buttonPositions()).toEqual(initialPositions);
     if (index === 0) {
       await page.keyboard.press("Tab");
       await expect(next).toBeFocused();

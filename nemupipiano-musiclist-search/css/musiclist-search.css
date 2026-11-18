@@ -1784,6 +1784,7 @@ html[data-theme="dark"] .detail-favorite-button.active {
 }
 
 .usage-guide-content {
+    height: 100%;
     background: var(--page-body);
     font-size: 1rem;
     line-height: 1.6;
