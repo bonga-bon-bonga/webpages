@@ -29475,64 +29475,6 @@
     "note": ""
   },
   {
-    "no": "list#547",
-    "displayTitle": "E0$-3:罪",
-    "displayArtist": "澤野弘之",
-    "songKey": "e0-3罪|澤野弘之",
-    "titleSearchWords": [
-      "E0$-3:つみ",
-      "E0$-3:ツミ",
-      "E0$-3:tsumi",
-      "えりおねまいなすすりーつみ",
-      "えりおねまいなす3つみ",
-      "e0まいなすすりーつみ",
-      "e0まいなす3つみ",
-      "エリオネマイナススリーツミ",
-      "エリオネマイナス3ツミ",
-      "e0マイナススリーツミ",
-      "e0マイナス3ツミ"
-    ],
-    "artistSearchWords": [
-      "さわのひろゆき",
-      "サワノヒロユキ"
-    ],
-    "releaseDecade": "2010年代",
-    "classification": {
-      "genres": [
-        "劇伴音楽"
-      ],
-      "subgenres": [],
-      "sourceCategories": [
-        "アニメ"
-      ],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "戦い",
-        "葛藤"
-      ],
-      "moodTags": [
-        "緊張感",
-        "ダーク",
-        "壮大"
-      ],
-      "motifTags": [
-        "炎",
-        "影"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [],
-    "sourceTitle": "E0$-3:罪",
-    "sourceArtist": "澤野弘之",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
     "no": "list#548",
     "displayTitle": "10月無口な君を忘れる",
     "displayArtist": "あたらよ",
@@ -29584,7 +29526,7 @@
     "tieUps": [],
     "sourceTitle": "10月無口な君を忘れる",
     "sourceArtist": "あたらよ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -29641,7 +29583,7 @@
     "tieUps": [],
     "sourceTitle": "Crazy Party Night ～ぱんぷきんの逆襲～",
     "sourceArtist": "きゃりーぱみゅぱみゅ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -29696,7 +29638,7 @@
     "tieUps": [],
     "sourceTitle": "ハロウィン・ナイト",
     "sourceArtist": "AKB48",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -29758,7 +29700,7 @@
     ],
     "sourceTitle": "私のお気に入り(My Favorite Things)",
     "sourceArtist": "リチャード・ロジャース",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -29812,7 +29754,7 @@
     ],
     "sourceTitle": "IRIS OUT",
     "sourceArtist": "米津玄師",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -29865,7 +29807,7 @@
     "tieUps": [],
     "sourceTitle": "ラスト・クリスマス",
     "sourceArtist": "Wham!",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -29923,7 +29865,7 @@
     "tieUps": [],
     "sourceTitle": "ヴァンパイア",
     "sourceArtist": "DECO*27",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -29976,7 +29918,7 @@
     "tieUps": [],
     "sourceTitle": "恋人がサンタクロース",
     "sourceArtist": "松任谷由実",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30037,7 +29979,7 @@
     "tieUps": [],
     "sourceTitle": "Wherever you are",
     "sourceArtist": "ONE OK ROCK",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30096,7 +30038,7 @@
     ],
     "sourceTitle": "スターマーカー",
     "sourceArtist": "KANA-BOON",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30153,7 +30095,7 @@
     ],
     "sourceTitle": "僕はここにいる",
     "sourceArtist": "山崎まさよし",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30210,7 +30152,7 @@
     ],
     "sourceTitle": "オールドファッション",
     "sourceArtist": "back number",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30265,54 +30207,7 @@
     "tieUps": [],
     "sourceTitle": "津軽海峡・冬景色",
     "sourceArtist": "石川さゆり",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
-    "no": "list#561",
-    "displayTitle": "break",
-    "displayArtist": "宮本笑里",
-    "songKey": "break|宮本笑里",
-    "titleSearchWords": [
-      "ぶれいく",
-      "ブレイク",
-      "break"
-    ],
-    "artistSearchWords": [
-      "みやもとえみり",
-      "ミヤモトエミリ"
-    ],
-    "releaseDecade": "2000年代",
-    "classification": {
-      "genres": [
-        "クラシック"
-      ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "日常",
-        "希望"
-      ],
-      "moodTags": [
-        "爽やか",
-        "おしゃれ",
-        "透明感"
-      ],
-      "motifTags": [
-        "風"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [],
-    "sourceTitle": "break",
-    "sourceArtist": "宮本笑里",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30373,7 +30268,7 @@
     ],
     "sourceTitle": "君がいるだけで",
     "sourceArtist": "米米CLUB",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30421,7 +30316,7 @@
     "tieUps": [],
     "sourceTitle": "Overdose",
     "sourceArtist": "なとり",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30481,7 +30376,7 @@
     ],
     "sourceTitle": "こんなに近くで...",
     "sourceArtist": "Crystal Kay",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30540,7 +30435,7 @@
     ],
     "sourceTitle": "月灯りふんわり落ちてくる夜",
     "sourceArtist": "小川七生",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30597,7 +30492,7 @@
     ],
     "sourceTitle": "ヒカリへ",
     "sourceArtist": "miwa",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30652,7 +30547,7 @@
     ],
     "sourceTitle": "さよならエレジー",
     "sourceArtist": "菅田将暉",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30702,7 +30597,7 @@
     "tieUps": [],
     "sourceTitle": "サウダージ",
     "sourceArtist": "ポルノグラフィティ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30751,7 +30646,7 @@
     "tieUps": [],
     "sourceTitle": "恋人ごっこ",
     "sourceArtist": "マカロニえんぴつ",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30809,7 +30704,7 @@
     ],
     "sourceTitle": "イケナイ太陽",
     "sourceArtist": "ORANGE RANGE",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30868,7 +30763,7 @@
     ],
     "sourceTitle": "世界が終るまでは…",
     "sourceArtist": "WANDS",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30919,7 +30814,7 @@
     "tieUps": [],
     "sourceTitle": "大阪LOVER",
     "sourceArtist": "DREAMS COME TRUE",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -30971,7 +30866,7 @@
     "tieUps": [],
     "sourceTitle": "島人ぬ宝",
     "sourceArtist": "BEGIN",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31020,7 +30915,7 @@
     "tieUps": [],
     "sourceTitle": "最後の雨",
     "sourceArtist": "中西保志",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31071,7 +30966,7 @@
     "tieUps": [],
     "sourceTitle": "シングルベッド",
     "sourceArtist": "シャ乱Q",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31121,7 +31016,7 @@
     "tieUps": [],
     "sourceTitle": "チャンカパーナ",
     "sourceArtist": "NEWS",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31177,7 +31072,7 @@
     ],
     "sourceTitle": "気まぐれロマンティック",
     "sourceArtist": "いきものがかり",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31223,7 +31118,7 @@
     "tieUps": [],
     "sourceTitle": "Blue Jeans",
     "sourceArtist": "HANA",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31278,7 +31173,7 @@
     ],
     "sourceTitle": "Bling-Bang-Bang-Born",
     "sourceArtist": "Creepy Nuts",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31326,7 +31221,7 @@
     "tieUps": [],
     "sourceTitle": "ハレンチ",
     "sourceArtist": "ちゃんみな",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31379,7 +31274,7 @@
     "tieUps": [],
     "sourceTitle": "愛のかたまり",
     "sourceArtist": "Kinki Kids",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31435,7 +31330,7 @@
     ],
     "sourceTitle": "旅路",
     "sourceArtist": "藤井風",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31496,7 +31391,7 @@
     ],
     "sourceTitle": "月光花",
     "sourceArtist": "Janne Da Arc",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31545,7 +31440,7 @@
     "tieUps": [],
     "sourceTitle": "そっけない",
     "sourceArtist": "RADWIMPS",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31589,7 +31484,7 @@
     "tieUps": [],
     "sourceTitle": "ぞうさん",
     "sourceArtist": "團伊玖磨作曲",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31635,7 +31530,7 @@
     "tieUps": [],
     "sourceTitle": "アイアイ",
     "sourceArtist": "宇野誠一郎作曲",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31683,7 +31578,7 @@
     "tieUps": [],
     "sourceTitle": "揺れる想い",
     "sourceArtist": "ZARD",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31729,7 +31624,7 @@
     "tieUps": [],
     "sourceTitle": "女々しくて",
     "sourceArtist": "ゴールデンボンバー",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31778,7 +31673,7 @@
     "tieUps": [],
     "sourceTitle": "ポリリズム",
     "sourceArtist": "Perfume",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31830,7 +31725,7 @@
     "tieUps": [],
     "sourceTitle": "ホワイトキス",
     "sourceArtist": "鈴木鈴木",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31886,7 +31781,7 @@
     "tieUps": [],
     "sourceTitle": "め組のひと",
     "sourceArtist": "ラッツ&スター",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -31943,7 +31838,7 @@
     ],
     "sourceTitle": "ノスタルジア",
     "sourceArtist": "いきものがかり",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -32001,7 +31896,7 @@
     ],
     "sourceTitle": "笑顔",
     "sourceArtist": "いきものがかり",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -32059,7 +31954,7 @@
     ],
     "sourceTitle": "メリーゴーランド",
     "sourceArtist": "優里",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -32106,65 +32001,25 @@
     "tieUps": [],
     "sourceTitle": "ぶんぶんぶん",
     "sourceArtist": "作曲者不詳（ボヘミア民謡)",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
   {
     "no": "list#596",
-    "displayTitle": "さよならの夏",
+    "displayTitle": "",
     "displayArtist": "手嶌葵",
-    "songKey": "さよならの夏|手嶌葵",
-    "titleSearchWords": [
-      "さよならのなつ",
-      "サヨナラノナツ",
-      "sayonaranonatsu"
-    ],
+    "songKey": "|手嶌葵",
+    "titleSearchWords": [],
     "artistSearchWords": [
       "てじまあおい",
       "テジマアオイ"
     ],
     "releaseDecade": null,
-    "classification": {
-      "genres": [
-        "J-POP"
-      ],
-      "subgenres": [
-        "バラード"
-      ],
-      "sourceCategories": [
-        "映画",
-        "アニメ"
-      ],
-      "vocalTypes": [
-        "女性ボーカル"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "別れ",
-        "記憶",
-        "青春"
-      ],
-      "moodTags": [
-        "切ない",
-        "泣ける",
-        "ノスタルジック"
-      ],
-      "motifTags": [
-        "夏",
-        "海"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [
-      {
-        "series": "コクリコ坂から",
-        "workTitle": "コクリコ坂から",
-        "role": "主題歌"
-      }
-    ],
-    "sourceTitle": "さよならの夏",
+    "classification": {},
+    "tags": {},
+    "tieUps": [],
+    "sourceTitle": "",
     "sourceArtist": "手嶌葵",
     "playable": "",
     "genre": "",
@@ -32214,7 +32069,7 @@
     "tieUps": [],
     "sourceTitle": "幸せならてをたたこう",
     "sourceArtist": "坂本九",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -32272,7 +32127,7 @@
     ],
     "sourceTitle": "マジンガーZ",
     "sourceArtist": "水木一郎",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -32327,7 +32182,7 @@
     ],
     "sourceTitle": "鉄腕アトム",
     "sourceArtist": "上高田少年合唱団",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -32387,57 +32242,7 @@
     ],
     "sourceTitle": "魔訶不思議アドベンチャー!",
     "sourceArtist": "高橋洋樹",
-    "playable": "",
-    "genre": "",
-    "note": ""
-  },
-  {
-    "no": "list#601",
-    "displayTitle": "Flower Dance",
-    "displayArtist": "DJ OKAWARI",
-    "songKey": "flowerdance|djokawari",
-    "titleSearchWords": [
-      "ふらわーだんす",
-      "フラワーダンス",
-      "flower dance",
-      "furawaa dansu"
-    ],
-    "artistSearchWords": [
-      "でぃーじぇーおかわり",
-      "でぃーじぇいおかわり",
-      "ディージェーオカワリ",
-      "ディージェイオカワリ"
-    ],
-    "releaseDecade": "2010年代",
-    "classification": {
-      "genres": [
-        "ヒップホップ／ラップ"
-      ],
-      "subgenres": [],
-      "sourceCategories": [],
-      "vocalTypes": [
-        "インスト"
-      ]
-    },
-    "tags": {
-      "themeTags": [
-        "日常"
-      ],
-      "moodTags": [
-        "おしゃれ",
-        "穏やか",
-        "癒し"
-      ],
-      "motifTags": [
-        "花",
-        "音楽"
-      ],
-      "eventTags": []
-    },
-    "tieUps": [],
-    "sourceTitle": "Flower Dance",
-    "sourceArtist": "DJ OKAWARI",
-    "playable": "",
+    "playable": "〇",
     "genre": "",
     "note": ""
   },
@@ -55005,6 +54810,66 @@
     ],
     "sourceTitle": "遠い日々",
     "sourceArtist": "久石譲",
+    "playable": "",
+    "genre": "",
+    "note": ""
+  },
+  {
+    "no": "ghibli#32",
+    "displayTitle": "さよならの夏",
+    "displayArtist": "手嶌葵",
+    "songKey": "さよならの夏|手嶌葵",
+    "titleSearchWords": [
+      "さよならのなつ",
+      "サヨナラノナツ",
+      "sayonaranonatsu"
+    ],
+    "artistSearchWords": [
+      "てじまあおい",
+      "テジマアオイ"
+    ],
+    "releaseDecade": null,
+    "classification": {
+      "genres": [
+        "J-POP"
+      ],
+      "subgenres": [
+        "バラード"
+      ],
+      "sourceCategories": [
+        "映画",
+        "アニメ"
+      ],
+      "vocalTypes": [
+        "女性ボーカル"
+      ]
+    },
+    "tags": {
+      "themeTags": [
+        "別れ",
+        "記憶",
+        "青春"
+      ],
+      "moodTags": [
+        "切ない",
+        "泣ける",
+        "ノスタルジック"
+      ],
+      "motifTags": [
+        "夏",
+        "海"
+      ],
+      "eventTags": []
+    },
+    "tieUps": [
+      {
+        "series": "コクリコ坂から",
+        "workTitle": "コクリコ坂から",
+        "role": "主題歌"
+      }
+    ],
+    "sourceTitle": "さよならの夏",
+    "sourceArtist": "手嶌葵",
     "playable": "",
     "genre": "",
     "note": ""
